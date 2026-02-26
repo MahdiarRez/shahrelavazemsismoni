@@ -1,0 +1,1 @@
+{"version":3,"file":"robots.txt.mjs","sources":["../../../../server/routes/robots.txt.ts"],"names":["robots_txt","defineEventHandler","event","setHeader","origin","getRequestURL"],"mappings":"qLAEA,MAAAA,EAAAC,EAAAC,IACAC,EAAAD,EAAA,eAAA,6BACA,MAAAE,OAAAA,GAAAC,EAAAH,GACA,MAAA,qCAAAE"}

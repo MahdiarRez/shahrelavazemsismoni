@@ -1,0 +1,1 @@
+{"version":3,"file":"categories.get.mjs","sources":["../../../../../app/gql/queries/getCategories.ts","../../../../../server/api/categories.get.ts"],"names":["getCategoriesQuery","gql","categories_get","cachedEventHandler","async","requestQuery"],"mappings":"6LAGO,MAAMA,EAAqBC,CAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ECClCC,EAAAC,EAAAC,eACAC,EAAAL"}
