@@ -2771,7 +2771,22 @@ _vxvPuqEnCQKf9XK0U4Qq86etSB8FGtUVYPu6gnQQxY,
 _mOrmZH8_bJT3UO8DhcDX_3UbjZU0SX0XqcfiFzw2Y
 ];
 
-const assets = {};
+const assets = {
+  "/index.mjs": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2c4e4-zSksuTTH+WVI2gxUCfq325XNwJo\"",
+    "mtime": "2026-03-06T17:36:58.598Z",
+    "size": 181476,
+    "path": "index.mjs"
+  },
+  "/index.mjs.map": {
+    "type": "application/json",
+    "etag": "\"9c7b9-ZPDO2lWDYeMQrB8Imo+Ws++7kXM\"",
+    "mtime": "2026-03-06T17:36:58.599Z",
+    "size": 640953,
+    "path": "index.mjs.map"
+  }
+};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
@@ -4264,6 +4279,11 @@ const getProductQuery = gql`
 				slug
 				name
 				regularPrice
+				productCategories {
+					nodes {
+						name
+					}
+				}
 				salePrice
 				description
 

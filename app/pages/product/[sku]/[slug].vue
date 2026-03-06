@@ -19,21 +19,17 @@ const setThumbsSwiper = (swiper) => {
 	thumbsSwiper.value = swiper;
 };
 
-// گرفتن پارامترها از مسیر
-// دقت کنید اگر نام فایل [id].vue است، از route.params.id استفاده کنید
 const routeSku = computed(() => route.params.sku || route.params.slug);
 
-// استفاده از useFetch به جای onMounted + $fetch
-// این روش خودکار مشکل Circular Structure را حل می‌کند و SSR-friendly است
 const { data: productData, pending } = await useFetch("/api/product", {
-	query: { sku: routeSku }, // Nuxt خودش .value را مدیریت می‌کند
+	query: { sku: routeSku },
 	transform: (data) => data.product,
 	lazy: true,
-	watch: [routeSku], // اگر SKU در URL تغییر کرد، دوباره فچ انجام شود
+	watch: [routeSku],
 });
-watchEffect(() => console.log("pending : ", pending.value));
 
 const product = computed(() => productData.value || {});
+watchEffect(() => console.log("pending : ", product.value));
 const selectedVariation = ref(null);
 
 const sizeOrder = [
@@ -107,7 +103,7 @@ watchEffect(() => {
 			</swiper>
 		</div>
 		<div
-			class="flex lg:p-5 lg:gap-5 flex-col lg:flex-row lg:border lg:border-transparent lg:dark:border-[#262626] lg:rounded-[32px] lg:shadow-[0_1px_20px_rgba(0,0,0,.15)] lg:mt-3.5 select-none">
+			class="flex lg:p-5 lg:gap-5 flex-col lg:flex-row-reverse lg:border lg:border-transparent lg:dark:border-[#262626] lg:rounded-[32px] lg:shadow-[0_1px_20px_rgba(0,0,0,.15)] lg:mt-3.5 select-none">
 			<div class="relative">
 				<swiper
 					:style="{
@@ -148,9 +144,21 @@ watchEffect(() => {
 					class="flex-col flex gap-4 lg:max-h-[530px] xl:max-h-[600px] overflow-hidden">
 					<div
 						class="p-3 lg:pb-4 lg:p-0 border-b border-[#efefef] dark:border-[#262626]">
-						<h1 class="text-2xl font-semibold mb-1">
+						<h1 class="text-2xl font-semibold mb-0.5 text-right">
 							{{ product.name }}
 						</h1>
+						<NuxtLink
+							:to="
+								localePath(
+									`/?category=${encodeURIComponent(
+										product.productCategories?.nodes[0]
+											?.name,
+									)}`,
+								)
+							"
+							class="text-sm font-medium mb-1 text-right opacity-50 block md:hover:text-primary-600 md:hover:opacity-90 transition-all duration-300 cursor-pointer">
+							{{ product.productCategories?.nodes[0]?.name }}
+						</NuxtLink>
 						<ProductPrice
 							:sale-price="product.salePrice"
 							:regular-price="product.regularPrice" />

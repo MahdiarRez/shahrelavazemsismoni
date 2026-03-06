@@ -32,6 +32,7 @@ export const ProductSeo: typeof import("../app/components/ProductSeo.vue")['defa
 export const ProductSkeleton: typeof import("../app/components/ProductSkeleton.vue")['default']
 export const ProductsEmpty: typeof import("../app/components/ProductsEmpty.vue")['default']
 export const ProductsSkeleton: typeof import("../app/components/ProductsSkeleton.vue")['default']
+export const TomanSvg: typeof import("../app/components/TomanSvg.vue")['default']
 export const UAccordion: typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
 export const UAlert: typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']
 export const UAvatar: typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/components/elements/Avatar.vue")['default']
@@ -133,6 +134,7 @@ export const LazyProductSeo: LazyComponent<typeof import("../app/components/Prod
 export const LazyProductSkeleton: LazyComponent<typeof import("../app/components/ProductSkeleton.vue")['default']>
 export const LazyProductsEmpty: LazyComponent<typeof import("../app/components/ProductsEmpty.vue")['default']>
 export const LazyProductsSkeleton: LazyComponent<typeof import("../app/components/ProductsSkeleton.vue")['default']>
+export const LazyTomanSvg: LazyComponent<typeof import("../app/components/TomanSvg.vue")['default']>
 export const LazyUAccordion: LazyComponent<typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>
 export const LazyUAlert: LazyComponent<typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']>
 export const LazyUAvatar: LazyComponent<typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/components/elements/Avatar.vue")['default']>

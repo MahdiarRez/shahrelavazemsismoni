@@ -10,8 +10,9 @@ const images = computed(() => {
 		? [props.product.image.sourceUrl]
 		: [];
 	const additionalImages =
-		props.product?.galleryImages?.nodes.map((image: any) => image.sourceUrl) ||
-		[];
+		props.product?.galleryImages?.nodes.map(
+			(image: any) => image.sourceUrl,
+		) || [];
 	return mainImage.concat(additionalImages);
 });
 </script>
@@ -20,7 +21,8 @@ const images = computed(() => {
 	<UModal
 		:ui="{
 			overlay: {
-				background: 'bg-neutral-200/90 dark:bg-neutral-800/90 backdrop-blur-sm',
+				background:
+					'bg-neutral-200/90 dark:bg-neutral-800/90 backdrop-blur-sm',
 			},
 			background: 'bg-bg-transparent dark:bg-bg-transparent',
 			container: 'items-center ',

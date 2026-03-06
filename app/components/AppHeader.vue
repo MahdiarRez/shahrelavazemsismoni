@@ -281,7 +281,7 @@ const totalQuantity = computed(() =>
 	<div
 		v-if="suggestionMenu || cartModal"
 		:class="['fixed inset-0 ', cartModal ? 'z-40' : 'z-30']">
-		<div class="w-full h-full bg-black/30 backdrop-blur-lg"></div>
+		<div class="w-full h-full bg-black/30 backdrop-blur-sm"></div>
 	</div>
 	<button
 		v-if="cartModal"

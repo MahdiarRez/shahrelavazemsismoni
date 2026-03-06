@@ -1,5 +1,7 @@
 <!--app/components/ProductCard.vue-->
 <script setup>
+import { convertMinPriceRangeToToman } from "~~/shared/helpers";
+
 const localePath = useLocalePath();
 
 defineProps({
@@ -11,10 +13,11 @@ defineProps({
 	<article v-for="product in products">
 		<NuxtLink
 			:to="localePath(`/product/${product.sku}/${product.slug}`)"
-			class="group select-none">
-			<div class="cursor-pointer transition ease-[ease] duration-300">
+			class="group select-none h-full">
+			<div
+				class="cursor-pointer transition ease-[ease] duration-300 md:hover:bg-[#efefef] dark:md:hover:bg-[#141313] rounded-2xl">
 				<div
-					class="relative pb-[133%] dark:shadow-[0_8px_24px_rgba(0,0,0,.5)] rounded-2xl overflow-hidden">
+					class="relative pb-[133%] dark:shadow-[0_8px_24px_rgba(0,0,0,.5)] rounded-2xl overflow-hidden md:group-hover:rounded-b-none transition-all duration-300">
 					<NuxtImg
 						:alt="product.name"
 						loading="lazy"
@@ -29,19 +32,19 @@ defineProps({
 						class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover transition-opacity duration-300 group-hover:opacity-0" />
 				</div>
 				<div
-					class="grid gap-0.5 pt-3 pb-4 px-1.5 text-sm font-semibold">
-					<ProductPrice
-						:sale-price="product.salePrice"
-						:regular-price="product.regularPrice"
-						variant="card" />
+					class="grid gap-0.5 pt-3 pb-4 px-1.5 md:px-3 text-sm font-semibold text-right">
 					<div>{{ product.name }}</div>
-					<div class="flex flex-row justify-start gap-3 items-center">
+					<div class="flex flex-row justify-end gap-3 items-center">
 						<div
-							class="font-normal text-[#5f5f5f] dark:text-[#a3a3a3]"
+							class="font-normal text-xs opacity-80 text-[#5f5f5f] dark:text-[#a3a3a3]"
 							v-for="value in product.productCategories?.nodes">
 							{{ value.name }}
 						</div>
 					</div>
+					<ProductPrice
+						:sale-price="product.salePrice"
+						:regular-price="product.regularPrice"
+						variant="card" />
 				</div>
 			</div>
 		</NuxtLink>
