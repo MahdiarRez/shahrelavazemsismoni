@@ -155,6 +155,10 @@ import { RuntimeConfig as UserRuntimeConfig, PublicRuntimeConfig as UserPublicRu
       },
 
       domainLocales: {
+         fa: {
+            domain: string,
+         },
+
          en: {
             domain: string,
          },

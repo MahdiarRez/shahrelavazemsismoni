@@ -199,7 +199,7 @@ watchEffect(() => {
 						<div
 							class="text-sm font-semibold leading-5 opacity-50 flex gap-1">
 							{{ $t("product.size") }}:
-							<div class="uppercase">
+							<div class="uppercase bg-red-400">
 								{{
 									selectedVariation.attributes.nodes
 										.map((attr) => attr.value)
@@ -209,7 +209,7 @@ watchEffect(() => {
 						</div>
 						<div class="flex gap-2 mt-2 mb-4 flex-wrap">
 							<label
-								class="py-1 px-3 rounded-md cursor-pointer select-varitaion border-2 border-[#9b9b9b] dark:border-[#8c8c8c] transition-all duration-200"
+								class="py-1 px-3 rounded-lg cursor-pointer select-varitaion border-2 border-[#9b9b9b] dark:border-[#8c8c8c] transition-all duration-200"
 								v-for="variation in sortedVariations"
 								:key="variation.databaseId"
 								:class="[
@@ -251,7 +251,7 @@ watchEffect(() => {
 									)
 								"
 								:disabled="addToCartButtonStatus !== 'add'"
-								class="button-bezel w-full h-12 rounded-md relative tracking-wide font-semibold text-white text-sm flex justify-center items-center">
+								class="button-bezel w-full h-12 rounded-lg relative tracking-wide font-semibold text-white text-sm flex justify-center items-center">
 								<Transition name="slide-up">
 									<div
 										v-if="addToCartButtonStatus === 'add'"
@@ -277,7 +277,7 @@ watchEffect(() => {
 							<ButtonWishlist :product="product" />
 						</div>
 					</div>
-					<div class="px-3 lg:px-0 overflow-y-auto">
+					<div class="px-3 lg:px-0 overflow-y-auto text-right">
 						<div class="text-base mb-2 font-semibold">
 							{{ $t("product.featured_information") }}
 						</div>
@@ -303,7 +303,7 @@ watchEffect(() => {
 		</div>
 	</div>
 	<div
-		class="text-lg lg:text-xl lg:text-center font-semibold mt-4 pt-4 px-3 border-t border-[#efefef] dark:border-[#262626] lg:border-none">
+		class="text-lg lg:text-xl lg:text-center text-right font-semibold mt-4 pt-4 px-3 border-t border-[#efefef] dark:border-[#262626] lg:border-none">
 		{{ $t("product.shop_similar") }}
 	</div>
 	<div
@@ -358,9 +358,7 @@ watchEffect(() => {
 }
 
 .description ul li {
-	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxlbGxpcHNlIHJ5PSIzIiByeD0iMyIgY3k9IjMiIGN4PSIzIiBmaWxsPSIjYzljOWM5Ii8+PC9zdmc+)
-		no-repeat 0 0.7rem;
-	padding-left: 0.938rem;
+	padding-right: 0.938rem;
 }
 
 .slide-up-enter-active,

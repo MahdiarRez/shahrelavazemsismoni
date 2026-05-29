@@ -16,7 +16,7 @@ export default defineNuxtConfig({
 	],
 
 	i18n: {
-		defaultLocale: "en",
+		defaultLocale: "fa",
 		strategy: "prefix_except_default",
 		langDir: "locales",
 		detectBrowserLanguage: {
@@ -26,15 +26,38 @@ export default defineNuxtConfig({
 			alwaysRedirect: true,
 		},
 		locales: [
-			{ code: "en", iso: "en-GB", file: "en-GB.json", name: "🇬🇧 English" },
+			{
+				code: "fa",
+				iso: "fa-IR",
+				file: "fa-IR.json",
+				name: "🇮🇷 فارسی",
+				dir: "rtl",
+			},
+
+			{
+				code: "en",
+				iso: "en-GB",
+				file: "en-GB.json",
+				name: "🇬🇧 English",
+			},
 			{
 				code: "nb",
 				iso: "nb-NO",
 				file: "nb-NO.json",
 				name: "🇳🇴 Norsk (Bokmål)",
 			},
-			{ code: "nl", iso: "nl-NL", file: "nl-NL.json", name: "🇳🇱 Nederlands" },
-			{ code: "de", iso: "de-DE", file: "de-DE.json", name: "🇩🇪 Deutsch" },
+			{
+				code: "nl",
+				iso: "nl-NL",
+				file: "nl-NL.json",
+				name: "🇳🇱 Nederlands",
+			},
+			{
+				code: "de",
+				iso: "de-DE",
+				file: "de-DE.json",
+				name: "🇩🇪 Deutsch",
+			},
 		],
 	},
 

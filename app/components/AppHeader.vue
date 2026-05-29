@@ -63,7 +63,8 @@ const totalQuantity = computed(() =>
 <template>
 	<div
 		class="flex w-full flex-row items-center px-3 lg:px-5 h-[72px] lg:h-20 z-40 fixed bg-white/85 dark:bg-black/85 backdrop-blur-sm dark:backdrop-blur-lg">
-		<div class="flex flex-row w-full flex-nowrap items-center gap-2">
+		<div
+			class="flex flex-row-reverse w-full flex-nowrap items-center gap-2">
 			<NuxtLink
 				aria-label="Home"
 				class="flex items-center justify-center min-w-[52px] min-h-[52px] max-lg:min-w-12 max-lg:min-h-12 hover:bg-black/5 hover:dark:bg-white/15 max-lg:dark:bg-white/15 max-lg:bg-black/5 max-lg:hover:bg-black/10 max-lg:hover:dark:bg-white/20 rounded-2xl max-lg:rounded-full transition active:scale-95"
@@ -128,9 +129,9 @@ const totalQuantity = computed(() =>
 								name="i-iconamoon-search-bold"
 								size="20" />
 						</div>
-						<div class="flex w-full">
+						<div class="flex w-full flex-row-reverse">
 							<input
-								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400"
+								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400 text-right"
 								type="text"
 								v-model="searchQuery"
 								@keyup.enter="search"
@@ -221,7 +222,7 @@ const totalQuantity = computed(() =>
 				class="mx-auto p-3 lg:p-4 max-w-screen-2xl">
 				<h2
 					v-if="!searchQuery"
-					class="text-2xl font-bold tracking-tight">
+					class="text-2xl font-bold tracking-tight text-right">
 					{{ $t("search.new_products") }}
 				</h2>
 				<div
@@ -241,7 +242,8 @@ const totalQuantity = computed(() =>
 									loading="lazy"
 									:title="product.name"
 									:src="
-										product.galleryImages.nodes[0].sourceUrl
+										product.galleryImages.nodes[0]
+											?.sourceUrl
 									"
 									class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover" />
 								<NuxtImg
@@ -285,7 +287,7 @@ const totalQuantity = computed(() =>
 	</div>
 	<button
 		v-if="cartModal"
-		class="hover:bg-white/65 dark:hover:bg-white/10 transition shadow-2xl mt-3 lg:mt-4 mx-3 lg:mx-5 items-center justify-center min-w-12 min-h-12 rounded-[2rem] right-0 fixed flex z-50 bg-white/85 dark:bg-black/30 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-lg">
+		class="hover:bg-white/65 dark:hover:bg-white/10 transition shadow-2xl mt-3 lg:mt-4 mx-3 lg:mx-5 items-center justify-center min-w-12 min-h-12 rounded-[2rem] left-0 fixed flex z-50 bg-white/85 dark:bg-black/30 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-lg">
 		<UIcon
 			class="text-[#5f5f5f] dark:text-[#b7b7b7]"
 			name="i-iconamoon-close"

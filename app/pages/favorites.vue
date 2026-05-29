@@ -76,7 +76,7 @@ useSeoMeta({
 					name="i-iconamoon-heart-fill"
 					class="w-20 h-20 text-alizarin-crimson-400 dark:text-alizarin-crimson-700 pulse-heart" />
 			</div>
-			<div class="font-extrabold text-3xl my-6">
+			<div class="font-extrabold text-xl md:text-3xl my-6 text-center">
 				{{ $t("favorites.nothing_to_show_yet") }}
 			</div>
 			<div class="text-sm text-center mb-5 max-w-md">

@@ -1,0 +1,85 @@
+{
+	"general": {
+		"go_back": "بازگشت",
+		"loading": "... در حال بارگذاری"
+	},
+	"theme": {
+		"dark": "تاریک",
+		"light": "روشن",
+		"system": "سیستم",
+		"toggle": "تغییر پوسته"
+	},
+	"nav": {
+		"home": "خانه",
+		"categories": "دسته‌بندی‌ها",
+		"favorites": "علاقه‌مندی‌ها",
+		"products": "محصولات"
+	},
+	"footer": {
+		"developed_by_author": "توسعه یافته توسط {author}",
+		"change_language": "تغییر زبان"
+	},
+	"search": {
+		"placeholder": "... اسم محصول مورد نظر را بنویسید",
+		"placeholder_in_category": "... جستجو در {category}",
+		"no_results_for_query": "هیچ نتیجه‌ای برای {query} یافت نشد",
+		"no_results_suggestion": ".برای نتایج بهتر، املای کلمات را بررسی کنید یا از کلمات کلیدی عمومی‌تر استفاده کنید",
+		"view_all_results": "مشاهده همه نتایج",
+		"new_products": "محصولات جدید",
+		"no_products_matching": "محصولی مطابق با جستجو یافت نشد",
+		"no_products_found_matching": "هیچ محصولی مطابق با جستجوی شما یافت نشد",
+		"no_products_found": "محصولی یافت نشد",
+		"use_search_bar_above": ".می‌توانید از نوار جستجوی بالا برای جستجوی عبارات دیگر استفاده کنید",
+		"in": "در",
+		"reset_search": "تنظیم مجدد جستجو"
+	},
+	"filter": {
+		"all_categories": "همه دسته‌بندی‌ها",
+		"newest": "جدیدترین",
+		"price_low_high": "قیمت: کم به زیاد",
+		"price_high_low": "قیمت: زیاد به کم"
+	},
+	"checkout": {
+		"title": "تسویه حساب",
+		"form": {
+			"first_name": "نام",
+			"last_name": "نام خانوادگی",
+			"email": "ایمیل",
+			"phone": "شماره تماس",
+			"city": "شهر",
+			"address": "آدرس دقیق"
+		},
+		"pay": {
+			"description": "پرداخت مبلغ {total} برای {items} کالا",
+			"btn": "پرداخت {total}",
+			"secure": "پرداخت شما توسط {method} ایمن شده است",
+			"success": "! پرداخت با موفقیت انجام شد",
+			"processed": "از خرید شما سپاسگزاریم! سفارش شما در حال پردازش است.",
+			"total": "جمع کل",
+			"order_number": "شماره سفارش",
+			"date": "تاریخ",
+			"payment_method": "روش پرداخت"
+		}
+	},
+	"product": {
+		"originally": "قیمت اصلی",
+		"size": "سایز",
+		"quantity": "تعداد",
+		"sku": "کد کالا",
+		"vat_included": "شامل مالیات بر ارزش افزوده",
+		"featured_information": "اطلاعات ویژه",
+		"free_return": "ضمانت بازگشت ۱۵ روزه. برای اطلاعات بیشتر کلیک کنید",
+		"information": "اطلاعات",
+		"shop_similar": "مشاهده محصولات مشابه"
+	},
+	"cart": {
+		"empty": "سبد خرید شما خالی است",
+		"notting_added": "هنوز محصولی به سبد خرید خود اضافه نکرده‌اید.",
+		"add_to_cart": "افزودن به سبد خرید",
+		"added_to_cart": "به سبد خرید اضافه شد"
+	},
+	"favorites": {
+		"nothing_to_show_yet": "هنوز محصولی اضافه نکرده اید",
+		"wishlist_lives_here": ".لیست علاقه‌مندی‌های شما اینجا قرار می‌گیرد"
+	}
+}
