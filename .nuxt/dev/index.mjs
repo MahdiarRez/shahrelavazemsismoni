@@ -2800,7 +2800,22 @@ _SUoaTphTVrwnBUGjootnbICp_5IiG_8BtBx2tRGbBU,
 _g5THBwhenlxqapYGREGY4pJHJlC8gzPLeqxNfgHq8k
 ];
 
-const assets = {};
+const assets = {
+  "/index.mjs": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2d919-rplZQcZmfFqLSMkDIhakWb8QNEQ\"",
+    "mtime": "2026-06-01T19:35:07.930Z",
+    "size": 186649,
+    "path": "index.mjs"
+  },
+  "/index.mjs.map": {
+    "type": "application/json",
+    "etag": "\"9ccb4-GLWTWk5WpIOOo2lMBmNjpGpQtF0\"",
+    "mtime": "2026-06-01T19:35:07.932Z",
+    "size": 642228,
+    "path": "index.mjs.map"
+  }
+};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
@@ -3708,8 +3723,8 @@ var footer$4 = {
 var search$4 = {
 	placeholder: "... اسم محصول مورد نظر را بنویسید",
 	placeholder_in_category: "... جستجو در {category}",
-	no_results_for_query: "هیچ نتیجه‌ای برای {query} یافت نشد",
-	no_results_suggestion: ".برای نتایج بهتر، املای کلمات را بررسی کنید یا از کلمات کلیدی عمومی‌تر استفاده کنید",
+	no_results_for_query: "هیچ نتیجه‌ای یافت نشد",
+	no_results_suggestion: ".برای نتایج بهتر از کلمات کلیدی عمومی‌ تر استفاده کنید",
 	view_all_results: "مشاهده همه نتایج",
 	new_products: "محصولات جدید",
 	no_products_matching: "محصولی مطابق با جستجو یافت نشد",
@@ -3751,9 +3766,9 @@ var product$4 = {
 	originally: "قیمت اصلی",
 	size: "سایز",
 	quantity: "تعداد",
-	sku: "کد کالا",
+	brand: "برند محصول",
 	vat_included: "شامل مالیات بر ارزش افزوده",
-	featured_information: "اطلاعات ویژه",
+	featured_information: "اطلاعات محصول",
 	free_return: "ضمانت بازگشت ۱۵ روزه. برای اطلاعات بیشتر کلیک کنید",
 	information: "اطلاعات",
 	shop_similar: "مشاهده محصولات مشابه"

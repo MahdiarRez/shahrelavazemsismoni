@@ -22,8 +22,8 @@
 	"search": {
 		"placeholder": "... اسم محصول مورد نظر را بنویسید",
 		"placeholder_in_category": "... جستجو در {category}",
-		"no_results_for_query": "هیچ نتیجه‌ای برای {query} یافت نشد",
-		"no_results_suggestion": ".برای نتایج بهتر، املای کلمات را بررسی کنید یا از کلمات کلیدی عمومی‌تر استفاده کنید",
+		"no_results_for_query": "هیچ نتیجه‌ای یافت نشد",
+		"no_results_suggestion": ".برای نتایج بهتر از کلمات کلیدی عمومی‌ تر استفاده کنید",
 		"view_all_results": "مشاهده همه نتایج",
 		"new_products": "محصولات جدید",
 		"no_products_matching": "محصولی مطابق با جستجو یافت نشد",
@@ -65,9 +65,9 @@
 		"originally": "قیمت اصلی",
 		"size": "سایز",
 		"quantity": "تعداد",
-		"sku": "کد کالا",
+		"brand": "برند محصول",
 		"vat_included": "شامل مالیات بر ارزش افزوده",
-		"featured_information": "اطلاعات ویژه",
+		"featured_information": "اطلاعات محصول",
 		"free_return": "ضمانت بازگشت ۱۵ روزه. برای اطلاعات بیشتر کلیک کنید",
 		"information": "اطلاعات",
 		"shop_similar": "مشاهده محصولات مشابه"

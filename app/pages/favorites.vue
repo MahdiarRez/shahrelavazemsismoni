@@ -40,15 +40,11 @@ useSeoMeta({
 					:src="product.image.sourceUrl"
 					loading="lazy" />
 				<NuxtLink
-					class="absolute inset-0 bg-gradient-to-t from-black/50 hover:from-black/60 flex items-end p-5"
+					class="absolute inset-0 bg-gradient-to-t from-black/50 hover:from-black/60 flex items-end justify-end p-5"
 					:to="localePath(`/product/${product.sku}/${product.slug}`)">
-					<div class="grid gap-0.5 text-white">
-						<ProductPrice
-							:sale-price="product.salePrice"
-							:regular-price="product.regularPrice"
-							variant="card" />
+					<div class="grid gap-0.5 text-white text-right">
 						<div class="font-bold">{{ product.name }}</div>
-						<div class="text-sm font-medium">
+						<div class="text-sm font-normal opacity-80">
 							{{ product.productCategories?.nodes[0]?.name }}
 						</div>
 					</div>

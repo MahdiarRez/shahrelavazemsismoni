@@ -15,15 +15,15 @@ defineProps({
 			:to="localePath(`/product/${product.sku}/${product.slug}`)"
 			class="group select-none h-full">
 			<div
-				class="cursor-pointer transition ease-[ease] duration-300 md:hover:bg-[#efefef] dark:md:hover:bg-[#141313] rounded-2xl">
+				class="cursor-pointer transition ease-[ease] duration-300 md:hover:bg-[#efefef36] dark:md:hover:bg-[#141313] rounded-[32px]">
 				<div
-					class="relative pb-[133%] dark:shadow-[0_8px_24px_rgba(0,0,0,.5)] rounded-2xl overflow-hidden md:group-hover:rounded-b-none transition-all duration-300">
+					class="relative pb-[133%] dark:shadow-[0_8px_24px_rgba(0,0,0,.5)] rounded-[32px] overflow-hidden">
 					<NuxtImg
 						:alt="product.name"
 						loading="lazy"
 						:title="product.name"
 						:src="product.galleryImages.nodes[0]?.sourceUrl"
-						class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover group-hover:scale-90 transition-transform duration-300 rounded-xl" />
+						class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover group-hover:scale-90 transition-transform duration-300 md:group-hover:rounded-b-[12px] rounded-[24px]" />
 					<NuxtImg
 						:alt="product.name"
 						loading="lazy"
@@ -32,7 +32,7 @@ defineProps({
 						class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover transition-opacity duration-300 group-hover:opacity-0" />
 				</div>
 				<div
-					class="grid gap-0.5 pt-3 pb-4 px-1.5 md:px-3 text-sm font-semibold text-right">
+					class="grid gap-0.5 pt-3 pb-4 px-1.5 md:px-3 text-sm font-medium text-right">
 					<div>{{ product.name }}</div>
 					<div class="flex flex-row justify-end gap-3 items-center">
 						<div

@@ -79,14 +79,14 @@ const totalQuantity = computed(() =>
 			<NuxtLink
 				aria-label="Categories"
 				exactActiveClass="bg-secondary-600 dark:bg-white text-white dark:text-secondary-600"
-				class="font-semibold cursor-pointer px-4 rounded-full hover:bg-secondary-600 hover:dark:bg-white h-12 items-center justify-center hover:text-white hover:dark:text-secondary-600 transition active:scale-95 lg:flex hidden"
+				class="font-normal cursor-pointer px-4 rounded-full hover:bg-secondary-600 hover:dark:bg-white h-12 items-center justify-center hover:text-white hover:dark:text-secondary-600 transition active:scale-95 lg:flex hidden"
 				:to="localePath('/categories')">
 				{{ $t("nav.categories") }}
 			</NuxtLink>
 			<NuxtLink
 				aria-label="Favorites"
 				exactActiveClass="bg-secondary-600 dark:bg-white text-white dark:text-secondary-600"
-				class="font-semibold cursor-pointer px-4 rounded-full hover:bg-secondary-600 hover:dark:bg-white h-12 items-center justify-center hover:text-white hover:dark:text-secondary-600 transition active:scale-95 lg:flex hidden"
+				class="font-normal cursor-pointer px-4 rounded-full hover:bg-secondary-600 hover:dark:bg-white h-12 items-center justify-center hover:text-white hover:dark:text-secondary-600 transition active:scale-95 lg:flex hidden"
 				:to="localePath('/favorites')">
 				{{ $t("nav.favorites") }}
 			</NuxtLink>
@@ -131,7 +131,7 @@ const totalQuantity = computed(() =>
 						</div>
 						<div class="flex w-full flex-row-reverse">
 							<input
-								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400 text-right"
+								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400 text-right font-medium"
 								type="text"
 								v-model="searchQuery"
 								@keyup.enter="search"
@@ -210,7 +210,6 @@ const totalQuantity = computed(() =>
 				</div>
 				<div class="font-semibold text-3xl my-6">
 					{{ $t("search.no_results_for_query") }}
-					<strong>{{ searchQuery }}</strong>
 				</div>
 				<div class="text-sm text-center mb-5 max-w-md">
 					{{ $t("search.no_results_suggestion") }}
@@ -222,21 +221,25 @@ const totalQuantity = computed(() =>
 				class="mx-auto p-3 lg:p-4 max-w-screen-2xl">
 				<h2
 					v-if="!searchQuery"
-					class="text-2xl font-bold tracking-tight text-right">
+					class="text-2xl font-bold tracking-tight text-center">
 					{{ $t("search.new_products") }}
 				</h2>
 				<div
 					class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 lg:gap-5 mt-3 lg:mt-5">
 					<NuxtLink
 						@click="suggestionMenu = false"
-						:to="localePath(`/product/${product.slug}`)"
+						:to="
+							localePath(
+								`/product/${product.sku}/${product.slug}`,
+							)
+						"
 						v-for="(product, i) in searchResults"
 						:key="i"
 						class="group select-none">
 						<div
 							class="cursor-pointer transition ease-[ease] duration-300">
 							<div
-								class="relative pb-[133%] dark:shadow-[0_8px_24px_rgba(0,0,0,.5)] rounded-2xl overflow-hidden">
+								class="relative pb-[133%] dark:shadow-[0_8px_24px_rgba(0,0,0,.5)] rounded-[32px] overflow-hidden">
 								<NuxtImg
 									:alt="product.name"
 									loading="lazy"
@@ -254,14 +257,14 @@ const totalQuantity = computed(() =>
 									class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover transition-opacity duration-300 group-hover:opacity-0" />
 							</div>
 							<div
-								class="grid gap-0.5 pt-3 pb-4 px-1.5 text-sm font-semibold">
+								class="grid gap-0.5 pt-3 pb-4 px-1.5 text-sm font-medium text-right">
+								<div>{{ product.name }}</div>
 								<ProductPrice
 									:sale-price="product.salePrice"
 									:regular-price="product.regularPrice"
 									variant="card" />
-								<div>{{ product.name }}</div>
 								<div
-									class="font-normal text-[#5f5f5f] dark:text-[#a3a3a3]">
+									class="font-normal text-[#5f5f5f] dark:text-[#3f3333]">
 									{{ product.allPaStyle.nodes[0]?.name }}
 								</div>
 							</div>

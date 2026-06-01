@@ -54,7 +54,7 @@ const chooseLocale = (code) => {
 				<Transition name="dropdown">
 					<div
 						v-if="isOpen"
-						class="absolute bottom-full right-0 z-10 mb-3 rounded-2xl bg-white text-base font-semibold shadow-[0_0_8px_rgba(0,0,0,.1)] dark:bg-[#262626]"
+						class="absolute bottom-full left-0 z-10 mb-3 rounded-2xl bg-white text-base font-semibold shadow-[0_0_8px_rgba(0,0,0,.1)] dark:bg-[#262626]"
 						role="listbox">
 						<ul class="m-2 text-sm w-44">
 							<li
@@ -68,7 +68,8 @@ const chooseLocale = (code) => {
 								@keydown.enter.prevent="
 									chooseLocale(item.code)
 								">
-								<div class="flex items-center justify-between">
+								<div
+									class="flex items-center justify-between flex-row-reverse">
 									<span class="mr-1 truncate">{{
 										item.name
 									}}</span>

@@ -199,7 +199,7 @@ watchEffect(() => {
 						<div
 							class="text-sm font-semibold leading-5 opacity-50 flex gap-1">
 							{{ $t("product.size") }}:
-							<div class="uppercase bg-red-400">
+							<div>
 								{{
 									selectedVariation.attributes.nodes
 										.map((attr) => attr.value)
@@ -284,15 +284,8 @@ watchEffect(() => {
 						<div class="description leading-7 text-sm">
 							<ul>
 								<li>
-									{{ $t("product.free_return") }}
-									<a
-										class="underline"
-										href="#"
-										>{{ $t("product.information") }}</a
-									>
-								</li>
-								<li>
-									{{ $t("product.sku") }}: {{ product.sku }}
+									{{ product.brand }} :
+									{{ $t("product.brand") }}
 								</li>
 								<div v-html="product.description"></div>
 							</ul>
