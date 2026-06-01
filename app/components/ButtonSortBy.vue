@@ -71,8 +71,11 @@ onClickOutside(dropdownRef, (event) => (isDropdownVisible.value = false));
 						:key="i"
 						@click="setSort(option.value)"
 						class="rounded-[10px] px-3 py-2 transition-all duration-300 hover:bg-[#e9e9e9] hover:dark:bg-[#3c3c3c]">
-						<div class="flex items-center justify-between">
-							<div class="mr-1 w-full">{{ option.label }}</div>
+						<div
+							class="flex items-center justify-between flex-row-reverse">
+							<div class="mr-1 w-full text-right">
+								{{ option.label }}
+							</div>
 							<UIcon
 								v-if="selectedSort === option.value"
 								name="i-iconamoon-check-circle-1-fill"

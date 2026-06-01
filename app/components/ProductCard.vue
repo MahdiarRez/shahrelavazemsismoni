@@ -23,7 +23,7 @@ defineProps({
 						loading="lazy"
 						:title="product.name"
 						:src="product.galleryImages.nodes[0]?.sourceUrl"
-						class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover" />
+						class="absolute h-full w-full dark:bg-neutral-800 bg-neutral-200 object-cover group-hover:scale-90 transition-transform duration-300 rounded-xl" />
 					<NuxtImg
 						:alt="product.name"
 						loading="lazy"

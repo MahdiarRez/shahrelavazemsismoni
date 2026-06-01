@@ -71,7 +71,11 @@ export default defineNuxtConfig({
 		notifications: { global: { duration: 3000 } },
 	},
 
-	css: ["notivue/notification.css", "notivue/animations.css"],
+	css: [
+		"notivue/notification.css",
+		"notivue/animations.css",
+		"~/iran-sans.css",
+	],
 
 	runtimeConfig: {
 		gqlHost: process.env.GQL_HOST || "",

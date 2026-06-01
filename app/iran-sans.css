@@ -1,3 +1,8 @@
+html,
+body {
+	font-family: IranSans, Arial, sans-serif;
+}
+
 @font-face {
 	font-family: IranSansEn;
 	font-style: normal;
@@ -42,32 +47,31 @@
 	src: url("./fonts/fanum/eot/IRANSansWeb(FaNum).eot?#iefix")
 			format("embedded-opentype"),
 		url("./fonts/fanum/woff2/IRANSansWeb(FaNum).woff2") format("woff2"),
-		url("./fonts/fanum/woff/IRANSansWeb(FaNum).woff") format("woff"),
-		url("./fonts/fanum/ttf/IRANSansWeb(FaNum).ttf") format("truetype");
+		url("/fonts/fanum/woff/IRANSansWeb(FaNum).woff") format("woff"),
+		url("/fonts/fanum/ttf/IRANSansWeb(FaNum).ttf") format("truetype");
 }
 
 @font-face {
 	font-family: IranSansBold;
 	font-style: normal;
 	font-weight: 700;
-	src: url("./fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot");
-	src: url("./fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix")
+	src: url("/fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot");
+	src: url("/fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix")
 			format("embedded-opentype"),
-		url("./fonts/fanum/woff2/IRANSansWeb(FaNum)_Bold.woff2") format("woff2"),
-		url("./fonts/fanum/woff/IRANSansWeb(FaNum)_Bold.woff") format("woff"),
-		url("./fonts/fanum/ttf/IRANSansWeb(FaNum)_Bold.ttf") format("truetype");
+		url("/fonts/fanum/woff2/IRANSansWeb(FaNum)_Bold.woff2") format("woff2"),
+		url("/fonts/fanum/woff/IRANSansWeb(FaNum)_Bold.woff") format("woff"),
+		url("/fonts/fanum/ttf/IRANSansWeb(FaNum)_Bold.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: IranSansLight;
 	font-style: normal;
-	src: url("./fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot");
-	src: url("./fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot?#iefix")
+	src: url("/fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot");
+	src: url("/fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot?#iefix")
 			format("embedded-opentype"),
-		url("./fonts/fanum/woff2/IRANSansWeb(FaNum)_Light.woff2")
-			format("woff2"),
-		url("./fonts/fanum/woff/IRANSansWeb(FaNum)_Light.woff") format("woff"),
-		url("./fonts/fanum/ttf/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
+		url("/fonts/fanum/woff2/IRANSansWeb(FaNum)_Light.woff2") format("woff2"),
+		url("/fonts/fanum/woff/IRANSansWeb(FaNum)_Light.woff") format("woff"),
+		url("/fonts/fanum/ttf/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
 }
 
 .iransans {

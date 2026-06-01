@@ -35,8 +35,7 @@ const categories = computed(() => categoriesData.value);
 </script>
 
 <template>
-	<div
-		class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center max-w-screen-2xl m-auto">
+	<div class="flex flex-wrap justify-center max-w-screen-2xl m-auto">
 		<div
 			v-if="!categories.length"
 			v-for="i in 13"
@@ -49,7 +48,7 @@ const categories = computed(() => categoriesData.value);
 			v-for="category in categories"
 			:key="category.id"
 			:to="localePath(`/?category=${encodeURIComponent(category.name)}`)"
-			class="w-full max-w-[444px] p-3 lg:p-2 h-64 sm:h-auto">
+			class="w-full max-w-[444px] p-2 lg:p-2 h-auto">
 			<div class="pb-[75%] relative overflow-hidden h-full">
 				<NuxtImg
 					:alt="category.name"
@@ -60,7 +59,7 @@ const categories = computed(() => categoriesData.value);
 					:title="category.name" />
 				<div
 					v-else
-					class="bg-gray-500 w-full h-full absolute top-0 right-0 rounded-[32px]"></div>
+					class="bg-primary w-full h-full absolute top-0 right-0 rounded-[32px]"></div>
 				<div
 					class="absolute left-0 right-0 top-0 bottom-0 bg-gradient-to-t hover:from-black/40 rounded-[32px] overflow-hidden">
 					<div
