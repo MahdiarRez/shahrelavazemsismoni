@@ -120,10 +120,10 @@
         "../node_modules/.pnpm/nuxt@4.2.1_@parcel+watcher@2.5.6_@types+node@25.2.3_@vue+compiler-sfc@3.5.28_cac@6.7.14_9b337c4abbad0ec988e0d9d2938f47f9/node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#ui": [
-        "../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime"
+        "../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime"
       ],
       "#ui/*": [
-        "../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_9e36ff863f367d7f2508cfdfa5cdf282/node_modules/@nuxt/ui/dist/runtime/*"
+        "../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_y_eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/*"
       ],
       "#ui-colors": [
         "./ui.colors"

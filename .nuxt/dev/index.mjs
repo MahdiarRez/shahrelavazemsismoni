@@ -2803,15 +2803,15 @@ _g5THBwhenlxqapYGREGY4pJHJlC8gzPLeqxNfgHq8k
 const assets = {
   "/index.mjs": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"2d919-rplZQcZmfFqLSMkDIhakWb8QNEQ\"",
-    "mtime": "2026-06-01T19:35:07.930Z",
-    "size": 186649,
+    "etag": "\"2d8f9-j4ntzvQsKhdw7Uy5VGWEIO/4grg\"",
+    "mtime": "2026-06-06T17:44:13.462Z",
+    "size": 186617,
     "path": "index.mjs"
   },
   "/index.mjs.map": {
     "type": "application/json",
     "etag": "\"9ccb4-GLWTWk5WpIOOo2lMBmNjpGpQtF0\"",
-    "mtime": "2026-06-01T19:35:07.932Z",
+    "mtime": "2026-06-06T17:44:13.463Z",
     "size": 642228,
     "path": "index.mjs.map"
   }
@@ -3721,7 +3721,7 @@ var footer$4 = {
 	change_language: "تغییر زبان"
 };
 var search$4 = {
-	placeholder: "... اسم محصول مورد نظر را بنویسید",
+	placeholder: "جستوجو محصول",
 	placeholder_in_category: "... جستجو در {category}",
 	no_results_for_query: "هیچ نتیجه‌ای یافت نشد",
 	no_results_suggestion: ".برای نتایج بهتر از کلمات کلیدی عمومی‌ تر استفاده کنید",
@@ -3730,7 +3730,7 @@ var search$4 = {
 	no_products_matching: "محصولی مطابق با جستجو یافت نشد",
 	no_products_found_matching: "هیچ محصولی مطابق با جستجوی شما یافت نشد",
 	no_products_found: "محصولی یافت نشد",
-	use_search_bar_above: ".می‌توانید از نوار جستجوی بالا برای جستجوی عبارات دیگر استفاده کنید",
+	use_search_bar_above: "می‌توانید از نوار جستجوی بالا برای جستجوی عبارات دیگر استفاده کنید",
 	"in": "در",
 	reset_search: "تنظیم مجدد جستجو"
 };
@@ -3775,7 +3775,7 @@ var product$4 = {
 };
 var cart$4 = {
 	empty: "سبد خرید شما خالی است",
-	notting_added: "هنوز محصولی به سبد خرید خود اضافه نکرده‌اید.",
+	notting_added: "هنوز محصولی به سبد خرید خود اضافه نکرده‌اید",
 	add_to_cart: "افزودن به سبد خرید",
 	added_to_cart: "به سبد خرید اضافه شد"
 };

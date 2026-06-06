@@ -6,7 +6,7 @@ const { order } = useCheckout();
 
 <template>
 	<div
-		class="select-none mx-3 lg:mx-5 shadow-2xl mt-20 rounded-[2rem] left-0 fixed flex z-50 bg-white/85 dark:bg-black/85 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-lg overflow-hidden">
+		class="select-none mx-3 lg:mx-5 shadow-2xl mt-20 rounded-[2rem] left-0 fixed flex z-50 bg-white/85 dark:bg-black/85 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-sm overflow-hidden">
 		<Transition
 			name="fade"
 			mode="out-in">
@@ -19,16 +19,17 @@ const { order } = useCheckout();
 						<div
 							v-for="product in cart.slice().reverse()"
 							:key="product.key"
-							class="flex bg-black/5 dark:bg-white/10 m-3 p-3 gap-3 rounded-3xl items-center group relative max-md:pr-9">
+							class="flex flex-row-reverse bg-black/5 dark:bg-white/10 m-3 p-3 gap-3 rounded-3xl items-center group relative max-md:pr-5">
 							<NuxtImg
 								:src="product.variation.node.image.sourceUrl"
 								class="w-24 h-28 object-cover shadow-md rounded-2xl" />
-							<div class="flex-1 gap-1 flex flex-col">
+							<div class="flex-1 gap-1 flex flex-col items-end">
 								<div
 									class="font-medium text-sm line-clamp-2 overflow-hidden text-ellipsis">
 									{{ product.product.node.name }}
 								</div>
 								<ProductPrice
+									class="text-right"
 									:sale-price="
 										product.variation.node.salePrice
 									"
@@ -39,24 +40,29 @@ const { order } = useCheckout();
 									variant="cart" />
 								<div
 									class="text-xs flex gap-2 font-medium text-neutral-600 dark:text-neutral-300">
-									<div>
-										{{ $t("product.size") }}:
-										{{
-											product.variation.attributes
-												.map((attr) =>
-													attr.value.toUpperCase(),
-												)
-												.join(", ")
-										}}
-										• {{ $t("product.quantity") }}:
-										{{ product.quantity }}
+									<div class="flex flex-col items-end">
+										<div>
+											{{
+												product.variation.attributes
+													.map((attr) =>
+														attr.value.toUpperCase(),
+													)
+													.join(", ")
+											}}
+
+											: {{ $t("product.size") }}
+										</div>
+										<div>
+											{{ $t("product.quantity") }} :
+											{{ product.quantity }}
+										</div>
 									</div>
 								</div>
 							</div>
 							<div
-								class="absolute md:opacity-0 group-hover:opacity-100 top-2 right-2 md:-top-1 md:-right-1 transition space-y-0.5 flex flex-col p-0.5 dark:bg-white/10 bg-black/10 backdrop-blur border dark:border-white/5 border-black/5 items-center justify-center rounded-full">
+								class="absolute md:opacity-0 group-hover:opacity-100 top-2 left-2 md:-top-1 md:-left-1 transition space-y-0.5 flex flex-col p-0.5 dark:bg-white/10 bg-black/10 backdrop-blur border dark:border-white/5 border-black/5 items-center justify-center rounded-full">
 								<div
-									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-5 h-5 flex items-center justify-center">
+									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center">
 									<UIcon
 										size="14"
 										name="i-iconamoon-sign-plus"
@@ -68,11 +74,11 @@ const { order } = useCheckout();
 											)
 										" />
 								</div>
-								<span class="text-center text-sm">{{
+								<span class="text-center text-sm py-1">{{
 									product.quantity
 								}}</span>
 								<div
-									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-5 h-5 flex items-center justify-center">
+									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center">
 									<UIcon
 										size="14"
 										:name="

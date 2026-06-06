@@ -24,7 +24,7 @@ useSeoMeta({
 </script>
 
 <template>
-	<div class="flex flex-wrap justify-center max-w-screen-2xl m-auto">
+	<div class="grid grid-cols-2 justify-center max-w-screen-2xl m-auto">
 		<TransitionGroup
 			v-if="wishlist.length"
 			name="shrink"
@@ -51,7 +51,7 @@ useSeoMeta({
 				</NuxtLink>
 			</div>
 			<button
-				class="absolute top-5 right-5 group"
+				class="absolute top-6 right-6 group"
 				title="Remove Product"
 				@click="removeFromList(product.databaseId)">
 				<div
@@ -65,14 +65,14 @@ useSeoMeta({
 		</TransitionGroup>
 		<div
 			v-else
-			class="w-full flex flex-col items-center px-5 min-h-[calc(100vh-152px)] justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-100 via-white to-white dark:from-neutral-900 dark:via-black dark:to-black rounded-xl">
+			class="w-full col-span-2 flex flex-col items-center px-5 min-h-[calc(100vh-152px)] justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-100 via-white to-white dark:from-neutral-900 dark:via-black dark:to-black rounded-xl">
 			<div
 				class="bg-alizarin-crimson-100 dark:bg-alizarin-crimson-950 rounded-full p-6 flex items-center shadow-2xl shadow-alizarin-crimson-300 dark:shadow-alizarin-crimson-950 justify-center">
 				<UIcon
 					name="i-iconamoon-heart-fill"
 					class="w-20 h-20 text-alizarin-crimson-400 dark:text-alizarin-crimson-700 pulse-heart" />
 			</div>
-			<div class="font-extrabold text-xl md:text-3xl my-6 text-center">
+			<div class="font-bold text-xl md:text-3xl my-6 text-center">
 				{{ $t("favorites.nothing_to_show_yet") }}
 			</div>
 			<div class="text-sm text-center mb-5 max-w-md">

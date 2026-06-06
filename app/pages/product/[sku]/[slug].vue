@@ -30,6 +30,7 @@ const { data: productData, pending } = await useFetch("/api/product", {
 
 const product = computed(() => productData.value || {});
 watchEffect(() => console.log("pending : ", product.value));
+
 const selectedVariation = ref(null);
 
 const sizeOrder = [
@@ -139,7 +140,7 @@ watchEffect(() => {
 			<ImageSliderWithModal
 				:product="product"
 				v-model="isOpenImageSliderModal" />
-			<div class="w-full lg:max-w-[28rem]">
+			<div class="w-full lg:max-w-[28rem] lg:min-w-80">
 				<div
 					class="flex-col flex gap-4 lg:max-h-[530px] xl:max-h-[600px] overflow-hidden">
 					<div
@@ -160,8 +161,8 @@ watchEffect(() => {
 							{{ product.productCategories?.nodes[0]?.name }}
 						</NuxtLink>
 						<ProductPrice
-							:sale-price="product.salePrice"
-							:regular-price="product.regularPrice" />
+							:sale-price="product?.salePrice"
+							:regular-price="product?.regularPrice" />
 					</div>
 					<div
 						class="flex gap-2 px-3 lg:px-0"
@@ -197,8 +198,8 @@ watchEffect(() => {
 					<div
 						class="pb-4 px-3 lg:px-0 border-b border-[#efefef] dark:border-[#262626]">
 						<div
-							class="text-sm font-semibold leading-5 opacity-50 flex gap-1">
-							{{ $t("product.size") }}:
+							class="text-sm font-semibold leading-5 opacity-50 flex flex-row-reverse gap-1 justify-start">
+							: {{ $t("product.size") }}
 							<div>
 								{{
 									selectedVariation.attributes.nodes
@@ -209,7 +210,7 @@ watchEffect(() => {
 						</div>
 						<div class="flex gap-2 mt-2 mb-4 flex-wrap">
 							<label
-								class="py-1 px-3 rounded-lg cursor-pointer select-varitaion border-2 border-[#9b9b9b] dark:border-[#8c8c8c] transition-all duration-200"
+								class="py-1 px-3 rounded-full cursor-pointer select-varitaion border-2 border-[#9b9b9b] dark:border-[#8c8c8c] transition-all duration-200"
 								v-for="variation in sortedVariations"
 								:key="variation.databaseId"
 								:class="[
@@ -251,7 +252,7 @@ watchEffect(() => {
 									)
 								"
 								:disabled="addToCartButtonStatus !== 'add'"
-								class="button-bezel w-full h-12 rounded-lg relative tracking-wide font-semibold text-white text-sm flex justify-center items-center">
+								class="button-bezel w-full h-14 rounded-full relative tracking-wide font-semibold text-white text-sm flex justify-center items-center">
 								<Transition name="slide-up">
 									<div
 										v-if="addToCartButtonStatus === 'add'"
@@ -270,7 +271,7 @@ watchEffect(() => {
 											addToCartButtonStatus === 'added'
 										"
 										class="absolute">
-										{{ $t("cart.added_to_cart") }}!
+										{{ $t("cart.added_to_cart") }}
 									</div>
 								</Transition>
 							</button>
@@ -282,13 +283,7 @@ watchEffect(() => {
 							{{ $t("product.featured_information") }}
 						</div>
 						<div class="description leading-7 text-sm">
-							<ul>
-								<li>
-									{{ product.brand }} :
-									{{ $t("product.brand") }}
-								</li>
-								<div v-html="product.description"></div>
-							</ul>
+							<div v-html="product.description"></div>
 						</div>
 					</div>
 				</div>
@@ -329,7 +324,7 @@ watchEffect(() => {
 
 .selected-varitaion,
 .select-varitaion:hover:not(.disabled) {
-	@apply border-primary dark:border-primary text-primary bg-primary-50;
+	@apply border-secondary-600 dark:border-secondary-600 text-secondary-600 bg-primary-50;
 }
 
 .disabled {
@@ -352,6 +347,8 @@ watchEffect(() => {
 
 .description ul li {
 	padding-right: 0.938rem;
+	border-right: 2px solid #e9124b98;
+	text-align: right;
 }
 
 .slide-up-enter-active,

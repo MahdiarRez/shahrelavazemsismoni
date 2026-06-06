@@ -114,14 +114,14 @@ const totalQuantity = computed(() =>
 				class="flex flex-shrink flex-grow flex-col text-sm font-semibold text-[#111] dark:text-[#eee]">
 				<div
 					:class="[
-						'flex h-12 flex-grow rounded-full  pl-4 pr-3 transition-all hover:bg-black/10 hover:dark:bg-white/20',
+						'flex h-12 flex-grow rounded-full pl-2.5 pr-4 transition-all hover:bg-black/10 hover:dark:bg-white/20',
 						suggestionMenu
 							? 'bg-black/10 dark:bg-white/20'
 							: 'bg-black/5 dark:bg-white/15',
 					]">
 					<div
 						@click="suggestionMenu = true"
-						class="flex w-full items-center gap-4">
+						class="flex w-full items-center gap-2 flex-row-reverse">
 						<div
 							v-if="!suggestionMenu"
 							class="flex text-neutral-500 dark:text-neutral-400">
@@ -129,7 +129,7 @@ const totalQuantity = computed(() =>
 								name="i-iconamoon-search-bold"
 								size="20" />
 						</div>
-						<div class="flex w-full flex-row-reverse">
+						<div class="flex w-full flex-row-reverse text-right">
 							<input
 								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400 text-right font-medium"
 								type="text"
