@@ -1,2 +1,0 @@
-import{D as a,v as e}from"./server.mjs";const useWishlist=s=>{const t=a("wishlist",()=>[]),l=e.computed(()=>!!s&&t.value.some(a=>a.databaseId===s.databaseId)),updateLocalStorage=()=>{localStorage.setItem("wishlist",JSON.stringify(t.value))};return{isWishlisted:l,toggleWishlist:a=>{l.value?t.value=t.value.filter(e=>e.databaseId!==a.databaseId):t.value.push(a),updateLocalStorage()},removeFromList:a=>{t.value=t.value.filter(e=>e.databaseId!==a),updateLocalStorage()},wishlist:t}};export{useWishlist as u};
-//# sourceMappingURL=useWishlist-ZrmS0bC4.mjs.map

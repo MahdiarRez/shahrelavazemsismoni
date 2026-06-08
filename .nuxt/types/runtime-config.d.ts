@@ -12,6 +12,10 @@ import { RuntimeConfig as UserRuntimeConfig, PublicRuntimeConfig as UserPublicRu
 
    gqlHost: string,
 
+   wcConsumerKey: string,
+
+   wcConsumerSecret: string,
+
    nitro: {
       envPrefix: string,
    },
@@ -83,6 +87,12 @@ import { RuntimeConfig as UserRuntimeConfig, PublicRuntimeConfig as UserPublicRu
    },
   }
   interface SharedPublicRuntimeConfig {
+   wpBaseUrl: string,
+
+   siteUrl: string,
+
+   zarinpalPaymentMethod: string,
+
    version: string,
 
    notivue: {

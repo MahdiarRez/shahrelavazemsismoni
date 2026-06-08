@@ -1,4 +1,4 @@
-import{g as e,c as r,e as o,b as t,f as a}from"../../nitro/nitro.mjs";import"node:buffer";import"node:process";import"node:timers";import"node:events";import"cloudflare:workers";import"node:async_hooks";const s=e`
+import{g as e,c as r,f as o,e as a,h as t}from"../../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const s=e`
 	query getProducts(
 		$after: String
 		$search: String
@@ -68,5 +68,5 @@ import{g as e,c as r,e as o,b as t,f as a}from"../../nitro/nitro.mjs";import"nod
 			}
 		}
 	}
-`,n=r(async e=>{var r,n;const d=o(e),c={after:d.after?String(d.after):null,search:d.search?String(d.search):null,category:d.category?decodeURIComponent(String(d.category)):null,order:(null==(r=d.orderby)?void 0:r.toUpperCase())||"DESC",field:(null==(n=d.fieldby)?void 0:n.toUpperCase())||"DATE"};try{return await t(s,c)}catch(e){throw console.error("خطا در اجرای کوئری محصولات:",e),a({statusCode:500,message:"Server GraphQL Error"})}},{maxAge:60,swr:!0,getKey:e=>e.node.req.url||"products"});export{n as default};
+`,n=r(async e=>{var r,n;const d=o(e),c={after:d.after?String(d.after):null,search:d.search?String(d.search):null,category:d.category?decodeURIComponent(String(d.category)):null,order:(null==(r=d.orderby)?void 0:r.toUpperCase())||"DESC",field:(null==(n=d.fieldby)?void 0:n.toUpperCase())||"DATE"};try{return await a(s,c)}catch(e){throw console.error("خطا در اجرای کوئری محصولات:",e),t({statusCode:500,message:"Server GraphQL Error"})}},{maxAge:60,swr:!0,getKey:e=>e.node.req.url||"products"});export{n as default};
 //# sourceMappingURL=products.get.mjs.map

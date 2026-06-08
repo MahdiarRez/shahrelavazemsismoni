@@ -15,6 +15,9 @@ declare module "nitropack/types" {
     '/api/checkout': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/checkout.post').default>>>>
     }
+    '/api/payment/verify': {
+      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/payment/verify.get').default>>>>
+    }
     '/api/product': {
       'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/product.get').default>>>>
     }
@@ -25,17 +28,17 @@ declare module "nitropack/types" {
       'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/search.get').default>>>>
     }
     '/api/_hub/**:feature': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2._2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/[...feature]').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/[...feature]').default>>>>
     }
     '/api/_hub': {
-      'head': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2._2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/index.head').default>>>>
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2._2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/cors.dev').default>>>>
+      'head': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/index.head').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/cors.dev').default>>>>
     }
     '/api/_hub/manifest': {
-      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2._2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/manifest.get').default>>>>
+      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/manifest.get').default>>>>
     }
     '/api/_hub/sync-variables': {
-      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2_vite@7.3.1_@types+node@25.2._2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/sync-variables.post').default>>>>
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/sync-variables.post').default>>>>
     }
     '/robots.txt': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/routes/robots.txt').default>>>>
@@ -44,16 +47,16 @@ declare module "nitropack/types" {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/routes/sitemap.xml').default>>>>
     }
     '/__nuxt_error': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+nitro-server@4.2.1_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2_nuxt@4.2.1_@parcel+watc_9a475c6c148dd974ab52d15c8ba96df9/node_modules/@nuxt/nitro-server/dist/runtime/handlers/renderer').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+nitro-server@4.2.1_db_9a475c6c148dd974ab52d15c8ba96df9/node_modules/@nuxt/nitro-server/dist/runtime/handlers/renderer').default>>>>
     }
     '/__nuxt_island/**': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/#internal/nuxt/island-renderer').default>>>>
     }
     '/api/_nuxt_icon/:collection': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@0.5.2_vite@7.3.1_@types+node@25.2.3_jiti@2.6.1_terser@5.46.0_93e70ca193bc8a6d028d054dad828744/node_modules/@nuxt/icon/dist/runtime/server/api').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+icon@1.15.0_magicast@_93e70ca193bc8a6d028d054dad828744/node_modules/@nuxt/icon/dist/runtime/server/api').default>>>>
     }
     '/_i18n/:hash/:locale/messages.json': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxtjs+i18n@10.1.0_@vue+compiler-dom@3.5.28_db0@0.3.4_eslint@10.0.0_jiti@2.6.1__ioredi_f268cee1ac9d33421323e67936993f37/node_modules/@nuxtjs/i18n/dist/runtime/server/routes/messages').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxtjs+i18n@10.1.0_@vue+co_f268cee1ac9d33421323e67936993f37/node_modules/@nuxtjs/i18n/dist/runtime/server/routes/messages').default>>>>
     }
     '/_ipx/**': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxt+image@1.11.0_db0@0.3.4_ioredis@5.9.3_magicast@0.5.2/node_modules/@nuxt/image/dist/runtime/ipx').default>>>>

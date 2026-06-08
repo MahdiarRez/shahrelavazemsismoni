@@ -79,7 +79,13 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		gqlHost: process.env.GQL_HOST || "",
+		wcConsumerKey: process.env.WC_CONSUMER_KEY || "",
+		wcConsumerSecret: process.env.WC_CONSUMER_SECRET || "",
 		public: {
+			wpBaseUrl: process.env.NUXT_PUBLIC_WP_BASE_URL || "",
+			siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "",
+			zarinpalPaymentMethod:
+				process.env.NUXT_PUBLIC_ZARINPAL_PAYMENT_METHOD || "WC_ZPal",
 			version: pkg.version,
 		},
 	},
@@ -88,6 +94,7 @@ export default defineNuxtConfig({
 		"/": { prerender: false },
 		"/categories": { cache: false },
 		"/favorites": { cache: false },
+		"/payment/**": { cache: false },
 	},
 
 	nitro: {

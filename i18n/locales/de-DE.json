@@ -58,7 +58,11 @@
 			"total": "Gesamt",
 			"order_number": "Bestellnummer",
 			"date": "Datum",
-			"payment_method": "Zahlungsmethode"
+			"payment_method": "Zahlungsmethode",
+			"verify_failed": "Zahlung konnte nicht verifiziert werden. Bei Abbuchung bitte Support kontaktieren.",
+			"failed_title": "Zahlung fehlgeschlagen",
+			"failed_description": "Zahlung wurde abgebrochen oder ist fehlgeschlagen. Sie können es erneut versuchen.",
+			"back_to_shop": "Zurück zum Shop"
 		}
 	},
 	"product": {

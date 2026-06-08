@@ -10,6 +10,8 @@ export const checkoutMutation = gql`
 				orderNumber
 				total
 				status
+				date
+				paymentMethodTitle
 			}
 		}
 	}

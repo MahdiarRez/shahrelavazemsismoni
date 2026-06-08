@@ -1,2 +1,2 @@
-import{h as o,f as t}from"../../../nitro/nitro.mjs";import{r}from"../../../_/features.mjs";import"node:buffer";import"node:process";import"node:timers";import"node:events";import"cloudflare:workers";import"node:async_hooks";const e=o(o=>{const[e]=(o.context.params?.feature||"").split("/");throw r(e),t({statusCode:404,message:"Not found"})});export{e as default};
+import{j as o,h as t}from"../../../_/nitro.mjs";import{r}from"../../../_/features.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const e=o(o=>{const[e]=(o.context.params?.feature||"").split("/");throw r(e),t({statusCode:404,message:"Not found"})});export{e as default};
 //# sourceMappingURL=_...feature_.mjs.map

@@ -1,51 +1,51 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, getCookie, setCookie, removeResponseHeader, getQuery as getQuery$1, readBody, handleCors, getRouterParam, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, sendNoContent, assertMethod, readFormData, setHeader, getValidatedRouterParams, getHeader, getValidatedQuery, getRequestWebStream, readValidatedBody, getResponseStatusText } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/h3@1.15.5/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { escapeHtml } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/@vue+shared@3.5.28/node_modules/@vue/shared/dist/shared.cjs.js';
-import { GraphQLClient, gql } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/graphql-request@7.1.0_graphql@16.12.0/node_modules/graphql-request/build/entrypoints/main.js';
-import { createFetch, Headers as Headers$1, ofetch } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
-import { createStorage, prefixStorage } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/dist/index.mjs';
-import httpDriver from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/http.mjs';
-import cloudflareKVBindingDriver from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/cloudflare-kv-binding.mjs';
-import mime from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/mime@4.1.0/node_modules/mime/dist/src/index.js';
-import { z } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/zod@3.25.76/node_modules/zod/index.js';
-import defu, { defuFn, createDefu, defu as defu$1 } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
-import { randomUUID } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/uncrypto@0.1.3/node_modules/uncrypto/dist/crypto.node.mjs';
-import { dirname as dirname$1, resolve as resolve$1, basename, isAbsolute, parse as parse$1 } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import destr, { destr as destr$1 } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
-import { createHooks } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/fs.mjs';
-import { digest, hash as hash$1 } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, getCookie, setCookie, removeResponseHeader, getQuery as getQuery$1, readBody, handleCors, getRouterParam, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, sendNoContent, assertMethod, readFormData, setHeader, getValidatedRouterParams, getHeader, getValidatedQuery, getRequestWebStream, readValidatedBody, getResponseStatusText } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/h3@1.15.5/node_modules/h3/dist/index.mjs';
+import { escapeHtml } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@vue+shared@3.5.28/node_modules/@vue/shared/dist/shared.cjs.js';
+import { GraphQLClient, gql } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/graphql-request@7.1.0_graphql@16.12.0/node_modules/graphql-request/build/entrypoints/main.js';
+import { createFetch, Headers as Headers$1, ofetch } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
+import { createStorage, prefixStorage } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/dist/index.mjs';
+import httpDriver from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/http.mjs';
+import cloudflareKVBindingDriver from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/cloudflare-kv-binding.mjs';
+import mime from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/mime@4.1.0/node_modules/mime/dist/src/index.js';
+import { z } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/zod@3.25.76/node_modules/zod/index.js';
+import defu, { defuFn, createDefu, defu as defu$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
+import { randomUUID } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/uncrypto@0.1.3/node_modules/uncrypto/dist/crypto.node.mjs';
+import { dirname as dirname$1, resolve as resolve$1, basename, isAbsolute, parse as parse$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import destr, { destr as destr$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
+import process$1 from 'node:process';
+import { renderToString } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/server-renderer/index.mjs';
+import { klona } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/server.mjs';
+import { stringify, uneval } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/devalue@5.6.2/node_modules/devalue/index.js';
+import { isVNode, isRef, toValue } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/index.mjs';
+import { createHooks } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/fs.mjs';
+import { digest, hash as hash$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { getContext } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
+import { getContext } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/consola@3.4.2/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/youch-core@0.3.3/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/youch@4.1.0-beta.14/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/source-map@0.7.6/node_modules/source-map/source-map.js';
-import { createPathIndexLanguageParser, parseAcceptLanguage } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/@intlify+utils@0.13.0/node_modules/@intlify/utils/dist/index.mjs';
-import { parse } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/cookie-es@2.0.0/node_modules/cookie-es/dist/index.mjs';
-import { createRouterMatcher } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/vue-router@4.6.4_vue@3.5.28_typescript@5.9.3_/node_modules/vue-router/vue-router.node.mjs';
-import { stringify, uneval } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/devalue@5.6.2/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
-import { isVNode, isRef, toValue } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/index.mjs';
+import consola, { consola as consola$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/consola@3.4.2/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/youch-core@0.3.3/node_modules/youch-core/build/index.js';
+import { Youch } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/youch@4.1.0-beta.14/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/source-map@0.7.6/node_modules/source-map/source-map.js';
+import { createPathIndexLanguageParser, parseAcceptLanguage } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@intlify+utils@0.13.0/node_modules/@intlify/utils/dist/index.mjs';
+import { parse } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/cookie-es@2.0.0/node_modules/cookie-es/dist/index.mjs';
+import { createRouterMatcher } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue-router@4.6.4_vue@3.5.28_typescript@5.9.3_/node_modules/vue-router/vue-router.node.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/server.mjs';
-import process$1 from 'node:process';
-import { renderToString } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/server-renderer/index.mjs';
-import { walkResolver } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/utils.mjs';
-import { getIcons } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/@iconify+utils@2.3.0/node_modules/@iconify/utils/lib/index.mjs';
-import { collections } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/.nuxt/nuxt-icon-server-bundle.mjs';
-import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file:///Users/mahdiyarrezaei/Documents/sis%20copy/node_modules/.pnpm/ipx@2.1.1_db0@0.3.4_ioredis@5.9.3/node_modules/ipx/dist/index.mjs';
+import { walkResolver } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/utils.mjs';
+import { getIcons } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@iconify+utils@2.3.0/node_modules/@iconify/utils/lib/index.mjs';
+import { collections } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt/nuxt-icon-server-bundle.mjs';
+import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/ipx@2.1.1_db0@0.3.4_ioredis@5.9.3/node_modules/ipx/dist/index.mjs';
 
 const HASH_RE = /#/g;
 const AMPERSAND_RE = /&/g;
@@ -301,7 +301,7 @@ function stringifyParsedURL(parsed) {
   return proto + auth + host + pathname + search + hash;
 }
 
-const serverAssets = [{"baseName":"server","dir":"/Users/mahdiyarrezaei/Documents/sis copy/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -313,11 +313,11 @@ const storage$1 = createStorage({});
 
 storage$1.mount('/assets', assets$1);
 
-storage$1.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/mahdiyarrezaei/Documents/sis copy","watchOptions":{"ignored":[null]}}));
-storage$1.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/mahdiyarrezaei/Documents/sis copy/server","watchOptions":{"ignored":[null]}}));
-storage$1.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/mahdiyarrezaei/Documents/sis copy/.nuxt"}));
-storage$1.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/mahdiyarrezaei/Documents/sis copy/.nuxt/cache"}));
-storage$1.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/mahdiyarrezaei/Documents/sis copy/.data/kv"}));
+storage$1.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni","watchOptions":{"ignored":[null]}}));
+storage$1.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/server","watchOptions":{"ignored":[null]}}));
+storage$1.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt"}));
+storage$1.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt/cache"}));
+storage$1.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage$1, base) : storage$1;
@@ -1141,6 +1141,9 @@ const _inlineRuntimeConfig = {
       "/favorites": {
         "cache": false
       },
+      "/payment/**": {
+        "cache": false
+      },
       "/api/_hub/**": {
         "csurf": false,
         "cache": false,
@@ -1159,6 +1162,9 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
+    "wpBaseUrl": "http://sismoni.local",
+    "siteUrl": "http://localhost:3000",
+    "zarinpalPaymentMethod": "WC_ZPal",
     "version": "3.1.17",
     "notivue": {
       "position": "top-center",
@@ -1251,6 +1257,8 @@ const _inlineRuntimeConfig = {
     }
   },
   "gqlHost": "http://sismoni.local/graphql",
+  "wcConsumerKey": "",
+  "wcConsumerSecret": "",
   "icon": {
     "serverKnownCssClasses": []
   },
@@ -1262,7 +1270,7 @@ const _inlineRuntimeConfig = {
     "userToken": "",
     "remote": "",
     "remoteManifest": "",
-    "dir": "/Users/mahdiyarrezaei/Documents/sis copy/.data/hub",
+    "dir": "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.data/hub",
     "workers": "",
     "ai": false,
     "analytics": false,
@@ -1273,7 +1281,7 @@ const _inlineRuntimeConfig = {
     "kv": false,
     "vectorize": {},
     "databaseMigrationsDirs": [
-      "/Users/mahdiyarrezaei/Documents/sis copy/server/database/migrations"
+      "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/server/database/migrations"
     ],
     "databaseQueriesPaths": [],
     "version": "0.9.0",
@@ -1296,7 +1304,7 @@ const _inlineRuntimeConfig = {
     "alias": {},
     "fs": {
       "dir": [
-        "/Users/mahdiyarrezaei/Documents/sis copy/public"
+        "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/public"
       ]
     },
     "http": {
@@ -2132,7 +2140,7 @@ async function requestMutation(event, query, variables) {
 
 const hubHooks = createHooks();
 
-const _nPKAeXGB42o7u6AD44vC24fDC4LLVx2YIICgjs_MZk = defineNitroPlugin(async () => {
+const _bavmSLCHc9cFq5Wp71EElrLgkV0KmMfqaOnVG8DPcE = defineNitroPlugin(async () => {
   await globalThis.__env__;
   await hubHooks.callHookParallel("bindings:ready");
 });
@@ -2265,35 +2273,35 @@ const localeCodes =  [
 const localeLoaders = {
   fa: [
     {
-      key: "locale_fa_45IR_46json_6dbbb994",
+      key: "locale_fa_45IR_46json_298e4a07",
       load: () => Promise.resolve().then(function () { return faIR$1; }),
       cache: true
     }
   ],
   en: [
     {
-      key: "locale_en_45GB_46json_4473812f",
+      key: "locale_en_45GB_46json_98e4b14c",
       load: () => Promise.resolve().then(function () { return enGB$1; }),
       cache: true
     }
   ],
   nb: [
     {
-      key: "locale_nb_45NO_46json_2f28bf7f",
+      key: "locale_nb_45NO_46json_22cddb56",
       load: () => Promise.resolve().then(function () { return nbNO$1; }),
       cache: true
     }
   ],
   nl: [
     {
-      key: "locale_nl_45NL_46json_39a74839",
+      key: "locale_nl_45NL_46json_58b20d19",
       load: () => Promise.resolve().then(function () { return nlNL$1; }),
       cache: true
     }
   ],
   de: [
     {
-      key: "locale_de_45DE_46json_66381783",
+      key: "locale_de_45DE_46json_1389a4ce",
       load: () => Promise.resolve().then(function () { return deDE$1; }),
       cache: true
     }
@@ -2543,6 +2551,20 @@ const pathToI18nConfig = {
     "nl": "/categories",
     "de": "/categories"
   },
+  "/payment/failed": {
+    "fa": "/payment/failed",
+    "en": "/payment/failed",
+    "nb": "/payment/failed",
+    "nl": "/payment/failed",
+    "de": "/payment/failed"
+  },
+  "/payment/success": {
+    "fa": "/payment/success",
+    "en": "/payment/success",
+    "nb": "/payment/success",
+    "nl": "/payment/success",
+    "de": "/payment/success"
+  },
   "/product/:sku()/:slug()": {
     "fa": "/product/:sku()/:slug()",
     "en": "/product/:sku()/:slug()",
@@ -2555,6 +2577,8 @@ const i18nPathToPath = {
   "/": "/",
   "/favorites": "/favorites",
   "/categories": "/categories",
+  "/payment/failed": "/payment/failed",
+  "/payment/success": "/payment/success",
   "/product/:sku()/:slug()": "/product/:sku()/:slug()"
 };
 
@@ -2607,7 +2631,7 @@ function* detect(detectors, detection, path) {
   }
   yield { locale: detection.fallbackLocale, source: "fallback" };
 }
-const _L9MeYPUe8bLB6ipXjGEdGe9dK9RyrqVfMD62pzRMqEM = defineNitroPlugin(async (nitro) => {
+const _zMVoeGIzNNo9uvPhcZ7deWbjtppug6oOsFLeQAX_BpM = defineNitroPlugin(async (nitro) => {
   const runtimeI18n = useRuntimeI18n();
   const rootRedirect = resolveRootRedirect(runtimeI18n.rootRedirect);
   const _defaultLocale = runtimeI18n.defaultLocale || "";
@@ -2709,14 +2733,14 @@ const _L9MeYPUe8bLB6ipXjGEdGe9dK9RyrqVfMD62pzRMqEM = defineNitroPlugin(async (ni
   });
 });
 
-const rootDir = "/Users/mahdiyarrezaei/Documents/sis copy";
+const rootDir = "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni";
 
 const devReducers = {
   VNode: (data) => isVNode(data) ? { type: data.type, props: data.props } : void 0,
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _SUoaTphTVrwnBUGjootnbICp_5IiG_8BtBx2tRGbBU = (nitroApp) => {
+const _KEZCWIUAfNcvEjiLbk3nppc9nCJVXV0XGqy_k3KnWkY = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -2787,35 +2811,20 @@ function onConsoleLog(callback) {
 
 const script = "\"use strict\";(()=>{const t=window,e=document.documentElement,c=[\"dark\",\"light\"],n=getStorageValue(\"localStorage\",\"nuxt-color-mode\")||\"system\";let i=n===\"system\"?u():n;const r=e.getAttribute(\"data-color-mode-forced\");r&&(i=r),l(i),t[\"__NUXT_COLOR_MODE__\"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.add(s):e.className+=\" \"+s,a&&e.setAttribute(\"data-\"+a,o)}function d(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,\"g\"),\"\"),a&&e.removeAttribute(\"data-\"+a)}function f(o){return t.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function u(){if(t.matchMedia&&f(\"\").media!==\"not all\"){for(const o of c)if(f(\":\"+o).matches)return o}return\"light\"}})();function getStorageValue(t,e){switch(t){case\"localStorage\":return window.localStorage.getItem(e);case\"sessionStorage\":return window.sessionStorage.getItem(e);case\"cookie\":return getCookie(e);default:return null}}function getCookie(t){const c=(\"; \"+window.document.cookie).split(\"; \"+t+\"=\");if(c.length===2)return c.pop()?.split(\";\").shift()}";
 
-const _g5THBwhenlxqapYGREGY4pJHJlC8gzPLeqxNfgHq8k = (function(nitro) {
+const _qgGSCHJNGXBlMfc9zh7ArotQCDkbD9OZiwV8iKNZO0 = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
 const plugins = [
-  _nPKAeXGB42o7u6AD44vC24fDC4LLVx2YIICgjs_MZk,
-_L9MeYPUe8bLB6ipXjGEdGe9dK9RyrqVfMD62pzRMqEM,
-_SUoaTphTVrwnBUGjootnbICp_5IiG_8BtBx2tRGbBU,
-_g5THBwhenlxqapYGREGY4pJHJlC8gzPLeqxNfgHq8k
+  _bavmSLCHc9cFq5Wp71EElrLgkV0KmMfqaOnVG8DPcE,
+_zMVoeGIzNNo9uvPhcZ7deWbjtppug6oOsFLeQAX_BpM,
+_KEZCWIUAfNcvEjiLbk3nppc9nCJVXV0XGqy_k3KnWkY,
+_qgGSCHJNGXBlMfc9zh7ArotQCDkbD9OZiwV8iKNZO0
 ];
 
-const assets = {
-  "/index.mjs": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2d8f9-j4ntzvQsKhdw7Uy5VGWEIO/4grg\"",
-    "mtime": "2026-06-06T17:44:13.462Z",
-    "size": 186617,
-    "path": "index.mjs"
-  },
-  "/index.mjs.map": {
-    "type": "application/json",
-    "etag": "\"9ccb4-GLWTWk5WpIOOo2lMBmNjpGpQtF0\"",
-    "mtime": "2026-06-06T17:44:13.463Z",
-    "size": 642228,
-    "path": "index.mjs.map"
-  }
-};
+const assets = {};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
@@ -2840,7 +2849,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _6Ei_H1 = eventHandler((event) => {
+const _dqJHbI = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -2964,8 +2973,8 @@ function setSSRError(ssrContext, error) {
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getServerEntry = () => import('file:///Users/mahdiyarrezaei/Documents/sis%20copy/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
-const getClientManifest = () => import('file:///Users/mahdiyarrezaei/Documents/sis%20copy/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const createSSRApp = await getServerEntry();
   if (!createSSRApp) {
@@ -3215,7 +3224,7 @@ async function getIslandContext(event) {
 
 const warnOnceSet = /* @__PURE__ */ new Set();
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _hqRwHw = defineCachedEventHandler(async (event) => {
+const _GjaBqR = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError({ status: 400, message: "Invalid icon request" });
@@ -3273,7 +3282,7 @@ const _hqRwHw = defineCachedEventHandler(async (event) => {
   // 1 week
 });
 
-const _XFOf_g = eventHandler((event) => {
+const _2tDgHJ = eventHandler((event) => {
   handleCors(event, {
     methods: "*",
     origin: [
@@ -3396,9 +3405,9 @@ defineCachedEventHandler(_cachedMessageLoader, {
   swr: false,
   getKey: (event) => [getRouterParam(event, "locale") ?? "null", getRouterParam(event, "hash") ?? "null"].join("-")
 });
-const _Oy9_Bg = _messagesHandler ;
+const _9OCElg = _messagesHandler ;
 
-const _ZNoHZu = lazyEventHandler(() => {
+const _x5OhFL = lazyEventHandler(() => {
   const opts = useRuntimeConfig().ipx || {};
   const fsDir = opts?.fs?.dir ? (Array.isArray(opts.fs.dir) ? opts.fs.dir : [opts.fs.dir]).map((dir) => isAbsolute(dir) ? dir : fileURLToPath(new URL(dir, globalThis._importMeta_.url))) : void 0;
   const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
@@ -3416,43 +3425,45 @@ const _ZNoHZu = lazyEventHandler(() => {
   return useBase(opts.baseURL, ipxHandler);
 });
 
-const _lazy_64mO66 = () => Promise.resolve().then(function () { return add_post$1; });
-const _lazy_bX6Dld = () => Promise.resolve().then(function () { return update_post$1; });
-const _lazy_t_GW9F = () => Promise.resolve().then(function () { return categories_get$1; });
-const _lazy_c0t5gE = () => Promise.resolve().then(function () { return checkout_post$1; });
-const _lazy_i8X9Z4 = () => Promise.resolve().then(function () { return product_get$1; });
-const _lazy_xLl46A = () => Promise.resolve().then(function () { return products_get$1; });
-const _lazy_w2Piez = () => Promise.resolve().then(function () { return search_get$1; });
-const _lazy_06M5Yg = () => Promise.resolve().then(function () { return ____feature_$1; });
-const _lazy_Axlm1D = () => Promise.resolve().then(function () { return index_head$1; });
-const _lazy_HSplQH = () => Promise.resolve().then(function () { return manifest_get$1; });
-const _lazy_V6hfOZ = () => Promise.resolve().then(function () { return syncVariables_post$1; });
-const _lazy_shFhIj = () => Promise.resolve().then(function () { return robots_txt$1; });
-const _lazy_dNVE__ = () => Promise.resolve().then(function () { return sitemap_xml$1; });
-const _lazy_nX3z73 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_nOPn18 = () => Promise.resolve().then(function () { return add_post$1; });
+const _lazy_vGJCmi = () => Promise.resolve().then(function () { return update_post$1; });
+const _lazy_vVk0bS = () => Promise.resolve().then(function () { return categories_get$1; });
+const _lazy_HEQIdN = () => Promise.resolve().then(function () { return checkout_post$1; });
+const _lazy_c3VFkG = () => Promise.resolve().then(function () { return verify_get$1; });
+const _lazy_7O2E4u = () => Promise.resolve().then(function () { return product_get$1; });
+const _lazy_KmCrZG = () => Promise.resolve().then(function () { return products_get$1; });
+const _lazy_tINyib = () => Promise.resolve().then(function () { return search_get$1; });
+const _lazy_mljjwo = () => Promise.resolve().then(function () { return ____feature_$1; });
+const _lazy_W3WxMj = () => Promise.resolve().then(function () { return index_head$1; });
+const _lazy_Pt8Hxd = () => Promise.resolve().then(function () { return manifest_get$1; });
+const _lazy_YTPw5Q = () => Promise.resolve().then(function () { return syncVariables_post$1; });
+const _lazy_aDhFHK = () => Promise.resolve().then(function () { return robots_txt$1; });
+const _lazy_wg6_dZ = () => Promise.resolve().then(function () { return sitemap_xml$1; });
+const _lazy_GXUZt8 = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '', handler: _6Ei_H1, lazy: false, middleware: true, method: undefined },
-  { route: '/api/cart/add', handler: _lazy_64mO66, lazy: true, middleware: false, method: "post" },
-  { route: '/api/cart/update', handler: _lazy_bX6Dld, lazy: true, middleware: false, method: "post" },
-  { route: '/api/categories', handler: _lazy_t_GW9F, lazy: true, middleware: false, method: "get" },
-  { route: '/api/checkout', handler: _lazy_c0t5gE, lazy: true, middleware: false, method: "post" },
-  { route: '/api/product', handler: _lazy_i8X9Z4, lazy: true, middleware: false, method: "get" },
-  { route: '/api/products', handler: _lazy_xLl46A, lazy: true, middleware: false, method: "get" },
-  { route: '/api/search', handler: _lazy_w2Piez, lazy: true, middleware: false, method: "get" },
-  { route: '/api/_hub/**:feature', handler: _lazy_06M5Yg, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_hub', handler: _lazy_Axlm1D, lazy: true, middleware: false, method: "head" },
-  { route: '/api/_hub/manifest', handler: _lazy_HSplQH, lazy: true, middleware: false, method: "get" },
-  { route: '/api/_hub/sync-variables', handler: _lazy_V6hfOZ, lazy: true, middleware: false, method: "post" },
-  { route: '/robots.txt', handler: _lazy_shFhIj, lazy: true, middleware: false, method: undefined },
-  { route: '/sitemap.xml', handler: _lazy_dNVE__, lazy: true, middleware: false, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_nX3z73, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _dqJHbI, lazy: false, middleware: true, method: undefined },
+  { route: '/api/cart/add', handler: _lazy_nOPn18, lazy: true, middleware: false, method: "post" },
+  { route: '/api/cart/update', handler: _lazy_vGJCmi, lazy: true, middleware: false, method: "post" },
+  { route: '/api/categories', handler: _lazy_vVk0bS, lazy: true, middleware: false, method: "get" },
+  { route: '/api/checkout', handler: _lazy_HEQIdN, lazy: true, middleware: false, method: "post" },
+  { route: '/api/payment/verify', handler: _lazy_c3VFkG, lazy: true, middleware: false, method: "get" },
+  { route: '/api/product', handler: _lazy_7O2E4u, lazy: true, middleware: false, method: "get" },
+  { route: '/api/products', handler: _lazy_KmCrZG, lazy: true, middleware: false, method: "get" },
+  { route: '/api/search', handler: _lazy_tINyib, lazy: true, middleware: false, method: "get" },
+  { route: '/api/_hub/**:feature', handler: _lazy_mljjwo, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_hub', handler: _lazy_W3WxMj, lazy: true, middleware: false, method: "head" },
+  { route: '/api/_hub/manifest', handler: _lazy_Pt8Hxd, lazy: true, middleware: false, method: "get" },
+  { route: '/api/_hub/sync-variables', handler: _lazy_YTPw5Q, lazy: true, middleware: false, method: "post" },
+  { route: '/robots.txt', handler: _lazy_aDhFHK, lazy: true, middleware: false, method: undefined },
+  { route: '/sitemap.xml', handler: _lazy_wg6_dZ, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_GXUZt8, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _hqRwHw, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_hub', handler: _XFOf_g, lazy: false, middleware: true, method: undefined },
-  { route: '/_i18n/:hash/:locale/messages.json', handler: _Oy9_Bg, lazy: false, middleware: false, method: undefined },
-  { route: '/_ipx/**', handler: _ZNoHZu, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_nX3z73, lazy: true, middleware: false, method: undefined }
+  { route: '/api/_nuxt_icon/:collection', handler: _GjaBqR, lazy: false, middleware: false, method: undefined },
+  { route: '/api/_hub', handler: _2tDgHJ, lazy: false, middleware: true, method: undefined },
+  { route: '/_i18n/:hash/:locale/messages.json', handler: _9OCElg, lazy: false, middleware: false, method: undefined },
+  { route: '/_ipx/**', handler: _x5OhFL, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_GXUZt8, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -3759,7 +3770,11 @@ var checkout$4 = {
 		total: "جمع کل",
 		order_number: "شماره سفارش",
 		date: "تاریخ",
-		payment_method: "روش پرداخت"
+		payment_method: "روش پرداخت",
+		verify_failed: "پرداخت تأیید نشد. در صورت کسر وجه با پشتیبانی تماس بگیرید.",
+		failed_title: "پرداخت انجام نشد",
+		failed_description: "پرداخت لغو شد یا با خطا مواجه شد. می‌توانید دوباره تلاش کنید.",
+		back_to_shop: "بازگشت به فروشگاه"
 	}
 };
 var product$4 = {
@@ -3870,7 +3885,11 @@ var checkout$3 = {
 		total: "Total",
 		order_number: "Order Number",
 		date: "Date",
-		payment_method: "Payment Method"
+		payment_method: "Payment Method",
+		verify_failed: "Payment could not be verified. If you were charged, please contact support.",
+		failed_title: "Payment failed",
+		failed_description: "Payment was cancelled or encountered an error. You can try again.",
+		back_to_shop: "Back to shop"
 	}
 };
 var product$3 = {
@@ -3981,7 +4000,11 @@ var checkout$2 = {
 		total: "Totalt",
 		order_number: "Ordrenummer",
 		date: "Dato",
-		payment_method: "Betalingsmetode"
+		payment_method: "Betalingsmetode",
+		verify_failed: "Betalingen kunne ikke verifiseres. Kontakt support hvis du ble belastet.",
+		failed_title: "Betaling mislyktes",
+		failed_description: "Betalingen ble avbrutt eller mislyktes. Du kan prøve igjen.",
+		back_to_shop: "Tilbake til butikken"
 	}
 };
 var product$2 = {
@@ -4092,7 +4115,11 @@ var checkout$1 = {
 		total: "Totaal",
 		order_number: "Bestelnummer",
 		date: "Datum",
-		payment_method: "Betaalmethode"
+		payment_method: "Betaalmethode",
+		verify_failed: "Betaling kon niet worden geverifieerd. Neem contact op met support als u bent belast.",
+		failed_title: "Betaling mislukt",
+		failed_description: "Betaling is geannuleerd of mislukt. U kunt het opnieuw proberen.",
+		back_to_shop: "Terug naar winkel"
 	}
 };
 var product$1 = {
@@ -4203,7 +4230,11 @@ var checkout = {
 		total: "Gesamt",
 		order_number: "Bestellnummer",
 		date: "Datum",
-		payment_method: "Zahlungsmethode"
+		payment_method: "Zahlungsmethode",
+		verify_failed: "Zahlung konnte nicht verifiziert werden. Bei Abbuchung bitte Support kontaktieren.",
+		failed_title: "Zahlung fehlgeschlagen",
+		failed_description: "Zahlung wurde abgebrochen oder ist fehlgeschlagen. Sie können es erneut versuchen.",
+		back_to_shop: "Zurück zum Shop"
 	}
 };
 var product = {
@@ -4396,6 +4427,8 @@ const checkoutMutation = gql`
 				orderNumber
 				total
 				status
+				date
+				paymentMethodTitle
 			}
 		}
 	}
@@ -4409,6 +4442,63 @@ const checkout_post = defineEventHandler(async (event) => {
 const checkout_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   default: checkout_post
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const verify_get = defineEventHandler(async (event) => {
+  const { order_id, key } = getQuery$1(event);
+  if (!order_id || !key) {
+    throw createError({
+      statusCode: 400,
+      message: "Missing order_id or key"
+    });
+  }
+  const config = useRuntimeConfig();
+  const wpBase = config.public.wpBaseUrl.replace(/\/$/, "");
+  if (!wpBase || !config.wcConsumerKey || !config.wcConsumerSecret) {
+    throw createError({
+      statusCode: 500,
+      message: "Payment verification is not configured"
+    });
+  }
+  const auth = Buffer.from(
+    `${config.wcConsumerKey}:${config.wcConsumerSecret}`
+  ).toString("base64");
+  let order;
+  try {
+    order = await $fetch(
+      `${wpBase}/wp-json/wc/v3/orders/${order_id}`,
+      {
+        headers: { Authorization: `Basic ${auth}` }
+      }
+    );
+  } catch {
+    throw createError({
+      statusCode: 404,
+      message: "Order not found"
+    });
+  }
+  if (order.order_key !== key) {
+    throw createError({ statusCode: 403, message: "Invalid order key" });
+  }
+  const paidStatuses = ["processing", "completed"];
+  if (!paidStatuses.includes(order.status)) {
+    throw createError({
+      statusCode: 402,
+      message: "Payment not completed"
+    });
+  }
+  return {
+    orderNumber: order.number,
+    total: order.total,
+    status: order.status,
+    paymentMethodTitle: order.payment_method_title,
+    date: order.date_created
+  };
+});
+
+const verify_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: verify_get
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const getProductQuery = gql`

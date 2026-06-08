@@ -9,5 +9,6 @@ import important from "#build/tailwind/expose/important.mjs"
 import separator from "#build/tailwind/expose/separator.mjs"
 import safelist from "#build/tailwind/expose/safelist.mjs"
 import blocklist from "#build/tailwind/expose/blocklist.mjs"
-const config = { theme, corePlugins, plugins, darkMode, content, presets, prefix, important, separator, safelist, blocklist }
-export { config as default, theme, corePlugins, plugins, darkMode, content, presets, prefix, important, separator, safelist, blocklist }
+import variants from "#build/tailwind/expose/variants.mjs"
+const config = { theme, corePlugins, plugins, darkMode, content, presets, prefix, important, separator, safelist, blocklist, variants }
+export { config as default, theme, corePlugins, plugins, darkMode, content, presets, prefix, important, separator, safelist, blocklist, variants }

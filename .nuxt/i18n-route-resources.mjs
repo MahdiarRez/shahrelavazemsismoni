@@ -21,6 +21,20 @@ export const pathToI18nConfig = {
     "nl": "/categories",
     "de": "/categories"
   },
+  "/payment/failed": {
+    "fa": "/payment/failed",
+    "en": "/payment/failed",
+    "nb": "/payment/failed",
+    "nl": "/payment/failed",
+    "de": "/payment/failed"
+  },
+  "/payment/success": {
+    "fa": "/payment/success",
+    "en": "/payment/success",
+    "nb": "/payment/success",
+    "nl": "/payment/success",
+    "de": "/payment/success"
+  },
   "/product/:sku()/:slug()": {
     "fa": "/product/:sku()/:slug()",
     "en": "/product/:sku()/:slug()",
@@ -33,5 +47,7 @@ export const i18nPathToPath = {
   "/": "/",
   "/favorites": "/favorites",
   "/categories": "/categories",
+  "/payment/failed": "/payment/failed",
+  "/payment/success": "/payment/success",
   "/product/:sku()/:slug()": "/product/:sku()/:slug()"
 };

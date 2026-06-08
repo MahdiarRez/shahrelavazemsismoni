@@ -58,7 +58,11 @@
 			"total": "Total",
 			"order_number": "Order Number",
 			"date": "Date",
-			"payment_method": "Payment Method"
+			"payment_method": "Payment Method",
+			"verify_failed": "Payment could not be verified. If you were charged, please contact support.",
+			"failed_title": "Payment failed",
+			"failed_description": "Payment was cancelled or encountered an error. You can try again.",
+			"back_to_shop": "Back to shop"
 		}
 	},
 	"product": {

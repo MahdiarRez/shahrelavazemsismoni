@@ -1,4 +1,4 @@
-import{g as e,c as r,e as s,b as o}from"../../nitro/nitro.mjs";import"node:buffer";import"node:process";import"node:timers";import"node:events";import"cloudflare:workers";import"node:async_hooks";const a=e`
+import{g as e,c as r,f as s,e as o}from"../../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const a=e`
   query getSearchProducts($search: String) {
     products(first: 6, where: { stockStatus: IN_STOCK, search: $search }) {
       nodes {

@@ -58,7 +58,11 @@
 			"total": "Totaal",
 			"order_number": "Bestelnummer",
 			"date": "Datum",
-			"payment_method": "Betaalmethode"
+			"payment_method": "Betaalmethode",
+			"verify_failed": "Betaling kon niet worden geverifieerd. Neem contact op met support als u bent belast.",
+			"failed_title": "Betaling mislukt",
+			"failed_description": "Betaling is geannuleerd of mislukt. U kunt het opnieuw proberen.",
+			"back_to_shop": "Terug naar winkel"
 		}
 	},
 	"product": {

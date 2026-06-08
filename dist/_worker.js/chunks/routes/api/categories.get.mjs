@@ -1,4 +1,4 @@
-import{g as r,c as e,b as o}from"../../nitro/nitro.mjs";import"node:buffer";import"node:process";import"node:timers";import"node:events";import"cloudflare:workers";import"node:async_hooks";const s=r`
+import{g as e,c as r,e as o}from"../../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const s=e`
 	query getCategories {
 		productCategories(first: 100, where: { orderby: COUNT, order: DESC }) {
 			nodes {
@@ -41,5 +41,5 @@ import{g as r,c as e,b as o}from"../../nitro/nitro.mjs";import"node:buffer";impo
 			}
 		}
 	}
-`,t=e(async()=>await o(s));export{t as default};
+`,t=r(async()=>await o(s));export{t as default};
 //# sourceMappingURL=categories.get.mjs.map

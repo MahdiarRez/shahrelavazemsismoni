@@ -1,5 +1,6 @@
 export const useCheckout = () => {
 	const { cart } = useCart();
+	const config = useRuntimeConfig();
 
 	const order = useState("order", () => null);
 
@@ -18,31 +19,29 @@ export const useCheckout = () => {
 		try {
 			checkoutStatus.value = "processing";
 
-			const checkoutData = {
-				billing: { ...userDetails.value },
-				paymentMethod: "cod",
-			};
-
 			const res = await $fetch("/api/checkout", {
 				method: "POST",
-				body: checkoutData,
+				body: {
+					billing: { ...userDetails.value },
+					paymentMethod: config.public.zarinpalPaymentMethod || "WC_ZPal",
+				},
 			});
 
 			const createdOrder = res.checkout.order;
 			order.value = createdOrder;
 
-			// پاک کردن cart
 			cart.value = [];
 			localStorage.setItem("cart", JSON.stringify(cart.value));
 
-			// ساخت لینک پرداخت ووکامرس
-			const wpBaseUrl = "https://YOUR-WP-DOMAIN.com";
+			const wpBase = (config.public.wpBaseUrl || "").replace(/\/$/, "");
+			if (!wpBase) {
+				throw new Error("NUXT_PUBLIC_WP_BASE_URL is not configured");
+			}
 
 			const payUrl =
-				`${wpBaseUrl}/checkout/order-pay/${createdOrder.databaseId}/` +
+				`${wpBase}/checkout/order-pay/${createdOrder.databaseId}/` +
 				`?pay_for_order=true&key=${createdOrder.orderKey}`;
 
-			// redirect به صفحه پرداخت
 			window.location.href = payUrl;
 		} catch (err) {
 			console.error("Checkout failed", err);

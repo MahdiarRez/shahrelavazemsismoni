@@ -58,7 +58,11 @@
 			"total": "Totalt",
 			"order_number": "Ordrenummer",
 			"date": "Dato",
-			"payment_method": "Betalingsmetode"
+			"payment_method": "Betalingsmetode",
+			"verify_failed": "Betalingen kunne ikke verifiseres. Kontakt support hvis du ble belastet.",
+			"failed_title": "Betaling mislyktes",
+			"failed_description": "Betalingen ble avbrutt eller mislyktes. Du kan prøve igjen.",
+			"back_to_shop": "Tilbake til butikken"
 		}
 	},
 	"product": {

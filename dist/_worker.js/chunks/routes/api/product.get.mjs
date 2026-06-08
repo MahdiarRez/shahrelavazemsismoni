@@ -1,4 +1,4 @@
-import{g as e,c as r,e as s,b as a}from"../../nitro/nitro.mjs";import"node:buffer";import"node:process";import"node:timers";import"node:events";import"cloudflare:workers";import"node:async_hooks";const o=e`
+import{g as e,c as r,f as s,e as a}from"../../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const o=e`
 	query getProduct($sku: ID!) {
 		product(id: $sku, idType: SKU) {
 			... on VariableProduct {
@@ -7,6 +7,11 @@ import{g as e,c as r,e as s,b as a}from"../../nitro/nitro.mjs";import"node:buffe
 				slug
 				name
 				regularPrice
+				productCategories {
+					nodes {
+						name
+					}
+				}
 				salePrice
 				description
 

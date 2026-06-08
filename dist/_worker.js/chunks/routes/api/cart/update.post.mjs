@@ -1,4 +1,4 @@
-import{g as t,d as e,r as i,a as o}from"../../../nitro/nitro.mjs";import"node:buffer";import"node:process";import"node:timers";import"node:events";import"cloudflare:workers";import"node:async_hooks";const n=t`
+import{g as t,d as e,a as i,b as o}from"../../../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const a=t`
   mutation updateItemQuantities($input: UpdateItemQuantitiesInput!) {
     updateItemQuantities(input: $input) {
       items {
@@ -6,5 +6,5 @@ import{g as t,d as e,r as i,a as o}from"../../../nitro/nitro.mjs";import"node:bu
       }
     }
   }
-`,a=e(async t=>{const e=await i(t);return await o(t,n,{input:e})});export{a as default};
+`,n=e(async t=>{const e=await i(t);return await o(t,a,{input:e})});export{n as default};
 //# sourceMappingURL=update.post.mjs.map
