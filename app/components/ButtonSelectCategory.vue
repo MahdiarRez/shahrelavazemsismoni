@@ -4,7 +4,6 @@ const categoriesData = ref([]);
 
 onMounted(async () => {
 	const response = await $fetch("/api/categories");
-	console.log(response);
 
 	categoriesData.value = response.productCategories.nodes.filter(
 		(category) => category.products.nodes.length,

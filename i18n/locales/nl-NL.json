@@ -11,13 +11,77 @@
 	},
 	"nav": {
 		"home": "Home",
+		"shop": "Winkel",
 		"categories": "Categorieën",
 		"favorites": "Favorieten",
 		"products": "Producten"
 	},
 	"footer": {
 		"developed_by_author": "door {author}",
-		"change_language": "Taal wijzigen"
+		"change_language": "Taal wijzigen",
+		"about": "Jouw online winkel voor babyspullen en babyverzorging, met veilig betalen en snelle levering.",
+		"quick_links": "Snelle links",
+		"customer_service": "Klantenservice",
+		"trust_title": "Veilig winkelen",
+		"trust_text": "Veilig betalen en beschermde gegevens",
+		"copyright": "© {year} {name} — Alle rechten voorbehouden."
+	},
+	"home": {
+		"seo": {
+			"title": "{name} | Baby- en babykamerbenodigdheden",
+			"description": "Koop de nieuwste en beste baby- en babykamerproducten tegen scherpe prijzen met snelle levering."
+		},
+		"hero": {
+			"badge": "Alles voor je baby",
+			"title": "De beste babyspullen voor jou en je kleintje",
+			"subtitle": "Een compleet assortiment kwaliteitsproducten, met gegarandeerde echtheid en snelle levering.",
+			"cta_primary": "Begin met winkelen",
+			"cta_secondary": "Bekijk categorieën",
+			"stats": {
+				"customers": "10.000+ tevreden bestellingen",
+				"authentic": "Echtheid gegarandeerd",
+				"delivery": "Snelle landelijke levering"
+			}
+		},
+		"benefits": {
+			"shipping": {
+				"title": "Snelle levering",
+				"description": "Landelijk verzonden"
+			},
+			"secure": {
+				"title": "Veilig betalen",
+				"description": "Vertrouwde betaalmethode"
+			},
+			"returns": {
+				"title": "Eenvoudig retourneren",
+				"description": "7 dagen retourgarantie"
+			},
+			"support": {
+				"title": "Ondersteuning",
+				"description": "Elke dag bereikbaar"
+			}
+		},
+		"sections": {
+			"categories": "Categorieën",
+			"featured": "Uitgelichte producten",
+			"new_arrivals": "Nieuwe producten",
+			"on_sale": "In de aanbieding"
+		},
+		"view_all": "Bekijk alles",
+		"promo": {
+			"title": "Speciale uitverkoop babyspullen",
+			"subtitle": "Mis de beste kans niet om te winkelen met geweldige kortingen.",
+			"cta": "Bekijk aanbiedingen"
+		},
+		"newsletter": {
+			"title": "Blijf op de hoogte",
+			"subtitle": "Vul je e-mailadres in en we sturen je de nieuwste producten en aanbiedingen.",
+			"placeholder": "Je e-mailadres",
+			"cta": "Abonneren",
+			"invalid": "Voer een geldig e-mailadres in",
+			"success": "Succesvol geabonneerd!",
+			"error": "Er ging iets mis. Probeer het opnieuw."
+		}
 	},
 	"search": {
 		"placeholder": "Zoeken...",
@@ -47,6 +111,7 @@
 			"email": "E-mail",
 			"phone": "Telefoon",
 			"city": "Stad",
+			"postcode": "Postcode (optioneel)",
 			"address": "Adres"
 		},
 		"pay": {
@@ -62,7 +127,9 @@
 			"verify_failed": "Betaling kon niet worden geverifieerd. Neem contact op met support als u bent belast.",
 			"failed_title": "Betaling mislukt",
 			"failed_description": "Betaling is geannuleerd of mislukt. U kunt het opnieuw proberen.",
-			"back_to_shop": "Terug naar winkel"
+			"back_to_shop": "Terug naar winkel",
+			"error": "Bestelling kon niet worden geplaatst. Probeer het opnieuw.",
+			"retry": "Betaling opnieuw proberen"
 		}
 	},
 	"product": {

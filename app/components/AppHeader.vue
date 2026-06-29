@@ -13,7 +13,7 @@ const localePath = useLocalePath();
 
 const search = () => {
 	router.push({
-		path: localePath("/"),
+		path: localePath("/shop"),
 		query: { ...route.query, q: searchQuery.value || undefined },
 	});
 	suggestionMenu.value = false;
@@ -263,10 +263,6 @@ const totalQuantity = computed(() =>
 									:sale-price="product.salePrice"
 									:regular-price="product.regularPrice"
 									variant="card" />
-								<div
-									class="font-normal text-[#5f5f5f] dark:text-[#3f3333]">
-									{{ product.allPaStyle.nodes[0]?.name }}
-								</div>
 							</div>
 						</div>
 					</NuxtLink>

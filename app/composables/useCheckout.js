@@ -1,6 +1,8 @@
+import { push } from "notivue";
+
 export const useCheckout = () => {
-	const { cart } = useCart();
 	const config = useRuntimeConfig();
+	const { t } = useI18n();
 
 	const order = useState("order", () => null);
 
@@ -10,6 +12,7 @@ export const useCheckout = () => {
 		lastName: "",
 		phone: "",
 		city: "",
+		postcode: "",
 		address1: "",
 	}));
 
@@ -19,24 +22,26 @@ export const useCheckout = () => {
 		try {
 			checkoutStatus.value = "processing";
 
-			const res = await $fetch("/api/checkout", {
-				method: "POST",
-				body: {
-					billing: { ...userDetails.value },
-					paymentMethod: config.public.zarinpalPaymentMethod || "WC_ZPal",
-				},
-			});
-
-			const createdOrder = res.checkout.order;
-			order.value = createdOrder;
-
-			cart.value = [];
-			localStorage.setItem("cart", JSON.stringify(cart.value));
-
 			const wpBase = (config.public.wpBaseUrl || "").replace(/\/$/, "");
 			if (!wpBase) {
 				throw new Error("NUXT_PUBLIC_WP_BASE_URL is not configured");
 			}
+
+			const res = await $fetch("/api/checkout", {
+				method: "POST",
+				body: {
+					billing: { ...userDetails.value, country: "IR" },
+					paymentMethod: config.public.zarinpalPaymentMethod || "WC_ZPal",
+				},
+			});
+
+			const createdOrder = res?.checkout?.order;
+
+			if (!createdOrder?.databaseId || !createdOrder?.orderKey) {
+				throw new Error("Order was created without a valid id or key");
+			}
+
+			order.value = createdOrder;
 
 			const payUrl =
 				`${wpBase}/checkout/order-pay/${createdOrder.databaseId}/` +
@@ -45,7 +50,8 @@ export const useCheckout = () => {
 			window.location.href = payUrl;
 		} catch (err) {
 			console.error("Checkout failed", err);
-			checkoutStatus.value = "error";
+			checkoutStatus.value = "order";
+			push.error(t("checkout.pay.error"));
 		}
 	};
 

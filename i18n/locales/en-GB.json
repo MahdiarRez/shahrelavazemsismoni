@@ -11,13 +11,77 @@
 	},
 	"nav": {
 		"home": "Home",
+		"shop": "Shop",
 		"categories": "Categories",
 		"favorites": "Favorites",
 		"products": "Products"
 	},
 	"footer": {
 		"developed_by_author": "by {author}",
-		"change_language": "Change language"
+		"change_language": "Change language",
+		"about": "Your online shop for baby essentials and nursery care, with secure checkout and fast delivery.",
+		"quick_links": "Quick links",
+		"customer_service": "Customer service",
+		"trust_title": "Shop with confidence",
+		"trust_text": "Secure payment and protected data",
+		"copyright": "© {year} {name} — All rights reserved."
+	},
+	"home": {
+		"seo": {
+			"title": "{name} | Baby & Nursery Essentials",
+			"description": "Shop the latest and best baby and nursery products at great prices with fast delivery."
+		},
+		"hero": {
+			"badge": "Everything for your baby",
+			"title": "The best baby essentials for you and your little one",
+			"subtitle": "A complete range of quality products, with guaranteed authenticity and fast nationwide delivery.",
+			"cta_primary": "Start shopping",
+			"cta_secondary": "Browse categories",
+			"stats": {
+				"customers": "10,000+ happy orders",
+				"authentic": "Authenticity guaranteed",
+				"delivery": "Fast nationwide delivery"
+			}
+		},
+		"benefits": {
+			"shipping": {
+				"title": "Fast delivery",
+				"description": "Shipped nationwide"
+			},
+			"secure": {
+				"title": "Secure payment",
+				"description": "Trusted payment gateway"
+			},
+			"returns": {
+				"title": "Easy returns",
+				"description": "7-day return guarantee"
+			},
+			"support": {
+				"title": "Support",
+				"description": "Available every day"
+			}
+		},
+		"sections": {
+			"categories": "Categories",
+			"featured": "Featured products",
+			"new_arrivals": "New arrivals",
+			"on_sale": "On sale"
+		},
+		"view_all": "View all",
+		"promo": {
+			"title": "Special baby essentials sale",
+			"subtitle": "Don't miss the best chance to shop with amazing discounts.",
+			"cta": "View deals"
+		},
+		"newsletter": {
+			"title": "Stay in the loop",
+			"subtitle": "Enter your email and we'll send you the latest products and deals.",
+			"placeholder": "Your email",
+			"cta": "Subscribe",
+			"invalid": "Please enter a valid email",
+			"success": "Successfully subscribed!",
+			"error": "Something went wrong. Please try again."
+		}
 	},
 	"search": {
 		"placeholder": "Search...",
@@ -47,6 +111,7 @@
 			"email": "Email",
 			"phone": "Phone",
 			"city": "City",
+			"postcode": "Postal code (optional)",
 			"address": "Address"
 		},
 		"pay": {
@@ -62,7 +127,9 @@
 			"verify_failed": "Payment could not be verified. If you were charged, please contact support.",
 			"failed_title": "Payment failed",
 			"failed_description": "Payment was cancelled or encountered an error. You can try again.",
-			"back_to_shop": "Back to shop"
+			"back_to_shop": "Back to shop",
+			"error": "Could not place your order. Please try again.",
+			"retry": "Retry payment"
 		}
 	},
 	"product": {

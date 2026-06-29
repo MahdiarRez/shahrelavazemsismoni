@@ -23,8 +23,6 @@ useSeoMeta({
 
 onMounted(() => {
 	$fetch("/api/categories").then((response) => {
-		console.log(response);
-
 		return (categoriesData.value = response.productCategories.nodes.filter(
 			(category) => category.products?.nodes.length,
 		));
@@ -47,7 +45,9 @@ const categories = computed(() => categoriesData.value);
 		<NuxtLink
 			v-for="category in categories"
 			:key="category.id"
-			:to="localePath(`/?category=${encodeURIComponent(category.name)}`)"
+			:to="
+				localePath(`/shop?category=${encodeURIComponent(category.name)}`)
+			"
 			class="w-full max-w-[444px] p-2 lg:p-2 h-auto">
 			<div class="pb-[75%] relative overflow-hidden h-full">
 				<NuxtImg

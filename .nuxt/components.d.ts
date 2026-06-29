@@ -33,6 +33,12 @@ export const ProductSkeleton: typeof import("../app/components/ProductSkeleton.v
 export const ProductsEmpty: typeof import("../app/components/ProductsEmpty.vue")['default']
 export const ProductsSkeleton: typeof import("../app/components/ProductsSkeleton.vue")['default']
 export const TomanSvg: typeof import("../app/components/TomanSvg.vue")['default']
+export const HomeBenefits: typeof import("../app/components/home/HomeBenefits.vue")['default']
+export const HomeCategoryShowcase: typeof import("../app/components/home/HomeCategoryShowcase.vue")['default']
+export const HomeHero: typeof import("../app/components/home/HomeHero.vue")['default']
+export const HomeNewsletter: typeof import("../app/components/home/HomeNewsletter.vue")['default']
+export const HomeProductRow: typeof import("../app/components/home/HomeProductRow.vue")['default']
+export const HomePromoBanner: typeof import("../app/components/home/HomePromoBanner.vue")['default']
 export const UAccordion: typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0._eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
 export const UAlert: typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0._eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']
 export const UAvatar: typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0._eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/components/elements/Avatar.vue")['default']
@@ -135,6 +141,12 @@ export const LazyProductSkeleton: LazyComponent<typeof import("../app/components
 export const LazyProductsEmpty: LazyComponent<typeof import("../app/components/ProductsEmpty.vue")['default']>
 export const LazyProductsSkeleton: LazyComponent<typeof import("../app/components/ProductsSkeleton.vue")['default']>
 export const LazyTomanSvg: LazyComponent<typeof import("../app/components/TomanSvg.vue")['default']>
+export const LazyHomeBenefits: LazyComponent<typeof import("../app/components/home/HomeBenefits.vue")['default']>
+export const LazyHomeCategoryShowcase: LazyComponent<typeof import("../app/components/home/HomeCategoryShowcase.vue")['default']>
+export const LazyHomeHero: LazyComponent<typeof import("../app/components/home/HomeHero.vue")['default']>
+export const LazyHomeNewsletter: LazyComponent<typeof import("../app/components/home/HomeNewsletter.vue")['default']>
+export const LazyHomeProductRow: LazyComponent<typeof import("../app/components/home/HomeProductRow.vue")['default']>
+export const LazyHomePromoBanner: LazyComponent<typeof import("../app/components/home/HomePromoBanner.vue")['default']>
 export const LazyUAccordion: LazyComponent<typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0._eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>
 export const LazyUAlert: LazyComponent<typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0._eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']>
 export const LazyUAvatar: LazyComponent<typeof import("../node_modules/.pnpm/@nuxt+ui@2.22.3_magicast@0._eb755c92717b7a8020a1a9e4cb63d243/node_modules/@nuxt/ui/dist/runtime/components/elements/Avatar.vue")['default']>

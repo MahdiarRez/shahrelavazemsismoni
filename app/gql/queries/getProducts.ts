@@ -3,18 +3,23 @@ import { gql } from "nuxt-graphql-request/utils";
 export const getProductsQuery = gql`
 	query getProducts(
 		$after: String
+		$first: Int = 21
 		$search: String
 		$category: String
+		$onSale: Boolean
+		$featured: Boolean
 		$order: OrderEnum = DESC
 		$field: ProductsOrderByEnum = DATE
 	) {
 		products(
-			first: 21
+			first: $first
 			after: $after
 			where: {
 				stockStatus: IN_STOCK
 				search: $search
 				category: $category
+				onSale: $onSale
+				featured: $featured
 				orderby: { field: $field, order: $order }
 			}
 		) {
@@ -42,11 +47,6 @@ export const getProductsQuery = gql`
 				... on VariableProduct {
 					regularPrice
 					salePrice
-					allPaStyle {
-						nodes {
-							name
-						}
-					}
 					galleryImages {
 						nodes {
 							sourceUrl(size: WOOCOMMERCE_THUMBNAIL)

@@ -19,6 +19,14 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
+	const orderId = Number(order_id);
+	if (!Number.isInteger(orderId) || orderId <= 0) {
+		throw createError({
+			statusCode: 400,
+			message: "Invalid order_id",
+		});
+	}
+
 	const config = useRuntimeConfig();
 	const wpBase = config.public.wpBaseUrl.replace(/\/$/, "");
 
@@ -36,7 +44,7 @@ export default defineEventHandler(async (event) => {
 	let order: WooCommerceOrder;
 	try {
 		order = await $fetch<WooCommerceOrder>(
-			`${wpBase}/wp-json/wc/v3/orders/${order_id}`,
+			`${wpBase}/wp-json/wc/v3/orders/${orderId}`,
 			{
 				headers: { Authorization: `Basic ${auth}` },
 			},

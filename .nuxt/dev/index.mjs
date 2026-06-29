@@ -3,49 +3,50 @@ import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, getCookie, setCookie, removeResponseHeader, getQuery as getQuery$1, readBody, handleCors, getRouterParam, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, sendNoContent, assertMethod, readFormData, setHeader, getValidatedRouterParams, getHeader, getValidatedQuery, getRequestWebStream, readValidatedBody, getResponseStatusText } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/h3@1.15.5/node_modules/h3/dist/index.mjs';
-import { escapeHtml } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@vue+shared@3.5.28/node_modules/@vue/shared/dist/shared.cjs.js';
-import { GraphQLClient, gql } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/graphql-request@7.1.0_graphql@16.12.0/node_modules/graphql-request/build/entrypoints/main.js';
-import { createFetch, Headers as Headers$1, ofetch } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
-import { createStorage, prefixStorage } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/dist/index.mjs';
-import httpDriver from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/http.mjs';
-import cloudflareKVBindingDriver from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/cloudflare-kv-binding.mjs';
-import mime from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/mime@4.1.0/node_modules/mime/dist/src/index.js';
-import { z } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/zod@3.25.76/node_modules/zod/index.js';
-import defu, { defuFn, createDefu, defu as defu$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
-import { randomUUID } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/uncrypto@0.1.3/node_modules/uncrypto/dist/crypto.node.mjs';
-import { dirname as dirname$1, resolve as resolve$1, basename, isAbsolute, parse as parse$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import destr, { destr as destr$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, getCookie, setCookie, removeResponseHeader, getQuery as getQuery$1, readBody, handleCors, getRouterParam, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, sendNoContent, assertMethod, readFormData, setHeader, getValidatedRouterParams, getHeader, getValidatedQuery, getRequestWebStream, readValidatedBody, getResponseStatusText } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/h3@1.15.5/node_modules/h3/dist/index.mjs';
+import { escapeHtml } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@vue+shared@3.5.28/node_modules/@vue/shared/dist/shared.cjs.js';
+import { GraphQLClient, gql } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/graphql-request@7.1.0_graphql@16.12.0/node_modules/graphql-request/build/entrypoints/main.js';
+import { z } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/zod@4.4.3/node_modules/zod/index.js';
+import { createFetch, Headers as Headers$1, ofetch } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
+import { createStorage, prefixStorage } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/dist/index.mjs';
+import httpDriver from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/http.mjs';
+import cloudflareKVBindingDriver from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/cloudflare-kv-binding.mjs';
+import mime from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/mime@4.1.0/node_modules/mime/dist/src/index.js';
+import { z as z$1 } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/zod@3.25.76/node_modules/zod/index.js';
+import defu, { defuFn, createDefu, defu as defu$1 } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
+import { randomUUID } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/uncrypto@0.1.3/node_modules/uncrypto/dist/crypto.node.mjs';
+import { dirname as dirname$1, resolve as resolve$1, basename, isAbsolute, parse as parse$1 } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import destr, { destr as destr$1 } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
 import process$1 from 'node:process';
-import { renderToString } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/server-renderer/index.mjs';
-import { klona } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/server.mjs';
-import { stringify, uneval } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/devalue@5.6.2/node_modules/devalue/index.js';
-import { isVNode, isRef, toValue } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/index.mjs';
-import { createHooks } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/fs.mjs';
-import { digest, hash as hash$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
+import { renderToString } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/server-renderer/index.mjs';
+import { klona } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/server.mjs';
+import { stringify, uneval } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/devalue@5.6.2/node_modules/devalue/index.js';
+import { isVNode, isRef, toValue } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/vue@3.5.28_typescript@5.9.3/node_modules/vue/index.mjs';
+import { createHooks } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unstorage@1.17.4_db0@0.3.4_ioredis@5.9.3/node_modules/unstorage/drivers/fs.mjs';
+import { digest, hash as hash$1 } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { getContext } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
+import { getContext } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/consola@3.4.2/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/youch-core@0.3.3/node_modules/youch-core/build/index.js';
-import { Youch } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/youch@4.1.0-beta.14/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/source-map@0.7.6/node_modules/source-map/source-map.js';
-import { createPathIndexLanguageParser, parseAcceptLanguage } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@intlify+utils@0.13.0/node_modules/@intlify/utils/dist/index.mjs';
-import { parse } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/cookie-es@2.0.0/node_modules/cookie-es/dist/index.mjs';
-import { createRouterMatcher } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/vue-router@4.6.4_vue@3.5.28_typescript@5.9.3_/node_modules/vue-router/vue-router.node.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
+import consola, { consola as consola$1 } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/consola@3.4.2/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/youch-core@0.3.3/node_modules/youch-core/build/index.js';
+import { Youch } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/youch@4.1.0-beta.14/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/source-map@0.7.6/node_modules/source-map/source-map.js';
+import { createPathIndexLanguageParser, parseAcceptLanguage } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@intlify+utils@0.13.0/node_modules/@intlify/utils/dist/index.mjs';
+import { parse } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/cookie-es@2.0.0/node_modules/cookie-es/dist/index.mjs';
+import { createRouterMatcher } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/vue-router@4.6.4_vue@3.5.28_typescript@5.9.3_/node_modules/vue-router/vue-router.node.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { walkResolver } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/utils.mjs';
-import { getIcons } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@iconify+utils@2.3.0/node_modules/@iconify/utils/lib/index.mjs';
-import { collections } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt/nuxt-icon-server-bundle.mjs';
-import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/ipx@2.1.1_db0@0.3.4_ioredis@5.9.3/node_modules/ipx/dist/index.mjs';
+import { walkResolver } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/unhead@2.1.4/node_modules/unhead/dist/utils.mjs';
+import { getIcons } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@iconify+utils@2.3.0/node_modules/@iconify/utils/lib/index.mjs';
+import { collections } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.nuxt/nuxt-icon-server-bundle.mjs';
+import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/ipx@2.1.1_db0@0.3.4_ioredis@5.9.3/node_modules/ipx/dist/index.mjs';
 
 const HASH_RE = /#/g;
 const AMPERSAND_RE = /&/g;
@@ -301,7 +302,7 @@ function stringifyParsedURL(parsed) {
   return proto + auth + host + pathname + search + hash;
 }
 
-const serverAssets = [{"baseName":"server","dir":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -313,11 +314,11 @@ const storage$1 = createStorage({});
 
 storage$1.mount('/assets', assets$1);
 
-storage$1.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni","watchOptions":{"ignored":[null]}}));
-storage$1.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/server","watchOptions":{"ignored":[null]}}));
-storage$1.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt"}));
-storage$1.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt/cache"}));
-storage$1.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.data/kv"}));
+storage$1.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni","watchOptions":{"ignored":[null]}}));
+storage$1.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/server","watchOptions":{"ignored":[null]}}));
+storage$1.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.nuxt"}));
+storage$1.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.nuxt/cache"}));
+storage$1.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage$1, base) : storage$1;
@@ -846,7 +847,14 @@ const defineAppConfig = (config) => config;
 const appConfig0 = defineAppConfig({
   site: {
     name: "\u0634\u0647\u0631 \u0644\u0648\u0627\u0632\u0645 \u0633\u06CC\u0633\u0645\u0648\u0646\u06CC",
-    description: "NuxtCommerce is a dynamic e-commerce solution developed with Nuxt 4 and GraphQL, tailored for WooCommerce."
+    description: "NuxtCommerce is a dynamic e-commerce solution developed with Nuxt 4 and GraphQL, tailored for WooCommerce.",
+    phone: "+982112345678",
+    email: "info@sismoni.local",
+    socials: [
+      { icon: "i-iconamoon-comment-dots", url: "#", label: "WhatsApp" },
+      { icon: "i-iconamoon-send-fill", url: "#", label: "Telegram" },
+      { icon: "i-iconamoon-camera-image", url: "#", label: "Instagram" }
+    ]
   },
   ui: {
     primary: "blue",
@@ -1135,6 +1143,9 @@ const _inlineRuntimeConfig = {
       "/": {
         "prerender": false
       },
+      "/shop": {
+        "cache": false
+      },
       "/categories": {
         "cache": false
       },
@@ -1162,8 +1173,8 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "wpBaseUrl": "http://sismoni.local",
-    "siteUrl": "http://localhost:3000",
+    "wpBaseUrl": "https://wordpress-sismooni.liara.run",
+    "siteUrl": "http://localhost:3001",
     "zarinpalPaymentMethod": "WC_ZPal",
     "version": "3.1.17",
     "notivue": {
@@ -1215,16 +1226,7 @@ const _inlineRuntimeConfig = {
           "language": ""
         }
       ],
-      "detectBrowserLanguage": {
-        "alwaysRedirect": true,
-        "cookieCrossOrigin": false,
-        "cookieDomain": "",
-        "cookieKey": "i18n_redirected",
-        "cookieSecure": false,
-        "fallbackLocale": "",
-        "redirectOn": "root",
-        "useCookie": true
-      },
+      "detectBrowserLanguage": false,
       "experimental": {
         "localeDetector": "",
         "typedPages": true,
@@ -1256,7 +1258,7 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "gqlHost": "http://sismoni.local/graphql",
+  "gqlHost": "https://wordpress-sismooni.liara.run/graphql",
   "wcConsumerKey": "",
   "wcConsumerSecret": "",
   "icon": {
@@ -1270,7 +1272,7 @@ const _inlineRuntimeConfig = {
     "userToken": "",
     "remote": "",
     "remoteManifest": "",
-    "dir": "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.data/hub",
+    "dir": "C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.data/hub",
     "workers": "",
     "ai": false,
     "analytics": false,
@@ -1281,7 +1283,7 @@ const _inlineRuntimeConfig = {
     "kv": false,
     "vectorize": {},
     "databaseMigrationsDirs": [
-      "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/server/database/migrations"
+      "C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/server/database/migrations"
     ],
     "databaseQueriesPaths": [],
     "version": "0.9.0",
@@ -1304,7 +1306,7 @@ const _inlineRuntimeConfig = {
     "alias": {},
     "fs": {
       "dir": [
-        "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/public"
+        "C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/public"
       ]
     },
     "http": {
@@ -2109,10 +2111,17 @@ function getClient() {
   return new GraphQLClient(gqlHost, { headers: { "content-type": "application/json" } });
 }
 async function handleError(promise, message) {
+  var _a, _b, _c;
   try {
     return await promise;
   } catch (error) {
-    throw createError({ statusCode: 502, statusMessage: (error == null ? void 0 : error.message) || message });
+    const gqlMessage = (_c = (_b = (_a = error == null ? void 0 : error.response) == null ? void 0 : _a.errors) == null ? void 0 : _b[0]) == null ? void 0 : _c.message;
+    console.error(`[wpgraphql] ${message}:`, gqlMessage || (error == null ? void 0 : error.message) || error);
+    throw createError({
+      statusCode: 502,
+      statusMessage: "Bad Gateway",
+      message: gqlMessage || message
+    });
   }
 }
 async function requestQuery(query, variables) {
@@ -2140,7 +2149,7 @@ async function requestMutation(event, query, variables) {
 
 const hubHooks = createHooks();
 
-const _bavmSLCHc9cFq5Wp71EElrLgkV0KmMfqaOnVG8DPcE = defineNitroPlugin(async () => {
+const _71Ar3e40vFylaccfOP4yZS_Ep0wee4slWEOcenVu5HU = defineNitroPlugin(async () => {
   await globalThis.__env__;
   await hubHooks.callHookParallel("bindings:ready");
 });
@@ -2273,35 +2282,35 @@ const localeCodes =  [
 const localeLoaders = {
   fa: [
     {
-      key: "locale_fa_45IR_46json_298e4a07",
+      key: "locale_fa_45IR_46json_c0f4f6bf",
       load: () => Promise.resolve().then(function () { return faIR$1; }),
       cache: true
     }
   ],
   en: [
     {
-      key: "locale_en_45GB_46json_98e4b14c",
+      key: "locale_en_45GB_46json_78b8fd59",
       load: () => Promise.resolve().then(function () { return enGB$1; }),
       cache: true
     }
   ],
   nb: [
     {
-      key: "locale_nb_45NO_46json_22cddb56",
+      key: "locale_nb_45NO_46json_625a99c3",
       load: () => Promise.resolve().then(function () { return nbNO$1; }),
       cache: true
     }
   ],
   nl: [
     {
-      key: "locale_nl_45NL_46json_58b20d19",
+      key: "locale_nl_45NL_46json_d60d1c60",
       load: () => Promise.resolve().then(function () { return nlNL$1; }),
       cache: true
     }
   ],
   de: [
     {
-      key: "locale_de_45DE_46json_1389a4ce",
+      key: "locale_de_45DE_46json_aa78249f",
       load: () => Promise.resolve().then(function () { return deDE$1; }),
       cache: true
     }
@@ -2530,6 +2539,13 @@ const useDetectors = (event, config, nuxtApp) => {
 
 // Generated by @nuxtjs/i18n
 const pathToI18nConfig = {
+  "/shop": {
+    "fa": "/shop",
+    "en": "/shop",
+    "nb": "/shop",
+    "nl": "/shop",
+    "de": "/shop"
+  },
   "/": {
     "fa": "/",
     "en": "/",
@@ -2574,6 +2590,7 @@ const pathToI18nConfig = {
   }
 };
 const i18nPathToPath = {
+  "/shop": "/shop",
   "/": "/",
   "/favorites": "/favorites",
   "/categories": "/categories",
@@ -2631,7 +2648,7 @@ function* detect(detectors, detection, path) {
   }
   yield { locale: detection.fallbackLocale, source: "fallback" };
 }
-const _zMVoeGIzNNo9uvPhcZ7deWbjtppug6oOsFLeQAX_BpM = defineNitroPlugin(async (nitro) => {
+const _HeqjAOglWgvpNEDZHSqNKa_DIhC4bak4jICUqafbQ = defineNitroPlugin(async (nitro) => {
   const runtimeI18n = useRuntimeI18n();
   const rootRedirect = resolveRootRedirect(runtimeI18n.rootRedirect);
   const _defaultLocale = runtimeI18n.defaultLocale || "";
@@ -2733,14 +2750,14 @@ const _zMVoeGIzNNo9uvPhcZ7deWbjtppug6oOsFLeQAX_BpM = defineNitroPlugin(async (ni
   });
 });
 
-const rootDir = "C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni";
+const rootDir = "C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni";
 
 const devReducers = {
   VNode: (data) => isVNode(data) ? { type: data.type, props: data.props } : void 0,
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _KEZCWIUAfNcvEjiLbk3nppc9nCJVXV0XGqy_k3KnWkY = (nitroApp) => {
+const _ZT_oflw7iNyJv46uVCkD90VndNFw49Yo3E2Hu_mXkrk = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -2811,17 +2828,27 @@ function onConsoleLog(callback) {
 
 const script = "\"use strict\";(()=>{const t=window,e=document.documentElement,c=[\"dark\",\"light\"],n=getStorageValue(\"localStorage\",\"nuxt-color-mode\")||\"system\";let i=n===\"system\"?u():n;const r=e.getAttribute(\"data-color-mode-forced\");r&&(i=r),l(i),t[\"__NUXT_COLOR_MODE__\"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.add(s):e.className+=\" \"+s,a&&e.setAttribute(\"data-\"+a,o)}function d(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,\"g\"),\"\"),a&&e.removeAttribute(\"data-\"+a)}function f(o){return t.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function u(){if(t.matchMedia&&f(\"\").media!==\"not all\"){for(const o of c)if(f(\":\"+o).matches)return o}return\"light\"}})();function getStorageValue(t,e){switch(t){case\"localStorage\":return window.localStorage.getItem(e);case\"sessionStorage\":return window.sessionStorage.getItem(e);case\"cookie\":return getCookie(e);default:return null}}function getCookie(t){const c=(\"; \"+window.document.cookie).split(\"; \"+t+\"=\");if(c.length===2)return c.pop()?.split(\";\").shift()}";
 
-const _qgGSCHJNGXBlMfc9zh7ArotQCDkbD9OZiwV8iKNZO0 = (function(nitro) {
+const _8vYgmtDLOA88i6mW6v6PxAnbGR6C21fOQ7zFXbuLeQ = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
+const _Hny4mpHC2_0XvtTuesdJjyaJoCeQiDR7nPbUJIYbig = defineNitroPlugin(() => {
+  if (process.env.WP_INSECURE_TLS === "true") {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    console.warn(
+      "[wp-tls] TLS certificate verification is DISABLED for outbound requests (WP_INSECURE_TLS=true). Use a trusted certificate in production."
+    );
+  }
+});
+
 const plugins = [
-  _bavmSLCHc9cFq5Wp71EElrLgkV0KmMfqaOnVG8DPcE,
-_zMVoeGIzNNo9uvPhcZ7deWbjtppug6oOsFLeQAX_BpM,
-_KEZCWIUAfNcvEjiLbk3nppc9nCJVXV0XGqy_k3KnWkY,
-_qgGSCHJNGXBlMfc9zh7ArotQCDkbD9OZiwV8iKNZO0
+  _71Ar3e40vFylaccfOP4yZS_Ep0wee4slWEOcenVu5HU,
+_HeqjAOglWgvpNEDZHSqNKa_DIhC4bak4jICUqafbQ,
+_ZT_oflw7iNyJv46uVCkD90VndNFw49Yo3E2Hu_mXkrk,
+_8vYgmtDLOA88i6mW6v6PxAnbGR6C21fOQ7zFXbuLeQ,
+_Hny4mpHC2_0XvtTuesdJjyaJoCeQiDR7nPbUJIYbig
 ];
 
 const assets = {};
@@ -2849,7 +2876,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _dqJHbI = eventHandler((event) => {
+const _Mf9Vne = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -2973,8 +3000,8 @@ function setSSRError(ssrContext, error) {
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getServerEntry = () => import('file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
-const getClientManifest = () => import('file://C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file://C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const createSSRApp = await getServerEntry();
   if (!createSSRApp) {
@@ -3224,7 +3251,7 @@ async function getIslandContext(event) {
 
 const warnOnceSet = /* @__PURE__ */ new Set();
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _GjaBqR = defineCachedEventHandler(async (event) => {
+const _bFaEWI = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError({ status: 400, message: "Invalid icon request" });
@@ -3282,7 +3309,7 @@ const _GjaBqR = defineCachedEventHandler(async (event) => {
   // 1 week
 });
 
-const _2tDgHJ = eventHandler((event) => {
+const _Bk6N4b = eventHandler((event) => {
   handleCors(event, {
     methods: "*",
     origin: [
@@ -3405,9 +3432,9 @@ defineCachedEventHandler(_cachedMessageLoader, {
   swr: false,
   getKey: (event) => [getRouterParam(event, "locale") ?? "null", getRouterParam(event, "hash") ?? "null"].join("-")
 });
-const _9OCElg = _messagesHandler ;
+const _g2gfn8 = _messagesHandler ;
 
-const _x5OhFL = lazyEventHandler(() => {
+const __uQDfx = lazyEventHandler(() => {
   const opts = useRuntimeConfig().ipx || {};
   const fsDir = opts?.fs?.dir ? (Array.isArray(opts.fs.dir) ? opts.fs.dir : [opts.fs.dir]).map((dir) => isAbsolute(dir) ? dir : fileURLToPath(new URL(dir, globalThis._importMeta_.url))) : void 0;
   const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
@@ -3425,45 +3452,47 @@ const _x5OhFL = lazyEventHandler(() => {
   return useBase(opts.baseURL, ipxHandler);
 });
 
-const _lazy_nOPn18 = () => Promise.resolve().then(function () { return add_post$1; });
-const _lazy_vGJCmi = () => Promise.resolve().then(function () { return update_post$1; });
-const _lazy_vVk0bS = () => Promise.resolve().then(function () { return categories_get$1; });
-const _lazy_HEQIdN = () => Promise.resolve().then(function () { return checkout_post$1; });
-const _lazy_c3VFkG = () => Promise.resolve().then(function () { return verify_get$1; });
-const _lazy_7O2E4u = () => Promise.resolve().then(function () { return product_get$1; });
-const _lazy_KmCrZG = () => Promise.resolve().then(function () { return products_get$1; });
-const _lazy_tINyib = () => Promise.resolve().then(function () { return search_get$1; });
-const _lazy_mljjwo = () => Promise.resolve().then(function () { return ____feature_$1; });
-const _lazy_W3WxMj = () => Promise.resolve().then(function () { return index_head$1; });
-const _lazy_Pt8Hxd = () => Promise.resolve().then(function () { return manifest_get$1; });
-const _lazy_YTPw5Q = () => Promise.resolve().then(function () { return syncVariables_post$1; });
-const _lazy_aDhFHK = () => Promise.resolve().then(function () { return robots_txt$1; });
-const _lazy_wg6_dZ = () => Promise.resolve().then(function () { return sitemap_xml$1; });
-const _lazy_GXUZt8 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_AB4sXI = () => Promise.resolve().then(function () { return add_post$1; });
+const _lazy_0CkKyr = () => Promise.resolve().then(function () { return update_post$1; });
+const _lazy_4RYOPE = () => Promise.resolve().then(function () { return categories_get$1; });
+const _lazy_KUlcdo = () => Promise.resolve().then(function () { return checkout_post$1; });
+const _lazy_rYcwwC = () => Promise.resolve().then(function () { return newsletter_post$1; });
+const _lazy_wBBb8_ = () => Promise.resolve().then(function () { return verify_get$1; });
+const _lazy_E3IGdG = () => Promise.resolve().then(function () { return product_get$1; });
+const _lazy_cb5BDq = () => Promise.resolve().then(function () { return products_get$1; });
+const _lazy_Hax4Wi = () => Promise.resolve().then(function () { return search_get$1; });
+const _lazy_n9CgS_ = () => Promise.resolve().then(function () { return ____feature_$1; });
+const _lazy_CdgIjK = () => Promise.resolve().then(function () { return index_head$1; });
+const _lazy_OD7K2N = () => Promise.resolve().then(function () { return manifest_get$1; });
+const _lazy_CTqvK2 = () => Promise.resolve().then(function () { return syncVariables_post$1; });
+const _lazy_qKHfdC = () => Promise.resolve().then(function () { return robots_txt$1; });
+const _lazy_tnLNJT = () => Promise.resolve().then(function () { return sitemap_xml$1; });
+const _lazy_uyGZ9V = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '', handler: _dqJHbI, lazy: false, middleware: true, method: undefined },
-  { route: '/api/cart/add', handler: _lazy_nOPn18, lazy: true, middleware: false, method: "post" },
-  { route: '/api/cart/update', handler: _lazy_vGJCmi, lazy: true, middleware: false, method: "post" },
-  { route: '/api/categories', handler: _lazy_vVk0bS, lazy: true, middleware: false, method: "get" },
-  { route: '/api/checkout', handler: _lazy_HEQIdN, lazy: true, middleware: false, method: "post" },
-  { route: '/api/payment/verify', handler: _lazy_c3VFkG, lazy: true, middleware: false, method: "get" },
-  { route: '/api/product', handler: _lazy_7O2E4u, lazy: true, middleware: false, method: "get" },
-  { route: '/api/products', handler: _lazy_KmCrZG, lazy: true, middleware: false, method: "get" },
-  { route: '/api/search', handler: _lazy_tINyib, lazy: true, middleware: false, method: "get" },
-  { route: '/api/_hub/**:feature', handler: _lazy_mljjwo, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_hub', handler: _lazy_W3WxMj, lazy: true, middleware: false, method: "head" },
-  { route: '/api/_hub/manifest', handler: _lazy_Pt8Hxd, lazy: true, middleware: false, method: "get" },
-  { route: '/api/_hub/sync-variables', handler: _lazy_YTPw5Q, lazy: true, middleware: false, method: "post" },
-  { route: '/robots.txt', handler: _lazy_aDhFHK, lazy: true, middleware: false, method: undefined },
-  { route: '/sitemap.xml', handler: _lazy_wg6_dZ, lazy: true, middleware: false, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_GXUZt8, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _Mf9Vne, lazy: false, middleware: true, method: undefined },
+  { route: '/api/cart/add', handler: _lazy_AB4sXI, lazy: true, middleware: false, method: "post" },
+  { route: '/api/cart/update', handler: _lazy_0CkKyr, lazy: true, middleware: false, method: "post" },
+  { route: '/api/categories', handler: _lazy_4RYOPE, lazy: true, middleware: false, method: "get" },
+  { route: '/api/checkout', handler: _lazy_KUlcdo, lazy: true, middleware: false, method: "post" },
+  { route: '/api/newsletter', handler: _lazy_rYcwwC, lazy: true, middleware: false, method: "post" },
+  { route: '/api/payment/verify', handler: _lazy_wBBb8_, lazy: true, middleware: false, method: "get" },
+  { route: '/api/product', handler: _lazy_E3IGdG, lazy: true, middleware: false, method: "get" },
+  { route: '/api/products', handler: _lazy_cb5BDq, lazy: true, middleware: false, method: "get" },
+  { route: '/api/search', handler: _lazy_Hax4Wi, lazy: true, middleware: false, method: "get" },
+  { route: '/api/_hub/**:feature', handler: _lazy_n9CgS_, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_hub', handler: _lazy_CdgIjK, lazy: true, middleware: false, method: "head" },
+  { route: '/api/_hub/manifest', handler: _lazy_OD7K2N, lazy: true, middleware: false, method: "get" },
+  { route: '/api/_hub/sync-variables', handler: _lazy_CTqvK2, lazy: true, middleware: false, method: "post" },
+  { route: '/robots.txt', handler: _lazy_qKHfdC, lazy: true, middleware: false, method: undefined },
+  { route: '/sitemap.xml', handler: _lazy_tnLNJT, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_uyGZ9V, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _GjaBqR, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_hub', handler: _2tDgHJ, lazy: false, middleware: true, method: undefined },
-  { route: '/_i18n/:hash/:locale/messages.json', handler: _9OCElg, lazy: false, middleware: false, method: undefined },
-  { route: '/_ipx/**', handler: _x5OhFL, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_GXUZt8, lazy: true, middleware: false, method: undefined }
+  { route: '/api/_nuxt_icon/:collection', handler: _bFaEWI, lazy: false, middleware: false, method: undefined },
+  { route: '/api/_hub', handler: _Bk6N4b, lazy: false, middleware: true, method: undefined },
+  { route: '/_i18n/:hash/:locale/messages.json', handler: _g2gfn8, lazy: false, middleware: false, method: undefined },
+  { route: '/_ipx/**', handler: __uQDfx, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_uyGZ9V, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -3723,13 +3752,77 @@ var theme$4 = {
 };
 var nav$4 = {
 	home: "خانه",
+	shop: "فروشگاه",
 	categories: "دسته‌بندی‌ها",
 	favorites: "علاقه‌مندی‌ها",
 	products: "محصولات"
 };
 var footer$4 = {
 	developed_by_author: "توسعه یافته توسط {author}",
-	change_language: "تغییر زبان"
+	change_language: "تغییر زبان",
+	about: "فروشگاه آنلاین لوازم سیسمونی و مراقبت از نوزاد؛ خرید مطمئن با ارسال سریع.",
+	quick_links: "دسترسی سریع",
+	customer_service: "پشتیبانی مشتریان",
+	trust_title: "خرید مطمئن",
+	trust_text: "پرداخت امن و حفاظت از اطلاعات شما",
+	copyright: "© {year} {name} — تمامی حقوق محفوظ است."
+};
+var home$4 = {
+	seo: {
+		title: "{name} | خرید لوازم سیسمونی و نوزاد",
+		description: "جدیدترین و بهترین لوازم سیسمونی و نوزاد را با قیمت مناسب و ارسال سریع از شهر لوازم سیسمونی بخرید."
+	},
+	hero: {
+		badge: "همه چیز برای نوزاد شما",
+		title: "بهترین لوازم سیسمونی برای آرامش شما و نوزادتان",
+		subtitle: "مجموعه‌ای کامل از محصولات با کیفیت، با ضمانت اصالت و ارسال سریع به سراسر کشور.",
+		cta_primary: "شروع خرید",
+		cta_secondary: "مشاهده دسته‌بندی‌ها",
+		stats: {
+			customers: "+۱۰٬۰۰۰ خرید موفق",
+			authentic: "ضمانت اصالت کالا",
+			delivery: "ارسال سریع به سراسر کشور"
+		}
+	},
+	benefits: {
+		shipping: {
+			title: "ارسال سریع",
+			description: "تحویل به سراسر کشور"
+		},
+		secure: {
+			title: "پرداخت امن",
+			description: "درگاه پرداخت معتبر"
+		},
+		returns: {
+			title: "بازگشت کالا",
+			description: "ضمانت بازگشت ۷ روزه"
+		},
+		support: {
+			title: "پشتیبانی",
+			description: "پاسخگویی در تمام روزها"
+		}
+	},
+	sections: {
+		categories: "دسته‌بندی‌ها",
+		featured: "محصولات ویژه",
+		new_arrivals: "جدیدترین محصولات",
+		on_sale: "تخفیف‌ها"
+	},
+	view_all: "مشاهده همه",
+	promo: {
+		title: "حراج ویژه لوازم سیسمونی",
+		subtitle: "بهترین فرصت برای خرید با تخفیف‌های شگفت‌انگیز را از دست ندهید.",
+		cta: "مشاهده تخفیف‌ها"
+	},
+	newsletter: {
+		title: "از تخفیف‌ها باخبر شوید",
+		subtitle: "ایمیل خود را وارد کنید تا جدیدترین محصولات و تخفیف‌ها را برایتان بفرستیم.",
+		placeholder: "ایمیل شما",
+		cta: "عضویت",
+		invalid: "لطفاً یک ایمیل معتبر وارد کنید",
+		success: "با موفقیت عضو شدید!",
+		error: "خطایی رخ داد. دوباره تلاش کنید."
+	}
 };
 var search$4 = {
 	placeholder: "جستوجو محصول",
@@ -3759,6 +3852,7 @@ var checkout$4 = {
 		email: "ایمیل",
 		phone: "شماره تماس",
 		city: "شهر",
+		postcode: "کد پستی (اختیاری)",
 		address: "آدرس دقیق"
 	},
 	pay: {
@@ -3774,7 +3868,9 @@ var checkout$4 = {
 		verify_failed: "پرداخت تأیید نشد. در صورت کسر وجه با پشتیبانی تماس بگیرید.",
 		failed_title: "پرداخت انجام نشد",
 		failed_description: "پرداخت لغو شد یا با خطا مواجه شد. می‌توانید دوباره تلاش کنید.",
-		back_to_shop: "بازگشت به فروشگاه"
+		back_to_shop: "بازگشت به فروشگاه",
+		error: "ثبت سفارش با خطا مواجه شد. لطفاً دوباره تلاش کنید.",
+		retry: "تلاش مجدد برای پرداخت"
 	}
 };
 var product$4 = {
@@ -3803,6 +3899,7 @@ const faIR = {
 	theme: theme$4,
 	nav: nav$4,
 	footer: footer$4,
+	home: home$4,
 	search: search$4,
 	filter: filter$4,
 	checkout: checkout$4,
@@ -3820,6 +3917,7 @@ const faIR$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   filter: filter$4,
   footer: footer$4,
   general: general$4,
+  home: home$4,
   nav: nav$4,
   product: product$4,
   search: search$4,
@@ -3838,13 +3936,77 @@ var theme$3 = {
 };
 var nav$3 = {
 	home: "Home",
+	shop: "Shop",
 	categories: "Categories",
 	favorites: "Favorites",
 	products: "Products"
 };
 var footer$3 = {
 	developed_by_author: "by {author}",
-	change_language: "Change language"
+	change_language: "Change language",
+	about: "Your online shop for baby essentials and nursery care, with secure checkout and fast delivery.",
+	quick_links: "Quick links",
+	customer_service: "Customer service",
+	trust_title: "Shop with confidence",
+	trust_text: "Secure payment and protected data",
+	copyright: "© {year} {name} — All rights reserved."
+};
+var home$3 = {
+	seo: {
+		title: "{name} | Baby & Nursery Essentials",
+		description: "Shop the latest and best baby and nursery products at great prices with fast delivery."
+	},
+	hero: {
+		badge: "Everything for your baby",
+		title: "The best baby essentials for you and your little one",
+		subtitle: "A complete range of quality products, with guaranteed authenticity and fast nationwide delivery.",
+		cta_primary: "Start shopping",
+		cta_secondary: "Browse categories",
+		stats: {
+			customers: "10,000+ happy orders",
+			authentic: "Authenticity guaranteed",
+			delivery: "Fast nationwide delivery"
+		}
+	},
+	benefits: {
+		shipping: {
+			title: "Fast delivery",
+			description: "Shipped nationwide"
+		},
+		secure: {
+			title: "Secure payment",
+			description: "Trusted payment gateway"
+		},
+		returns: {
+			title: "Easy returns",
+			description: "7-day return guarantee"
+		},
+		support: {
+			title: "Support",
+			description: "Available every day"
+		}
+	},
+	sections: {
+		categories: "Categories",
+		featured: "Featured products",
+		new_arrivals: "New arrivals",
+		on_sale: "On sale"
+	},
+	view_all: "View all",
+	promo: {
+		title: "Special baby essentials sale",
+		subtitle: "Don't miss the best chance to shop with amazing discounts.",
+		cta: "View deals"
+	},
+	newsletter: {
+		title: "Stay in the loop",
+		subtitle: "Enter your email and we'll send you the latest products and deals.",
+		placeholder: "Your email",
+		cta: "Subscribe",
+		invalid: "Please enter a valid email",
+		success: "Successfully subscribed!",
+		error: "Something went wrong. Please try again."
+	}
 };
 var search$3 = {
 	placeholder: "Search...",
@@ -3874,6 +4036,7 @@ var checkout$3 = {
 		email: "Email",
 		phone: "Phone",
 		city: "City",
+		postcode: "Postal code (optional)",
 		address: "Address"
 	},
 	pay: {
@@ -3889,7 +4052,9 @@ var checkout$3 = {
 		verify_failed: "Payment could not be verified. If you were charged, please contact support.",
 		failed_title: "Payment failed",
 		failed_description: "Payment was cancelled or encountered an error. You can try again.",
-		back_to_shop: "Back to shop"
+		back_to_shop: "Back to shop",
+		error: "Could not place your order. Please try again.",
+		retry: "Retry payment"
 	}
 };
 var product$3 = {
@@ -3918,6 +4083,7 @@ const enGB = {
 	theme: theme$3,
 	nav: nav$3,
 	footer: footer$3,
+	home: home$3,
 	search: search$3,
 	filter: filter$3,
 	checkout: checkout$3,
@@ -3935,6 +4101,7 @@ const enGB$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   filter: filter$3,
   footer: footer$3,
   general: general$3,
+  home: home$3,
   nav: nav$3,
   product: product$3,
   search: search$3,
@@ -3953,13 +4120,77 @@ var theme$2 = {
 };
 var nav$2 = {
 	home: "Hjem",
+	shop: "Butikk",
 	categories: "Kategorier",
 	favorites: "Favoritter",
 	products: "Produkter"
 };
 var footer$2 = {
 	developed_by_author: "av {author}",
-	change_language: "Endre språk"
+	change_language: "Endre språk",
+	about: "Din nettbutikk for babyutstyr og barnepleie, med sikker betaling og rask levering.",
+	quick_links: "Hurtiglenker",
+	customer_service: "Kundeservice",
+	trust_title: "Handle trygt",
+	trust_text: "Sikker betaling og beskyttede data",
+	copyright: "© {year} {name} — Alle rettigheter forbeholdt."
+};
+var home$2 = {
+	seo: {
+		title: "{name} | Baby- og barneutstyr",
+		description: "Kjøp de nyeste og beste baby- og barneproduktene til gode priser med rask levering."
+	},
+	hero: {
+		badge: "Alt til babyen din",
+		title: "Det beste babyutstyret for deg og den lille",
+		subtitle: "Et komplett utvalg av kvalitetsprodukter, med garantert ekthet og rask levering.",
+		cta_primary: "Begynn å handle",
+		cta_secondary: "Se kategorier",
+		stats: {
+			customers: "10 000+ fornøyde ordrer",
+			authentic: "Garantert ekthet",
+			delivery: "Rask levering i hele landet"
+		}
+	},
+	benefits: {
+		shipping: {
+			title: "Rask levering",
+			description: "Sendes over hele landet"
+		},
+		secure: {
+			title: "Sikker betaling",
+			description: "Pålitelig betalingsløsning"
+		},
+		returns: {
+			title: "Enkel retur",
+			description: "7 dagers returgaranti"
+		},
+		support: {
+			title: "Kundestøtte",
+			description: "Tilgjengelig hver dag"
+		}
+	},
+	sections: {
+		categories: "Kategorier",
+		featured: "Utvalgte produkter",
+		new_arrivals: "Nye produkter",
+		on_sale: "På salg"
+	},
+	view_all: "Se alle",
+	promo: {
+		title: "Spesialsalg på babyutstyr",
+		subtitle: "Ikke gå glipp av den beste muligheten til å handle med fantastiske rabatter.",
+		cta: "Se tilbud"
+	},
+	newsletter: {
+		title: "Hold deg oppdatert",
+		subtitle: "Skriv inn e-posten din, så sender vi deg de nyeste produktene og tilbudene.",
+		placeholder: "Din e-post",
+		cta: "Abonner",
+		invalid: "Vennligst skriv inn en gyldig e-post",
+		success: "Abonnementet er registrert!",
+		error: "Noe gikk galt. Prøv igjen."
+	}
 };
 var search$2 = {
 	placeholder: "Søk...",
@@ -3989,6 +4220,7 @@ var checkout$2 = {
 		email: "E-post",
 		phone: "Telefon",
 		city: "By",
+		postcode: "Postnummer (valgfritt)",
 		address: "Adresse"
 	},
 	pay: {
@@ -4004,7 +4236,9 @@ var checkout$2 = {
 		verify_failed: "Betalingen kunne ikke verifiseres. Kontakt support hvis du ble belastet.",
 		failed_title: "Betaling mislyktes",
 		failed_description: "Betalingen ble avbrutt eller mislyktes. Du kan prøve igjen.",
-		back_to_shop: "Tilbake til butikken"
+		back_to_shop: "Tilbake til butikken",
+		error: "Kunne ikke fullføre bestillingen. Prøv igjen.",
+		retry: "Prøv betaling på nytt"
 	}
 };
 var product$2 = {
@@ -4033,6 +4267,7 @@ const nbNO = {
 	theme: theme$2,
 	nav: nav$2,
 	footer: footer$2,
+	home: home$2,
 	search: search$2,
 	filter: filter$2,
 	checkout: checkout$2,
@@ -4050,6 +4285,7 @@ const nbNO$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   filter: filter$2,
   footer: footer$2,
   general: general$2,
+  home: home$2,
   nav: nav$2,
   product: product$2,
   search: search$2,
@@ -4068,13 +4304,77 @@ var theme$1 = {
 };
 var nav$1 = {
 	home: "Home",
+	shop: "Winkel",
 	categories: "Categorieën",
 	favorites: "Favorieten",
 	products: "Producten"
 };
 var footer$1 = {
 	developed_by_author: "door {author}",
-	change_language: "Taal wijzigen"
+	change_language: "Taal wijzigen",
+	about: "Jouw online winkel voor babyspullen en babyverzorging, met veilig betalen en snelle levering.",
+	quick_links: "Snelle links",
+	customer_service: "Klantenservice",
+	trust_title: "Veilig winkelen",
+	trust_text: "Veilig betalen en beschermde gegevens",
+	copyright: "© {year} {name} — Alle rechten voorbehouden."
+};
+var home$1 = {
+	seo: {
+		title: "{name} | Baby- en babykamerbenodigdheden",
+		description: "Koop de nieuwste en beste baby- en babykamerproducten tegen scherpe prijzen met snelle levering."
+	},
+	hero: {
+		badge: "Alles voor je baby",
+		title: "De beste babyspullen voor jou en je kleintje",
+		subtitle: "Een compleet assortiment kwaliteitsproducten, met gegarandeerde echtheid en snelle levering.",
+		cta_primary: "Begin met winkelen",
+		cta_secondary: "Bekijk categorieën",
+		stats: {
+			customers: "10.000+ tevreden bestellingen",
+			authentic: "Echtheid gegarandeerd",
+			delivery: "Snelle landelijke levering"
+		}
+	},
+	benefits: {
+		shipping: {
+			title: "Snelle levering",
+			description: "Landelijk verzonden"
+		},
+		secure: {
+			title: "Veilig betalen",
+			description: "Vertrouwde betaalmethode"
+		},
+		returns: {
+			title: "Eenvoudig retourneren",
+			description: "7 dagen retourgarantie"
+		},
+		support: {
+			title: "Ondersteuning",
+			description: "Elke dag bereikbaar"
+		}
+	},
+	sections: {
+		categories: "Categorieën",
+		featured: "Uitgelichte producten",
+		new_arrivals: "Nieuwe producten",
+		on_sale: "In de aanbieding"
+	},
+	view_all: "Bekijk alles",
+	promo: {
+		title: "Speciale uitverkoop babyspullen",
+		subtitle: "Mis de beste kans niet om te winkelen met geweldige kortingen.",
+		cta: "Bekijk aanbiedingen"
+	},
+	newsletter: {
+		title: "Blijf op de hoogte",
+		subtitle: "Vul je e-mailadres in en we sturen je de nieuwste producten en aanbiedingen.",
+		placeholder: "Je e-mailadres",
+		cta: "Abonneren",
+		invalid: "Voer een geldig e-mailadres in",
+		success: "Succesvol geabonneerd!",
+		error: "Er ging iets mis. Probeer het opnieuw."
+	}
 };
 var search$1 = {
 	placeholder: "Zoeken...",
@@ -4104,6 +4404,7 @@ var checkout$1 = {
 		email: "E-mail",
 		phone: "Telefoon",
 		city: "Stad",
+		postcode: "Postcode (optioneel)",
 		address: "Adres"
 	},
 	pay: {
@@ -4119,7 +4420,9 @@ var checkout$1 = {
 		verify_failed: "Betaling kon niet worden geverifieerd. Neem contact op met support als u bent belast.",
 		failed_title: "Betaling mislukt",
 		failed_description: "Betaling is geannuleerd of mislukt. U kunt het opnieuw proberen.",
-		back_to_shop: "Terug naar winkel"
+		back_to_shop: "Terug naar winkel",
+		error: "Bestelling kon niet worden geplaatst. Probeer het opnieuw.",
+		retry: "Betaling opnieuw proberen"
 	}
 };
 var product$1 = {
@@ -4148,6 +4451,7 @@ const nlNL = {
 	theme: theme$1,
 	nav: nav$1,
 	footer: footer$1,
+	home: home$1,
 	search: search$1,
 	filter: filter$1,
 	checkout: checkout$1,
@@ -4165,6 +4469,7 @@ const nlNL$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   filter: filter$1,
   footer: footer$1,
   general: general$1,
+  home: home$1,
   nav: nav$1,
   product: product$1,
   search: search$1,
@@ -4183,13 +4488,77 @@ var theme = {
 };
 var nav = {
 	home: "Startseite",
+	shop: "Shop",
 	categories: "Kategorien",
 	favorites: "Favoriten",
 	products: "Produkte"
 };
 var footer = {
 	developed_by_author: "von {author}",
-	change_language: "Sprache ändern"
+	change_language: "Sprache ändern",
+	about: "Dein Onlineshop für Babyausstattung und Babypflege, mit sicherer Bezahlung und schneller Lieferung.",
+	quick_links: "Schnelllinks",
+	customer_service: "Kundenservice",
+	trust_title: "Sicher einkaufen",
+	trust_text: "Sichere Bezahlung und geschützte Daten",
+	copyright: "© {year} {name} — Alle Rechte vorbehalten."
+};
+var home = {
+	seo: {
+		title: "{name} | Baby- und Erstausstattung",
+		description: "Kaufe die neuesten und besten Baby- und Erstausstattungsprodukte zu günstigen Preisen mit schneller Lieferung."
+	},
+	hero: {
+		badge: "Alles für dein Baby",
+		title: "Die beste Babyausstattung für dich und dein Kleines",
+		subtitle: "Ein komplettes Sortiment an Qualitätsprodukten, mit garantierter Echtheit und schneller Lieferung.",
+		cta_primary: "Jetzt einkaufen",
+		cta_secondary: "Kategorien ansehen",
+		stats: {
+			customers: "10.000+ zufriedene Bestellungen",
+			authentic: "Echtheit garantiert",
+			delivery: "Schnelle landesweite Lieferung"
+		}
+	},
+	benefits: {
+		shipping: {
+			title: "Schnelle Lieferung",
+			description: "Landesweiter Versand"
+		},
+		secure: {
+			title: "Sichere Bezahlung",
+			description: "Vertrauenswürdiges Zahlungsgateway"
+		},
+		returns: {
+			title: "Einfache Rückgabe",
+			description: "7 Tage Rückgabegarantie"
+		},
+		support: {
+			title: "Support",
+			description: "Täglich erreichbar"
+		}
+	},
+	sections: {
+		categories: "Kategorien",
+		featured: "Empfohlene Produkte",
+		new_arrivals: "Neuheiten",
+		on_sale: "Im Angebot"
+	},
+	view_all: "Alle ansehen",
+	promo: {
+		title: "Spezieller Babyausstattungs-Sale",
+		subtitle: "Verpasse nicht die beste Gelegenheit, mit tollen Rabatten einzukaufen.",
+		cta: "Angebote ansehen"
+	},
+	newsletter: {
+		title: "Bleib auf dem Laufenden",
+		subtitle: "Gib deine E-Mail-Adresse ein und wir senden dir die neuesten Produkte und Angebote.",
+		placeholder: "Deine E-Mail",
+		cta: "Abonnieren",
+		invalid: "Bitte gib eine gültige E-Mail-Adresse ein",
+		success: "Erfolgreich abonniert!",
+		error: "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+	}
 };
 var search = {
 	placeholder: "Suchen...",
@@ -4219,6 +4588,7 @@ var checkout = {
 		email: "E-Mail",
 		phone: "Telefon",
 		city: "Stadt",
+		postcode: "Postleitzahl (optional)",
 		address: "Adresse"
 	},
 	pay: {
@@ -4234,7 +4604,9 @@ var checkout = {
 		verify_failed: "Zahlung konnte nicht verifiziert werden. Bei Abbuchung bitte Support kontaktieren.",
 		failed_title: "Zahlung fehlgeschlagen",
 		failed_description: "Zahlung wurde abgebrochen oder ist fehlgeschlagen. Sie können es erneut versuchen.",
-		back_to_shop: "Zurück zum Shop"
+		back_to_shop: "Zurück zum Shop",
+		error: "Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
+		retry: "Zahlung erneut versuchen"
 	}
 };
 var product = {
@@ -4263,6 +4635,7 @@ const deDE = {
 	theme: theme,
 	nav: nav,
 	footer: footer,
+	home: home,
 	search: search,
 	filter: filter,
 	checkout: checkout,
@@ -4280,6 +4653,7 @@ const deDE$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   filter: filter,
   footer: footer,
   general: general,
+  home: home,
   nav: nav,
   product: product,
   search: search,
@@ -4444,12 +4818,39 @@ const checkout_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.definePro
   default: checkout_post
 }, Symbol.toStringTag, { value: 'Module' }));
 
+const bodySchema = z.object({
+  email: z.string().email()
+});
+const newsletter_post = defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  const result = bodySchema.safeParse(body);
+  if (!result.success) {
+    throw createError({
+      statusCode: 400,
+      message: "Invalid email address"
+    });
+  }
+  return { ok: true };
+});
+
+const newsletter_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: newsletter_post
+}, Symbol.toStringTag, { value: 'Module' }));
+
 const verify_get = defineEventHandler(async (event) => {
   const { order_id, key } = getQuery$1(event);
   if (!order_id || !key) {
     throw createError({
       statusCode: 400,
       message: "Missing order_id or key"
+    });
+  }
+  const orderId = Number(order_id);
+  if (!Number.isInteger(orderId) || orderId <= 0) {
+    throw createError({
+      statusCode: 400,
+      message: "Invalid order_id"
     });
   }
   const config = useRuntimeConfig();
@@ -4466,7 +4867,7 @@ const verify_get = defineEventHandler(async (event) => {
   let order;
   try {
     order = await $fetch(
-      `${wpBase}/wp-json/wc/v3/orders/${order_id}`,
+      `${wpBase}/wp-json/wc/v3/orders/${orderId}`,
       {
         headers: { Authorization: `Basic ${auth}` }
       }
@@ -4528,18 +4929,6 @@ const getProductQuery = gql`
 					}
 				}
 
-				allPaColor {
-					nodes {
-						name
-					}
-				}
-
-				allPaStyle {
-					nodes {
-						name
-					}
-				}
-
 				variations(where: { orderby: { field: NAME, order: DESC } }) {
 					nodes {
 						databaseId
@@ -4570,11 +4959,6 @@ const getProductQuery = gql`
 									sourceUrl(size: WOOCOMMERCE_THUMBNAIL)
 								}
 							}
-							allPaStyle {
-								nodes {
-									name
-								}
-							}
 						}
 					}
 				}
@@ -4603,18 +4987,23 @@ const product_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.definePrope
 const getProductsQuery = gql`
 	query getProducts(
 		$after: String
+		$first: Int = 21
 		$search: String
 		$category: String
+		$onSale: Boolean
+		$featured: Boolean
 		$order: OrderEnum = DESC
 		$field: ProductsOrderByEnum = DATE
 	) {
 		products(
-			first: 21
+			first: $first
 			after: $after
 			where: {
 				stockStatus: IN_STOCK
 				search: $search
 				category: $category
+				onSale: $onSale
+				featured: $featured
 				orderby: { field: $field, order: $order }
 			}
 		) {
@@ -4642,11 +5031,6 @@ const getProductsQuery = gql`
 				... on VariableProduct {
 					regularPrice
 					salePrice
-					allPaStyle {
-						nodes {
-							name
-						}
-					}
 					galleryImages {
 						nodes {
 							sourceUrl(size: WOOCOMMERCE_THUMBNAIL)
@@ -4676,10 +5060,14 @@ const products_get = cachedEventHandler(
   async (event) => {
     var _a, _b;
     const query = getQuery$1(event);
+    const toBool = (value) => value === "true" || value === "1" ? true : null;
     const variables = {
       after: query.after ? String(query.after) : null,
+      first: query.first ? Number(query.first) : 21,
       search: query.search ? String(query.search) : null,
       category: query.category ? decodeURIComponent(String(query.category)) : null,
+      onSale: toBool(query.onSale),
+      featured: toBool(query.featured),
       order: ((_a = query.orderby) == null ? void 0 : _a.toUpperCase()) || "DESC",
       field: ((_b = query.fieldby) == null ? void 0 : _b.toUpperCase()) || "DATE"
     };
@@ -4715,11 +5103,6 @@ const getSearchProductsQuery = gql`
           name
           regularPrice
           salePrice
-          allPaStyle {
-            nodes {
-              name
-            }
-          }
           image {
             sourceUrl(size: WOOCOMMERCE_THUMBNAIL)
           }
@@ -5280,8 +5663,8 @@ function proxyHubBlob(projectUrl, secretKey, headers) {
 function createMultipartUploadHandler(hub) {
   const { createMultipartUpload, resumeMultipartUpload } = hub;
   const createHandler = async (event, options) => {
-    const { pathname } = await getValidatedRouterParams(event, z.object({
-      pathname: z.string().min(1)
+    const { pathname } = await getValidatedRouterParams(event, z$1.object({
+      pathname: z$1.string().min(1)
     }).parse);
     options ||= {};
     if (getHeader(event, "x-nuxthub-file-content-type")) {
@@ -5301,12 +5684,12 @@ function createMultipartUploadHandler(hub) {
     }
   };
   const uploadHandler = async (event) => {
-    const { pathname } = await getValidatedRouterParams(event, z.object({
-      pathname: z.string().min(1)
+    const { pathname } = await getValidatedRouterParams(event, z$1.object({
+      pathname: z$1.string().min(1)
     }).parse);
-    const { uploadId, partNumber } = await getValidatedQuery(event, z.object({
-      uploadId: z.string(),
-      partNumber: z.coerce.number()
+    const { uploadId, partNumber } = await getValidatedQuery(event, z$1.object({
+      uploadId: z$1.string(),
+      partNumber: z$1.coerce.number()
     }).parse);
     const contentLength = Number(getHeader(event, "content-length") || "0");
     const stream = getRequestWebStream(event);
@@ -5319,16 +5702,16 @@ function createMultipartUploadHandler(hub) {
     }
   };
   const completeHandler = async (event) => {
-    const { pathname } = await getValidatedRouterParams(event, z.object({
-      pathname: z.string().min(1)
+    const { pathname } = await getValidatedRouterParams(event, z$1.object({
+      pathname: z$1.string().min(1)
     }).parse);
-    const { uploadId } = await getValidatedQuery(event, z.object({
-      uploadId: z.string().min(1)
+    const { uploadId } = await getValidatedQuery(event, z$1.object({
+      uploadId: z$1.string().min(1)
     }).parse);
-    const { parts } = await readValidatedBody(event, z.object({
-      parts: z.array(z.object({
-        partNumber: z.number(),
-        etag: z.string()
+    const { parts } = await readValidatedBody(event, z$1.object({
+      parts: z$1.array(z$1.object({
+        partNumber: z$1.number(),
+        etag: z$1.string()
       }))
     }).parse);
     const mpu = resumeMultipartUpload(pathname, uploadId);
@@ -5340,11 +5723,11 @@ function createMultipartUploadHandler(hub) {
     }
   };
   const abortHandler = async (event) => {
-    const { pathname } = await getValidatedRouterParams(event, z.object({
-      pathname: z.string().min(1)
+    const { pathname } = await getValidatedRouterParams(event, z$1.object({
+      pathname: z$1.string().min(1)
     }).parse);
-    const { uploadId } = await getValidatedQuery(event, z.object({
-      uploadId: z.string().min(1)
+    const { uploadId } = await getValidatedQuery(event, z$1.object({
+      uploadId: z$1.string().min(1)
     }).parse);
     const mpu = resumeMultipartUpload(pathname, uploadId);
     try {
@@ -5355,8 +5738,8 @@ function createMultipartUploadHandler(hub) {
   };
   const handler = async (event, options) => {
     const method = event.method;
-    const { action } = await getValidatedRouterParams(event, z.object({
-      action: z.enum(["create", "upload", "complete", "abort"])
+    const { action } = await getValidatedRouterParams(event, z$1.object({
+      action: z$1.enum(["create", "upload", "complete", "abort"])
     }).parse);
     if (action === "create" && method === "POST") {
       return {
@@ -5578,9 +5961,9 @@ const manifest_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProp
 
 const syncVariables_post = eventHandler(async (event) => {
   await requireNuxtHubAuthorization();
-  const { env, keys } = await readValidatedBody(event, z.object({
-    env: z.string(),
-    keys: z.array(z.string())
+  const { env, keys } = await readValidatedBody(event, z$1.object({
+    env: z$1.string(),
+    keys: z$1.array(z$1.string())
   }).parse);
   const variables = keys.map((key) => ({ key, value: process.env[key] }));
   await $fetch(`/api/projects/${process.env.NUXT_HUB_PROJECT_KEY}/variables/sync-from-deployment`, {

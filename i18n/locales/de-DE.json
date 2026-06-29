@@ -11,13 +11,77 @@
 	},
 	"nav": {
 		"home": "Startseite",
+		"shop": "Shop",
 		"categories": "Kategorien",
 		"favorites": "Favoriten",
 		"products": "Produkte"
 	},
 	"footer": {
 		"developed_by_author": "von {author}",
-		"change_language": "Sprache ändern"
+		"change_language": "Sprache ändern",
+		"about": "Dein Onlineshop für Babyausstattung und Babypflege, mit sicherer Bezahlung und schneller Lieferung.",
+		"quick_links": "Schnelllinks",
+		"customer_service": "Kundenservice",
+		"trust_title": "Sicher einkaufen",
+		"trust_text": "Sichere Bezahlung und geschützte Daten",
+		"copyright": "© {year} {name} — Alle Rechte vorbehalten."
+	},
+	"home": {
+		"seo": {
+			"title": "{name} | Baby- und Erstausstattung",
+			"description": "Kaufe die neuesten und besten Baby- und Erstausstattungsprodukte zu günstigen Preisen mit schneller Lieferung."
+		},
+		"hero": {
+			"badge": "Alles für dein Baby",
+			"title": "Die beste Babyausstattung für dich und dein Kleines",
+			"subtitle": "Ein komplettes Sortiment an Qualitätsprodukten, mit garantierter Echtheit und schneller Lieferung.",
+			"cta_primary": "Jetzt einkaufen",
+			"cta_secondary": "Kategorien ansehen",
+			"stats": {
+				"customers": "10.000+ zufriedene Bestellungen",
+				"authentic": "Echtheit garantiert",
+				"delivery": "Schnelle landesweite Lieferung"
+			}
+		},
+		"benefits": {
+			"shipping": {
+				"title": "Schnelle Lieferung",
+				"description": "Landesweiter Versand"
+			},
+			"secure": {
+				"title": "Sichere Bezahlung",
+				"description": "Vertrauenswürdiges Zahlungsgateway"
+			},
+			"returns": {
+				"title": "Einfache Rückgabe",
+				"description": "7 Tage Rückgabegarantie"
+			},
+			"support": {
+				"title": "Support",
+				"description": "Täglich erreichbar"
+			}
+		},
+		"sections": {
+			"categories": "Kategorien",
+			"featured": "Empfohlene Produkte",
+			"new_arrivals": "Neuheiten",
+			"on_sale": "Im Angebot"
+		},
+		"view_all": "Alle ansehen",
+		"promo": {
+			"title": "Spezieller Babyausstattungs-Sale",
+			"subtitle": "Verpasse nicht die beste Gelegenheit, mit tollen Rabatten einzukaufen.",
+			"cta": "Angebote ansehen"
+		},
+		"newsletter": {
+			"title": "Bleib auf dem Laufenden",
+			"subtitle": "Gib deine E-Mail-Adresse ein und wir senden dir die neuesten Produkte und Angebote.",
+			"placeholder": "Deine E-Mail",
+			"cta": "Abonnieren",
+			"invalid": "Bitte gib eine gültige E-Mail-Adresse ein",
+			"success": "Erfolgreich abonniert!",
+			"error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+		}
 	},
 	"search": {
 		"placeholder": "Suchen...",
@@ -47,6 +111,7 @@
 			"email": "E-Mail",
 			"phone": "Telefon",
 			"city": "Stadt",
+			"postcode": "Postleitzahl (optional)",
 			"address": "Adresse"
 		},
 		"pay": {
@@ -62,7 +127,9 @@
 			"verify_failed": "Zahlung konnte nicht verifiziert werden. Bei Abbuchung bitte Support kontaktieren.",
 			"failed_title": "Zahlung fehlgeschlagen",
 			"failed_description": "Zahlung wurde abgebrochen oder ist fehlgeschlagen. Sie können es erneut versuchen.",
-			"back_to_shop": "Zurück zum Shop"
+			"back_to_shop": "Zurück zum Shop",
+			"error": "Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
+			"retry": "Zahlung erneut versuchen"
 		}
 	},
 	"product": {

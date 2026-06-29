@@ -11,7 +11,16 @@ async function handleError<T>(promise: Promise<T>, message: string): Promise<T> 
   try {
     return await promise;
   } catch (error: any) {
-    throw createError({ statusCode: 502, statusMessage: error?.message || message });
+    // graphql-request's ClientError stuffs the whole query + response into
+    // `message`; surface only the concise GraphQL error to the client and keep
+    // the full detail in the server logs.
+    const gqlMessage = error?.response?.errors?.[0]?.message;
+    console.error(`[wpgraphql] ${message}:`, gqlMessage || error?.message || error);
+    throw createError({
+      statusCode: 502,
+      statusMessage: 'Bad Gateway',
+      message: gqlMessage || message,
+    });
   }
 }
 

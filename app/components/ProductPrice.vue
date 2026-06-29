@@ -1,5 +1,5 @@
 <script setup lang="js">
-import { computed, watchEffect } from "vue";
+import { computed } from "vue";
 import { convertMinPriceRangeToToman, toPersianDigits } from "~~/shared/helpers";
 
 const props = defineProps({
@@ -48,12 +48,6 @@ const displayTotalSalePrice = computed(() => {
 const displayTotalRegularPrice = computed(() => {
   const totalRial = parsePrice(props.regularPrice) * props.quantity;
   return totalRial > 0 ? convertMinPriceRangeToToman(totalRial.toString()) : "۰";
-});
-
-watchEffect(() => {
-  console.log("sale:", props.salePrice);
-  console.log("regular:", props.regularPrice);
-  console.log("qty:", props.quantity);
 });
 </script>
 

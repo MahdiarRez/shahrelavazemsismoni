@@ -1,5 +1,7 @@
 <!--app/components/PaymentSuccessful.vue-->
 <script setup>
+import { toPersianDigits, formatJalaliDate } from "~~/shared/helpers";
+
 const { order } = useCheckout();
 </script>
 
@@ -19,11 +21,11 @@ const { order } = useCheckout();
       </div>
       <div class="flex justify-between items-center">
         <span class="dark:text-neutral-400 text-neutral-600">{{ $t('checkout.pay.order_number') }}:</span>
-        <span class="font-semibold">#{{ order.orderNumber }}</span>
+        <span class="font-semibold">#{{ toPersianDigits(`${order.orderNumber}`) }}</span>
       </div>
       <div class="flex justify-between items-center">
         <span class="dark:text-neutral-400 text-neutral-600">{{ $t('checkout.pay.date') }}:</span>
-        <span class="font-semibold">{{ useDateFormat(order.date, 'MMMM DD, YYYY') }}</span>
+        <span class="font-semibold">{{ formatJalaliDate(order.date) }}</span>
       </div>
       <div class="flex justify-between items-center">
         <span class="dark:text-neutral-400 text-neutral-600">{{ $t('checkout.pay.payment_method') }}:</span>

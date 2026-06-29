@@ -1,1 +1,1 @@
-export { default } from "file:///C:/Users/mahdiar.rezaee/Documents/woo/shahrelavazemsismoni/node_modules/.pnpm/@nuxt+vite-builder@4.2.1_@t_864561ca2b647cbfaaed070441ece83b/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@nuxt+vite-builder@4.2.1_@t_864561ca2b647cbfaaed070441ece83b/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"

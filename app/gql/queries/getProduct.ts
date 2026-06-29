@@ -28,18 +28,6 @@ export const getProductQuery = gql`
 					}
 				}
 
-				allPaColor {
-					nodes {
-						name
-					}
-				}
-
-				allPaStyle {
-					nodes {
-						name
-					}
-				}
-
 				variations(where: { orderby: { field: NAME, order: DESC } }) {
 					nodes {
 						databaseId
@@ -68,11 +56,6 @@ export const getProductQuery = gql`
 							galleryImages {
 								nodes {
 									sourceUrl(size: WOOCOMMERCE_THUMBNAIL)
-								}
-							}
-							allPaStyle {
-								nodes {
-									name
 								}
 							}
 						}

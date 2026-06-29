@@ -17,9 +17,25 @@ function toEnglishDigits(persian) {
 }
 
 export function toPersianDigits(english) {
-	console.log("enggg ", english);
-
 	return english.replace(/\d/g, (d) => EN_TO_FA.get(d) ?? d);
+}
+
+/**
+ * Formats a date string into the Persian (Jalali) calendar with Persian digits.
+ *
+ * @param {string | number | Date} input
+ * @returns {string}
+ */
+export function formatJalaliDate(input) {
+	if (!input) return "";
+	const date = input instanceof Date ? input : new Date(input);
+	if (Number.isNaN(date.getTime())) return "";
+
+	return new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	}).format(date);
 }
 
 function isNonEmptyString(value) {

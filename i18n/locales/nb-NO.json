@@ -11,13 +11,77 @@
 	},
 	"nav": {
 		"home": "Hjem",
+		"shop": "Butikk",
 		"categories": "Kategorier",
 		"favorites": "Favoritter",
 		"products": "Produkter"
 	},
 	"footer": {
 		"developed_by_author": "av {author}",
-		"change_language": "Endre språk"
+		"change_language": "Endre språk",
+		"about": "Din nettbutikk for babyutstyr og barnepleie, med sikker betaling og rask levering.",
+		"quick_links": "Hurtiglenker",
+		"customer_service": "Kundeservice",
+		"trust_title": "Handle trygt",
+		"trust_text": "Sikker betaling og beskyttede data",
+		"copyright": "© {year} {name} — Alle rettigheter forbeholdt."
+	},
+	"home": {
+		"seo": {
+			"title": "{name} | Baby- og barneutstyr",
+			"description": "Kjøp de nyeste og beste baby- og barneproduktene til gode priser med rask levering."
+		},
+		"hero": {
+			"badge": "Alt til babyen din",
+			"title": "Det beste babyutstyret for deg og den lille",
+			"subtitle": "Et komplett utvalg av kvalitetsprodukter, med garantert ekthet og rask levering.",
+			"cta_primary": "Begynn å handle",
+			"cta_secondary": "Se kategorier",
+			"stats": {
+				"customers": "10 000+ fornøyde ordrer",
+				"authentic": "Garantert ekthet",
+				"delivery": "Rask levering i hele landet"
+			}
+		},
+		"benefits": {
+			"shipping": {
+				"title": "Rask levering",
+				"description": "Sendes over hele landet"
+			},
+			"secure": {
+				"title": "Sikker betaling",
+				"description": "Pålitelig betalingsløsning"
+			},
+			"returns": {
+				"title": "Enkel retur",
+				"description": "7 dagers returgaranti"
+			},
+			"support": {
+				"title": "Kundestøtte",
+				"description": "Tilgjengelig hver dag"
+			}
+		},
+		"sections": {
+			"categories": "Kategorier",
+			"featured": "Utvalgte produkter",
+			"new_arrivals": "Nye produkter",
+			"on_sale": "På salg"
+		},
+		"view_all": "Se alle",
+		"promo": {
+			"title": "Spesialsalg på babyutstyr",
+			"subtitle": "Ikke gå glipp av den beste muligheten til å handle med fantastiske rabatter.",
+			"cta": "Se tilbud"
+		},
+		"newsletter": {
+			"title": "Hold deg oppdatert",
+			"subtitle": "Skriv inn e-posten din, så sender vi deg de nyeste produktene og tilbudene.",
+			"placeholder": "Din e-post",
+			"cta": "Abonner",
+			"invalid": "Vennligst skriv inn en gyldig e-post",
+			"success": "Abonnementet er registrert!",
+			"error": "Noe gikk galt. Prøv igjen."
+		}
 	},
 	"search": {
 		"placeholder": "Søk...",
@@ -47,6 +111,7 @@
 			"email": "E-post",
 			"phone": "Telefon",
 			"city": "By",
+			"postcode": "Postnummer (valgfritt)",
 			"address": "Adresse"
 		},
 		"pay": {
@@ -62,7 +127,9 @@
 			"verify_failed": "Betalingen kunne ikke verifiseres. Kontakt support hvis du ble belastet.",
 			"failed_title": "Betaling mislyktes",
 			"failed_description": "Betalingen ble avbrutt eller mislyktes. Du kan prøve igjen.",
-			"back_to_shop": "Tilbake til butikken"
+			"back_to_shop": "Tilbake til butikken",
+			"error": "Kunne ikke fullføre bestillingen. Prøv igjen.",
+			"retry": "Prøv betaling på nytt"
 		}
 	},
 	"product": {

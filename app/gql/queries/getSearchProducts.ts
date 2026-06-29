@@ -11,11 +11,6 @@ export const getSearchProductsQuery = gql`
           name
           regularPrice
           salePrice
-          allPaStyle {
-            nodes {
-              name
-            }
-          }
           image {
             sourceUrl(size: WOOCOMMERCE_THUMBNAIL)
           }

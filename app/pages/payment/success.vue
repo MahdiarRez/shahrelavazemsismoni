@@ -1,6 +1,7 @@
 <script setup>
 const route = useRoute();
 const { order } = useCheckout();
+const { cart } = useCart();
 
 const { data, error } = await useFetch("/api/payment/verify", {
 	query: {
@@ -11,6 +12,11 @@ const { data, error } = await useFetch("/api/payment/verify", {
 
 if (data.value) {
 	order.value = data.value;
+
+	if (process.client) {
+		cart.value = [];
+		localStorage.setItem("cart", JSON.stringify(cart.value));
+	}
 }
 
 useSeoMeta({ title: "پرداخت موفق" });

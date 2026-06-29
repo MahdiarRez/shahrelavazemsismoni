@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { z } from "zod";
-import { convertMinPriceRangeToToman } from "~~/shared/helpers";
+import { convertMinPriceRangeToToman, toPersianDigits } from "~~/shared/helpers";
 
 const { userDetails, checkoutStatus, handleCheckout } = useCheckout();
 const { cart } = useCart();
@@ -16,6 +16,10 @@ const checkoutSchema = z.object({
 		.string()
 		.regex(/^09\d{9}$/, "شماره موبایل نامعتبر است (مثال: 09123456789)"),
 	city: z.string().min(2, "نام شهر را وارد کنید"),
+	postcode: z
+		.string()
+		.regex(/^\d{10}$/, "کد پستی باید ۱۰ رقم باشد")
+		.or(z.literal("")),
 	address1: z.string().min(10, "آدرس باید حداقل ۱۰ کاراکتر باشد"),
 });
 
@@ -43,7 +47,9 @@ const validateAndSubmit = async () => {
 };
 
 const totalQuantity = computed(() =>
-	cart.value.reduce((s, i) => s + (i.quantity || 0), 0),
+	toPersianDigits(
+		`${cart.value.reduce((s, i) => s + (i.quantity || 0), 0)}`,
+	),
 );
 
 const parsePrice = (priceStr) => {
@@ -161,6 +167,24 @@ const cartTotal = computed(() => {
 						v-if="formErrors.city"
 						class="error-msg"
 						>{{ formErrors.city }}</span
+					>
+				</div>
+
+				<div class="col-span-full">
+					<input
+						v-model="userDetails.postcode"
+						:placeholder="$t('checkout.form.postcode')"
+						name="postcode"
+						type="text"
+						inputmode="numeric"
+						dir="ltr"
+						class="!text-left placeholder:text-right"
+						:class="{ 'has-error': formErrors.postcode }"
+						@input="formErrors.postcode = ''" />
+					<span
+						v-if="formErrors.postcode"
+						class="error-msg"
+						>{{ formErrors.postcode }}</span
 					>
 				</div>
 

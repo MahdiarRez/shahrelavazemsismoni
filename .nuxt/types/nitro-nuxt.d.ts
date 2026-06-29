@@ -1,5 +1,8 @@
 
-
+/// <reference path="app.config.d.ts" />
+/// <reference path="runtime-config.d.ts" />
+/// <reference types="C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@nuxt+nitro-server@4.2.1_db_9a475c6c148dd974ab52d15c8ba96df9/node_modules/@nuxt/nitro-server/dist/index.mjs" />
+/// <reference path="nitro-middleware.d.ts" />
 
 import type { RuntimeConfig } from 'nuxt/schema'
 import type { H3Event } from 'h3'

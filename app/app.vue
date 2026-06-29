@@ -2,9 +2,17 @@
 <script setup lang="ts">
 const { site } = useAppConfig();
 const { name, description } = site;
+const { locale, locales } = useI18n();
+
+const currentLocale = computed(() =>
+	locales.value.find((l: any) => l.code === locale.value),
+);
+
+const htmlLang = computed(() => currentLocale.value?.iso || locale.value);
+const htmlDir = computed(() => (currentLocale.value?.dir as string) || "ltr");
 
 useHead({
-	htmlAttrs: { lang: "en" },
+	htmlAttrs: { lang: htmlLang, dir: htmlDir },
 	titleTemplate: (chunk?: string) => (chunk ? `${chunk} - ${name}` : name),
 });
 
@@ -12,7 +20,7 @@ useSeoMeta({
 	description,
 	ogType: "website",
 	ogSiteName: name,
-	ogLocale: "en_US",
+	ogLocale: () => currentLocale.value?.iso?.replace("-", "_") || "fa_IR",
 	ogImage: "https://commerce.nuxt.dev/social-card.jpg",
 	twitterCard: "summary_large_image",
 	twitterSite: "@zhatlen",
