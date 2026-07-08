@@ -1205,24 +1205,7 @@ const _inlineRuntimeConfig = {
           "code": "en",
           "iso": "en-GB",
           "name": "🇬🇧 English",
-          "language": ""
-        },
-        {
-          "code": "nb",
-          "iso": "nb-NO",
-          "name": "🇳🇴 Norsk (Bokmål)",
-          "language": ""
-        },
-        {
-          "code": "nl",
-          "iso": "nl-NL",
-          "name": "🇳🇱 Nederlands",
-          "language": ""
-        },
-        {
-          "code": "de",
-          "iso": "de-DE",
-          "name": "🇩🇪 Deutsch",
+          "dir": "ltr",
           "language": ""
         }
       ],
@@ -1244,15 +1227,6 @@ const _inlineRuntimeConfig = {
           "domain": ""
         },
         "en": {
-          "domain": ""
-        },
-        "nb": {
-          "domain": ""
-        },
-        "nl": {
-          "domain": ""
-        },
-        "de": {
           "domain": ""
         }
       }
@@ -2290,10 +2264,7 @@ function findBrowserLocale(locales, browserLocales) {
 // @ts-nocheck
 const localeCodes =  [
   "fa",
-  "en",
-  "nb",
-  "nl",
-  "de"
+  "en"
 ];
 const localeLoaders = {
   fa: [
@@ -2307,27 +2278,6 @@ const localeLoaders = {
     {
       key: "locale_en_45GB_46json_78b8fd59",
       load: () => Promise.resolve().then(function () { return enGB$1; }),
-      cache: true
-    }
-  ],
-  nb: [
-    {
-      key: "locale_nb_45NO_46json_625a99c3",
-      load: () => Promise.resolve().then(function () { return nbNO$1; }),
-      cache: true
-    }
-  ],
-  nl: [
-    {
-      key: "locale_nl_45NL_46json_d60d1c60",
-      load: () => Promise.resolve().then(function () { return nlNL$1; }),
-      cache: true
-    }
-  ],
-  de: [
-    {
-      key: "locale_de_45DE_46json_aa78249f",
-      load: () => Promise.resolve().then(function () { return deDE$1; }),
       cache: true
     }
   ]
@@ -2345,24 +2295,7 @@ const normalizedLocales = [
     code: "en",
     iso: "en-GB",
     name: "🇬🇧 English",
-    language: undefined
-  },
-  {
-    code: "nb",
-    iso: "nb-NO",
-    name: "🇳🇴 Norsk (Bokmål)",
-    language: undefined
-  },
-  {
-    code: "nl",
-    iso: "nl-NL",
-    name: "🇳🇱 Nederlands",
-    language: undefined
-  },
-  {
-    code: "de",
-    iso: "de-DE",
-    name: "🇩🇪 Deutsch",
+    dir: "ltr",
     language: undefined
   }
 ];
@@ -2557,52 +2490,31 @@ const useDetectors = (event, config, nuxtApp) => {
 const pathToI18nConfig = {
   "/shop": {
     "fa": "/shop",
-    "en": "/shop",
-    "nb": "/shop",
-    "nl": "/shop",
-    "de": "/shop"
+    "en": "/shop"
   },
   "/": {
     "fa": "/",
-    "en": "/",
-    "nb": "/",
-    "nl": "/",
-    "de": "/"
+    "en": "/"
   },
   "/favorites": {
     "fa": "/favorites",
-    "en": "/favorites",
-    "nb": "/favorites",
-    "nl": "/favorites",
-    "de": "/favorites"
+    "en": "/favorites"
   },
   "/categories": {
     "fa": "/categories",
-    "en": "/categories",
-    "nb": "/categories",
-    "nl": "/categories",
-    "de": "/categories"
+    "en": "/categories"
   },
   "/payment/failed": {
     "fa": "/payment/failed",
-    "en": "/payment/failed",
-    "nb": "/payment/failed",
-    "nl": "/payment/failed",
-    "de": "/payment/failed"
+    "en": "/payment/failed"
   },
   "/payment/success": {
     "fa": "/payment/success",
-    "en": "/payment/success",
-    "nb": "/payment/success",
-    "nl": "/payment/success",
-    "de": "/payment/success"
+    "en": "/payment/success"
   },
   "/product/:sku()/:slug()": {
     "fa": "/product/:sku()/:slug()",
-    "en": "/product/:sku()/:slug()",
-    "nb": "/product/:sku()/:slug()",
-    "nl": "/product/:sku()/:slug()",
-    "de": "/product/:sku()/:slug()"
+    "en": "/product/:sku()/:slug()"
   }
 };
 const i18nPathToPath = {
@@ -2870,16 +2782,16 @@ _Hny4mpHC2_0XvtTuesdJjyaJoCeQiDR7nPbUJIYbig
 const assets = {
   "/index.mjs": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"3243f-+5N2pDUx5y5+cU5q4sAoyMlXg+U\"",
-    "mtime": "2026-07-08T09:21:37.410Z",
-    "size": 205887,
+    "etag": "\"2daf0-mfA/OREkd4gwfQeFbl0Xy+SfxRg\"",
+    "mtime": "2026-07-08T09:29:33.212Z",
+    "size": 187120,
     "path": "index.mjs"
   },
   "/index.mjs.map": {
     "type": "application/json",
-    "etag": "\"a0177-qFJb9jNbxvvWm7ovPQsGJxKT67s\"",
-    "mtime": "2026-07-08T09:21:37.411Z",
-    "size": 655735,
+    "etag": "\"9f68d-i9anJH58VKgkHN7XTQd6vKBFBVA\"",
+    "mtime": "2026-07-08T09:29:33.212Z",
+    "size": 652941,
     "path": "index.mjs.map"
   }
 };
@@ -3771,24 +3683,24 @@ const error500 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   template: template$1
 }, Symbol.toStringTag, { value: 'Module' }));
 
-var general$4 = {
+var general$1 = {
 	go_back: "بازگشت",
 	loading: "... در حال بارگذاری"
 };
-var theme$4 = {
+var theme$1 = {
 	dark: "تاریک",
 	light: "روشن",
 	system: "سیستم",
 	toggle: "تغییر پوسته"
 };
-var nav$4 = {
+var nav$1 = {
 	home: "خانه",
 	shop: "فروشگاه",
 	categories: "دسته‌بندی‌ها",
 	favorites: "علاقه‌مندی‌ها",
 	products: "محصولات"
 };
-var footer$4 = {
+var footer$1 = {
 	developed_by_author: "توسعه یافته توسط {author}",
 	change_language: "تغییر زبان",
 	about: "فروشگاه آنلاین لوازم سیسمونی و مراقبت از نوزاد؛ خرید مطمئن با ارسال سریع.",
@@ -3798,7 +3710,7 @@ var footer$4 = {
 	trust_text: "پرداخت امن و حفاظت از اطلاعات شما",
 	copyright: "© {year} {name} — تمامی حقوق محفوظ است."
 };
-var home$4 = {
+var home$1 = {
 	seo: {
 		title: "{name} | خرید لوازم سیسمونی و نوزاد",
 		description: "جدیدترین و بهترین لوازم سیسمونی و نوزاد را با قیمت مناسب و ارسال سریع از شهر لوازم سیسمونی بخرید."
@@ -3855,7 +3767,7 @@ var home$4 = {
 		error: "خطایی رخ داد. دوباره تلاش کنید."
 	}
 };
-var search$4 = {
+var search$1 = {
 	placeholder: "جستوجو محصول",
 	placeholder_in_category: "... جستجو در {category}",
 	no_results_for_query: "هیچ نتیجه‌ای یافت نشد",
@@ -3869,13 +3781,13 @@ var search$4 = {
 	"in": "در",
 	reset_search: "تنظیم مجدد جستجو"
 };
-var filter$4 = {
+var filter$1 = {
 	all_categories: "همه دسته‌بندی‌ها",
 	newest: "جدیدترین",
 	price_low_high: "قیمت: کم به زیاد",
 	price_high_low: "قیمت: زیاد به کم"
 };
-var checkout$4 = {
+var checkout$1 = {
 	title: "تسویه حساب",
 	form: {
 		first_name: "نام",
@@ -3906,75 +3818,76 @@ var checkout$4 = {
 		retry: "تلاش مجدد برای پرداخت"
 	}
 };
-var product$4 = {
+var product$1 = {
 	originally: "قیمت اصلی",
 	size: "سایز",
 	quantity: "تعداد",
 	brand: "برند محصول",
+	sku: "شماره کالا",
 	vat_included: "شامل مالیات بر ارزش افزوده",
 	featured_information: "اطلاعات محصول",
 	free_return: "ضمانت بازگشت ۱۵ روزه. برای اطلاعات بیشتر کلیک کنید",
 	information: "اطلاعات",
 	shop_similar: "مشاهده محصولات مشابه"
 };
-var cart$4 = {
+var cart$1 = {
 	empty: "سبد خرید شما خالی است",
 	notting_added: "هنوز محصولی به سبد خرید خود اضافه نکرده‌اید",
 	add_to_cart: "افزودن به سبد خرید",
 	added_to_cart: "به سبد خرید اضافه شد"
 };
-var favorites$4 = {
+var favorites$1 = {
 	nothing_to_show_yet: "هنوز محصولی اضافه نکرده اید",
 	wishlist_lives_here: ".لیست علاقه‌مندی‌های شما اینجا قرار می‌گیرد"
 };
 const faIR = {
-	general: general$4,
-	theme: theme$4,
-	nav: nav$4,
-	footer: footer$4,
-	home: home$4,
-	search: search$4,
-	filter: filter$4,
-	checkout: checkout$4,
-	product: product$4,
-	cart: cart$4,
-	favorites: favorites$4
+	general: general$1,
+	theme: theme$1,
+	nav: nav$1,
+	footer: footer$1,
+	home: home$1,
+	search: search$1,
+	filter: filter$1,
+	checkout: checkout$1,
+	product: product$1,
+	cart: cart$1,
+	favorites: favorites$1
 };
 
 const faIR$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  cart: cart$4,
-  checkout: checkout$4,
+  cart: cart$1,
+  checkout: checkout$1,
   default: faIR,
-  favorites: favorites$4,
-  filter: filter$4,
-  footer: footer$4,
-  general: general$4,
-  home: home$4,
-  nav: nav$4,
-  product: product$4,
-  search: search$4,
-  theme: theme$4
+  favorites: favorites$1,
+  filter: filter$1,
+  footer: footer$1,
+  general: general$1,
+  home: home$1,
+  nav: nav$1,
+  product: product$1,
+  search: search$1,
+  theme: theme$1
 }, Symbol.toStringTag, { value: 'Module' }));
 
-var general$3 = {
+var general = {
 	go_back: "Go Back",
 	loading: "Loading..."
 };
-var theme$3 = {
+var theme = {
 	dark: "Dark",
 	light: "Light",
 	system: "System",
 	toggle: "Toggle theme"
 };
-var nav$3 = {
+var nav = {
 	home: "Home",
 	shop: "Shop",
 	categories: "Categories",
 	favorites: "Favorites",
 	products: "Products"
 };
-var footer$3 = {
+var footer = {
 	developed_by_author: "by {author}",
 	change_language: "Change language",
 	about: "Your online shop for baby essentials and nursery care, with secure checkout and fast delivery.",
@@ -3984,7 +3897,7 @@ var footer$3 = {
 	trust_text: "Secure payment and protected data",
 	copyright: "© {year} {name} — All rights reserved."
 };
-var home$3 = {
+var home = {
 	seo: {
 		title: "{name} | Baby & Nursery Essentials",
 		description: "Shop the latest and best baby and nursery products at great prices with fast delivery."
@@ -4041,7 +3954,7 @@ var home$3 = {
 		error: "Something went wrong. Please try again."
 	}
 };
-var search$3 = {
+var search = {
 	placeholder: "Search...",
 	placeholder_in_category: "Search in {category}...",
 	no_results_for_query: "No results for {query}",
@@ -4055,13 +3968,13 @@ var search$3 = {
 	"in": "in",
 	reset_search: "Reset Search"
 };
-var filter$3 = {
+var filter = {
 	all_categories: "All Categories",
 	newest: "Newest",
 	price_low_high: "Price: Low to High",
 	price_high_low: "Price: High to Low"
 };
-var checkout$3 = {
+var checkout = {
 	title: "Checkout",
 	form: {
 		first_name: "First Name",
@@ -4092,586 +4005,29 @@ var checkout$3 = {
 		retry: "Retry payment"
 	}
 };
-var product$3 = {
+var product = {
 	originally: "Originally",
 	size: "Size",
 	quantity: "Quantity",
 	sku: "article number",
+	brand: "Brand",
 	vat_included: "VAT included",
 	featured_information: "Featured Information",
 	free_return: "Free returns within 15 days. Click for detailed",
 	information: "Information",
 	shop_similar: "Shop similar"
 };
-var cart$3 = {
+var cart = {
 	empty: "Your cart is empty",
 	notting_added: "You haven't added any items to your cart yet.",
 	add_to_cart: "Add to cart",
 	added_to_cart: "Added to cart"
 };
-var favorites$3 = {
+var favorites = {
 	nothing_to_show_yet: "Nothing to show... yet!",
 	wishlist_lives_here: "Wishlist you create will live here. These are a few of your favorite things..."
 };
 const enGB = {
-	general: general$3,
-	theme: theme$3,
-	nav: nav$3,
-	footer: footer$3,
-	home: home$3,
-	search: search$3,
-	filter: filter$3,
-	checkout: checkout$3,
-	product: product$3,
-	cart: cart$3,
-	favorites: favorites$3
-};
-
-const enGB$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  cart: cart$3,
-  checkout: checkout$3,
-  default: enGB,
-  favorites: favorites$3,
-  filter: filter$3,
-  footer: footer$3,
-  general: general$3,
-  home: home$3,
-  nav: nav$3,
-  product: product$3,
-  search: search$3,
-  theme: theme$3
-}, Symbol.toStringTag, { value: 'Module' }));
-
-var general$2 = {
-	go_back: "Gå tilbake",
-	loading: "Laster..."
-};
-var theme$2 = {
-	dark: "Mørk",
-	light: "Lys",
-	system: "System",
-	toggle: "Bytt tema"
-};
-var nav$2 = {
-	home: "Hjem",
-	shop: "Butikk",
-	categories: "Kategorier",
-	favorites: "Favoritter",
-	products: "Produkter"
-};
-var footer$2 = {
-	developed_by_author: "av {author}",
-	change_language: "Endre språk",
-	about: "Din nettbutikk for babyutstyr og barnepleie, med sikker betaling og rask levering.",
-	quick_links: "Hurtiglenker",
-	customer_service: "Kundeservice",
-	trust_title: "Handle trygt",
-	trust_text: "Sikker betaling og beskyttede data",
-	copyright: "© {year} {name} — Alle rettigheter forbeholdt."
-};
-var home$2 = {
-	seo: {
-		title: "{name} | Baby- og barneutstyr",
-		description: "Kjøp de nyeste og beste baby- og barneproduktene til gode priser med rask levering."
-	},
-	hero: {
-		badge: "Alt til babyen din",
-		title: "Det beste babyutstyret for deg og den lille",
-		subtitle: "Et komplett utvalg av kvalitetsprodukter, med garantert ekthet og rask levering.",
-		cta_primary: "Begynn å handle",
-		cta_secondary: "Se kategorier",
-		stats: {
-			customers: "10 000+ fornøyde ordrer",
-			authentic: "Garantert ekthet",
-			delivery: "Rask levering i hele landet"
-		}
-	},
-	benefits: {
-		shipping: {
-			title: "Rask levering",
-			description: "Sendes over hele landet"
-		},
-		secure: {
-			title: "Sikker betaling",
-			description: "Pålitelig betalingsløsning"
-		},
-		returns: {
-			title: "Enkel retur",
-			description: "7 dagers returgaranti"
-		},
-		support: {
-			title: "Kundestøtte",
-			description: "Tilgjengelig hver dag"
-		}
-	},
-	sections: {
-		categories: "Kategorier",
-		featured: "Utvalgte produkter",
-		new_arrivals: "Nye produkter",
-		on_sale: "På salg"
-	},
-	view_all: "Se alle",
-	promo: {
-		title: "Spesialsalg på babyutstyr",
-		subtitle: "Ikke gå glipp av den beste muligheten til å handle med fantastiske rabatter.",
-		cta: "Se tilbud"
-	},
-	newsletter: {
-		title: "Hold deg oppdatert",
-		subtitle: "Skriv inn e-posten din, så sender vi deg de nyeste produktene og tilbudene.",
-		placeholder: "Din e-post",
-		cta: "Abonner",
-		invalid: "Vennligst skriv inn en gyldig e-post",
-		success: "Abonnementet er registrert!",
-		error: "Noe gikk galt. Prøv igjen."
-	}
-};
-var search$2 = {
-	placeholder: "Søk...",
-	placeholder_in_category: "Søk i {category}...",
-	no_results_for_query: "Ingen resultater for {query}",
-	no_results_suggestion: "Prøv å forbedre resultatene dine ved å dobbeltsjekke stavemåten, eller prøv et mer generelt nøkkelord.",
-	view_all_results: "Vis alle resultater",
-	new_products: "Nye Produkter",
-	no_products_matching: "Ingen produkter samsvarer",
-	no_products_found_matching: "Ingen produkter funnet som samsvarer",
-	no_products_found: "Ingen produkter funnet",
-	use_search_bar_above: "Du kan bruke søkefeltet ovenfor for å prøve å søke med andre termer.",
-	"in": "i",
-	reset_search: "Tilbakestill søk"
-};
-var filter$2 = {
-	all_categories: "Alle Kategorier",
-	newest: "Nyeste",
-	price_low_high: "Pris: Lav til Høy",
-	price_high_low: "Pris: Høy til Lav"
-};
-var checkout$2 = {
-	title: "Kasse",
-	form: {
-		first_name: "Fornavn",
-		last_name: "Etternavn",
-		email: "E-post",
-		phone: "Telefon",
-		city: "By",
-		postcode: "Postnummer (valgfritt)",
-		address: "Adresse"
-	},
-	pay: {
-		description: "Betaler totalt {total} for {items} varer",
-		btn: "Betal {total}",
-		proceed: "Fortsett til sikker betaling",
-		secure: "Din betaling er sikret av {method}",
-		secure_note: "Betalingen behandles i butikkens sikre betalingsløsning",
-		success: "Betaling vellykket!",
-		processed: "Takk for ditt kjøp! Din bestilling blir behandlet.",
-		total: "Totalt",
-		order_number: "Ordrenummer",
-		date: "Dato",
-		payment_method: "Betalingsmetode",
-		verify_failed: "Betalingen kunne ikke verifiseres. Kontakt support hvis du ble belastet.",
-		failed_title: "Betaling mislyktes",
-		failed_description: "Betalingen ble avbrutt eller mislyktes. Du kan prøve igjen.",
-		back_to_shop: "Tilbake til butikken",
-		error: "Kunne ikke fullføre bestillingen. Prøv igjen.",
-		retry: "Prøv betaling på nytt"
-	}
-};
-var product$2 = {
-	originally: "Opprinnelig",
-	size: "Størrelse",
-	quantity: "Antall",
-	sku: "artikkelnummer",
-	vat_included: "MVA inkludert",
-	featured_information: "Fremhevet Informasjon",
-	free_return: "Gratis retur innen 15 dager. Klikk for mer informasjon.",
-	information: "Informasjon",
-	shop_similar: "Sammenlign lignende produkter"
-};
-var cart$2 = {
-	empty: "Handlekurven din er tom",
-	notting_added: "Du har ikke lagt til noen varer i handlekurven ennå.",
-	add_to_cart: "Legg i handlekurv",
-	added_to_cart: "Lagt til i handlekurven"
-};
-var favorites$2 = {
-	nothing_to_show_yet: "Ingenting å vise... ennå!",
-	wishlist_lives_here: "Ønskelister du lager vil vises her. Dette er noen av dine favoritt-ting..."
-};
-const nbNO = {
-	general: general$2,
-	theme: theme$2,
-	nav: nav$2,
-	footer: footer$2,
-	home: home$2,
-	search: search$2,
-	filter: filter$2,
-	checkout: checkout$2,
-	product: product$2,
-	cart: cart$2,
-	favorites: favorites$2
-};
-
-const nbNO$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  cart: cart$2,
-  checkout: checkout$2,
-  default: nbNO,
-  favorites: favorites$2,
-  filter: filter$2,
-  footer: footer$2,
-  general: general$2,
-  home: home$2,
-  nav: nav$2,
-  product: product$2,
-  search: search$2,
-  theme: theme$2
-}, Symbol.toStringTag, { value: 'Module' }));
-
-var general$1 = {
-	go_back: "Ga terug",
-	loading: "Laden..."
-};
-var theme$1 = {
-	dark: "Donker",
-	light: "Licht",
-	system: "Systeem",
-	toggle: "Thema wisselen"
-};
-var nav$1 = {
-	home: "Home",
-	shop: "Winkel",
-	categories: "Categorieën",
-	favorites: "Favorieten",
-	products: "Producten"
-};
-var footer$1 = {
-	developed_by_author: "door {author}",
-	change_language: "Taal wijzigen",
-	about: "Jouw online winkel voor babyspullen en babyverzorging, met veilig betalen en snelle levering.",
-	quick_links: "Snelle links",
-	customer_service: "Klantenservice",
-	trust_title: "Veilig winkelen",
-	trust_text: "Veilig betalen en beschermde gegevens",
-	copyright: "© {year} {name} — Alle rechten voorbehouden."
-};
-var home$1 = {
-	seo: {
-		title: "{name} | Baby- en babykamerbenodigdheden",
-		description: "Koop de nieuwste en beste baby- en babykamerproducten tegen scherpe prijzen met snelle levering."
-	},
-	hero: {
-		badge: "Alles voor je baby",
-		title: "De beste babyspullen voor jou en je kleintje",
-		subtitle: "Een compleet assortiment kwaliteitsproducten, met gegarandeerde echtheid en snelle levering.",
-		cta_primary: "Begin met winkelen",
-		cta_secondary: "Bekijk categorieën",
-		stats: {
-			customers: "10.000+ tevreden bestellingen",
-			authentic: "Echtheid gegarandeerd",
-			delivery: "Snelle landelijke levering"
-		}
-	},
-	benefits: {
-		shipping: {
-			title: "Snelle levering",
-			description: "Landelijk verzonden"
-		},
-		secure: {
-			title: "Veilig betalen",
-			description: "Vertrouwde betaalmethode"
-		},
-		returns: {
-			title: "Eenvoudig retourneren",
-			description: "7 dagen retourgarantie"
-		},
-		support: {
-			title: "Ondersteuning",
-			description: "Elke dag bereikbaar"
-		}
-	},
-	sections: {
-		categories: "Categorieën",
-		featured: "Uitgelichte producten",
-		new_arrivals: "Nieuwe producten",
-		on_sale: "In de aanbieding"
-	},
-	view_all: "Bekijk alles",
-	promo: {
-		title: "Speciale uitverkoop babyspullen",
-		subtitle: "Mis de beste kans niet om te winkelen met geweldige kortingen.",
-		cta: "Bekijk aanbiedingen"
-	},
-	newsletter: {
-		title: "Blijf op de hoogte",
-		subtitle: "Vul je e-mailadres in en we sturen je de nieuwste producten en aanbiedingen.",
-		placeholder: "Je e-mailadres",
-		cta: "Abonneren",
-		invalid: "Voer een geldig e-mailadres in",
-		success: "Succesvol geabonneerd!",
-		error: "Er ging iets mis. Probeer het opnieuw."
-	}
-};
-var search$1 = {
-	placeholder: "Zoeken...",
-	placeholder_in_category: "Zoeken in {category}...",
-	no_results_for_query: "Geen resultaten voor {query}",
-	no_results_suggestion: "Controleer de spelling of probeer een algemener trefwoord om je resultaten te verbeteren.",
-	view_all_results: "Bekijk alle resultaten",
-	new_products: "Nieuwe Producten",
-	no_products_matching: "Geen overeenkomende producten",
-	no_products_found_matching: "Geen producten gevonden die overeenkomen",
-	no_products_found: "Geen producten gevonden",
-	use_search_bar_above: "Gebruik de zoekbalk hierboven om met andere termen te zoeken.",
-	"in": "in",
-	reset_search: "Zoekopdracht resetten"
-};
-var filter$1 = {
-	all_categories: "Alle Categorieën",
-	newest: "Nieuwste",
-	price_low_high: "Prijs: Laag naar Hoog",
-	price_high_low: "Prijs: Hoog naar Laag"
-};
-var checkout$1 = {
-	title: "Afrekenen",
-	form: {
-		first_name: "Voornaam",
-		last_name: "Achternaam",
-		email: "E-mail",
-		phone: "Telefoon",
-		city: "Stad",
-		postcode: "Postcode (optioneel)",
-		address: "Adres"
-	},
-	pay: {
-		description: "U betaalt een totaal van {total} voor {items} artikelen",
-		btn: "Betaal {total}",
-		proceed: "Doorgaan naar veilig afrekenen",
-		secure: "Uw betaling is beveiligd door {method}",
-		secure_note: "Betaling wordt verwerkt via de beveiligde betaalpagina van de winkel",
-		success: "Betaling succesvol!",
-		processed: "Bedankt voor uw aankoop! Uw bestelling wordt verwerkt.",
-		total: "Totaal",
-		order_number: "Bestelnummer",
-		date: "Datum",
-		payment_method: "Betaalmethode",
-		verify_failed: "Betaling kon niet worden geverifieerd. Neem contact op met support als u bent belast.",
-		failed_title: "Betaling mislukt",
-		failed_description: "Betaling is geannuleerd of mislukt. U kunt het opnieuw proberen.",
-		back_to_shop: "Terug naar winkel",
-		error: "Bestelling kon niet worden geplaatst. Probeer het opnieuw.",
-		retry: "Betaling opnieuw proberen"
-	}
-};
-var product$1 = {
-	originally: "Oorspronkelijk",
-	size: "Maat",
-	quantity: "Aantal",
-	sku: "artikelnummer",
-	vat_included: "Inclusief BTW",
-	featured_information: "Uitgelichte Informatie",
-	free_return: "Gratis retourneren binnen 15 dagen. Klik voor meer informatie.",
-	information: "Information",
-	shop_similar: "Shop vergelijkbaar"
-};
-var cart$1 = {
-	empty: "Je winkelwagen is leeg",
-	notting_added: "Je hebt nog geen artikelen aan je winkelwagen toegevoegd.",
-	add_to_cart: "Toevoegen aan winkelwagen",
-	added_to_cart: "Toegevoegd aan winkelwagen"
-};
-var favorites$1 = {
-	nothing_to_show_yet: "Nog niets te zien... nog niet!",
-	wishlist_lives_here: "De verlanglijst die je maakt, komt hier te staan. Dit zijn een paar van je favoriete dingen..."
-};
-const nlNL = {
-	general: general$1,
-	theme: theme$1,
-	nav: nav$1,
-	footer: footer$1,
-	home: home$1,
-	search: search$1,
-	filter: filter$1,
-	checkout: checkout$1,
-	product: product$1,
-	cart: cart$1,
-	favorites: favorites$1
-};
-
-const nlNL$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  cart: cart$1,
-  checkout: checkout$1,
-  default: nlNL,
-  favorites: favorites$1,
-  filter: filter$1,
-  footer: footer$1,
-  general: general$1,
-  home: home$1,
-  nav: nav$1,
-  product: product$1,
-  search: search$1,
-  theme: theme$1
-}, Symbol.toStringTag, { value: 'Module' }));
-
-var general = {
-	go_back: "Zurück",
-	loading: "Laden..."
-};
-var theme = {
-	dark: "Dunkel",
-	light: "Hell",
-	system: "System",
-	toggle: "Thema wechseln"
-};
-var nav = {
-	home: "Startseite",
-	shop: "Shop",
-	categories: "Kategorien",
-	favorites: "Favoriten",
-	products: "Produkte"
-};
-var footer = {
-	developed_by_author: "von {author}",
-	change_language: "Sprache ändern",
-	about: "Dein Onlineshop für Babyausstattung und Babypflege, mit sicherer Bezahlung und schneller Lieferung.",
-	quick_links: "Schnelllinks",
-	customer_service: "Kundenservice",
-	trust_title: "Sicher einkaufen",
-	trust_text: "Sichere Bezahlung und geschützte Daten",
-	copyright: "© {year} {name} — Alle Rechte vorbehalten."
-};
-var home = {
-	seo: {
-		title: "{name} | Baby- und Erstausstattung",
-		description: "Kaufe die neuesten und besten Baby- und Erstausstattungsprodukte zu günstigen Preisen mit schneller Lieferung."
-	},
-	hero: {
-		badge: "Alles für dein Baby",
-		title: "Die beste Babyausstattung für dich und dein Kleines",
-		subtitle: "Ein komplettes Sortiment an Qualitätsprodukten, mit garantierter Echtheit und schneller Lieferung.",
-		cta_primary: "Jetzt einkaufen",
-		cta_secondary: "Kategorien ansehen",
-		stats: {
-			customers: "10.000+ zufriedene Bestellungen",
-			authentic: "Echtheit garantiert",
-			delivery: "Schnelle landesweite Lieferung"
-		}
-	},
-	benefits: {
-		shipping: {
-			title: "Schnelle Lieferung",
-			description: "Landesweiter Versand"
-		},
-		secure: {
-			title: "Sichere Bezahlung",
-			description: "Vertrauenswürdiges Zahlungsgateway"
-		},
-		returns: {
-			title: "Einfache Rückgabe",
-			description: "7 Tage Rückgabegarantie"
-		},
-		support: {
-			title: "Support",
-			description: "Täglich erreichbar"
-		}
-	},
-	sections: {
-		categories: "Kategorien",
-		featured: "Empfohlene Produkte",
-		new_arrivals: "Neuheiten",
-		on_sale: "Im Angebot"
-	},
-	view_all: "Alle ansehen",
-	promo: {
-		title: "Spezieller Babyausstattungs-Sale",
-		subtitle: "Verpasse nicht die beste Gelegenheit, mit tollen Rabatten einzukaufen.",
-		cta: "Angebote ansehen"
-	},
-	newsletter: {
-		title: "Bleib auf dem Laufenden",
-		subtitle: "Gib deine E-Mail-Adresse ein und wir senden dir die neuesten Produkte und Angebote.",
-		placeholder: "Deine E-Mail",
-		cta: "Abonnieren",
-		invalid: "Bitte gib eine gültige E-Mail-Adresse ein",
-		success: "Erfolgreich abonniert!",
-		error: "Etwas ist schiefgelaufen. Bitte versuche es erneut."
-	}
-};
-var search = {
-	placeholder: "Suchen...",
-	placeholder_in_category: "In {category} suchen...",
-	no_results_for_query: "Keine Ergebnisse für {query}",
-	no_results_suggestion: "Verbessern Sie Ihre Ergebnisse, indem Sie die Rechtschreibung überprüfen oder ein allgemeineres Stichwort verwenden.",
-	view_all_results: "Alle Ergebnisse anzeigen",
-	new_products: "Neue Produkte",
-	no_products_matching: "Keine passenden Produkte",
-	no_products_found_matching: "Keine passenden Produkte gefunden",
-	no_products_found: "Keine Produkte gefunden",
-	use_search_bar_above: "Sie können die Suchleiste oben verwenden, um mit anderen Begriffen zu suchen.",
-	"in": "in",
-	reset_search: "Suche zurücksetzen"
-};
-var filter = {
-	all_categories: "Alle Kategorien",
-	newest: "Neueste",
-	price_low_high: "Preis: Niedrig bis Hoch",
-	price_high_low: "Preis: Hoch bis Niedrig"
-};
-var checkout = {
-	title: "Kasse",
-	form: {
-		first_name: "Vorname",
-		last_name: "Nachname",
-		email: "E-Mail",
-		phone: "Telefon",
-		city: "Stadt",
-		postcode: "Postleitzahl (optional)",
-		address: "Adresse"
-	},
-	pay: {
-		description: "Gesamtzahlung von {total} für {items} Artikel",
-		btn: "{total} bezahlen",
-		proceed: "Weiter zur sicheren Kasse",
-		secure: "Ihre Zahlung ist durch {method} gesichert",
-		secure_note: "Die Zahlung erfolgt über das sichere Gateway des Shops",
-		success: "Zahlung erfolgreich!",
-		processed: "Vielen Dank für Ihren Einkauf! Ihre Bestellung wird bearbeitet.",
-		total: "Gesamt",
-		order_number: "Bestellnummer",
-		date: "Datum",
-		payment_method: "Zahlungsmethode",
-		verify_failed: "Zahlung konnte nicht verifiziert werden. Bei Abbuchung bitte Support kontaktieren.",
-		failed_title: "Zahlung fehlgeschlagen",
-		failed_description: "Zahlung wurde abgebrochen oder ist fehlgeschlagen. Sie können es erneut versuchen.",
-		back_to_shop: "Zurück zum Shop",
-		error: "Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut.",
-		retry: "Zahlung erneut versuchen"
-	}
-};
-var product = {
-	originally: "Ursprünglich",
-	size: "Größe",
-	quantity: "Menge",
-	sku: "Artikelnummer",
-	vat_included: "MwSt. inbegriffen",
-	featured_information: "Ausgewählte Informationen",
-	free_return: "Kostenlose Rücksendung innerhalb von 15 Tagen. Klicken Sie hier für weitere Informationen.",
-	information: "Informationen",
-	shop_similar: "Ähnliche Artikel kaufen"
-};
-var cart = {
-	empty: "Ihr Warenkorb ist leer",
-	notting_added: "Sie haben noch keine Artikel in Ihren Warenkorb gelegt.",
-	add_to_cart: "In den Warenkorb",
-	added_to_cart: "Zum Warenkorb hinzugefügt"
-};
-var favorites = {
-	nothing_to_show_yet: "Noch nichts zu sehen... noch nicht!",
-	wishlist_lives_here: "Wunschlisten, die Sie erstellen, werden hier angezeigt. Das sind einige Ihrer Lieblingssachen..."
-};
-const deDE = {
 	general: general,
 	theme: theme,
 	nav: nav,
@@ -4685,11 +4041,11 @@ const deDE = {
 	favorites: favorites
 };
 
-const deDE$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const enGB$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   cart: cart,
   checkout: checkout,
-  default: deDE,
+  default: enGB,
   favorites: favorites,
   filter: filter,
   footer: footer,

@@ -41,7 +41,7 @@
 * 🛒 **Cart** (WooCommerce session cookie handled server-side) with checkout & payment handed off to the **native WooCommerce checkout page** (simple & secure)
 * ❤️ **Wishlist** (localStorage) & **Favorites** page
 * 🌙 **Dark mode** + sleek micro-interactions (skeletons, transitions)
-* 🌐 **Multi-language** (en, nb, nl, de) via `@nuxtjs/i18n`
+* 🌐 **Bilingual** (fa, en) with RTL-first Persian UI via `@nuxtjs/i18n`
 * 🖼️ Optimized images with `@nuxt/image`
 * 🔔 Friendly toasts with **Notivue**
 * 🔎 Good **SEO defaults** + **JSON-LD Product schema**
@@ -256,8 +256,8 @@ Client (`$fetch` to `/api/*`) → Nitro server proxies to WPGraphQL → GET endp
 
 ## Internationalization (i18n)
 
-* Locales: **en-GB**, **nb-NO**, **nl-NL**, **de-DE**
-* Default: **en**
+* Locales: **fa-IR** (RTL), **en-GB**
+* Default: **fa** (RTL, browser detection disabled)
 * Use `useLocalePath()` for links; SEO tags adapt per route.
 
 ## Performance & Caching

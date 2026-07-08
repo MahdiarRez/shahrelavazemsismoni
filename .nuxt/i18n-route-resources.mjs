@@ -2,52 +2,31 @@
 export const pathToI18nConfig = {
   "/shop": {
     "fa": "/shop",
-    "en": "/shop",
-    "nb": "/shop",
-    "nl": "/shop",
-    "de": "/shop"
+    "en": "/shop"
   },
   "/": {
     "fa": "/",
-    "en": "/",
-    "nb": "/",
-    "nl": "/",
-    "de": "/"
+    "en": "/"
   },
   "/favorites": {
     "fa": "/favorites",
-    "en": "/favorites",
-    "nb": "/favorites",
-    "nl": "/favorites",
-    "de": "/favorites"
+    "en": "/favorites"
   },
   "/categories": {
     "fa": "/categories",
-    "en": "/categories",
-    "nb": "/categories",
-    "nl": "/categories",
-    "de": "/categories"
+    "en": "/categories"
   },
   "/payment/failed": {
     "fa": "/payment/failed",
-    "en": "/payment/failed",
-    "nb": "/payment/failed",
-    "nl": "/payment/failed",
-    "de": "/payment/failed"
+    "en": "/payment/failed"
   },
   "/payment/success": {
     "fa": "/payment/success",
-    "en": "/payment/success",
-    "nb": "/payment/success",
-    "nl": "/payment/success",
-    "de": "/payment/success"
+    "en": "/payment/success"
   },
   "/product/:sku()/:slug()": {
     "fa": "/product/:sku()/:slug()",
-    "en": "/product/:sku()/:slug()",
-    "nb": "/product/:sku()/:slug()",
-    "nl": "/product/:sku()/:slug()",
-    "de": "/product/:sku()/:slug()"
+    "en": "/product/:sku()/:slug()"
   }
 };
 export const i18nPathToPath = {
