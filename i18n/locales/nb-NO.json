@@ -117,7 +117,9 @@
 		"pay": {
 			"description": "Betaler totalt {total} for {items} varer",
 			"btn": "Betal {total}",
+			"proceed": "Fortsett til sikker betaling",
 			"secure": "Din betaling er sikret av {method}",
+			"secure_note": "Betalingen behandles i butikkens sikre betalingsløsning",
 			"success": "Betaling vellykket!",
 			"processed": "Takk for ditt kjøp! Din bestilling blir behandlet.",
 			"total": "Totalt",

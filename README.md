@@ -38,7 +38,7 @@
 * 🎯 **Headless WooCommerce** store powered by **WPGraphQL** (+ WooGraphQL)
 * ⚡️ **Nuxt 4 + Nitro** with server-side GraphQL proxy, **SWR** caching & route rules
 * 🧭 **Pinterest-style product grid** with **infinite scroll**
-* 🛒 **Cart & Checkout** (WooCommerce session cookie handled server-side)
+* 🛒 **Cart** (WooCommerce session cookie handled server-side) with checkout & payment handed off to the **native WooCommerce checkout page** (simple & secure)
 * ❤️ **Wishlist** (localStorage) & **Favorites** page
 * 🌙 **Dark mode** + sleek micro-interactions (skeletons, transitions)
 * 🌐 **Multi-language** (en, nb, nl, de) via `@nuxtjs/i18n`
@@ -141,11 +141,16 @@ Install and activate:
 * **Products:** Reviews on/off, measurements
 * **Tax:** Enable and define rates (if applicable)
 * **Shipping:** Create at least one zone + method (e.g., Flat rate)
-* **Payments:** Enable **Cash on Delivery** (COD) for quick E2E testing
-* **Accounts & Privacy:** Decide guest checkout
-* **Advanced:** REST is not required; GraphQL is separate
+* **Payments:** Enable your gateway (e.g. **ZarinPal**) — payment happens on the WooCommerce checkout page
+* **Accounts & Privacy:** Allow **guest checkout** (billing is entered on the WooCommerce page)
+* **Advanced:** GraphQL is used for browsing/cart; REST is used only for post-payment order verification
 
-> Demo checkout posts `paymentMethod: 'cod'` — ensure COD is enabled for testing.
+> Checkout is hosted by WooCommerce. The storefront redirects shoppers to
+> `/checkout/?session_id=<id>` and the bundled mu-plugin
+> (`wordpress/nuxt-payment-redirect.php`) restores their cart, then WooCommerce
+> owns billing, shipping and payment. Install that mu-plugin and set
+> `define('NUXT_SITE_URL', 'https://your-storefront')` in `wp-config.php` so the
+> thank-you / cancel pages redirect back to `/payment/success` & `/payment/failed`.
 
 ### 4) Product attributes & taxonomies (used in GraphQL)
 
@@ -188,9 +193,21 @@ Create `.env` in the Nuxt project:
 
 ```bash
 GQL_HOST=https://your-woocommerce-site.com/graphql
+
+# Used by the checkout handoff + post-payment order verification
+NUXT_PUBLIC_WP_BASE_URL=https://your-woocommerce-site.com
+NUXT_PUBLIC_SITE_URL=https://your-storefront.example
+NUXT_PUBLIC_ZARINPAL_PAYMENT_METHOD=WC_ZPal
+
+# WooCommerce REST keys (WooCommerce → Settings → Advanced → REST API)
+WC_CONSUMER_KEY=ck_xxx
+WC_CONSUMER_SECRET=cs_xxx
 ```
 
-This is read by `runtimeConfig.gqlHost` and used by the server utility that proxies & caches GraphQL calls.
+`GQL_HOST` is read by `runtimeConfig.gqlHost` and used by the server utility that
+proxies & caches GraphQL calls. `NUXT_PUBLIC_WP_BASE_URL` builds the checkout
+handoff URL, and the `WC_CONSUMER_*` keys let `/api/payment/verify` confirm an
+order was actually paid before showing the success page.
 
 ## Architecture Overview
 
@@ -215,7 +232,8 @@ This is read by `runtimeConfig.gqlHost` and used by the server utility that prox
   │   ├─ categories.get.ts        # GET categories — cached (SWR)
   │   ├─ cart/add.post.ts         # POST add to cart (Woo session cookie handling)
   │   ├─ cart/update.post.ts      # POST update quantities / remove
-  │   └─ checkout.post.ts         # POST checkout (COD demo)
+  │   ├─ checkout/session.get.ts  # GET authorizing URL for the WooCommerce checkout handoff
+  │   └─ payment/verify.get.ts    # GET verify order paid (WooCommerce REST)
   ├─ routes/
   │   ├─ sitemap.xml.ts           # Minimal sitemap
   │   └─ robots.txt.ts            # Robots
@@ -233,7 +251,8 @@ Client (`$fetch` to `/api/*`) → Nitro server proxies to WPGraphQL → GET endp
 * `GET /api/categories`
 * `POST /api/cart/add` `{ productId }`
 * `POST /api/cart/update` `{ items: [{ key, quantity }] }`
-* `POST /api/checkout` `{ billing: {...}, paymentMethod: 'cod' }`
+* `GET  /api/checkout/session` → `{ checkoutUrl }` (hand the cart to WooCommerce checkout)
+* `GET  /api/payment/verify?order_id=&key=` → confirms the order was paid
 
 ## Internationalization (i18n)
 

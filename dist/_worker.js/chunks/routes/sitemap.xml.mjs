@@ -1,2 +1,0 @@
-import{d as o,w as r,C as s}from"../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const t=o(o=>{r(o,"Content-Type","application/xml; charset=utf-8");const{origin:t}=s(o),e=["/","/categories","/favorites"],n=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'];for(const o of e)n.push(`  <url><loc>${t}${o}</loc></url>`);return n.push("</urlset>"),n.join("\n")});export{t as default};
-//# sourceMappingURL=sitemap.xml.mjs.map

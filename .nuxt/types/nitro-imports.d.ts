@@ -78,6 +78,7 @@ declare global {
   const getSession: typeof import('../../node_modules/.pnpm/h3@1.15.5/node_modules/h3').getSession
   const getValidatedQuery: typeof import('../../node_modules/.pnpm/h3@1.15.5/node_modules/h3').getValidatedQuery
   const getValidatedRouterParams: typeof import('../../node_modules/.pnpm/h3@1.15.5/node_modules/h3').getValidatedRouterParams
+  const getWooSessionId: typeof import('../../server/utils/wcSession').getWooSessionId
   const handleCacheHeaders: typeof import('../../node_modules/.pnpm/h3@1.15.5/node_modules/h3').handleCacheHeaders
   const handleCors: typeof import('../../node_modules/.pnpm/h3@1.15.5/node_modules/h3').handleCors
   const hubHooks: typeof import('../../node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks').hubHooks
@@ -176,4 +177,5 @@ export { defineI18nLocale, defineI18nConfig } from 'C:/Users/mahdiar.rezaee/Desk
 export { defineI18nLocaleDetector } from 'C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@nuxtjs+i18n@10.1.0_@vue+co_f268cee1ac9d33421323e67936993f37/node_modules/@nuxtjs/i18n/dist/runtime/composables/server';
 export { getCookieLocale, getHeaderLanguage, getHeaderLanguages, getHeaderLocale, getHeaderLocales, getPathLocale, getQueryLocale, setCookieLocale, tryCookieLocale, tryHeaderLocale, tryHeaderLocales, tryPathLocale, tryQueryLocale } from 'C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@intlify+utils@0.13.0/node_modules/@intlify/utils/dist/h3';
 export { hubHooks, onHubReady } from 'C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/node_modules/.pnpm/@nuxthub+core@0.9.0_db0@0.3_2745f44dd6c6fad7db7caf595c06aa3e/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks';
+export { getWooSessionId } from 'C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/server/utils/wcSession';
 export { requestQuery, requestMutation } from 'C:/Users/mahdiar.rezaee/Desktop/shahrelavazemsismoni/server/utils/wpgraphql';

@@ -2106,6 +2106,22 @@ function publicAssetsURL(...path) {
   return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
 }
 
+function getWooSessionId(event) {
+  var _a, _b;
+  const cookie = getCookie(event, "woocommerce-session");
+  if (!cookie) return null;
+  const token = cookie.replace(/^Session\s+/i, "").trim();
+  const payload = token.split(".")[1];
+  if (!payload) return null;
+  try {
+    const json = Buffer.from(payload, "base64url").toString("utf8");
+    const claims = JSON.parse(json);
+    return (_b = (_a = claims.data) == null ? void 0 : _a.customer_id) != null ? _b : null;
+  } catch {
+    return null;
+  }
+}
+
 function getClient() {
   const { gqlHost } = useRuntimeConfig();
   return new GraphQLClient(gqlHost, { headers: { "content-type": "application/json" } });
@@ -2851,7 +2867,22 @@ _8vYgmtDLOA88i6mW6v6PxAnbGR6C21fOQ7zFXbuLeQ,
 _Hny4mpHC2_0XvtTuesdJjyaJoCeQiDR7nPbUJIYbig
 ];
 
-const assets = {};
+const assets = {
+  "/index.mjs": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"3243f-+5N2pDUx5y5+cU5q4sAoyMlXg+U\"",
+    "mtime": "2026-07-08T09:21:37.410Z",
+    "size": 205887,
+    "path": "index.mjs"
+  },
+  "/index.mjs.map": {
+    "type": "application/json",
+    "etag": "\"a0177-qFJb9jNbxvvWm7ovPQsGJxKT67s\"",
+    "mtime": "2026-07-08T09:21:37.411Z",
+    "size": 655735,
+    "path": "index.mjs.map"
+  }
+};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
@@ -3455,7 +3486,7 @@ const __uQDfx = lazyEventHandler(() => {
 const _lazy_AB4sXI = () => Promise.resolve().then(function () { return add_post$1; });
 const _lazy_0CkKyr = () => Promise.resolve().then(function () { return update_post$1; });
 const _lazy_4RYOPE = () => Promise.resolve().then(function () { return categories_get$1; });
-const _lazy_KUlcdo = () => Promise.resolve().then(function () { return checkout_post$1; });
+const _lazy_zMLGZm = () => Promise.resolve().then(function () { return session_get$1; });
 const _lazy_rYcwwC = () => Promise.resolve().then(function () { return newsletter_post$1; });
 const _lazy_wBBb8_ = () => Promise.resolve().then(function () { return verify_get$1; });
 const _lazy_E3IGdG = () => Promise.resolve().then(function () { return product_get$1; });
@@ -3474,7 +3505,7 @@ const handlers = [
   { route: '/api/cart/add', handler: _lazy_AB4sXI, lazy: true, middleware: false, method: "post" },
   { route: '/api/cart/update', handler: _lazy_0CkKyr, lazy: true, middleware: false, method: "post" },
   { route: '/api/categories', handler: _lazy_4RYOPE, lazy: true, middleware: false, method: "get" },
-  { route: '/api/checkout', handler: _lazy_KUlcdo, lazy: true, middleware: false, method: "post" },
+  { route: '/api/checkout/session', handler: _lazy_zMLGZm, lazy: true, middleware: false, method: "get" },
   { route: '/api/newsletter', handler: _lazy_rYcwwC, lazy: true, middleware: false, method: "post" },
   { route: '/api/payment/verify', handler: _lazy_wBBb8_, lazy: true, middleware: false, method: "get" },
   { route: '/api/product', handler: _lazy_E3IGdG, lazy: true, middleware: false, method: "get" },
@@ -3858,7 +3889,9 @@ var checkout$4 = {
 	pay: {
 		description: "پرداخت مبلغ {total} برای {items} کالا",
 		btn: "پرداخت {total}",
+		proceed: "ادامه به پرداخت امن",
 		secure: "پرداخت شما توسط {method} ایمن شده است",
+		secure_note: "پرداخت در درگاه امن فروشگاه انجام می‌شود",
 		success: "! پرداخت با موفقیت انجام شد",
 		processed: "از خرید شما سپاسگزاریم! سفارش شما در حال پردازش است.",
 		total: "جمع کل",
@@ -4042,7 +4075,9 @@ var checkout$3 = {
 	pay: {
 		description: "Paying a total of {total} for {items} items",
 		btn: "Pay {total}",
+		proceed: "Continue to secure checkout",
 		secure: "your payment is secured by {method}",
+		secure_note: "Payment is processed on the store's secure gateway",
 		success: "Payment successful!",
 		processed: "Thank you for your purchase! Your order is being processed.",
 		total: "Total",
@@ -4226,7 +4261,9 @@ var checkout$2 = {
 	pay: {
 		description: "Betaler totalt {total} for {items} varer",
 		btn: "Betal {total}",
+		proceed: "Fortsett til sikker betaling",
 		secure: "Din betaling er sikret av {method}",
+		secure_note: "Betalingen behandles i butikkens sikre betalingsløsning",
 		success: "Betaling vellykket!",
 		processed: "Takk for ditt kjøp! Din bestilling blir behandlet.",
 		total: "Totalt",
@@ -4410,7 +4447,9 @@ var checkout$1 = {
 	pay: {
 		description: "U betaalt een totaal van {total} voor {items} artikelen",
 		btn: "Betaal {total}",
+		proceed: "Doorgaan naar veilig afrekenen",
 		secure: "Uw betaling is beveiligd door {method}",
+		secure_note: "Betaling wordt verwerkt via de beveiligde betaalpagina van de winkel",
 		success: "Betaling succesvol!",
 		processed: "Bedankt voor uw aankoop! Uw bestelling wordt verwerkt.",
 		total: "Totaal",
@@ -4594,7 +4633,9 @@ var checkout = {
 	pay: {
 		description: "Gesamtzahlung von {total} für {items} Artikel",
 		btn: "{total} bezahlen",
+		proceed: "Weiter zur sicheren Kasse",
 		secure: "Ihre Zahlung ist durch {method} gesichert",
+		secure_note: "Die Zahlung erfolgt über das sichere Gateway des Shops",
 		success: "Zahlung erfolgreich!",
 		processed: "Vielen Dank für Ihren Einkauf! Ihre Bestellung wird bearbeitet.",
 		total: "Gesamt",
@@ -4792,30 +4833,29 @@ const categories_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.definePr
   default: categories_get
 }, Symbol.toStringTag, { value: 'Module' }));
 
-const checkoutMutation = gql`
-	mutation Checkout($input: CheckoutInput!) {
-		checkout(input: $input) {
-			order {
-				databaseId
-				orderKey
-				orderNumber
-				total
-				status
-				date
-				paymentMethodTitle
-			}
-		}
-	}
-`;
-
-const checkout_post = defineEventHandler(async (event) => {
-  const body = await readBody(event);
-  return await requestMutation(event, checkoutMutation, { input: body });
+const session_get = defineEventHandler((event) => {
+  const config = useRuntimeConfig();
+  const wpBase = (config.public.wpBaseUrl || "").replace(/\/$/, "");
+  if (!wpBase) {
+    throw createError({
+      statusCode: 500,
+      message: "NUXT_PUBLIC_WP_BASE_URL is not configured"
+    });
+  }
+  const sessionId = getWooSessionId(event);
+  if (!sessionId) {
+    throw createError({
+      statusCode: 409,
+      message: "No active cart session to check out"
+    });
+  }
+  const checkoutUrl = `${wpBase}/checkout/?session_id=${encodeURIComponent(sessionId)}`;
+  return { checkoutUrl };
 });
 
-const checkout_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const session_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  default: checkout_post
+  default: session_get
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const bodySchema = z.object({

@@ -117,7 +117,9 @@
 		"pay": {
 			"description": "Gesamtzahlung von {total} für {items} Artikel",
 			"btn": "{total} bezahlen",
+			"proceed": "Weiter zur sicheren Kasse",
 			"secure": "Ihre Zahlung ist durch {method} gesichert",
+			"secure_note": "Die Zahlung erfolgt über das sichere Gateway des Shops",
 			"success": "Zahlung erfolgreich!",
 			"processed": "Vielen Dank für Ihren Einkauf! Ihre Bestellung wird bearbeitet.",
 			"total": "Gesamt",

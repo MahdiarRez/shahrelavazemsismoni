@@ -117,7 +117,9 @@
 		"pay": {
 			"description": "U betaalt een totaal van {total} voor {items} artikelen",
 			"btn": "Betaal {total}",
+			"proceed": "Doorgaan naar veilig afrekenen",
 			"secure": "Uw betaling is beveiligd door {method}",
+			"secure_note": "Betaling wordt verwerkt via de beveiligde betaalpagina van de winkel",
 			"success": "Betaling succesvol!",
 			"processed": "Bedankt voor uw aankoop! Uw bestelling wordt verwerkt.",
 			"total": "Totaal",

@@ -117,7 +117,9 @@
 		"pay": {
 			"description": "Paying a total of {total} for {items} items",
 			"btn": "Pay {total}",
+			"proceed": "Continue to secure checkout",
 			"secure": "your payment is secured by {method}",
+			"secure_note": "Payment is processed on the store's secure gateway",
 			"success": "Payment successful!",
 			"processed": "Thank you for your purchase! Your order is being processed.",
 			"total": "Total",
