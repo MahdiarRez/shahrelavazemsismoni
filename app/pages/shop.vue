@@ -65,14 +65,15 @@ watch(
 	},
 );
 
-// اسکرول نامحدود
-useIntervalFn(() => {
-	if (!tailEl.value || isLoading.value || !pageInfo.value.hasNextPage) return;
-	const { top } = tailEl.value.getBoundingClientRect();
-	if (top - window.innerHeight < 400) {
-		fetchProducts();
-	}
-}, 500);
+// اسکرول نامحدود: به‌جای polling هر ۵۰۰ms، از IntersectionObserver رویدادمحور
+// استفاده می‌کنیم تا فقط هنگام نزدیک‌شدن انتهای لیست به viewport واکشی انجام شود.
+useIntersectionObserver(
+	tailEl,
+	([entry]) => {
+		if (entry?.isIntersecting) fetchProducts();
+	},
+	{ rootMargin: "400px" },
+);
 
 const products = computed(() => productsData.value);
 

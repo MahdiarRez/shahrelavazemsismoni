@@ -2388,7 +2388,7 @@ const setupVueI18nOptions = async (defaultLocale) => {
   return options;
 };
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"preconnect","href":"https://wordpress-sismooni.liara.run","crossorigin":""},{"rel":"dns-prefetch","href":"https://wordpress-sismooni.liara.run"}],"style":[],"script":[],"noscript":[]};
 
 const appRootTag = "div";
 
@@ -2779,22 +2779,7 @@ _8vYgmtDLOA88i6mW6v6PxAnbGR6C21fOQ7zFXbuLeQ,
 _Hny4mpHC2_0XvtTuesdJjyaJoCeQiDR7nPbUJIYbig
 ];
 
-const assets = {
-  "/index.mjs": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2daf0-mfA/OREkd4gwfQeFbl0Xy+SfxRg\"",
-    "mtime": "2026-07-08T09:29:33.212Z",
-    "size": 187120,
-    "path": "index.mjs"
-  },
-  "/index.mjs.map": {
-    "type": "application/json",
-    "etag": "\"9f68d-i9anJH58VKgkHN7XTQd6vKBFBVA\"",
-    "mtime": "2026-07-08T09:29:33.212Z",
-    "size": 652941,
-    "path": "index.mjs.map"
-  }
-};
+const assets = {};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
@@ -4180,9 +4165,16 @@ const getCategoriesQuery = gql`
 	}
 `;
 
-const categories_get = cachedEventHandler(async () => {
-  return await requestQuery(getCategoriesQuery);
-});
+const categories_get = cachedEventHandler(
+  async () => {
+    return await requestQuery(getCategoriesQuery);
+  },
+  {
+    maxAge: 60 * 10,
+    swr: true,
+    getKey: () => "categories"
+  }
+);
 
 const categories_get$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,

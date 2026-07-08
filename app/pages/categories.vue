@@ -4,7 +4,6 @@ const { name } = useAppConfig().site;
 const url = useRequestURL();
 const localePath = useLocalePath();
 
-const categoriesData = ref([]);
 const canonical = url.origin + url.pathname;
 
 useSeoMeta({
@@ -21,15 +20,15 @@ useSeoMeta({
 	twitterImage: "https://commerce.nuxt.dev/social-card.jpg",
 });
 
-onMounted(() => {
-	$fetch("/api/categories").then((response) => {
-		return (categoriesData.value = response.productCategories.nodes.filter(
-			(category) => category.products?.nodes.length,
-		));
-	});
-});
+const { data } = await useAsyncData("categories-page", () =>
+	$fetch("/api/categories"),
+);
 
-const categories = computed(() => categoriesData.value);
+const categories = computed(() =>
+	(data.value?.productCategories?.nodes || []).filter(
+		(category) => category.products?.nodes.length,
+	),
+);
 </script>
 
 <template>

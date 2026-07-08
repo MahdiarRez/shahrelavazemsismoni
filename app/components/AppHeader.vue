@@ -19,18 +19,30 @@ const search = () => {
 	suggestionMenu.value = false;
 };
 
+const hasFetchedSuggestions = ref(false);
+
 async function fetch() {
 	try {
 		const response = await $fetch("/api/search", {
 			query: { search: searchQuery.value },
 		});
 		searchResults.value = response.products.nodes;
+		hasFetchedSuggestions.value = true;
 	} finally {
 		isLoading.value = false;
 	}
 }
 
-onMounted(fetch);
+// Defer the suggestions request until the user actually opens the search
+// panel. Fetching on every page mount cost one WooCommerce GraphQL round-trip
+// per page view for a panel most visitors never open.
+const openSuggestions = () => {
+	suggestionMenu.value = true;
+	if (!hasFetchedSuggestions.value) {
+		isLoading.value = true;
+		fetch();
+	}
+};
 
 const throttledFetch = useDebounceFn(async () => {
 	await fetch();
@@ -120,7 +132,7 @@ const totalQuantity = computed(() =>
 							: 'bg-black/5 dark:bg-white/15',
 					]">
 					<div
-						@click="suggestionMenu = true"
+						@click="openSuggestions"
 						class="flex w-full items-center gap-2 flex-row-reverse">
 						<div
 							v-if="!suggestionMenu"

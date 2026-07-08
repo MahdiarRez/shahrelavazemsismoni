@@ -2,8 +2,31 @@
 import process from "process";
 import pkg from "./package.json";
 
+// Bare hostname of the WordPress/WooCommerce backend, used both to allow-list
+// remote images for the image optimizer and to emit early connection hints.
+const wpHost = (process.env.NUXT_PUBLIC_WP_BASE_URL || "")
+	.replace(/^https?:\/\//, "")
+	.replace(/\/.*$/, "");
+
 export default defineNuxtConfig({
 	devtools: { enabled: false },
+
+	app: {
+		head: {
+			// Warm up the connection to the WordPress/image origin so the first
+			// product image and API call don't pay the full DNS+TLS handshake cost.
+			link: wpHost
+				? [
+						{
+							rel: "preconnect",
+							href: `https://${wpHost}`,
+							crossorigin: "",
+						},
+						{ rel: "dns-prefetch", href: `https://${wpHost}` },
+				  ]
+				: [],
+		},
+	},
 
 	modules: [
 		"nuxt-graphql-request",

@@ -1,0 +1,2 @@
+import{d as s,a as o,h as e}from"../../_/nitro.mjs";import{o as a,s as r}from"../../_/schemas.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const t=a({email:r().email()}),m=s(async s=>{const a=await o(s);if(!t.safeParse(a).success)throw e({statusCode:400,message:"Invalid email address"});return{ok:!0}});export{m as default};
+//# sourceMappingURL=newsletter.post.mjs.map
