@@ -33,6 +33,7 @@ useSeoMeta({
 </script>
 
 <template>
+	<NuxtLoadingIndicator color="#3b82f6" />
 	<AppHeader />
 	<main class="pt-[72px] lg:pt-20 min-h-[calc(100vh-72px)]">
 		<NuxtPage />
