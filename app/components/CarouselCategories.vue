@@ -45,9 +45,10 @@ const initializeDrag = (e) => {
 };
 
 const handleDragging = (e) => {
+	if (!cardsSlider.value) return;
 	const xPos = e.pageX - cardsSlider.value.getBoundingClientRect().left;
 	const walk = (xPos - startX) * 1.5;
-	cardsSlider.value.scrollLeft = scrollLeft - walk;
+	cardsSlider.value.scrollLeft = scrollLeft - walk; // محاسبه استاندارد چپ‌به‌راست
 	isDragging.value = Math.abs(walk) > dragThreshold;
 };
 
@@ -57,6 +58,7 @@ const endDrag = () => {
 };
 
 const updateButtonVisibility = () => {
+	if (!cardsSlider.value) return;
 	const { scrollLeft, scrollWidth, clientWidth } = cardsSlider.value;
 	showPrev.value = scrollLeft > 16;
 	showNext.value = scrollLeft < scrollWidth - clientWidth - 16;
@@ -74,10 +76,21 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div class="slider-container">
+	<!-- نکته کلیدی: dir="ltr" کل این اسلایدر را مجبور می‌کند از چپ به راست چیده شود -->
+	<div
+		class="slider-container"
+		dir="ltr">
 		<div
 			v-if="showPrev"
 			class="slider-btn prev-btn"></div>
+
+		<!-- دکمه Next در صورت نیاز (کلاس‌هایش در CSS شما بود اما در HTML نبود) -->
+		<!-- 
+    <div
+      v-if="showNext"
+      class="slider-btn next-btn"></div> 
+    -->
+
 		<div class="slider-wrapper">
 			<div
 				ref="cardsSlider"
@@ -91,7 +104,12 @@ onBeforeUnmount(() => {
 							? 'selected'
 							: 'bg-[#efefef] hover:bg-[#e2e2e2] dark:bg-[#262626] hover:dark:bg-[#333] text-black dark:text-white',
 					]">
-					<div class="px-3.5">{{ $t("filter.all_categories") }}</div>
+					<!-- dir="rtl" روی متن تا کلمات فارسی صحیح نمایش داده شوند -->
+					<div
+						class="px-3.5"
+						dir="rtl">
+						{{ $t("filter.all_categories") }}
+					</div>
 				</div>
 				<div
 					v-for="(category, i) in categories"
@@ -108,7 +126,11 @@ onBeforeUnmount(() => {
 						loading="lazy"
 						:src="category.image?.sourceUrl"
 						class="w-[38px] h-[38px] rounded-full object-cover border border-transparent dark:bg-black/15 bg-white/30" />
-					<div class="px-3.5">{{ category.name }}</div>
+					<div
+						class="px-3.5"
+						dir="rtl">
+						{{ category.name }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -125,7 +147,7 @@ img {
 }
 
 .selected {
-	@apply bg-secondary-600  text-white dark:bg-secondary-400;
+	@apply bg-secondary-600 text-white dark:bg-secondary-400;
 }
 
 .slider-container {

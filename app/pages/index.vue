@@ -23,7 +23,7 @@ useSeoMeta({
 </script>
 
 <template>
-	<div class="mx-auto max-w-screen-2xl pb-4">
+	<div class="mx-auto max-w-screen-2xl pb-4 px-7">
 		<HomeHero />
 		<HomeBenefits />
 		<HomeCategoryShowcase />

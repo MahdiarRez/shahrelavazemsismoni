@@ -19,9 +19,9 @@ const bubbles = [
 </script>
 
 <template>
-	<section class="px-3 lg:px-5 pt-3 lg:pt-5">
+	<section class="px-3 lg:px-5 pt-3 lg:pt-5 mb-5">
 		<div
-			class="hero-card relative overflow-hidden rounded-[36px] bg-primary-600 text-white shadow-[0_20px_60px_-20px_rgba(0,159,214,0.6)]">
+			class="hero-card relative overflow-hidden rounded-[36px] bg-secondary-500 text-white shadow-[0_20px_60px_-20px_rgba(0,159,214,0.6)]">
 			<!-- layered gradient mesh -->
 			<div class="hero-mesh pointer-events-none absolute inset-0"></div>
 
@@ -58,8 +58,8 @@ const bubbles = [
 				style="animation-delay: 0.7s" />
 
 			<div
-				class="relative flex flex-col items-center gap-6 px-6 py-16 text-center sm:py-20 lg:py-28">
-				<span
+				class="relative flex flex-col items-center gap-6 px-6 py-16 text-center sm:py-20 lg:py-28 overflow-hidden">
+				<!-- <span
 					class="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-md ring-1 ring-inset ring-white/30">
 					<span class="relative flex h-2 w-2">
 						<span
@@ -68,22 +68,21 @@ const bubbles = [
 							class="relative inline-flex h-2 w-2 rounded-full bg-secondary-300"></span>
 					</span>
 					{{ $t("home.hero.badge") }}
-				</span>
+				</span> -->
 
 				<h1
-					class="max-w-3xl text-3xl font-bold leading-tight drop-shadow-sm sm:text-4xl lg:text-5xl">
+					class="max-w-3xl text-4xl leading-[3.5rem] font-bold drop-shadow-sm sm:text-5xl sm:max-w-[640px] lg:text-6xl lg:leading-[1.5] lg:max-w-[860px] sm:leading-[1.5]">
 					{{ $t("home.hero.title") }}
 				</h1>
 				<p
-					class="max-w-xl text-base font-medium text-white/90 sm:text-lg">
+					class="max-w-[20rem] text-xs font-medium text-white/90 sm:text-lg text-center">
 					{{ $t("home.hero.subtitle") }}
 				</p>
 
-				<div
-					class="mt-2 flex flex-col items-center gap-3 sm:flex-row-reverse">
+				<div class="mt-2 flex items-center gap-3 flex-row-reverse">
 					<NuxtLink
 						:to="localePath('/shop')"
-						class="group flex h-14 items-center justify-center gap-2 rounded-full bg-white px-8 text-lg font-bold text-primary-600 shadow-lg transition hover:brightness-95 active:scale-95">
+						class="group flex h-14 items-center justify-center gap-2 rounded-full bg-primary-400 px-8 text-lg font-bold text-white shadow-lg transition hover:brightness-95 active:scale-95">
 						{{ $t("home.hero.cta_primary") }}
 						<UIcon
 							name="i-iconamoon-arrow-left-2-bold"
@@ -92,7 +91,7 @@ const bubbles = [
 					</NuxtLink>
 					<NuxtLink
 						:to="localePath('/categories')"
-						class="flex h-14 items-center justify-center rounded-full bg-white/15 px-8 text-lg font-semibold text-white ring-1 ring-inset ring-white/50 backdrop-blur-md transition hover:bg-white/25 active:scale-95">
+						class="flex h-14 items-center justify-center rounded-full bg-white/15 px-8 text-lg font-semibold text-white ring-1 ring-inset ring-white/50 backdrop-blur-md transition hover:bg-white/35 active:scale-95">
 						{{ $t("home.hero.cta_secondary") }}
 					</NuxtLink>
 				</div>
@@ -103,7 +102,7 @@ const bubbles = [
 					<div
 						v-for="stat in stats"
 						:key="stat.key"
-						class="flex flex-row-reverse items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur-md ring-1 ring-inset ring-white/20">
+						class="flex flex-row items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur-md ring-1 ring-inset ring-white/20">
 						<UIcon
 							:name="stat.icon"
 							size="18"
@@ -118,15 +117,14 @@ const bubbles = [
 
 <style scoped>
 .hero-mesh {
-	background:
-		radial-gradient(
+	background: radial-gradient(
 			40% 55% at 82% 18%,
 			rgba(255, 197, 218, 0.55) 0%,
 			rgba(255, 197, 218, 0) 60%
 		),
 		radial-gradient(
 			45% 60% at 12% 85%,
-			rgba(117, 223, 255, 0.5) 0%,
+			rgba(245, 255, 99, 0.323) 0%,
 			rgba(117, 223, 255, 0) 60%
 		),
 		radial-gradient(

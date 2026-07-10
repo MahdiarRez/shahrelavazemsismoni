@@ -17,7 +17,8 @@ const categories = computed(() =>
 	<section
 		v-if="categories.length"
 		class="px-3 lg:px-5 pt-8 lg:pt-12">
-		<div class="mb-4 flex items-center justify-between gap-3 lg:mb-5">
+		<div
+			class="mb-4 flex flex-row-reverse items-center justify-between gap-3 lg:mb-5">
 			<NuxtLink
 				:to="localePath('/categories')"
 				class="text-sm font-semibold text-primary-600 transition hover:opacity-80 dark:text-primary-300">
@@ -31,10 +32,12 @@ const categories = computed(() =>
 		<div
 			class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
 			<NuxtLink
-				v-for="category in categories"
+				v-for="category in categories.slice(0, 4)"
 				:key="category.id"
 				:to="
-					localePath(`/shop?category=${encodeURIComponent(category.name)}`)
+					localePath(
+						`/shop?category=${encodeURIComponent(category.name)}`,
+					)
 				"
 				class="group relative block overflow-hidden rounded-[28px]">
 				<div class="relative pb-[80%]">

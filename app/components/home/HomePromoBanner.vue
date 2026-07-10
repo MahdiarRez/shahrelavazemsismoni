@@ -6,17 +6,17 @@ const localePath = useLocalePath();
 <template>
 	<section class="px-3 lg:px-5 pt-8 lg:pt-12">
 		<div
-			class="relative overflow-hidden rounded-[32px] bg-gradient-to-l from-secondary-400 via-secondary-300 to-secondary-200 dark:from-secondary-700 dark:via-secondary-600 dark:to-secondary-500">
+			class="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-secondary-500 via-secondary-400 to-secondary-200 dark:from-secondary-700 dark:via-secondary-600 dark:to-secondary-500">
 			<div
 				class="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/25 blur-3xl"></div>
 			<div
 				class="relative flex flex-col items-center gap-5 px-6 py-12 text-center sm:flex-row-reverse sm:justify-between sm:text-right lg:px-12 lg:py-14">
 				<div class="space-y-2">
-					<h2
-						class="text-2xl font-bold text-white lg:text-3xl">
+					<h2 class="text-2xl font-bold text-white lg:text-3xl">
 						{{ $t("home.promo.title") }}
 					</h2>
-					<p class="max-w-xl text-sm font-medium text-white/90 lg:text-base">
+					<p
+						class="max-w-xl text-sm font-medium text-white/90 lg:text-base">
 						{{ $t("home.promo.subtitle") }}
 					</p>
 				</div>

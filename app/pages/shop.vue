@@ -83,14 +83,15 @@ const productsEmpty = computed(
 </script>
 
 <template>
-	<div class="flex items-center pl-3 lg:pl-5 gap-2">
+	<div class="flex flex-row-reverse items-center pl-3 lg:pl-5 gap-2">
 		<ButtonSortBy />
 		<ButtonSelectCategory />
 	</div>
 
 	<div
 		v-if="!productsEmpty"
-		class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 lg:gap-5 p-3 lg:p-5">
+		class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 lg:gap-5 p-3 lg:p-5"
+		dir="ltr">
 		<ProductCard :products="products" />
 
 		<ProductsSkeleton v-if="isLoading" />

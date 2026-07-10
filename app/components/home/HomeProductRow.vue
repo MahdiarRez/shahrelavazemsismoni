@@ -27,7 +27,8 @@ const viewAllPath = computed(() => {
 	<section
 		v-if="pending || products.length"
 		class="px-3 lg:px-5 pt-8 lg:pt-12">
-		<div class="mb-4 flex items-center justify-between gap-3 lg:mb-5">
+		<div
+			class="mb-4 flex flex-row-reverse items-center justify-between gap-3 lg:mb-5">
 			<NuxtLink
 				:to="viewAllPath"
 				class="text-sm font-semibold text-primary-600 transition hover:opacity-80 dark:text-primary-300">
