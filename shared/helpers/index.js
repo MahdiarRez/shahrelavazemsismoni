@@ -38,6 +38,17 @@ export function formatJalaliDate(input) {
 	}).format(date);
 }
 
+/**
+ * Turns a category slug (used as the canonical URL/filter key) into a
+ * human-readable label for display, e.g. "تخت-گهواره-کنار-مادر" → "تخت گهواره کنار مادر".
+ *
+ * @param {string} slug
+ * @returns {string}
+ */
+export function categorySlugToLabel(slug) {
+	return typeof slug === "string" ? slug.replace(/-/g, " ") : "";
+}
+
 function isNonEmptyString(value) {
 	return typeof value === "string" && value.trim().length > 0;
 }

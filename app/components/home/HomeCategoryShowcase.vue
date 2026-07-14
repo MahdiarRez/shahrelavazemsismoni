@@ -36,7 +36,7 @@ const categories = computed(() =>
 				:key="category.id"
 				:to="
 					localePath(
-						`/shop?category=${encodeURIComponent(category.name)}`,
+						`/shop?category=${encodeURIComponent(category.slug)}`,
 					)
 				"
 				class="group relative block overflow-hidden rounded-[28px]">

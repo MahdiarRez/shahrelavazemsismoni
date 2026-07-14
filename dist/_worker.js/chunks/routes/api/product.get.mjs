@@ -10,6 +10,7 @@ import{g as e,c as r,j as s,e as o}from"../../_/nitro.mjs";import"node:buffer";i
 				productCategories {
 					nodes {
 						name
+						slug
 					}
 				}
 				salePrice

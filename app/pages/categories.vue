@@ -45,7 +45,7 @@ const categories = computed(() =>
 			v-for="category in categories"
 			:key="category.id"
 			:to="
-				localePath(`/shop?category=${encodeURIComponent(category.name)}`)
+				localePath(`/shop?category=${encodeURIComponent(category.slug)}`)
 			"
 			class="w-full max-w-[444px] p-2 lg:p-2 h-auto">
 			<div class="pb-[75%] relative overflow-hidden h-full">

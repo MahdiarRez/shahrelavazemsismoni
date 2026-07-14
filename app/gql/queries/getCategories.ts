@@ -7,6 +7,7 @@ export const getCategoriesQuery = gql`
 			nodes {
 				id
 				name
+				slug
 				image {
 					sourceUrl
 				}
@@ -18,6 +19,7 @@ export const getCategoriesQuery = gql`
 				children(first: 100, where: { orderby: COUNT, order: DESC }) {
 					nodes {
 						name
+						slug
 						image {
 							sourceUrl
 						}
@@ -29,6 +31,7 @@ export const getCategoriesQuery = gql`
 						children(first: 100, where: { orderby: COUNT, order: DESC }) {
 							nodes {
 								name
+								slug
 								image {
 									sourceUrl
 								}

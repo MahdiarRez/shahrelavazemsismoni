@@ -4,6 +4,7 @@ import{g as e,c as r,e as o}from"../../_/nitro.mjs";import"node:buffer";import"n
 			nodes {
 				id
 				name
+				slug
 				image {
 					sourceUrl
 				}
@@ -15,6 +16,7 @@ import{g as e,c as r,e as o}from"../../_/nitro.mjs";import"node:buffer";import"n
 				children(first: 100, where: { orderby: COUNT, order: DESC }) {
 					nodes {
 						name
+						slug
 						image {
 							sourceUrl
 						}
@@ -26,6 +28,7 @@ import{g as e,c as r,e as o}from"../../_/nitro.mjs";import"node:buffer";import"n
 						children(first: 100, where: { orderby: COUNT, order: DESC }) {
 							nodes {
 								name
+								slug
 								image {
 									sourceUrl
 								}

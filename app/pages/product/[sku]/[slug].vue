@@ -152,7 +152,7 @@ watchEffect(() => {
 								localePath(
 									`/shop?category=${encodeURIComponent(
 										product.productCategories?.nodes[0]
-											?.name,
+											?.slug,
 									)}`,
 								)
 							"

@@ -1,7 +1,14 @@
 <!--app/components/AppHeader.vue-->
 <script setup>
+import { categorySlugToLabel } from "~~/shared/helpers";
+
 const router = useRouter();
 const route = useRoute();
+
+// The category URL param is a slug; show a readable label to the user.
+const categoryLabel = computed(() =>
+	categorySlugToLabel((route.query.category || "").toString()),
+);
 const searchQuery = ref((route.query.q || "").toString());
 const searchResults = ref([]);
 const isLoading = ref(false);
@@ -149,7 +156,7 @@ const totalQuantity = computed(() =>
 								:placeholder="
 									route.query.category
 										? $t('search.placeholder_in_category', {
-												category: route.query.category,
+												category: categoryLabel,
 										  })
 										: $t('search.placeholder')
 								" />

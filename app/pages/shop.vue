@@ -21,7 +21,9 @@ const pageInfo = ref({ hasNextPage: true, endCursor: null });
 
 // آماده‌سازی پارامترها برای API داخلی Nuxt
 const fetchVariables = computed(() => ({
-	q: route.query.q || undefined,
+	// The public URL param is `q`, but the /api/products contract expects
+	// `search`. Mapping it here is what actually applies the search filter.
+	search: route.query.q || undefined,
 	orderby: route.query.orderby || "DESC",
 	fieldby: route.query.fieldby || "DATE",
 	category: route.query.category || undefined,

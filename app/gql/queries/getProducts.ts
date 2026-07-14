@@ -5,7 +5,7 @@ export const getProductsQuery = gql`
 		$after: String
 		$first: Int = 21
 		$search: String
-		$category: String
+		$categorySlugs: [String]
 		$onSale: Boolean
 		$featured: Boolean
 		$order: OrderEnum = DESC
@@ -17,7 +17,7 @@ export const getProductsQuery = gql`
 			where: {
 				stockStatus: IN_STOCK
 				search: $search
-				category: $category
+				categoryIn: $categorySlugs
 				onSale: $onSale
 				featured: $featured
 				orderby: { field: $field, order: $order }

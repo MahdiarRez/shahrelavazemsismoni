@@ -1,7 +1,14 @@
 <!--app/components/ProductsEmpty.vue-->
 <script setup>
+import { categorySlugToLabel } from "~~/shared/helpers";
+
 const route = useRoute();
 const router = useRouter();
+
+// The category URL param is a slug; show a readable label to the user.
+const categoryLabel = computed(() =>
+	categorySlugToLabel((route.query.category || "").toString()),
+);
 
 const resetSearch = () => {
 	router.push({ query: { ...route.query, category: undefined } });
@@ -26,7 +33,7 @@ const resetSearch = () => {
 			>
 			-
 			<strong class="text-alizarin-crimson-700">{{
-				route.query.category
+				categoryLabel
 			}}</strong>
 		</div>
 		<div

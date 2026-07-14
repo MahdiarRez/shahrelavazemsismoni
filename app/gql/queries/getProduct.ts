@@ -13,6 +13,7 @@ export const getProductQuery = gql`
 				productCategories {
 					nodes {
 						name
+						slug
 					}
 				}
 				salePrice

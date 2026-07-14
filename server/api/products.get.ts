@@ -13,8 +13,11 @@ export default cachedEventHandler(
 			first: query.first ? Number(query.first) : 21,
 			search: query.search ? String(query.search) : null,
 
-			category: query.category
-				? decodeURIComponent(String(query.category))
+			// The `category` query param carries the category *slug* (the stable
+			// canonical key). WooGraphQL's `categoryIn` filters by slug, which —
+			// unlike the `category`/name filter — is immune to display-name edits.
+			categorySlugs: query.category
+				? [decodeURIComponent(String(query.category))]
 				: null,
 			onSale: toBool(query.onSale),
 			featured: toBool(query.featured),
