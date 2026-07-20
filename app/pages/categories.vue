@@ -1,5 +1,7 @@
 <!--app/pages/categories.vue-->
 <script setup>
+import CategoryPlaceholder from "~/components/CategoryPlaceholder.vue";
+
 const { name } = useAppConfig().site;
 const url = useRequestURL();
 const localePath = useLocalePath();
@@ -45,9 +47,11 @@ const categories = computed(() =>
 			v-for="category in categories"
 			:key="category.id"
 			:to="
-				localePath(`/shop?category=${encodeURIComponent(category.slug)}`)
+				localePath(
+					`/shop?category=${encodeURIComponent(category.slug)}`,
+				)
 			"
-			class="w-full max-w-[444px] p-2 lg:p-2 h-auto">
+			class="group w-full max-w-[444px] p-2 lg:p-2 h-auto">
 			<div class="pb-[75%] relative overflow-hidden h-full">
 				<NuxtImg
 					:alt="category.name"
@@ -56,9 +60,9 @@ const categories = computed(() =>
 					:src="category.image.sourceUrl"
 					loading="lazy"
 					:title="category.name" />
-				<div
+				<CategoryPlaceholder
 					v-else
-					class="bg-primary w-full h-full absolute top-0 right-0 rounded-[32px]"></div>
+					class="transition-transform duration-700 ease-out" />
 				<div
 					class="absolute left-0 right-0 top-0 bottom-0 bg-gradient-to-t hover:from-black/40 rounded-[32px] overflow-hidden">
 					<div

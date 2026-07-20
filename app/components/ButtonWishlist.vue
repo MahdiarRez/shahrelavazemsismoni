@@ -13,7 +13,7 @@ const { isWishlisted, toggleWishlist } = useWishlist(props.product);
 		class="active:scale-95 transition">
 		<div
 			:class="[
-				'w-14 h-14 rounded-full ml-2 flex justify-center items-center',
+				'w-14 h-14 rounded-full mr-2 flex justify-center items-center',
 				isWishlisted
 					? 'bg-alizarin-crimson-100 dark:bg-alizarin-crimson-950'
 					: 'bg-neutral-200 dark:bg-neutral-800',

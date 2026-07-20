@@ -34,7 +34,7 @@ const images = computed(() => {
 			<UIcon
 				name="i-iconamoon-close"
 				class="text-black"
-				size="16" />
+				size="24" />
 		</button>
 		<UCarousel
 			v-slot="{ item }"
@@ -44,10 +44,10 @@ const images = computed(() => {
 				container: 'rounded-3xl',
 			}"
 			:prev-button="{
-				icon: 'i-iconamoon-arrow-left-2-duotone',
+				icon: 'i-iconamoon-arrow-right-2-duotone',
 			}"
 			:next-button="{
-				icon: 'i-iconamoon-arrow-right-2-duotone',
+				icon: 'i-iconamoon-arrow-left-2-duotone',
 			}"
 			class="w-full mx-auto"
 			arrows>

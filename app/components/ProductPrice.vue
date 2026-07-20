@@ -58,17 +58,17 @@ const displayTotalRegularPrice = computed(() => {
 				class="relative"
 				v-if="isSale">
 				<div
-					class="flex flex-row-reverse items-center gap-1 text-[#5f5f5f] dark:text-[#a3a3a3] line-through opacity-60 text-xl font-bold justify-end">
+					class="flex flex-row items-center gap-1 text-[#5f5f5f] dark:text-[#a3a3a3] line-through opacity-60 text-xl font-bold justify-start">
 					<span>{{ cardRegular }}</span>
 					<span>تومان</span>
 				</div>
 				<div
-					class="flex flex-row-reverse items-center gap-1 text-xl font-bold justify-end">
+					class="flex flex-row items-center gap-1 text-xl font-bold justify-start">
 					<span>{{ cardSale }}</span>
 					<span>تومان</span>
 				</div>
 				<span
-					class="bg-secondary-600 px-5 py-1 text-white text-base font-normal rounded-full absolute top-1 right-0"
+					class="bg-secondary-600 px-5 py-1 text-white text-base font-normal rounded-full absolute top-1 left-0"
 					v-if="discountPercentage">
 					{{ toPersianDigits(`${discountPercentage}`) }}%
 				</span>
@@ -76,10 +76,10 @@ const displayTotalRegularPrice = computed(() => {
 			<template v-else>
 				<div class="flex items-baseline justify-between">
 					<p class="text-xl font-bold flex items-center gap-1">
-						<span>تومان</span>
 						<span>{{
 							convertMinPriceRangeToToman(regularPrice)
 						}}</span>
+						<span>تومان</span>
 					</p>
 				</div>
 			</template>
@@ -114,30 +114,32 @@ const displayTotalRegularPrice = computed(() => {
 			</span>
 		</div>
 
-		<div v-else-if="variant === 'cart'">
+		<div
+			v-else-if="variant === 'cart'"
+			class="text-sm">
 			<div
 				v-if="isSale"
 				class="flex flex-col gap-0.5">
-				<div class="font-bold flex items-center gap-1">
-					<span>تومان</span>
+				<div class="font-medium flex items-center gap-1">
 					<span>{{ displayTotalSalePrice }}</span>
+					<span>تومان</span>
 				</div>
 				<div
 					class="font-medium flex items-center gap-1 line-through opacity-50">
-					<span>تومان</span>
 					<span>{{ displayTotalRegularPrice }}</span>
+					<span>تومان</span>
 				</div>
 				<span
-					class="bg-secondary-600/80 backdrop-blur-sm px-4 py-1.5 text-white text-base font-normal rounded-3xl absolute top-1 right-0"
+					class="bg-secondary-600 backdrop-blur-sm px-3 py-3 text-white text-sm font-normal rounded-full absolute -bottom-0.5 -right-0.5"
 					v-if="discountPercentage">
 					{{ toPersianDigits(`${discountPercentage}`) }}%
 				</span>
 			</div>
 			<div
 				v-else
-				class="font-bold flex items-center gap-1">
-				<span>تومان</span>
+				class="font-medium flex items-center gap-1 text-sm">
 				<span>{{ displayTotalRegularPrice }}</span>
+				<span>تومان</span>
 			</div>
 		</div>
 	</div>

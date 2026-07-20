@@ -149,7 +149,7 @@ const totalQuantity = computed(() =>
 						</div>
 						<div class="flex w-full flex-row-reverse text-right">
 							<input
-								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400 text-right font-medium"
+								class="w-full bg-transparent py-2 outline-none placeholder:text-[#757575] placeholder:dark:text-neutral-400 text-right font-medium pr-2"
 								type="text"
 								v-model="searchQuery"
 								@keyup.enter="search"

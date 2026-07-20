@@ -77,7 +77,7 @@ watchEffect(() => {
 	<ProductSkeleton v-if="!product.name" />
 	<div
 		v-else
-		class="justify-center flex flex-col lg:flex-row lg:mx-5">
+		class="justify-center flex flex-col lg:flex-row-reverse lg:mx-5">
 		<ButtonBack />
 		<div class="mr-6 mt-5 pt-2.5 max-xl:hidden">
 			<swiper
@@ -110,7 +110,7 @@ watchEffect(() => {
 						'--swiper-navigation-color': '#000',
 						'--swiper-pagination-color': 'rgb(0 0 0 / 50%)',
 					}"
-					:spaceBetween="4"
+					:spaceBetween="2"
 					:slidesPerView="1.5"
 					:pagination="{
 						dynamicBullets: true,
@@ -167,8 +167,8 @@ watchEffect(() => {
 					<div
 						class="pb-4 px-3 lg:px-0 border-b border-[#efefef] dark:border-[#262626]">
 						<div
-							class="text-sm font-semibold leading-5 opacity-50 flex flex-row-reverse gap-1 justify-start">
-							: {{ $t("product.size") }}
+							class="text-sm font-semibold leading-5 opacity-50 flex flex-row gap-1 justify-start">
+							{{ $t("product.size") }} :
 							<div>
 								{{
 									selectedVariation.attributes.nodes
@@ -272,7 +272,7 @@ watchEffect(() => {
 
 <style lang="postcss">
 .product-images-thumbs .swiper-wrapper {
-	@apply flex-col gap-3;
+	@apply flex-col max-h-[600px] overflow-y-auto gap-3;
 }
 .product-images-thumbs .swiper-slide-thumb-active {
 	@apply border-black dark:border-white;

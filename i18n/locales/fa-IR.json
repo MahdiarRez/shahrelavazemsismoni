@@ -36,7 +36,7 @@
 			"title": "بهترین لوازم سیسمونی برای آرامش شما و نوزادتان",
 			"subtitle": "مجموعه‌ای کامل از محصولات با کیفیت، با ضمانت اصالت و ارسال سریع به سراسر کشور.",
 			"cta_primary": "شروع خرید",
-			"cta_secondary": "مشاهده دسته‌بندی‌ها",
+			"cta_secondary": "مشاهده دسته‌بندی‌ ها",
 			"stats": {
 				"customers": "+۱۰٬۰۰۰ خرید موفق",
 				"authentic": "ضمانت اصالت کالا",
@@ -85,9 +85,9 @@
 	},
 	"search": {
 		"placeholder": "جستوجو محصول",
-		"placeholder_in_category": "... جستجو در {category}",
+		"placeholder_in_category": " جستجو در {category}",
 		"no_results_for_query": "هیچ نتیجه‌ای یافت نشد",
-		"no_results_suggestion": ".برای نتایج بهتر از کلمات کلیدی عمومی‌ تر استفاده کنید",
+		"no_results_suggestion": "برای نتایج بهتر از کلمات کلیدی عمومی‌ تر استفاده کنید.",
 		"view_all_results": "مشاهده همه نتایج",
 		"new_products": "محصولات جدید",
 		"no_products_matching": "محصولی مطابق با جستجو یافت نشد",
@@ -136,7 +136,7 @@
 	},
 	"product": {
 		"originally": "قیمت اصلی",
-		"size": "سایز",
+		"size": "مدل",
 		"quantity": "تعداد",
 		"brand": "برند محصول",
 		"sku": "شماره کالا",

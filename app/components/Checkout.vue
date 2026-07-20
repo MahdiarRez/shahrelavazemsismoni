@@ -9,9 +9,7 @@ const { checkoutStatus, handleCheckout } = useCheckout();
 const { cart } = useCart();
 
 const totalQuantity = computed(() =>
-	toPersianDigits(
-		`${cart.value.reduce((s, i) => s + (i.quantity || 0), 0)}`,
-	),
+	toPersianDigits(`${cart.value.reduce((s, i) => s + (i.quantity || 0), 0)}`),
 );
 
 const parsePrice = (priceStr) => {
@@ -43,20 +41,20 @@ const cartTotal = computed(() => {
 
 <template>
 	<div
-		class="md:w-96 h-full bg-black/5 dark:bg-white/10 mb-3 mr-3 p-3 max-md:ml-3 rounded-3xl flex flex-col">
-		<h5 class="text-xl font-medium px-2 pt-2 text-center">ثبت سفارش</h5>
-		<h6 class="text-sm font-normal px-2 pt-2 text-center opacity-60">
+		class="md:w-96 h-full bg-black/5 dark:bg-white/10 mb-3 mx-3 mt-3 p-3 rounded-3xl flex flex-col lg:max-h-80">
+		<h5 class="text-xl font-medium px-2 pt-2 text-right">ثبت سفارش</h5>
+		<h6 class="text-xs font-normal px-2 pt-2 text-right opacity-60 mb-4">
 			پرداخت و ثبت آدرس در صفحه امن فروشگاه انجام می‌شود
 		</h6>
 
-		<div class="flex-1 flex flex-col justify-end">
+		<div class="flex-1 flex flex-col justify-end text-nowrap">
 			<div
 				class="bg-black/5 dark:bg-white/10 rounded-2xl p-5 gap-2 flex flex-col text-sm">
 				<div class="flex justify-between items-center">
 					<span class="dark:text-neutral-400 text-neutral-600">
 						{{ $t("checkout.pay.total") }}:
 					</span>
-					<span class="font-semibold text-lg">
+					<span class="font-medium text-lg">
 						{{ cartTotal }} تومان
 					</span>
 				</div>
@@ -64,7 +62,7 @@ const cartTotal = computed(() => {
 					<span class="dark:text-neutral-400 text-neutral-600">
 						{{ $t("product.quantity") }}:
 					</span>
-					<span class="font-semibold">{{ totalQuantity }}</span>
+					<span class="font-medium">{{ totalQuantity }} عدد</span>
 				</div>
 			</div>
 
@@ -88,7 +86,7 @@ const cartTotal = computed(() => {
 			</button>
 
 			<div
-				class="text-xs font-medium p-4 flex gap-1 items-end justify-center text-neutral-400 dark:text-neutral-600">
+				class="text-xs font-medium p-4 flex flex-row-reverse gap-1 items-end justify-center text-neutral-400 dark:text-neutral-600">
 				<div>
 					{{ $t("checkout.pay.secure_note") }}
 				</div>

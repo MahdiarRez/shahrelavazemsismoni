@@ -1,5 +1,7 @@
 <!--app/components/home/HomeCategoryShowcase.vue-->
 <script setup>
+import CategoryPlaceholder from "../CategoryPlaceholder.vue";
+
 const localePath = useLocalePath();
 
 const { data } = await useAsyncData("home-categories", () =>
@@ -48,9 +50,7 @@ const categories = computed(() =>
 						loading="lazy"
 						:title="category.name"
 						class="absolute inset-0 h-full w-full bg-neutral-200 object-cover transition-transform duration-500 group-hover:scale-105 dark:bg-neutral-800" />
-					<div
-						v-else
-						class="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-300"></div>
+					<CategoryPlaceholder v-else />
 					<div
 						class="absolute inset-0 flex items-end bg-gradient-to-t from-black/55 to-transparent p-4">
 						<span

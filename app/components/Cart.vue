@@ -6,7 +6,7 @@ const { order } = useCheckout();
 
 <template>
 	<div
-		class="select-none mx-3 lg:mx-5 shadow-2xl mt-20 rounded-[2rem] left-0 fixed flex z-50 bg-white/85 dark:bg-black/85 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-sm overflow-hidden">
+		class="select-none mx-3 lg:mx-5 lg:bottom-0 lg:top-0 lg:mb-5 shadow-2xl mt-20 rounded-[2rem] left-0 fixed flex z-50 bg-white/85 dark:bg-black/85 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-sm overflow-hidden">
 		<Transition
 			name="fade"
 			mode="out-in">
@@ -15,17 +15,18 @@ const { order } = useCheckout();
 				v-else-if="cart.length"
 				class="flex w-full h-full max-md:flex-col max-md:max-h-[calc(100vh-92px)] max-md:overflow-auto">
 				<div class="w-[calc(100vw-24px)] sm:w-full md:w-80 relative">
-					<div class="md:absolute h-full w-full overflow-auto">
+					<div
+						class="md:absolute h-full w-full overflow-auto max-h-[44dvh] md:max-h-[80dvh] overflow-y-auto">
 						<div
 							v-for="product in cart.slice().reverse()"
 							:key="product.key"
-							class="flex flex-row-reverse bg-black/5 dark:bg-white/10 m-3 p-3 gap-3 rounded-3xl items-center group relative max-md:pr-5">
+							class="flex flex-row bg-black/5 dark:bg-white/10 m-3 p-3 gap-3 rounded-3xl items-center group relative max-md:pl-2">
 							<NuxtImg
 								:src="product.variation.node.image.sourceUrl"
 								class="w-24 h-28 object-cover shadow-md rounded-2xl" />
-							<div class="flex-1 gap-1 flex flex-col items-end">
+							<div class="flex-1 gap-1 flex flex-col items-start">
 								<div
-									class="font-medium text-sm line-clamp-2 overflow-hidden text-ellipsis">
+									class="font-medium text-sm mb-0.5 line-clamp-2 overflow-hidden text-ellipsis">
 									{{ product.product.node.name }}
 								</div>
 								<ProductPrice
@@ -39,9 +40,11 @@ const { order } = useCheckout();
 									:quantity="product.quantity"
 									variant="cart" />
 								<div
-									class="text-xs flex gap-2 font-medium text-neutral-600 dark:text-neutral-300">
-									<div class="flex flex-col items-end">
+									class="text-xs flex gap-2 font-medium text-neutral-600 opacity-90 dark:text-neutral-300">
+									<div
+										class="flex flex-col items-start gap-1">
 										<div>
+											{{ $t("product.size") }} :
 											{{
 												product.variation.attributes
 													.map((attr) =>
@@ -49,8 +52,6 @@ const { order } = useCheckout();
 													)
 													.join(", ")
 											}}
-
-											: {{ $t("product.size") }}
 										</div>
 										<div>
 											{{ $t("product.quantity") }} :

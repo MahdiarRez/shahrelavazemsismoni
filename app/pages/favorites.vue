@@ -24,7 +24,8 @@ useSeoMeta({
 </script>
 
 <template>
-	<div class="grid grid-cols-2 justify-center max-w-screen-2xl m-auto">
+	<div
+		class="grid grid-cols-2 justify-center max-w-screen-2xl sm:flex sm:justify-start m-auto">
 		<TransitionGroup
 			v-if="wishlist.length"
 			name="shrink"
