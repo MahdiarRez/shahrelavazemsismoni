@@ -276,7 +276,7 @@ const totalQuantity = computed(() =>
 							</div>
 							<div
 								class="grid gap-0.5 pt-3 pb-4 px-1.5 text-sm font-medium text-right">
-								<div>{{ product.name }}</div>
+								<div class="bidi-auto">{{ product.name }}</div>
 								<ProductPrice
 									:sale-price="product.salePrice"
 									:regular-price="product.regularPrice"

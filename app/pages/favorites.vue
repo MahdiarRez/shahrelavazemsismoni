@@ -44,8 +44,10 @@ useSeoMeta({
 					class="absolute inset-0 bg-gradient-to-t from-black/50 hover:from-black/60 flex items-end justify-start p-5"
 					:to="localePath(`/product/${product.sku}/${product.slug}`)">
 					<div class="grid gap-0.5 text-white text-right">
-						<div class="font-bold">{{ product.name }}</div>
-						<div class="text-sm font-normal opacity-80">
+						<div class="font-bold bidi-auto">
+							{{ product.name }}
+						</div>
+						<div class="text-sm font-normal opacity-80 bidi-auto">
 							{{ product.productCategories?.nodes[0]?.name }}
 						</div>
 					</div>

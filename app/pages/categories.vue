@@ -66,8 +66,7 @@ const categories = computed(() =>
 				<div
 					class="absolute left-0 right-0 top-0 bottom-0 bg-gradient-to-t hover:from-black/40 rounded-[32px] overflow-hidden">
 					<div
-						:class="category.image ? 'items-end' : 'items-center'"
-						class="w-full h-full bg-gradient-to-t from-black/40 py-6 px-5 flex">
+						class="w-full h-full bg-gradient-to-t from-black/40 py-6 px-5 flex items-end">
 						<div
 							class="w-full text-center font-semibold text-2xl text-white">
 							{{ category.name }}

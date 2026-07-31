@@ -26,7 +26,7 @@ const { order } = useCheckout();
 								class="w-24 h-28 object-cover shadow-md rounded-2xl" />
 							<div class="flex-1 gap-1 flex flex-col items-start">
 								<div
-									class="font-medium text-sm mb-0.5 line-clamp-2 overflow-hidden text-ellipsis">
+									class="font-medium text-sm mb-0.5 line-clamp-2 overflow-hidden text-ellipsis bidi-auto">
 									{{ product.product.node.name }}
 								</div>
 								<ProductPrice
@@ -42,7 +42,7 @@ const { order } = useCheckout();
 								<div
 									class="text-xs flex gap-2 font-medium text-neutral-600 opacity-90 dark:text-neutral-300">
 									<div
-										class="flex flex-col items-start gap-1">
+										class="flex flex-col items-start gap-1 bidi-auto">
 										<div>
 											{{ $t("product.size") }} :
 											{{

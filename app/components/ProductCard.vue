@@ -33,10 +33,10 @@ defineProps({
 				</div>
 				<div
 					class="grid gap-0.5 pt-3 pb-4 px-1.5 md:px-3 text-sm font-medium text-right">
-					<div>{{ product.name }}</div>
+					<div class="bidi-auto">{{ product.name }}</div>
 					<div class="flex flex-row justify-end gap-3 items-center">
 						<div
-							class="font-normal text-xs opacity-80 text-[#5f5f5f] dark:text-[#a3a3a3] text-right ml-auto"
+							class="font-normal text-xs opacity-80 text-[#5f5f5f] dark:text-[#a3a3a3] text-right ml-auto bidi-auto"
 							v-for="value in product.productCategories?.nodes">
 							{{ value.name }}
 						</div>

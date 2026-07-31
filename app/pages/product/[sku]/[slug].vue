@@ -144,7 +144,8 @@ watchEffect(() => {
 					class="flex-col flex gap-4 lg:max-h-[530px] xl:max-h-[600px] overflow-hidden">
 					<div
 						class="p-3 lg:pb-4 lg:p-0 border-b border-[#efefef] dark:border-[#262626]">
-						<h1 class="text-2xl font-semibold mb-0.5 text-right">
+						<h1
+							class="text-2xl font-semibold mb-0.5 text-right bidi-auto">
 							{{ product.name }}
 						</h1>
 						<NuxtLink
@@ -251,7 +252,7 @@ watchEffect(() => {
 						<div class="text-base mb-2 font-semibold">
 							{{ $t("product.featured_information") }}
 						</div>
-						<div class="description leading-7 text-sm">
+						<div class="description leading-7 text-sm bidi-auto">
 							<div v-html="product.description"></div>
 						</div>
 					</div>

@@ -1,3 +1,5 @@
+import plugin from "tailwindcss/plugin";
+
 export default {
 	theme: {
 		extend: {
@@ -68,4 +70,29 @@ export default {
 			},
 		},
 	},
+
+	plugins: [
+		plugin(({ addUtilities }) => {
+			addUtilities({
+				/*
+				 * برای متن‌های دینامیک/چندزبانه (اسم محصول، دسته‌بندی و ...)
+				 * که ممکنه فارسی، انگلیسی یا ترکیبی باشن.
+				 * معادل CSS-ای dir="auto" — جهت رو بر اساس اولین کاراکتر
+				 * قوی (strong character) خودِ متن تشخیص می‌ده، مستقل از
+				 * dir والد، بدون به‌هم‌ریختن ترتیب کلمات.
+				 */
+				".bidi-auto": {
+					"unicode-bidi": "plaintext",
+				},
+				/*
+				 * برای بخش‌های کوچیک‌تر داخل یه بلاک متنی (مثل یه عدد یا
+				 * کد لاتین وسط جمله‌ی فارسی) که نباید روی جهت کل جمله
+				 * تأثیر بذاره یا ازش تأثیر بگیره.
+				 */
+				".bidi-isolate": {
+					"unicode-bidi": "isolate",
+				},
+			});
+		}),
+	],
 };
