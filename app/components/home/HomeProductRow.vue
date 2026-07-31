@@ -25,6 +25,7 @@ const viewAllPath = computed(() => {
 
 <template>
 	<section
+		dir="rtl"
 		v-if="pending || products.length"
 		class="px-3 lg:px-5 pt-8 lg:pt-12">
 		<div

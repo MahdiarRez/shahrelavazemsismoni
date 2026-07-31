@@ -1,2 +1,0 @@
-import{d as o,f as e,h as s,i as t}from"../../../_/nitro.mjs";import"node:buffer";import"node:timers";import"node:events";import"node:process";import"cloudflare:workers";import"node:async_hooks";const r=o(o=>{const r=(e().public.wpBaseUrl||"").replace(/\/$/,"");if(!r)throw s({statusCode:500,message:"NUXT_PUBLIC_WP_BASE_URL is not configured"});const i=t(o);if(!i)throw s({statusCode:409,message:"No active cart session to check out"});return{checkoutUrl:`${r}/checkout/?session_id=${encodeURIComponent(i)}`}});export{r as default};
-//# sourceMappingURL=session.get.mjs.map

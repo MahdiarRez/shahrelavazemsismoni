@@ -6,6 +6,9 @@ declare module "nitropack/types" {
     '/api/cart/add': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/cart/add.post').default>>>>
     }
+    '/api/cart/empty': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/cart/empty.post').default>>>>
+    }
     '/api/cart/update': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/cart/update.post').default>>>>
     }

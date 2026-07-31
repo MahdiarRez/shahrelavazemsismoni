@@ -42,9 +42,6 @@ export default defineNuxtConfig({
 		defaultLocale: "fa",
 		strategy: "prefix_except_default",
 		langDir: "locales",
-		// Persian-first audience: always serve fa by default and never auto-redirect
-		// visitors to another language based on their browser settings. Users can
-		// still switch language manually via the footer selector.
 		detectBrowserLanguage: false,
 		locales: [
 			{

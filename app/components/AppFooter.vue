@@ -45,7 +45,7 @@ const quickLinks = [
 			class="mx-auto grid max-w-screen-2xl grid-cols-2 gap-8 px-5 py-12 text-right md:grid-cols-4 lg:px-8">
 			<!-- Brand -->
 			<div class="col-span-2 md:col-span-1">
-				<div class="mb-3 flex flex-row-reverse items-center gap-2">
+				<div class="mb-3 flex flex-row items-center gap-2">
 					<img
 						class="h-9 w-9 rounded-full bg-secondary-600"
 						src="/logo.jpeg"
@@ -59,7 +59,7 @@ const quickLinks = [
 				</p>
 				<div
 					v-if="socials?.length"
-					class="mt-4 flex flex-row-reverse gap-2">
+					class="mt-4 flex flex-row gap-2">
 					<a
 						v-for="social in socials"
 						:key="social.label"
@@ -130,7 +130,7 @@ const quickLinks = [
 					{{ $t("footer.trust_title") }}
 				</h3>
 				<div
-					class="flex flex-row-reverse items-center gap-2 rounded-2xl bg-black/5 p-3 dark:bg-white/10">
+					class="flex flex-row items-center gap-2 rounded-2xl bg-black/5 p-3 dark:bg-white/10">
 					<UIcon
 						name="i-iconamoon-shield-yes"
 						size="22"
@@ -143,8 +143,7 @@ const quickLinks = [
 		</div>
 
 		<!-- Bottom bar -->
-		<div
-			class="border-t border-black/10 dark:border-white/10">
+		<div class="border-t border-black/10 dark:border-white/10">
 			<div
 				class="mx-auto flex max-w-screen-2xl flex-col-reverse items-center justify-between gap-3 px-5 py-5 sm:flex-row lg:px-8">
 				<p
@@ -189,7 +188,7 @@ const quickLinks = [
 											chooseLocale(item.code)
 										">
 										<div
-											class="flex flex-row-reverse items-center justify-between">
+											class="flex flex-row items-center justify-between">
 											<span class="mr-1 truncate">{{
 												item.name
 											}}</span>

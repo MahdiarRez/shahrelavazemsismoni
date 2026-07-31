@@ -36,7 +36,7 @@ defineProps({
 					<div>{{ product.name }}</div>
 					<div class="flex flex-row justify-end gap-3 items-center">
 						<div
-							class="font-normal text-xs opacity-80 text-[#5f5f5f] dark:text-[#a3a3a3]"
+							class="font-normal text-xs opacity-80 text-[#5f5f5f] dark:text-[#a3a3a3] text-right ml-auto"
 							v-for="value in product.productCategories?.nodes">
 							{{ value.name }}
 						</div>

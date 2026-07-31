@@ -1174,7 +1174,7 @@ const _inlineRuntimeConfig = {
   },
   "public": {
     "wpBaseUrl": "https://wordpress-sismooni.liara.run",
-    "siteUrl": "http://localhost:3001",
+    "siteUrl": "http://localhost:3000",
     "zarinpalPaymentMethod": "WC_ZPal",
     "version": "3.1.17",
     "notivue": {
@@ -2782,16 +2782,16 @@ _WEG5zlkd6ESGiTKPTB13iSwdTAfd0_VuJcDHjl91ijo
 const assets = {
   "/index.mjs": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"2dd1b-vNVpgjhNnGrm8ikDuRldKdoihpc\"",
-    "mtime": "2026-07-20T16:45:04.684Z",
-    "size": 187675,
+    "etag": "\"2dfe6-UrtVO+bp2if8/z8GYHVIVDSqO1I\"",
+    "mtime": "2026-07-31T08:24:53.440Z",
+    "size": 188390,
     "path": "index.mjs"
   },
   "/index.mjs.map": {
     "type": "application/json",
-    "etag": "\"a07d7-Qqu3I+BM3ngR+T83ScKdzocmRyI\"",
-    "mtime": "2026-07-20T16:45:04.685Z",
-    "size": 657367,
+    "etag": "\"a0e2f-4dKUXJ8wCO5RwQkqq0fZBM3+E5Y\"",
+    "mtime": "2026-07-31T08:24:53.442Z",
+    "size": 658991,
     "path": "index.mjs.map"
   }
 };
@@ -3396,6 +3396,7 @@ const _ByBdXO = lazyEventHandler(() => {
 });
 
 const _lazy_fM6m9q = () => Promise.resolve().then(function () { return add_post$1; });
+const _lazy_7iZzMs = () => Promise.resolve().then(function () { return empty_post$1; });
 const _lazy_tCDaCf = () => Promise.resolve().then(function () { return update_post$1; });
 const _lazy_8iH3MY = () => Promise.resolve().then(function () { return categories_get$1; });
 const _lazy_KkfZG4 = () => Promise.resolve().then(function () { return session_get$1; });
@@ -3415,6 +3416,7 @@ const _lazy_hXsDOy = () => Promise.resolve().then(function () { return renderer$
 const handlers = [
   { route: '', handler: _lXTlXm, lazy: false, middleware: true, method: undefined },
   { route: '/api/cart/add', handler: _lazy_fM6m9q, lazy: true, middleware: false, method: "post" },
+  { route: '/api/cart/empty', handler: _lazy_7iZzMs, lazy: true, middleware: false, method: "post" },
   { route: '/api/cart/update', handler: _lazy_tCDaCf, lazy: true, middleware: false, method: "post" },
   { route: '/api/categories', handler: _lazy_8iH3MY, lazy: true, middleware: false, method: "get" },
   { route: '/api/checkout/session', handler: _lazy_KkfZG4, lazy: true, middleware: false, method: "get" },
@@ -3804,7 +3806,7 @@ var checkout$1 = {
 		proceed: "ادامه به پرداخت امن",
 		secure: "پرداخت شما توسط {method} ایمن شده است",
 		secure_note: "پرداخت در درگاه امن فروشگاه انجام می‌شود",
-		success: "! پرداخت با موفقیت انجام شد",
+		success: "پرداخت با موفقیت انجام شد",
 		processed: "از خرید شما سپاسگزاریم! سفارش شما در حال پردازش است.",
 		total: "جمع کل",
 		order_number: "شماره سفارش",
@@ -3815,7 +3817,17 @@ var checkout$1 = {
 		failed_description: "پرداخت لغو شد یا با خطا مواجه شد. می‌توانید دوباره تلاش کنید.",
 		back_to_shop: "بازگشت به فروشگاه",
 		error: "ثبت سفارش با خطا مواجه شد. لطفاً دوباره تلاش کنید.",
-		retry: "تلاش مجدد برای پرداخت"
+		retry: "تلاش مجدد برای پرداخت",
+		verifying: "در حال بررسی پرداخت...",
+		success_title: "پرداخت موفق",
+		missing_info_title: "اطلاعات پرداخت یافت نشد",
+		missing_info_description: "لینکی که استفاده کردید معتبر نیست یا اطلاعات لازم را ندارد.",
+		verify_failed_title: "خطا در بررسی پرداخت",
+		verify_failed_description: "پرداخت شما تأیید نشد. در صورت کسر وجه با پشتیبانی تماس بگیرید.",
+		error_invalid_link: "این لینک معتبر نیست یا سفارش مربوطه پیدا نشد.",
+		error_server: "مشکلی در ارتباط با سرور پیش آمد. لطفاً بعداً دوباره امتحان کنید.",
+		order_reference: "شماره سفارش: {id}",
+		retry_unavailable: "امکان تلاش مجدد برای این سفارش وجود ندارد. لطفاً با پشتیبانی تماس بگیرید."
 	}
 };
 var product$1 = {
@@ -4113,6 +4125,31 @@ const add_post = defineEventHandler(async (event) => {
 const add_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   default: add_post
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const emptyCartMutation = gql`
+	mutation emptyCart($input: EmptyCartInput!) {
+		emptyCart(input: $input) {
+			cart {
+				contents {
+					nodes {
+						key
+					}
+				}
+			}
+		}
+	}
+`;
+
+const empty_post = defineEventHandler(async (event) => {
+  return await requestMutation(event, emptyCartMutation, {
+    input: { clearPersistentCart: true }
+  });
+});
+
+const empty_post$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: empty_post
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const updateItemQuantitiesMutation = gql`
