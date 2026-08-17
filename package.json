@@ -7,6 +7,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "nuxt build",
+		"start": "node .output/server/index.mjs",
 		"dev": "nuxt dev",
 		"dev:ssl": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
 		"generate": "nuxt generate",
@@ -15,6 +16,7 @@
 		"deploy": "bumpp && nuxthub deploy"
 	},
 	"dependencies": {
+		"@liara/cli": "^9.5.1",
 		"@nuxt/image": "^1.11.0",
 		"@nuxt/ui": "^2.22.3",
 		"@nuxthub/core": "0.9.0",
