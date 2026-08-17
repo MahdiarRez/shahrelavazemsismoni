@@ -1176,7 +1176,7 @@ const _inlineRuntimeConfig = {
     "wpBaseUrl": "https://wordpress-sismooni.liara.run",
     "siteUrl": "http://localhost:3000",
     "zarinpalPaymentMethod": "WC_ZPal",
-    "version": "3.1.17",
+    "version": "1.0.0",
     "notivue": {
       "position": "top-center",
       "limit": 3,
@@ -2779,22 +2779,7 @@ _Y6sylQ3W7IKGgKWpIr7mZ7_3XRI8H7KQGRMNJFss_E,
 _WEG5zlkd6ESGiTKPTB13iSwdTAfd0_VuJcDHjl91ijo
 ];
 
-const assets = {
-  "/index.mjs": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2dfe6-UrtVO+bp2if8/z8GYHVIVDSqO1I\"",
-    "mtime": "2026-07-31T08:24:53.440Z",
-    "size": 188390,
-    "path": "index.mjs"
-  },
-  "/index.mjs.map": {
-    "type": "application/json",
-    "etag": "\"a0e2f-4dKUXJ8wCO5RwQkqq0fZBM3+E5Y\"",
-    "mtime": "2026-07-31T08:24:53.442Z",
-    "size": 658991,
-    "path": "index.mjs.map"
-  }
-};
+const assets = {};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
