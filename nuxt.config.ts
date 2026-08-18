@@ -34,7 +34,6 @@ export default defineNuxtConfig({
 		"@nuxt/ui",
 		"@nuxt/image",
 		"notivue/nuxt",
-		"@nuxthub/core",
 		"@nuxtjs/i18n",
 	],
 
@@ -60,10 +59,6 @@ export default defineNuxtConfig({
 				dir: "ltr",
 			},
 		],
-	},
-
-	hub: {
-		cache: false,
 	},
 
 	notivue: {

@@ -18,7 +18,6 @@
 		"@liara/cli": "^9.5.1",
 		"@nuxt/image": "^1.11.0",
 		"@nuxt/ui": "^2.22.3",
-		"@nuxthub/core": "0.9.0",
 		"@nuxtjs/i18n": "10.1.0",
 		"graphql": "^17.0.2",
 		"notivue": "^2.4.5",
