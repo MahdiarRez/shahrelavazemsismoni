@@ -1,0 +1,8 @@
+const app_vue_vue_type_style_index_0_lang = ".dark{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity,1));--tw-text-opacity:1;color:rgb(245 245 245/var(--tw-text-opacity,1));color-scheme:dark}.dropdown-enter-active{transition-duration:.2s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-timing-function:cubic-bezier(0,0,.2,1)}.dropdown-enter-from,.dropdown-leave-to{--tw-translate-y:1.25rem;opacity:0}.dropdown-enter-from,.dropdown-enter-to,.dropdown-leave-from,.dropdown-leave-to{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.dropdown-enter-to,.dropdown-leave-from{opacity:1}.dropdown-leave-active{transition-duration:.15s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-timing-function:cubic-bezier(.4,0,1,1)}";
+
+const appStyles_CJiFZXhL = [
+  app_vue_vue_type_style_index_0_lang
+];
+
+export { appStyles_CJiFZXhL as default };
+//# sourceMappingURL=app-styles.CJiFZXhL.mjs.map

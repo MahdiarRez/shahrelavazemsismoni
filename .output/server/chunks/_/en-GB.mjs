@@ -1,0 +1,173 @@
+var general = {
+	go_back: "Go Back",
+	loading: "Loading..."
+};
+var theme = {
+	dark: "Dark",
+	light: "Light",
+	system: "System",
+	toggle: "Toggle theme"
+};
+var nav = {
+	home: "Home",
+	shop: "Shop",
+	categories: "Categories",
+	favorites: "Favorites",
+	products: "Products"
+};
+var footer = {
+	developed_by_author: "by {author}",
+	change_language: "Change language",
+	about: "Your online shop for baby essentials and nursery care, with secure checkout and fast delivery.",
+	quick_links: "Quick links",
+	customer_service: "Customer service",
+	trust_title: "Shop with confidence",
+	trust_text: "Secure payment and protected data",
+	copyright: "© {year} {name} — All rights reserved."
+};
+var home = {
+	seo: {
+		title: "{name} | Baby & Nursery Essentials",
+		description: "Shop the latest and best baby and nursery products at great prices with fast delivery."
+	},
+	hero: {
+		badge: "Everything for your baby",
+		title: "The best baby essentials for you and your little one",
+		subtitle: "A complete range of quality products, with guaranteed authenticity and fast nationwide delivery.",
+		cta_primary: "Start shopping",
+		cta_secondary: "Browse categories",
+		stats: {
+			customers: "10,000+ happy orders",
+			authentic: "Authenticity guaranteed",
+			delivery: "Fast nationwide delivery"
+		}
+	},
+	benefits: {
+		shipping: {
+			title: "Fast delivery",
+			description: "Shipped nationwide"
+		},
+		secure: {
+			title: "Secure payment",
+			description: "Trusted payment gateway"
+		},
+		returns: {
+			title: "Easy returns",
+			description: "7-day return guarantee"
+		},
+		support: {
+			title: "Support",
+			description: "Available every day"
+		}
+	},
+	sections: {
+		categories: "Categories",
+		featured: "Featured products",
+		new_arrivals: "New arrivals",
+		on_sale: "On sale"
+	},
+	view_all: "View all",
+	promo: {
+		title: "Special baby essentials sale",
+		subtitle: "Don't miss the best chance to shop with amazing discounts.",
+		cta: "View deals"
+	},
+	newsletter: {
+		title: "Stay in the loop",
+		subtitle: "Enter your email and we'll send you the latest products and deals.",
+		placeholder: "Your email",
+		cta: "Subscribe",
+		invalid: "Please enter a valid email",
+		success: "Successfully subscribed!",
+		error: "Something went wrong. Please try again."
+	}
+};
+var search = {
+	placeholder: "Search...",
+	placeholder_in_category: "Search in {category}...",
+	no_results_for_query: "No results for {query}",
+	no_results_suggestion: "Try improving your results by double checking your spelling, or trying a more general keyword.",
+	view_all_results: "View all results",
+	new_products: "New Products",
+	no_products_matching: " No products matching",
+	no_products_found_matching: "No products found matching",
+	no_products_found: "No products found",
+	use_search_bar_above: "You can use the search bar above to try searching with different terms.",
+	"in": "in",
+	reset_search: "Reset Search"
+};
+var filter = {
+	all_categories: "All Categories",
+	newest: "Newest",
+	price_low_high: "Price: Low to High",
+	price_high_low: "Price: High to Low"
+};
+var checkout = {
+	title: "Checkout",
+	form: {
+		first_name: "First Name",
+		last_name: "Last Name",
+		email: "Email",
+		phone: "Phone",
+		city: "City",
+		postcode: "Postal code (optional)",
+		address: "Address"
+	},
+	pay: {
+		description: "Paying a total of {total} for {items} items",
+		btn: "Pay {total}",
+		proceed: "Continue to secure checkout",
+		secure: "your payment is secured by {method}",
+		secure_note: "Payment is processed on the store's secure gateway",
+		success: "Payment successful!",
+		processed: "Thank you for your purchase! Your order is being processed.",
+		total: "Total",
+		order_number: "Order Number",
+		date: "Date",
+		payment_method: "Payment Method",
+		verify_failed: "Payment could not be verified. If you were charged, please contact support.",
+		failed_title: "Payment failed",
+		failed_description: "Payment was cancelled or encountered an error. You can try again.",
+		back_to_shop: "Back to shop",
+		error: "Could not place your order. Please try again.",
+		retry: "Retry payment"
+	}
+};
+var product = {
+	originally: "Originally",
+	size: "Size",
+	quantity: "Quantity",
+	sku: "article number",
+	brand: "Brand",
+	vat_included: "VAT included",
+	featured_information: "Featured Information",
+	free_return: "Free returns within 15 days. Click for detailed",
+	information: "Information",
+	shop_similar: "Shop similar"
+};
+var cart = {
+	empty: "Your cart is empty",
+	notting_added: "You haven't added any items to your cart yet.",
+	add_to_cart: "Add to cart",
+	added_to_cart: "Added to cart"
+};
+var favorites = {
+	nothing_to_show_yet: "Nothing to show... yet!",
+	wishlist_lives_here: "Wishlist you create will live here. These are a few of your favorite things..."
+};
+const enGB = {
+	general: general,
+	theme: theme,
+	nav: nav,
+	footer: footer,
+	home: home,
+	search: search,
+	filter: filter,
+	checkout: checkout,
+	product: product,
+	cart: cart,
+	favorites: favorites
+};
+
+export { cart, checkout, enGB as default, favorites, filter, footer, general, home, nav, product, search, theme };
+//# sourceMappingURL=en-GB.mjs.map
