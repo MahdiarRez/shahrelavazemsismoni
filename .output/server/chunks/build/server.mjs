@@ -2164,72 +2164,72 @@ const _routes = [
   {
     name: "shop___fa",
     path: "/shop",
-    component: () => import('./shop-pKEHJnha.mjs')
+    component: () => import('./shop-CCx5gVQu.mjs')
   },
   {
     name: "shop___en",
     path: "/en/shop",
-    component: () => import('./shop-pKEHJnha.mjs')
+    component: () => import('./shop-CCx5gVQu.mjs')
   },
   {
     name: "index___fa",
     path: "/",
-    component: () => import('./index-DPERMfTD.mjs')
+    component: () => import('./index-RTYTcUny.mjs')
   },
   {
     name: "index___en",
     path: "/en",
-    component: () => import('./index-DPERMfTD.mjs')
+    component: () => import('./index-RTYTcUny.mjs')
   },
   {
     name: "favorites___fa",
     path: "/favorites",
-    component: () => import('./favorites-DgLqNtbR.mjs')
+    component: () => import('./favorites-B5pmGGz6.mjs')
   },
   {
     name: "favorites___en",
     path: "/en/favorites",
-    component: () => import('./favorites-DgLqNtbR.mjs')
+    component: () => import('./favorites-B5pmGGz6.mjs')
   },
   {
     name: "categories___fa",
     path: "/categories",
-    component: () => import('./categories-CKe7KCbv.mjs')
+    component: () => import('./categories-DPEaHBPi.mjs')
   },
   {
     name: "categories___en",
     path: "/en/categories",
-    component: () => import('./categories-CKe7KCbv.mjs')
+    component: () => import('./categories-DPEaHBPi.mjs')
   },
   {
     name: "payment-failed___fa",
     path: "/payment/failed",
-    component: () => import('./failed-CPD2-VQN.mjs')
+    component: () => import('./failed-BlRMc1i-.mjs')
   },
   {
     name: "payment-failed___en",
     path: "/en/payment/failed",
-    component: () => import('./failed-CPD2-VQN.mjs')
+    component: () => import('./failed-BlRMc1i-.mjs')
   },
   {
     name: "payment-success___fa",
     path: "/payment/success",
-    component: () => import('./success-BUOw8Wjd.mjs')
+    component: () => import('./success-DUR74zDE.mjs')
   },
   {
     name: "payment-success___en",
     path: "/en/payment/success",
-    component: () => import('./success-BUOw8Wjd.mjs')
+    component: () => import('./success-DUR74zDE.mjs')
   },
   {
     name: "product-sku-slug___fa",
     path: "/product/:sku()/:slug()",
-    component: () => import('./_slug_-BshJbe59.mjs')
+    component: () => import('./_slug_-Ctg4x3il.mjs')
   },
   {
     name: "product-sku-slug___en",
     path: "/en/product/:sku()/:slug()",
-    component: () => import('./_slug_-BshJbe59.mjs')
+    component: () => import('./_slug_-Ctg4x3il.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -3738,13 +3738,17 @@ function applyTrailingSlashBehavior(to, trailingSlash) {
 const cfg0 = defineAppConfig({
   site: {
     name: "شهر لوازم سیسمونی",
-    description: "NuxtCommerce is a dynamic e-commerce solution developed with Nuxt 4 and GraphQL, tailored for WooCommerce.",
-    phone: "+982112345678",
-    email: "info@sismoni.local",
+    description: "فروشگاه اینترنتی شهر لوازم سیسمونی؛ مرجع تخصصی خرید آنلاین سیسمونی نوزاد، پوشاک کودک، کالسکه و اسباب‌بازی با بهترین قیمت و ارسال به سراسر ایران.",
+    phone: "+989395542666",
+    email: "devmahdiar@gmail.com",
     socials: [
       { icon: "i-iconamoon-comment-dots", url: "#", label: "WhatsApp" },
       { icon: "i-iconamoon-send-fill", url: "#", label: "Telegram" },
-      { icon: "i-iconamoon-camera-image", url: "#", label: "Instagram" }
+      {
+        icon: "i-iconamoon-camera-image",
+        url: "https://www.instagram.com/shahrlavazemsismoony",
+        label: "Instagram"
+      }
     ]
   },
   ui: {
@@ -4133,7 +4137,7 @@ function createNuxtI18nContext(nuxt, vueI18n, defaultLocale) {
   const loadMessagesFromServer = async (locale) => {
     if (locale in localeLoaders === false) return;
     const headers = getLocaleConfig(locale)?.cacheable ? {} : { "Cache-Control": "no-cache" };
-    const messages = await $fetch(`/_i18n/${"l57knkUq"}/${locale}/messages.json`, { headers });
+    const messages = await $fetch(`/_i18n/${"3aBS9W8-"}/${locale}/messages.json`, { headers });
     for (const k of Object.keys(messages)) {
       i18n.mergeLocaleMessage(k, messages[k]);
     }
@@ -8413,7 +8417,7 @@ const i18n_dfsu0imBBeYrLJHzqmhI4MotjECeXqBvI5VxuO9SrEw = /* @__PURE__ */ defineN
     {
       localeConfigs.value = useRequestEvent().context.nuxtI18n?.localeConfigs || {};
     }
-    prerenderRoutes(localeCodes.map((locale) => `/_i18n/${"l57knkUq"}/${locale}/messages.json`));
+    prerenderRoutes(localeCodes.map((locale) => `/_i18n/${"3aBS9W8-"}/${locale}/messages.json`));
     const i18n = createI18n(optionsI18n);
     const detectors = useDetectors(useRequestEvent(nuxt), useI18nDetection(nuxt), nuxt);
     const ctx = createNuxtI18nContext(nuxt, i18n, optionsI18n.defaultLocale);
@@ -18553,7 +18557,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AppFooter.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$2 = {
   __name: "app",
   __ssrInlineRender: true,
   setup(__props) {
@@ -18567,19 +18571,17 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     const htmlDir = computed(() => currentLocale.value?.dir || "ltr");
     useHead({
       htmlAttrs: { lang: htmlLang, dir: htmlDir },
-      titleTemplate: (chunk) => chunk ? `${chunk} - ${name}` : name
+      titleTemplate: (chunk) => chunk ? `${chunk} - ${name}` : name,
+      meta: [{ name: "enamad", content: "9932775" }]
     });
     useSeoMeta({
       description,
       ogType: "website",
       ogSiteName: name,
       ogLocale: () => currentLocale.value?.iso?.replace("-", "_") || "fa_IR",
-      ogImage: "https://commerce.nuxt.dev/social-card.jpg",
+      ogImage: "/favicon.ico",
       twitterCard: "summary_large_image",
-      twitterSite: "@zhatlen",
-      twitterCreator: "@zhatlen",
-      twitterImage: "https://commerce.nuxt.dev/social-card.jpg",
-      keywords: `${name}, ecommerce, nuxt, woocommerce`,
+      keywords: `${name}, سیسمونی , لوازم نوزاد , خرید سیسمونی , کالسکه , اسباب بازی کودک , لباس نوزاد , فروشگاه لوازم کودک`,
       viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover"
     });
     return (_ctx, _push, _parent, _attrs) => {
@@ -18617,7 +18619,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       _push(`<!--]-->`);
     };
   }
-});
+};
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
@@ -18746,12 +18748,12 @@ const server = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
 	e: __nuxt_component_7,
 	f: __nuxt_component_3,
 	g: useRequestURL,
-	h: useIntersectionObserver,
-	i: useLocalePath,
-	j: useAsyncData,
-	k: useClipboard,
-	l: useAppConfig,
-	m: useSeoMeta,
+	h: useAppConfig,
+	i: useSeoMeta,
+	j: useIntersectionObserver,
+	k: useLocalePath,
+	l: useAsyncData,
+	m: useClipboard,
 	n: useCart,
 	o: onClickOutside,
 	p: push$1,
@@ -18767,5 +18769,5 @@ const server = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
 	z: useScroll
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { useElementSize as A, useResizeObserver as B, twMerge as C, mergeConfig as D, appConfig as E, twJoin as F, useState as G, fetchDefaults as H, useRequestFetch as I, server as J, __nuxt_component_7 as _, useRequestURL as a, useIntersectionObserver as b, useI18n as c, useRouter as d, categorySlugToLabel as e, __nuxt_component_3 as f, useAppConfig as g, useHead as h, useSeoMeta as i, _export_sfc as j, useLocalePath as k, useAsyncData as l, __nuxt_component_0$4 as m, useClipboard as n, onClickOutside as o, push$1 as p, useCart as q, useRuntimeConfig as r, useCheckout as s, _sfc_main$a as t, useRoute as u, _sfc_main$b as v, useImage as w, __nuxt_component_0 as x, useUI as y, useScroll as z };
+export { useElementSize as A, useResizeObserver as B, twMerge as C, mergeConfig as D, appConfig as E, twJoin as F, useState as G, fetchDefaults as H, useRequestFetch as I, server as J, __nuxt_component_7 as _, useRequestURL as a, useAppConfig as b, useHead as c, useSeoMeta as d, useIntersectionObserver as e, useI18n as f, useRouter as g, categorySlugToLabel as h, __nuxt_component_3 as i, _export_sfc as j, useLocalePath as k, useAsyncData as l, __nuxt_component_0$4 as m, useClipboard as n, onClickOutside as o, push$1 as p, useCart as q, useRuntimeConfig as r, useCheckout as s, _sfc_main$a as t, useRoute as u, _sfc_main$b as v, useImage as w, __nuxt_component_0 as x, useUI as y, useScroll as z };
 //# sourceMappingURL=server.mjs.map

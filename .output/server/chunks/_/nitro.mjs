@@ -4388,13 +4388,17 @@ const defineAppConfig = (config) => config;
 const appConfig0 = defineAppConfig({
   site: {
     name: "\u0634\u0647\u0631 \u0644\u0648\u0627\u0632\u0645 \u0633\u06CC\u0633\u0645\u0648\u0646\u06CC",
-    description: "NuxtCommerce is a dynamic e-commerce solution developed with Nuxt 4 and GraphQL, tailored for WooCommerce.",
-    phone: "+982112345678",
-    email: "info@sismoni.local",
+    description: "\u0641\u0631\u0648\u0634\u06AF\u0627\u0647 \u0627\u06CC\u0646\u062A\u0631\u0646\u062A\u06CC \u0634\u0647\u0631 \u0644\u0648\u0627\u0632\u0645 \u0633\u06CC\u0633\u0645\u0648\u0646\u06CC\u061B \u0645\u0631\u062C\u0639 \u062A\u062E\u0635\u0635\u06CC \u062E\u0631\u06CC\u062F \u0622\u0646\u0644\u0627\u06CC\u0646 \u0633\u06CC\u0633\u0645\u0648\u0646\u06CC \u0646\u0648\u0632\u0627\u062F\u060C \u067E\u0648\u0634\u0627\u06A9 \u06A9\u0648\u062F\u06A9\u060C \u06A9\u0627\u0644\u0633\u06A9\u0647 \u0648 \u0627\u0633\u0628\u0627\u0628\u200C\u0628\u0627\u0632\u06CC \u0628\u0627 \u0628\u0647\u062A\u0631\u06CC\u0646 \u0642\u06CC\u0645\u062A \u0648 \u0627\u0631\u0633\u0627\u0644 \u0628\u0647 \u0633\u0631\u0627\u0633\u0631 \u0627\u06CC\u0631\u0627\u0646.",
+    phone: "+989395542666",
+    email: "devmahdiar@gmail.com",
     socials: [
       { icon: "i-iconamoon-comment-dots", url: "#", label: "WhatsApp" },
       { icon: "i-iconamoon-send-fill", url: "#", label: "Telegram" },
-      { icon: "i-iconamoon-camera-image", url: "#", label: "Instagram" }
+      {
+        icon: "i-iconamoon-camera-image",
+        url: "https://www.instagram.com/shahrlavazemsismoony",
+        label: "Instagram"
+      }
     ]
   },
   ui: {
@@ -4726,7 +4730,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "c7edc9af-56ab-4e03-9cfd-d8b852ac621a",
+    "buildId": "1ab860f6-d1d4-4cbf-bf7b-19921c07632b",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -5891,19 +5895,19 @@ _Hny4mpHC2_0XvtTuesdJjyaJoCeQiDR7nPbUJIYbig
 ];
 
 const assets = {
-  "/sitemap.xml": {
-    "type": "application/xml; charset=utf-8",
-    "etag": "\"fe-ew1gRVkiZRVtS73/MuFjUBT52tc\"",
-    "mtime": "2026-08-19T06:26:57.655Z",
-    "size": 254,
-    "path": "../public/sitemap.xml"
-  },
   "/robots.txt": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"3d-n6fNbHvJbFB5Jt1ds2K5wSRoCjY\"",
-    "mtime": "2026-08-19T06:26:57.655Z",
+    "mtime": "2026-08-24T07:37:08.605Z",
     "size": 61,
     "path": "../public/robots.txt"
+  },
+  "/sitemap.xml": {
+    "type": "application/xml; charset=utf-8",
+    "etag": "\"fe-ew1gRVkiZRVtS73/MuFjUBT52tc\"",
+    "mtime": "2026-08-24T07:37:08.605Z",
+    "size": 254,
+    "path": "../public/sitemap.xml"
   },
   "/logo.jpeg": {
     "type": "image/jpeg",
@@ -5919,292 +5923,215 @@ const assets = {
     "size": 155297,
     "path": "../public/favicon.ico"
   },
-  "/_nuxt/4NRI9rOj.js": {
+  "/_nuxt/-F4mjCfi.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"1b37-6hu++AjiYJ2W8Okf4OwblS54ROk\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 6967,
-    "path": "../public/_nuxt/4NRI9rOj.js"
-  },
-  "/_nuxt/-OdgPJjQ.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"20a-JE+dDFR6p/3K92dmI7fD5zbwbfk\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
+    "etag": "\"20a-fjY1NtwxdN0os6yuJ0k+jhjm4Tc\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 522,
-    "path": "../public/_nuxt/-OdgPJjQ.js"
+    "path": "../public/_nuxt/-F4mjCfi.js"
   },
-  "/_nuxt/CDEvSKGG.js": {
+  "/_nuxt/B0Ygmw1P.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"280b-P9Ov3pafG+aXSUDntwyp2YUog3Y\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 10251,
-    "path": "../public/_nuxt/CDEvSKGG.js"
+    "etag": "\"1b37-wdKHItCDDYiM71PLyo3XRdpFTEQ\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 6967,
+    "path": "../public/_nuxt/B0Ygmw1P.js"
+  },
+  "/_nuxt/BjiY0v2B.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"eae-zmzm/1GfmlX4dHOO9+WXOX2qYpI\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 3758,
+    "path": "../public/_nuxt/BjiY0v2B.js"
+  },
+  "/_nuxt/B51IlsMK.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"4590-tlJ7CNr8g+T4VppCeYeE/2S1Vzo\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 17808,
+    "path": "../public/_nuxt/B51IlsMK.js"
   },
   "/_nuxt/CategoryPlaceholder.eYOMFpik.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"32d-93YSsaZubHx+BVP0i94Qa8fGl0g\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 813,
     "path": "../public/_nuxt/CategoryPlaceholder.eYOMFpik.css"
+  },
+  "/_nuxt/BzLmpM0E.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2fa1-dxAIoxfQ3RQxeQhMw1afk7LYe1I\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 12193,
+    "path": "../public/_nuxt/BzLmpM0E.js"
   },
   "/_nuxt/BMaijwks.js": {
     "type": "text/javascript; charset=utf-8",
     "etag": "\"1c1a-4fI03mMJQUi0SqALCTf0dX13AYU\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 7194,
     "path": "../public/_nuxt/BMaijwks.js"
   },
-  "/_nuxt/CfiJKUqW.js": {
+  "/_nuxt/CDEvSKGG.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"e18-3YwlAH8Ew9PDvtlOEHfWafWXNnk\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 3608,
-    "path": "../public/_nuxt/CfiJKUqW.js"
+    "etag": "\"280b-P9Ov3pafG+aXSUDntwyp2YUog3Y\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 10251,
+    "path": "../public/_nuxt/CDEvSKGG.js"
   },
-  "/_nuxt/CG446_iE.js": {
+  "/_nuxt/CeBBdAfS.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"871-qbLtxebvQ/XoN6fkMjobmMtP8LU\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 2161,
-    "path": "../public/_nuxt/CG446_iE.js"
-  },
-  "/_nuxt/CLC5hdTQ.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"1f1-/VsxHyx1MwATMOT6acBFE+2pz04\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "etag": "\"1f1-tCeZKrhvlfrhCBo8qQwhsOKeebU\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 497,
-    "path": "../public/_nuxt/CLC5hdTQ.js"
+    "path": "../public/_nuxt/CeBBdAfS.js"
   },
-  "/_nuxt/ByzoP6RI.js": {
+  "/_nuxt/CiHNJlnO.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"eae-VUCTVZQ+iwXpKnizhHp9IYVz4kU\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 3758,
-    "path": "../public/_nuxt/ByzoP6RI.js"
-  },
-  "/_nuxt/CNSXsc51.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"b84-1Xzf+HHWqvmhBo3vYKeeyG/ZYIQ\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
-    "size": 2948,
-    "path": "../public/_nuxt/CNSXsc51.js"
-  },
-  "/_nuxt/dfeCC0up.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"333e-RBkZZylSyNOF2cWECrC51/+k0X8\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 13118,
-    "path": "../public/_nuxt/dfeCC0up.js"
-  },
-  "/_nuxt/DU39FHwT.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"93b-k8tfAEUgy9MXP3cMZ7su8Pow2s4\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
+    "etag": "\"93b-r+43WorMCwSss8/t6EuWSWhiK1I\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 2363,
-    "path": "../public/_nuxt/DU39FHwT.js"
+    "path": "../public/_nuxt/CiHNJlnO.js"
   },
-  "/_nuxt/Cd0obxkb.js": {
+  "/_nuxt/D661KjO9.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"264b0-LvMblw4YaOJX8CExP9IZKsPVDKQ\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 156848,
-    "path": "../public/_nuxt/Cd0obxkb.js"
-  },
-  "/_nuxt/dut4VxOD.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2b2f-i60opD/VRjWYG44rtuK/yAhIwo0\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
-    "size": 11055,
-    "path": "../public/_nuxt/dut4VxOD.js"
-  },
-  "/_nuxt/error-404.PZoo3qwG.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"97e-zz3n/lgsjKPdajSLQ/GsQY/vV4g\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
-    "size": 2430,
-    "path": "../public/_nuxt/error-404.PZoo3qwG.css"
-  },
-  "/_nuxt/favorites.C8V1nz5v.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"1b8-gTDbC30NDyY/qmxp+f1cv39N/s8\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
-    "size": 440,
-    "path": "../public/_nuxt/favorites.C8V1nz5v.css"
+    "etag": "\"928-xHDfGu+fsgX1ZkhEv1kVpRAsPms\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 2344,
+    "path": "../public/_nuxt/D661KjO9.js"
   },
   "/_nuxt/entry.C2ljOES-.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"1e5e5-BtdRTozmQtOcx2lPqzGpTstGk+o\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "mtime": "2026-08-24T07:36:58.505Z",
     "size": 124389,
     "path": "../public/_nuxt/entry.C2ljOES-.css"
   },
-  "/_nuxt/BHZFwr4c.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2ab-08bNILNaF3YKaWvKUUi8P4RYP78\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 683,
-    "path": "../public/_nuxt/BHZFwr4c.js"
+  "/_nuxt/error-404.PZoo3qwG.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"97e-zz3n/lgsjKPdajSLQ/GsQY/vV4g\"",
+    "mtime": "2026-08-24T07:36:58.515Z",
+    "size": 2430,
+    "path": "../public/_nuxt/error-404.PZoo3qwG.css"
   },
   "/_nuxt/error-500.DtQYwctI.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"773-RGwgyKkQqBOywOqc8m/6LNuNotM\"",
-    "mtime": "2026-08-19T06:26:43.069Z",
+    "mtime": "2026-08-24T07:36:58.515Z",
     "size": 1907,
     "path": "../public/_nuxt/error-500.DtQYwctI.css"
   },
-  "/_nuxt/IC7dTGwJ.js": {
+  "/_nuxt/favorites.C8V1nz5v.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"1b8-gTDbC30NDyY/qmxp+f1cv39N/s8\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 440,
+    "path": "../public/_nuxt/favorites.C8V1nz5v.css"
+  },
+  "/_nuxt/DHkm0SgJ.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"1257-gNWjjl3V2EW5AhY5enQki4wvwmY\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 4695,
-    "path": "../public/_nuxt/IC7dTGwJ.js"
+    "etag": "\"e18-5tIorRnzPzx1W39TXc2vOnjYO7g\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 3608,
+    "path": "../public/_nuxt/DHkm0SgJ.js"
   },
   "/_nuxt/index.BCnNzROL.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"83d-xWNzvlX+uDg/PknAn7CYjdGTwuM\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 2109,
     "path": "../public/_nuxt/index.BCnNzROL.css"
   },
-  "/_nuxt/lAdlDW_G.js": {
+  "/_nuxt/FdAt47FB.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"452e-h+Q/bnMrS8H8ij+ZLzGdNIjD3sk\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 17710,
-    "path": "../public/_nuxt/lAdlDW_G.js"
+    "etag": "\"d90-0tZcMS+7cvApQDMrDP6DO3fk5M4\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 3472,
+    "path": "../public/_nuxt/FdAt47FB.js"
   },
-  "/_nuxt/ProductsSkeleton.59rGRVLo.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"198-h8ywsBZU/0pQyfDHUCb/TINlEUQ\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
-    "size": 408,
-    "path": "../public/_nuxt/ProductsSkeleton.59rGRVLo.css"
+  "/_nuxt/BdGKPBiX.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"766f9-DT0MnXKOXajM9JFXNYRJxM6qPHQ\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 485113,
+    "path": "../public/_nuxt/BdGKPBiX.js"
   },
   "/_nuxt/shop.DOMlCvtC.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"baf-vg0JTMrIjli+7QAEjoAWUN9Fqo0\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 2991,
     "path": "../public/_nuxt/shop.DOMlCvtC.css"
+  },
+  "/_nuxt/ProductsSkeleton.59rGRVLo.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"198-h8ywsBZU/0pQyfDHUCb/TINlEUQ\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 408,
+    "path": "../public/_nuxt/ProductsSkeleton.59rGRVLo.css"
   },
   "/_nuxt/success.DgZnWNZ0.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"fa-xVxZHZJkIkVBF3cxfmQeY8xoQ+8\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 250,
     "path": "../public/_nuxt/success.DgZnWNZ0.css"
+  },
+  "/_nuxt/DZAT_B-6.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"264b0-RCGLvAWkdVTXaTKRrdJdmK8UK5g\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 156848,
+    "path": "../public/_nuxt/DZAT_B-6.js"
+  },
+  "/_nuxt/SOopS69R.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"b86-v/3WLGfwX+U57eFy4vE4rH1hgYI\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 2950,
+    "path": "../public/_nuxt/SOopS69R.js"
+  },
+  "/_nuxt/lupx8YmU.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2ab-c40FWRQFHIvM7ncfKxA6zEve2d0\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 683,
+    "path": "../public/_nuxt/lupx8YmU.js"
   },
   "/_nuxt/_slug_.CO-vOcGI.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"489b-k9xlkey1jLe8eLuiQaoz+20ifJ0\"",
-    "mtime": "2026-08-19T06:26:43.086Z",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 18587,
     "path": "../public/_nuxt/_slug_.CO-vOcGI.css"
   },
-  "/_nuxt/wN1_9Vc5.js": {
+  "/_nuxt/mGf7Coj8.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"d90-ZtHsg4D6+gl6rm1BQUvnB8nD5DI\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 3472,
-    "path": "../public/_nuxt/wN1_9Vc5.js"
+    "etag": "\"333e-8KVvPs5LwVQrV/lV3PjQEYYOOcs\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 13118,
+    "path": "../public/_nuxt/mGf7Coj8.js"
   },
-  "/_nuxt/zXbosK0B.js": {
+  "/_nuxt/xaGzDPz_.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"664-AgXgrko1xixS8uXzERvnvyee54Y\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
+    "etag": "\"1257-UPzjcbbzGw43ppn/sGjoBIW54+0\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
+    "size": 4695,
+    "path": "../public/_nuxt/xaGzDPz_.js"
+  },
+  "/_nuxt/UgQE76Lp.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"664-VP3Id7PILIpBhH1gnFoaQEL+jcI\"",
+    "mtime": "2026-08-24T07:36:58.517Z",
     "size": 1636,
-    "path": "../public/_nuxt/zXbosK0B.js"
+    "path": "../public/_nuxt/UgQE76Lp.js"
   },
-  "/fonts/woff/IRANSansWeb(NoEn).woff": {
-    "type": "font/woff",
-    "etag": "\"6e69-XAl+hsuRAKYxR3ewaw9PzfFgNus\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 28265,
-    "path": "../public/fonts/woff/IRANSansWeb(NoEn).woff"
-  },
-  "/fonts/woff/IRANSansWeb(NoEn)_Bold.woff": {
-    "type": "font/woff",
-    "etag": "\"6ad1-kbwFgxEEcZF10iMhpOd6dQE7+1E\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 27345,
-    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_Bold.woff"
-  },
-  "/fonts/woff/IRANSansWeb(NoEn)_Medium.woff": {
-    "type": "font/woff",
-    "etag": "\"6ac5-p0Mg8R/bSDZyclkU4cwkfYz73O4\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 27333,
-    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_Medium.woff"
-  },
-  "/fonts/woff/IRANSansWeb(NoEn)_Light.woff": {
-    "type": "font/woff",
-    "etag": "\"7389-OBflG3Mfxx6rdiwDWQHsPjNuoaQ\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 29577,
-    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_Light.woff"
-  },
-  "/fonts/woff/IRANSansWeb(NoEn)_UltraLight.woff": {
-    "type": "font/woff",
-    "etag": "\"6fa1-NyrHeZuE+I0+/34onek/wMemDNE\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 28577,
-    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_UltraLight.woff"
-  },
-  "/fonts/woff/IRANSansWeb_Medium.woff": {
-    "type": "font/woff",
-    "etag": "\"8d2d-3HVBVGFvoHdL5yNCyHbzOT6cj5k\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 36141,
-    "path": "../public/fonts/woff/IRANSansWeb_Medium.woff"
-  },
-  "/fonts/woff/IRANSansWeb.woff": {
-    "type": "font/woff",
-    "etag": "\"9649-2lSi02bapmj8/Wqy4HaIrkJd6Z8\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 38473,
-    "path": "../public/fonts/woff/IRANSansWeb.woff"
-  },
-  "/fonts/woff/IRANSansWeb_Bold.woff": {
-    "type": "font/woff",
-    "etag": "\"8f15-roULd7Agg0V3E0mmBD1edU1TjG4\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 36629,
-    "path": "../public/fonts/woff/IRANSansWeb_Bold.woff"
-  },
-  "/fonts/woff/IRANSansWeb_Light.woff": {
-    "type": "font/woff",
-    "etag": "\"9b0d-d3UHZ8Qq1CcruM4RaDWBALs5jdE\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 39693,
-    "path": "../public/fonts/woff/IRANSansWeb_Light.woff"
-  },
-  "/fonts/woff/IRANSansWeb_UltraLight.woff": {
-    "type": "font/woff",
-    "etag": "\"9051-3eCp6yVfzMzEesMINoH8QZzhlYw\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 36945,
-    "path": "../public/fonts/woff/IRANSansWeb_UltraLight.woff"
-  },
-  "/_nuxt/CDmDUc1I.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"76600-LVri5W00R1wHswnmQhCcbJlCWbM\"",
-    "mtime": "2026-08-19T06:26:43.088Z",
-    "size": 484864,
-    "path": "../public/_nuxt/CDmDUc1I.js"
-  },
-  "/people.png": {
-    "type": "image/png",
-    "etag": "\"204489-3Uld+MfKALwixoAkkHmSGaaBGQM\"",
-    "mtime": "2026-07-13T05:23:31.644Z",
-    "size": 2114697,
-    "path": "../public/people.png"
-  },
-  "/fonts/eot/IRANSansWeb(NoEn)_Medium.eot": {
+  "/fonts/eot/IRANSansWeb(NoEn).eot": {
     "type": "application/vnd.ms-fontobject",
-    "etag": "\"62be-CZcp9fZYQ7sCGc++a/b4bbmqQ4o\"",
-    "mtime": "2026-06-29T05:58:15.825Z",
-    "size": 25278,
-    "path": "../public/fonts/eot/IRANSansWeb(NoEn)_Medium.eot"
+    "etag": "\"b1f2-YWZLe0K9YWmTTW4FeCofmd6zdOo\"",
+    "mtime": "2026-06-29T05:58:15.823Z",
+    "size": 45554,
+    "path": "../public/fonts/eot/IRANSansWeb(NoEn).eot"
   },
   "/fonts/eot/IRANSansWeb(NoEn)_Light.eot": {
     "type": "application/vnd.ms-fontobject",
@@ -6220,19 +6147,12 @@ const assets = {
     "size": 45258,
     "path": "../public/fonts/eot/IRANSansWeb(NoEn)_Bold.eot"
   },
-  "/fonts/eot/IRANSansWeb(NoEn).eot": {
+  "/fonts/eot/IRANSansWeb(NoEn)_Medium.eot": {
     "type": "application/vnd.ms-fontobject",
-    "etag": "\"b1f2-YWZLe0K9YWmTTW4FeCofmd6zdOo\"",
-    "mtime": "2026-06-29T05:58:15.823Z",
-    "size": 45554,
-    "path": "../public/fonts/eot/IRANSansWeb(NoEn).eot"
-  },
-  "/fonts/eot/IRANSansWeb_Bold.eot": {
-    "type": "application/vnd.ms-fontobject",
-    "etag": "\"e276-4jsGzFG+IIX8YMiKOezLcT3Xej8\"",
-    "mtime": "2026-06-29T05:58:15.827Z",
-    "size": 57974,
-    "path": "../public/fonts/eot/IRANSansWeb_Bold.eot"
+    "etag": "\"62be-CZcp9fZYQ7sCGc++a/b4bbmqQ4o\"",
+    "mtime": "2026-06-29T05:58:15.825Z",
+    "size": 25278,
+    "path": "../public/fonts/eot/IRANSansWeb(NoEn)_Medium.eot"
   },
   "/fonts/eot/IRANSansWeb.eot": {
     "type": "application/vnd.ms-fontobject",
@@ -6248,12 +6168,33 @@ const assets = {
     "size": 26574,
     "path": "../public/fonts/eot/IRANSansWeb(NoEn)_UltraLight.eot"
   },
-  "/fonts/woff2/IRANSansWeb(NoEn)_Bold.woff2": {
-    "type": "font/woff2",
-    "etag": "\"5974-YRvHCxMZBn1gnCiNHkiaSjWvr10\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 22900,
-    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_Bold.woff2"
+  "/fonts/fanum/.DS_Store": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"1804-LHihCL0LldfNap3xs//c9IZ8jE0\"",
+    "mtime": "2026-06-29T05:58:15.831Z",
+    "size": 6148,
+    "path": "../public/fonts/fanum/.DS_Store"
+  },
+  "/fonts/eot/IRANSansWeb_Bold.eot": {
+    "type": "application/vnd.ms-fontobject",
+    "etag": "\"e276-4jsGzFG+IIX8YMiKOezLcT3Xej8\"",
+    "mtime": "2026-06-29T05:58:15.827Z",
+    "size": 57974,
+    "path": "../public/fonts/eot/IRANSansWeb_Bold.eot"
+  },
+  "/fonts/ttf/IRANSansWeb(NoEn).ttf": {
+    "type": "font/ttf",
+    "etag": "\"b100-2phc+9Fjs+omucMenzmgeLHyMI4\"",
+    "mtime": "2026-06-29T05:58:15.898Z",
+    "size": 45312,
+    "path": "../public/fonts/ttf/IRANSansWeb(NoEn).ttf"
+  },
+  "/people.png": {
+    "type": "image/png",
+    "etag": "\"204489-3Uld+MfKALwixoAkkHmSGaaBGQM\"",
+    "mtime": "2026-07-13T05:23:31.644Z",
+    "size": 2114697,
+    "path": "../public/people.png"
   },
   "/fonts/eot/IRANSansWeb_Light.eot": {
     "type": "application/vnd.ms-fontobject",
@@ -6262,26 +6203,12 @@ const assets = {
     "size": 35458,
     "path": "../public/fonts/eot/IRANSansWeb_Light.eot"
   },
-  "/fonts/woff2/IRANSansWeb(NoEn)_Light.woff2": {
-    "type": "font/woff2",
-    "etag": "\"605c-wA0iXgOrJ5HO6P+LyQdy49iJJzI\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 24668,
-    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_Light.woff2"
-  },
-  "/fonts/woff2/IRANSansWeb(NoEn)_Medium.woff2": {
-    "type": "font/woff2",
-    "etag": "\"57f0-VIlDRWbPAQi6grMYVwdGDbyg0hY\"",
-    "mtime": "2026-06-29T05:58:15.918Z",
-    "size": 22512,
-    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_Medium.woff2"
-  },
-  "/fonts/woff2/IRANSansWeb.woff2": {
-    "type": "font/woff2",
-    "etag": "\"7a58-2bozfR1AquuC5RkG3aoEkiOdKRo\"",
-    "mtime": "2026-06-29T05:58:15.918Z",
-    "size": 31320,
-    "path": "../public/fonts/woff2/IRANSansWeb.woff2"
+  "/fonts/ttf/IRANSansWeb(NoEn)_Bold.ttf": {
+    "type": "font/ttf",
+    "etag": "\"afdc-5+DpuLCHOnbbv+4EclLYSTlj/vU\"",
+    "mtime": "2026-06-29T05:58:15.898Z",
+    "size": 45020,
+    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_Bold.ttf"
   },
   "/fonts/eot/IRANSansWeb_Medium.eot": {
     "type": "application/vnd.ms-fontobject",
@@ -6290,103 +6217,12 @@ const assets = {
     "size": 31983,
     "path": "../public/fonts/eot/IRANSansWeb_Medium.eot"
   },
-  "/fonts/woff2/IRANSansWeb(NoEn)_UltraLight.woff2": {
-    "type": "font/woff2",
-    "etag": "\"5cc4-DHBoXHxh3gUkgm4S0OC4LUEMzrw\"",
-    "mtime": "2026-06-29T05:58:15.918Z",
-    "size": 23748,
-    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_UltraLight.woff2"
-  },
   "/fonts/eot/IRANSansWeb_UltraLight.eot": {
     "type": "application/vnd.ms-fontobject",
     "etag": "\"8114-sXF1JeKdS6B6/DLV9uTS50IzA3M\"",
     "mtime": "2026-06-29T05:58:15.829Z",
     "size": 33044,
     "path": "../public/fonts/eot/IRANSansWeb_UltraLight.eot"
-  },
-  "/fonts/woff2/IRANSansWeb_Bold.woff2": {
-    "type": "font/woff2",
-    "etag": "\"73f8-rfwJG5k8TTmi13FHO5GNf9u5MCs\"",
-    "mtime": "2026-06-29T05:58:15.918Z",
-    "size": 29688,
-    "path": "../public/fonts/woff2/IRANSansWeb_Bold.woff2"
-  },
-  "/fonts/woff2/IRANSansWeb_Medium.woff2": {
-    "type": "font/woff2",
-    "etag": "\"70f4-Z17tGqgAjJcbl0j8civNg0abdZM\"",
-    "mtime": "2026-06-29T05:58:15.918Z",
-    "size": 28916,
-    "path": "../public/fonts/woff2/IRANSansWeb_Medium.woff2"
-  },
-  "/fonts/woff2/IRANSansWeb_Light.woff2": {
-    "type": "font/woff2",
-    "etag": "\"7ea4-NK0676HaiUmsp8CCSMmpYGqpDGk\"",
-    "mtime": "2026-06-29T05:58:15.918Z",
-    "size": 32420,
-    "path": "../public/fonts/woff2/IRANSansWeb_Light.woff2"
-  },
-  "/fonts/woff2/IRANSansWeb_UltraLight.woff2": {
-    "type": "font/woff2",
-    "etag": "\"7490-sm/ZXXz08WciP+9AQHkNtI410Mo\"",
-    "mtime": "2026-06-29T05:58:15.923Z",
-    "size": 29840,
-    "path": "../public/fonts/woff2/IRANSansWeb_UltraLight.woff2"
-  },
-  "/fonts/ttf/IRANSansWeb(NoEn)_Light.ttf": {
-    "type": "font/ttf",
-    "etag": "\"b6e0-ZRRdTmB/uHHff/TQDi2+5+JwwrQ\"",
-    "mtime": "2026-06-29T05:58:15.898Z",
-    "size": 46816,
-    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_Light.ttf"
-  },
-  "/fonts/fanum/.DS_Store": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"1804-LHihCL0LldfNap3xs//c9IZ8jE0\"",
-    "mtime": "2026-06-29T05:58:15.831Z",
-    "size": 6148,
-    "path": "../public/fonts/fanum/.DS_Store"
-  },
-  "/_nuxt/builds/latest.json": {
-    "type": "application/json",
-    "etag": "\"47-uHXhiMbTk8cV9Bwfq6h4cKn0/Cc\"",
-    "mtime": "2026-08-19T06:26:57.689Z",
-    "size": 71,
-    "path": "../public/_nuxt/builds/latest.json"
-  },
-  "/fonts/woff2/IRANSansWeb(NoEn).woff2": {
-    "type": "font/woff2",
-    "etag": "\"5c4c-vXLKH8pqGIEFU45X8gILweR1g1o\"",
-    "mtime": "2026-06-29T05:58:15.913Z",
-    "size": 23628,
-    "path": "../public/fonts/woff2/IRANSansWeb(NoEn).woff2"
-  },
-  "/fonts/ttf/IRANSansWeb(NoEn)_Bold.ttf": {
-    "type": "font/ttf",
-    "etag": "\"afdc-5+DpuLCHOnbbv+4EclLYSTlj/vU\"",
-    "mtime": "2026-06-29T05:58:15.898Z",
-    "size": 45020,
-    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_Bold.ttf"
-  },
-  "/fonts/ttf/IRANSansWeb(NoEn)_Medium.ttf": {
-    "type": "font/ttf",
-    "etag": "\"b31c-KjQ6ysfXs6xmLiRCX9gcSDnCHQw\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 45852,
-    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_Medium.ttf"
-  },
-  "/fonts/ttf/IRANSansWeb(NoEn)_UltraLight.ttf": {
-    "type": "font/ttf",
-    "etag": "\"af1c-l1YpB70R3MQQONhHDLxb6t+Fbm0\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 44828,
-    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_UltraLight.ttf"
-  },
-  "/fonts/ttf/IRANSansWeb_Bold.ttf": {
-    "type": "font/ttf",
-    "etag": "\"e1a0-Lq/W5aB4bQ0JG/ZuuHJmYJCHrqM\"",
-    "mtime": "2026-06-29T05:58:15.903Z",
-    "size": 57760,
-    "path": "../public/fonts/ttf/IRANSansWeb_Bold.ttf"
   },
   "/fonts/ttf/IRANSansWeb.ttf": {
     "type": "font/ttf",
@@ -6395,12 +6231,26 @@ const assets = {
     "size": 58668,
     "path": "../public/fonts/ttf/IRANSansWeb.ttf"
   },
-  "/fonts/ttf/IRANSansWeb(NoEn).ttf": {
+  "/fonts/ttf/IRANSansWeb(NoEn)_Light.ttf": {
     "type": "font/ttf",
-    "etag": "\"b100-2phc+9Fjs+omucMenzmgeLHyMI4\"",
+    "etag": "\"b6e0-ZRRdTmB/uHHff/TQDi2+5+JwwrQ\"",
     "mtime": "2026-06-29T05:58:15.898Z",
-    "size": 45312,
-    "path": "../public/fonts/ttf/IRANSansWeb(NoEn).ttf"
+    "size": 46816,
+    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_Light.ttf"
+  },
+  "/fonts/ttf/IRANSansWeb(NoEn)_Medium.ttf": {
+    "type": "font/ttf",
+    "etag": "\"b31c-KjQ6ysfXs6xmLiRCX9gcSDnCHQw\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 45852,
+    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_Medium.ttf"
+  },
+  "/fonts/ttf/IRANSansWeb_Bold.ttf": {
+    "type": "font/ttf",
+    "etag": "\"e1a0-Lq/W5aB4bQ0JG/ZuuHJmYJCHrqM\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 57760,
+    "path": "../public/fonts/ttf/IRANSansWeb_Bold.ttf"
   },
   "/fonts/ttf/IRANSansWeb_Medium.ttf": {
     "type": "font/ttf",
@@ -6416,19 +6266,26 @@ const assets = {
     "size": 59968,
     "path": "../public/fonts/ttf/IRANSansWeb_Light.ttf"
   },
-  "/fonts/fanum/eot/IRANSans(FaNum)_Medium.eot": {
-    "type": "application/vnd.ms-fontobject",
-    "etag": "\"17700-e6YXhAW+VVUB+3sl43op+K1xHW4\"",
-    "mtime": "2026-06-29T05:58:15.831Z",
-    "size": 96000,
-    "path": "../public/fonts/fanum/eot/IRANSans(FaNum)_Medium.eot"
+  "/fonts/woff/IRANSansWeb(NoEn)_Bold.woff": {
+    "type": "font/woff",
+    "etag": "\"6ad1-kbwFgxEEcZF10iMhpOd6dQE7+1E\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 27345,
+    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_Bold.woff"
   },
-  "/fonts/fanum/eot/IRANSansWeb(FaNum).eot": {
-    "type": "application/vnd.ms-fontobject",
-    "etag": "\"e982-XCTz9qn2b+x6DDwkMDeZahyml6Y\"",
-    "mtime": "2026-06-29T05:58:15.833Z",
-    "size": 59778,
-    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum).eot"
+  "/fonts/ttf/IRANSansWeb(NoEn)_UltraLight.ttf": {
+    "type": "font/ttf",
+    "etag": "\"af1c-l1YpB70R3MQQONhHDLxb6t+Fbm0\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 44828,
+    "path": "../public/fonts/ttf/IRANSansWeb(NoEn)_UltraLight.ttf"
+  },
+  "/fonts/woff/IRANSansWeb(NoEn)_Medium.woff": {
+    "type": "font/woff",
+    "etag": "\"6ac5-p0Mg8R/bSDZyclkU4cwkfYz73O4\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 27333,
+    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_Medium.woff"
   },
   "/fonts/ttf/IRANSansWeb_UltraLight.ttf": {
     "type": "font/ttf",
@@ -6437,19 +6294,138 @@ const assets = {
     "size": 55640,
     "path": "../public/fonts/ttf/IRANSansWeb_UltraLight.ttf"
   },
+  "/fonts/woff/IRANSansWeb(NoEn)_Light.woff": {
+    "type": "font/woff",
+    "etag": "\"7389-OBflG3Mfxx6rdiwDWQHsPjNuoaQ\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 29577,
+    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_Light.woff"
+  },
+  "/fonts/woff/IRANSansWeb(NoEn).woff": {
+    "type": "font/woff",
+    "etag": "\"6e69-XAl+hsuRAKYxR3ewaw9PzfFgNus\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 28265,
+    "path": "../public/fonts/woff/IRANSansWeb(NoEn).woff"
+  },
+  "/fonts/woff/IRANSansWeb_Light.woff": {
+    "type": "font/woff",
+    "etag": "\"9b0d-d3UHZ8Qq1CcruM4RaDWBALs5jdE\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 39693,
+    "path": "../public/fonts/woff/IRANSansWeb_Light.woff"
+  },
+  "/fonts/woff/IRANSansWeb.woff": {
+    "type": "font/woff",
+    "etag": "\"9649-2lSi02bapmj8/Wqy4HaIrkJd6Z8\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 38473,
+    "path": "../public/fonts/woff/IRANSansWeb.woff"
+  },
+  "/fonts/woff/IRANSansWeb(NoEn)_UltraLight.woff": {
+    "type": "font/woff",
+    "etag": "\"6fa1-NyrHeZuE+I0+/34onek/wMemDNE\"",
+    "mtime": "2026-06-29T05:58:15.903Z",
+    "size": 28577,
+    "path": "../public/fonts/woff/IRANSansWeb(NoEn)_UltraLight.woff"
+  },
+  "/fonts/woff/IRANSansWeb_Bold.woff": {
+    "type": "font/woff",
+    "etag": "\"8f15-roULd7Agg0V3E0mmBD1edU1TjG4\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 36629,
+    "path": "../public/fonts/woff/IRANSansWeb_Bold.woff"
+  },
+  "/fonts/woff/IRANSansWeb_Medium.woff": {
+    "type": "font/woff",
+    "etag": "\"8d2d-3HVBVGFvoHdL5yNCyHbzOT6cj5k\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 36141,
+    "path": "../public/fonts/woff/IRANSansWeb_Medium.woff"
+  },
+  "/fonts/woff2/IRANSansWeb(NoEn).woff2": {
+    "type": "font/woff2",
+    "etag": "\"5c4c-vXLKH8pqGIEFU45X8gILweR1g1o\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 23628,
+    "path": "../public/fonts/woff2/IRANSansWeb(NoEn).woff2"
+  },
+  "/fonts/woff/IRANSansWeb_UltraLight.woff": {
+    "type": "font/woff",
+    "etag": "\"9051-3eCp6yVfzMzEesMINoH8QZzhlYw\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 36945,
+    "path": "../public/fonts/woff/IRANSansWeb_UltraLight.woff"
+  },
+  "/fonts/woff2/IRANSansWeb(NoEn)_Bold.woff2": {
+    "type": "font/woff2",
+    "etag": "\"5974-YRvHCxMZBn1gnCiNHkiaSjWvr10\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 22900,
+    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_Bold.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb(NoEn)_Light.woff2": {
+    "type": "font/woff2",
+    "etag": "\"605c-wA0iXgOrJ5HO6P+LyQdy49iJJzI\"",
+    "mtime": "2026-06-29T05:58:15.913Z",
+    "size": 24668,
+    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_Light.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb(NoEn)_Medium.woff2": {
+    "type": "font/woff2",
+    "etag": "\"57f0-VIlDRWbPAQi6grMYVwdGDbyg0hY\"",
+    "mtime": "2026-06-29T05:58:15.918Z",
+    "size": 22512,
+    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_Medium.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb(NoEn)_UltraLight.woff2": {
+    "type": "font/woff2",
+    "etag": "\"5cc4-DHBoXHxh3gUkgm4S0OC4LUEMzrw\"",
+    "mtime": "2026-06-29T05:58:15.918Z",
+    "size": 23748,
+    "path": "../public/fonts/woff2/IRANSansWeb(NoEn)_UltraLight.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb.woff2": {
+    "type": "font/woff2",
+    "etag": "\"7a58-2bozfR1AquuC5RkG3aoEkiOdKRo\"",
+    "mtime": "2026-06-29T05:58:15.918Z",
+    "size": 31320,
+    "path": "../public/fonts/woff2/IRANSansWeb.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb_Bold.woff2": {
+    "type": "font/woff2",
+    "etag": "\"73f8-rfwJG5k8TTmi13FHO5GNf9u5MCs\"",
+    "mtime": "2026-06-29T05:58:15.918Z",
+    "size": 29688,
+    "path": "../public/fonts/woff2/IRANSansWeb_Bold.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb_UltraLight.woff2": {
+    "type": "font/woff2",
+    "etag": "\"7490-sm/ZXXz08WciP+9AQHkNtI410Mo\"",
+    "mtime": "2026-06-29T05:58:15.923Z",
+    "size": 29840,
+    "path": "../public/fonts/woff2/IRANSansWeb_UltraLight.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb_Light.woff2": {
+    "type": "font/woff2",
+    "etag": "\"7ea4-NK0676HaiUmsp8CCSMmpYGqpDGk\"",
+    "mtime": "2026-06-29T05:58:15.918Z",
+    "size": 32420,
+    "path": "../public/fonts/woff2/IRANSansWeb_Light.woff2"
+  },
+  "/fonts/woff2/IRANSansWeb_Medium.woff2": {
+    "type": "font/woff2",
+    "etag": "\"70f4-Z17tGqgAjJcbl0j8civNg0abdZM\"",
+    "mtime": "2026-06-29T05:58:15.918Z",
+    "size": 28916,
+    "path": "../public/fonts/woff2/IRANSansWeb_Medium.woff2"
+  },
   "/fonts/fanum/ttf/IRANSansWeb(FaNum).ttf": {
     "type": "font/ttf",
     "etag": "\"e88c-1V0YfeUY0nOHluX7tsudGacv7Uw\"",
     "mtime": "2026-06-29T05:58:15.839Z",
     "size": 59532,
     "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum).ttf"
-  },
-  "/fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot": {
-    "type": "application/vnd.ms-fontobject",
-    "etag": "\"7cf8-JwJtsvACcblEmhiFc773dE3Et/o\"",
-    "mtime": "2026-06-29T05:58:15.833Z",
-    "size": 31992,
-    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot"
   },
   "/fonts/fanum/ttf/IRANSansWeb(FaNum)_Bold.ttf": {
     "type": "font/ttf",
@@ -6458,33 +6434,12 @@ const assets = {
     "size": 57268,
     "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum)_Bold.ttf"
   },
-  "/fonts/fanum/ttf/IRANSansWeb(FaNum)_UltraLight.ttf": {
+  "/fonts/fanum/ttf/IRANSansWeb(FaNum)_Light.ttf": {
     "type": "font/ttf",
-    "etag": "\"dc20-vgO9Au0GEKLRkodqdaEVdoNv9Wc\"",
+    "etag": "\"eca8-zCnuNUH5N6MVA8Te4DjNnU/CZhU\"",
     "mtime": "2026-06-29T05:58:15.839Z",
-    "size": 56352,
-    "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum)_UltraLight.ttf"
-  },
-  "/fonts/fanum/eot/IRANSansWeb(FaNum)_UltraLight.eot": {
-    "type": "application/vnd.ms-fontobject",
-    "etag": "\"814e-O3m2JqyQrgnmAgVNVMuwMPnXmKs\"",
-    "mtime": "2026-06-29T05:58:15.833Z",
-    "size": 33102,
-    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_UltraLight.eot"
-  },
-  "/fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot": {
-    "type": "application/vnd.ms-fontobject",
-    "etag": "\"8a95-fJlxlRr+Yfft/q0THDQp8GGZcpE\"",
-    "mtime": "2026-06-29T05:58:15.833Z",
-    "size": 35477,
-    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot"
-  },
-  "/fonts/fanum/woff/IRANSansWeb(FaNum).woff": {
-    "type": "font/woff",
-    "etag": "\"9601-MWFaCtEdlO6U/y8W8CxU2+JGdhQ\"",
-    "mtime": "2026-06-29T05:58:15.843Z",
-    "size": 38401,
-    "path": "../public/fonts/fanum/woff/IRANSansWeb(FaNum).woff"
+    "size": 60584,
+    "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum)_Light.ttf"
   },
   "/fonts/fanum/ttf/IRANSansWeb(FaNum)_Medium.ttf": {
     "type": "font/ttf",
@@ -6493,12 +6448,47 @@ const assets = {
     "size": 58192,
     "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum)_Medium.ttf"
   },
-  "/fonts/fanum/eot/IRANSansWeb(FaNum)_Medium.eot": {
+  "/fonts/fanum/ttf/IRANSansWeb(FaNum)_UltraLight.ttf": {
+    "type": "font/ttf",
+    "etag": "\"dc20-vgO9Au0GEKLRkodqdaEVdoNv9Wc\"",
+    "mtime": "2026-06-29T05:58:15.839Z",
+    "size": 56352,
+    "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum)_UltraLight.ttf"
+  },
+  "/fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot": {
     "type": "application/vnd.ms-fontobject",
-    "etag": "\"7d2b-692JMdC8PweerVBRcWdmaFzszVg\"",
+    "etag": "\"8a95-fJlxlRr+Yfft/q0THDQp8GGZcpE\"",
     "mtime": "2026-06-29T05:58:15.833Z",
-    "size": 32043,
-    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_Medium.eot"
+    "size": 35477,
+    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_Light.eot"
+  },
+  "/fonts/fanum/eot/IRANSansWeb(FaNum).eot": {
+    "type": "application/vnd.ms-fontobject",
+    "etag": "\"e982-XCTz9qn2b+x6DDwkMDeZahyml6Y\"",
+    "mtime": "2026-06-29T05:58:15.833Z",
+    "size": 59778,
+    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum).eot"
+  },
+  "/fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot": {
+    "type": "application/vnd.ms-fontobject",
+    "etag": "\"7cf8-JwJtsvACcblEmhiFc773dE3Et/o\"",
+    "mtime": "2026-06-29T05:58:15.833Z",
+    "size": 31992,
+    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_Bold.eot"
+  },
+  "/fonts/fanum/eot/IRANSans(FaNum)_Medium.eot": {
+    "type": "application/vnd.ms-fontobject",
+    "etag": "\"17700-e6YXhAW+VVUB+3sl43op+K1xHW4\"",
+    "mtime": "2026-06-29T05:58:15.831Z",
+    "size": 96000,
+    "path": "../public/fonts/fanum/eot/IRANSans(FaNum)_Medium.eot"
+  },
+  "/fonts/fanum/woff/IRANSansWeb(FaNum).woff": {
+    "type": "font/woff",
+    "etag": "\"9601-MWFaCtEdlO6U/y8W8CxU2+JGdhQ\"",
+    "mtime": "2026-06-29T05:58:15.843Z",
+    "size": 38401,
+    "path": "../public/fonts/fanum/woff/IRANSansWeb(FaNum).woff"
   },
   "/fonts/fanum/woff/IRANSansWeb(FaNum)_Bold.woff": {
     "type": "font/woff",
@@ -6506,6 +6496,20 @@ const assets = {
     "mtime": "2026-06-29T05:58:15.887Z",
     "size": 36069,
     "path": "../public/fonts/fanum/woff/IRANSansWeb(FaNum)_Bold.woff"
+  },
+  "/fonts/fanum/eot/IRANSansWeb(FaNum)_UltraLight.eot": {
+    "type": "application/vnd.ms-fontobject",
+    "etag": "\"814e-O3m2JqyQrgnmAgVNVMuwMPnXmKs\"",
+    "mtime": "2026-06-29T05:58:15.833Z",
+    "size": 33102,
+    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_UltraLight.eot"
+  },
+  "/_nuxt/builds/latest.json": {
+    "type": "application/json",
+    "etag": "\"47-UPxv3Ia9mkxUfiK+uJJHZjGBMhs\"",
+    "mtime": "2026-08-24T07:37:08.631Z",
+    "size": 71,
+    "path": "../public/_nuxt/builds/latest.json"
   },
   "/fonts/fanum/woff/IRANSansWeb(FaNum)_Light.woff": {
     "type": "font/woff",
@@ -6521,19 +6525,19 @@ const assets = {
     "size": 36145,
     "path": "../public/fonts/fanum/woff/IRANSansWeb(FaNum)_Medium.woff"
   },
+  "/fonts/fanum/eot/IRANSansWeb(FaNum)_Medium.eot": {
+    "type": "application/vnd.ms-fontobject",
+    "etag": "\"7d2b-692JMdC8PweerVBRcWdmaFzszVg\"",
+    "mtime": "2026-06-29T05:58:15.833Z",
+    "size": 32043,
+    "path": "../public/fonts/fanum/eot/IRANSansWeb(FaNum)_Medium.eot"
+  },
   "/fonts/fanum/woff/IRANSansWeb(FaNum)_UltraLight.woff": {
     "type": "font/woff",
     "etag": "\"9031-TQtDVvnssq9Fx/vQv1xIopEhbTY\"",
     "mtime": "2026-06-29T05:58:15.894Z",
     "size": 36913,
     "path": "../public/fonts/fanum/woff/IRANSansWeb(FaNum)_UltraLight.woff"
-  },
-  "/fonts/fanum/ttf/IRANSansWeb(FaNum)_Light.ttf": {
-    "type": "font/ttf",
-    "etag": "\"eca8-zCnuNUH5N6MVA8Te4DjNnU/CZhU\"",
-    "mtime": "2026-06-29T05:58:15.839Z",
-    "size": 60584,
-    "path": "../public/fonts/fanum/ttf/IRANSansWeb(FaNum)_Light.ttf"
   },
   "/fonts/fanum/woff2/IRANSansWeb(FaNum)_Bold.woff2": {
     "type": "font/woff2",
@@ -6542,19 +6546,19 @@ const assets = {
     "size": 28856,
     "path": "../public/fonts/fanum/woff2/IRANSansWeb(FaNum)_Bold.woff2"
   },
-  "/fonts/fanum/woff2/IRANSansWeb(FaNum).woff2": {
-    "type": "font/woff2",
-    "etag": "\"7a48-dyLfbKjmckbeEwNOLkpiHmErwxo\"",
-    "mtime": "2026-06-29T05:58:15.894Z",
-    "size": 31304,
-    "path": "../public/fonts/fanum/woff2/IRANSansWeb(FaNum).woff2"
-  },
   "/fonts/fanum/woff2/IRANSansWeb(FaNum)_Light.woff2": {
     "type": "font/woff2",
     "etag": "\"7e58-7GJIMBmZ5qtJjZfXrUhnVtkeGL4\"",
     "mtime": "2026-06-29T05:58:15.894Z",
     "size": 32344,
     "path": "../public/fonts/fanum/woff2/IRANSansWeb(FaNum)_Light.woff2"
+  },
+  "/fonts/fanum/woff2/IRANSansWeb(FaNum).woff2": {
+    "type": "font/woff2",
+    "etag": "\"7a48-dyLfbKjmckbeEwNOLkpiHmErwxo\"",
+    "mtime": "2026-06-29T05:58:15.894Z",
+    "size": 31304,
+    "path": "../public/fonts/fanum/woff2/IRANSansWeb(FaNum).woff2"
   },
   "/fonts/fanum/woff2/IRANSansWeb(FaNum)_Medium.woff2": {
     "type": "font/woff2",
@@ -6570,12 +6574,12 @@ const assets = {
     "size": 30072,
     "path": "../public/fonts/fanum/woff2/IRANSansWeb(FaNum)_UltraLight.woff2"
   },
-  "/_nuxt/builds/meta/c7edc9af-56ab-4e03-9cfd-d8b852ac621a.json": {
+  "/_nuxt/builds/meta/1ab860f6-d1d4-4cbf-bf7b-19921c07632b.json": {
     "type": "application/json",
-    "etag": "\"8b-c2PKofnGqPOvDtI8fdKdTQm+veA\"",
-    "mtime": "2026-08-19T06:26:57.692Z",
+    "etag": "\"8b-zf4VV7Tm9E+GThIgieBrsns9lJ0\"",
+    "mtime": "2026-08-24T07:37:08.633Z",
     "size": 139,
-    "path": "../public/_nuxt/builds/meta/c7edc9af-56ab-4e03-9cfd-d8b852ac621a.json"
+    "path": "../public/_nuxt/builds/meta/1ab860f6-d1d4-4cbf-bf7b-19921c07632b.json"
   }
 };
 

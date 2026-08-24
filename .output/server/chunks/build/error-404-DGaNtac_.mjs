@@ -1,4 +1,4 @@
-import { j as _export_sfc, h as useHead, m as __nuxt_component_0$4 } from './server.mjs';
+import { j as _export_sfc, c as useHead, m as __nuxt_component_0$4 } from './server.mjs';
 import { mergeProps, withCtx, createTextVNode, toDisplayString, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderComponent } from 'vue/server-renderer';
 import '../_/nitro.mjs';

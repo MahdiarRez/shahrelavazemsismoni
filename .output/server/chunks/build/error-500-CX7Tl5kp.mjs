@@ -1,6 +1,6 @@
 import { mergeProps, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrInterpolate } from 'vue/server-renderer';
-import { j as _export_sfc, h as useHead } from './server.mjs';
+import { j as _export_sfc, c as useHead } from './server.mjs';
 import '../_/nitro.mjs';
 import 'graphql-request';
 import 'node:http';

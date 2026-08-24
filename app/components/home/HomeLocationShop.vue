@@ -82,7 +82,7 @@
 <template>
     <section
         id="shop"
-        class="relative py-32 mt-14 bg-white text-dark px-6 rounded-[28px] overflow-hidden"
+        class="relative py-32 mt-14 bg-white text-black px-6 rounded-[28px] overflow-hidden"
     >
         <img
             src="/people.png"
