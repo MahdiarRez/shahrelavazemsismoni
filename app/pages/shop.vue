@@ -1,8 +1,7 @@
 <script setup>
     const route = useRoute();
     const url = useRequestURL();
-    const { name } = useAppConfig().site;
-
+    const name = "شهر لوازم سیسمونی";
     const canonical = computed(() => {
         const base = `${url.origin}${url.pathname}`;
         const params = new URLSearchParams();
