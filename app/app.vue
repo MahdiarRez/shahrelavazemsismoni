@@ -13,7 +13,7 @@
     useHead({
         htmlAttrs: { lang: htmlLang, dir: htmlDir },
         titleTemplate: (chunk) => (chunk ? `${chunk} - ${name}` : name),
-        meta: [{ name: "enamad", content: "9932775" }],
+        meta: [{ name: "enamad", content: "۹۹۳۲۷۷۵" }],
     });
 
     useSeoMeta({
