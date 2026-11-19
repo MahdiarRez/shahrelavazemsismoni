@@ -1,10 +1,13 @@
 <script setup lang="ts">
 interface VerifyResponse {
+	orderId?: number;
 	orderNumber: string;
 	total: string;
 	status: string;
 	paymentMethodTitle: string;
 	date: string;
+	transactionId?: string | null;
+	phone?: string;
 }
 
 const route = useRoute();

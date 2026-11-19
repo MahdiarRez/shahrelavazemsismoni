@@ -1,4 +1,5 @@
 import { push } from "notivue";
+import { toEnglishDigits } from "~~/shared/helpers";
 
 export const useCheckout = () => {
 	const { t } = useI18n();
@@ -6,26 +7,124 @@ export const useCheckout = () => {
 	// Populated on the /payment/success page once WooCommerce confirms payment.
 	const order = useState("order", () => null);
 
-	// "idle" -> ready to check out, "redirecting" -> handing off to WooCommerce.
+	// "idle" -> "submitting" -> "redirecting"
 	const checkoutStatus = ref("idle");
 
-	// Sends the shopper to the native WooCommerce checkout page, which owns
-	// billing, shipping and payment. The cart travels via the server-issued
-	// authorizing URL so nothing sensitive is collected or stored in the SPA.
+	const billing = reactive({
+		first_name: "",
+		last_name: "",
+		phone: "",
+		state: "",
+		city: "",
+		address_1: "",
+		postcode: "",
+	});
+
+	const fieldError = ref(null);
+
 	const handleCheckout = async () => {
+		if (checkoutStatus.value !== "idle") return;
+		fieldError.value = null;
+
+		const cleanFirstName = (billing.first_name || "").trim();
+		const cleanLastName = (billing.last_name || "").trim();
+		const cleanPhone = toEnglishDigits(billing.phone || "").replace(/\D/g, "");
+		const cleanPostcode = toEnglishDigits(billing.postcode || "").replace(/\D/g, "");
+		const cleanAddress = (billing.address_1 || "").trim();
+
+		// Client-side quick checks
+		if (!cleanFirstName || cleanFirstName.length < 2) {
+			fieldError.value = {
+				field: "first_name",
+				message: t("checkout.form.first_name_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+		if (!cleanLastName || cleanLastName.length < 2) {
+			fieldError.value = {
+				field: "last_name",
+				message: t("checkout.form.last_name_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+		if (!/^09\d{9}$/.test(cleanPhone)) {
+			fieldError.value = {
+				field: "phone",
+				message: t("checkout.form.phone_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+		if (!billing.state) {
+			fieldError.value = {
+				field: "state",
+				message: t("checkout.form.state_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+		if (!billing.city) {
+			fieldError.value = {
+				field: "city",
+				message: t("checkout.form.city_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+		if (!cleanAddress || cleanAddress.length < 5) {
+			fieldError.value = {
+				field: "address_1",
+				message: t("checkout.form.address_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+		if (!cleanPostcode || !/^\d{10}$/.test(cleanPostcode)) {
+			fieldError.value = {
+				field: "postcode",
+				message: t("checkout.form.postcode_error"),
+			};
+			return push.error(fieldError.value.message);
+		}
+
 		try {
+			checkoutStatus.value = "submitting";
+
+			const { paymentUrl } = await $fetch("/api/checkout/place-order", {
+				method: "POST",
+				body: {
+					billing: {
+						first_name: cleanFirstName,
+						last_name: cleanLastName,
+						phone: cleanPhone,
+						state: billing.state,
+						city: billing.city,
+						address_1: cleanAddress,
+						postcode: cleanPostcode,
+					},
+				},
+			});
+
+			if (!paymentUrl) throw new Error("Missing payment URL");
+
 			checkoutStatus.value = "redirecting";
-
-			const { checkoutUrl } = await $fetch("/api/checkout/session");
-			if (!checkoutUrl) throw new Error("Missing checkout URL");
-
-			window.location.href = checkoutUrl;
+			window.location.href = paymentUrl;
 		} catch (err) {
-			console.error("Checkout handoff failed", err);
+			console.error("Checkout failed", err);
 			checkoutStatus.value = "idle";
-			push.error(t("checkout.pay.error"));
+
+			if (err?.data?.data?.field) {
+				fieldError.value = {
+					field: err.data.data.field,
+					message: err.data?.message || t("checkout.pay.error"),
+				};
+			}
+
+			push.error(err?.data?.message || t("checkout.pay.error"));
 		}
 	};
 
-	return { order, checkoutStatus, handleCheckout };
+	return {
+		order,
+		checkoutStatus,
+		billing,
+		fieldError,
+		handleCheckout,
+	};
 };

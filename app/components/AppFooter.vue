@@ -35,6 +35,7 @@ const quickLinks = [
 	{ labelKey: "nav.shop", to: localePath("/shop") },
 	{ labelKey: "nav.categories", to: localePath("/categories") },
 	{ labelKey: "nav.favorites", to: localePath("/favorites") },
+	{ labelKey: "nav.tracking", to: localePath("/tracking") },
 ];
 </script>
 

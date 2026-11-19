@@ -1,58 +1,70 @@
-# WordPress / WooCommerce Setup for ZarinPal
+# WordPress / WooCommerce Setup for Headless BitPay.ir
 
-## 1. Install ZarinPal Gateway Plugin
+This document outlines the setup required on WordPress / WooCommerce for the Nuxt-native headless checkout with BitPay.ir.
 
-1. In WordPress admin, go to **Plugins → Add New**
-2. Search for **ZarinPal WooCommerce** (or install from [ZarinPal docs](https://www.zarinpal.com/docs/))
-3. Activate the plugin
+---
 
-## 2. Configure ZarinPal
+## 1. Install Official BitPay Gateway Plugin
 
-WooCommerce → **Settings → Payments → ZarinPal**:
+1. In WordPress admin, go to **Plugins → Add New → Upload Plugin**.
+2. Upload the official BitPay plugin zip (`bitpay-woocommerce-V4.2.0.zip`).
+3. Activate the plugin.
+
+---
+
+## 2. Configure BitPay in WooCommerce
+
+Go to **WooCommerce → Settings → Payments → پرداخت امن بیت پی**:
 
 | Setting | Value |
 |---------|-------|
-| Enable | Yes |
-| Merchant ID | From ZarinPal merchant panel |
-| Sandbox | ON for testing |
-| Title | زرین‌پال |
+| Enable / فعالسازی | Checked (Yes) |
+| Title / عنوان | پرداخت امن بیت پی |
+| Api | Your BitPay.ir merchant API key |
+| Sandbox / حالت آزمایشی | Checked for test transactions; Unchecked for live production |
 
-Note the **payment method ID** (usually `WC_ZPal` or `zarinpal`) — set this as `ZARINPAL_PAYMENT_METHOD` in the Nuxt `.env`.
+---
 
-## 3. Install Nuxt Payment Redirect Plugin
+## 3. Install Companion MU-Plugins
 
-Copy `nuxt-payment-redirect.php` to one of:
+Copy both PHP files in this directory to `wp-content/mu-plugins/` on your WordPress instance (e.g. Liara):
 
-- `wp-content/mu-plugins/nuxt-payment-redirect.php` (auto-loaded), or
-- `wp-content/plugins/nuxt-payment-redirect/nuxt-payment-redirect.php` (activate in Plugins)
+1. **`headless-checkout-api.php`**
+   - Provides the internal `POST /wp-json/headless-checkout/v1/order` endpoint.
+   - Creates the order, applies customer address to billing and shipping, sets shipping to 0, and initiates the BitPay transaction directly.
 
-Set your Nuxt URL in `wp-config.php`:
+2. **`nuxt-payment-redirect.php`**
+   - Rewrites return and failure URLs to redirect customers back to Nuxt (`/payment/success` and `/payment/failed`).
+   - Ensures WooCommerce "Coming Soon" exclusions work correctly.
+
+---
+
+## 4. Configure `wp-config.php`
+
+Add the following constants to your WordPress `wp-config.php`:
 
 ```php
+// The origin of your Nuxt storefront
 define('NUXT_SITE_URL', 'https://your-nuxt-domain.com');
+
+// Shared secret for headless checkout (must match NUXT_HEADLESS_CHECKOUT_SECRET in Nuxt)
+define('HEADLESS_CHECKOUT_SECRET', 'YOUR_NEW_SECURE_SECRET_HERE');
 ```
 
-For local dev:
-
+For local development:
 ```php
 define('NUXT_SITE_URL', 'http://localhost:3000');
 ```
 
-## 4. WooCommerce REST API (read-only)
+---
 
-WooCommerce → **Settings → Advanced → REST API → Add key**:
+## 5. WooCommerce REST API (Read-Only)
 
+Used by Nuxt's `/api/payment/verify` endpoint to verify order status on the payment confirmation screen.
+
+In WordPress admin:
+**WooCommerce → Settings → Advanced → REST API → Add key**:
 - Description: `Nuxt payment verify`
-- User: Admin
 - Permissions: **Read**
 
-Copy the Consumer key and Consumer secret into Nuxt `.env` as `WC_CONSUMER_KEY` and `WC_CONSUMER_SECRET`.
-
-## 5. Verify Payment Method ID
-
-Run this in WP admin or check WooCommerce → Settings → Payments. Common IDs:
-
-- `WC_ZPal`
-- `zarinpal`
-
-Match the ID exactly in `ZARINPAL_PAYMENT_METHOD`.
+Ensure `NUXT_WC_CONSUMER_KEY` and `NUXT_WC_CONSUMER_SECRET` in Nuxt match this API key.

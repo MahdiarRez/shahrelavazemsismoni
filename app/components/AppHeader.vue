@@ -109,6 +109,13 @@ const totalQuantity = computed(() =>
 				{{ $t("nav.favorites") }}
 			</NuxtLink>
 			<NuxtLink
+				aria-label="Order Tracking"
+				exactActiveClass="bg-secondary-600 dark:bg-white text-white dark:text-secondary-600"
+				class="font-normal cursor-pointer px-4 rounded-full hover:bg-secondary-600 hover:dark:bg-white h-12 items-center justify-center hover:text-white hover:dark:text-secondary-600 transition active:scale-95 lg:flex hidden"
+				:to="localePath('/tracking')">
+				{{ $t("nav.tracking") }}
+			</NuxtLink>
+			<NuxtLink
 				aria-label="Categories"
 				exactActiveClass="!bg-black/10 dark:!bg-white/30"
 				class="lg:hidden flex items-center justify-center min-w-12 min-h-12 rounded-full bg-black/5 dark:bg-white/15 hover:bg-black/10 hover:dark:bg-white/20 transition active:scale-95"
@@ -126,6 +133,16 @@ const totalQuantity = computed(() =>
 				<UIcon
 					class="text-[#5f5f5f] dark:text-[#b7b7b7]"
 					name="i-iconamoon-heart-fill"
+					size="26" />
+			</NuxtLink>
+			<NuxtLink
+				aria-label="Order Tracking"
+				exactActiveClass="!bg-black/10 dark:!bg-white/30"
+				class="lg:hidden flex items-center justify-center min-w-12 min-h-12 rounded-full bg-black/5 dark:bg-white/15 hover:bg-black/10 hover:dark:bg-white/20 transition active:scale-95"
+				:to="localePath('/tracking')">
+				<UIcon
+					class="text-[#5f5f5f] dark:text-[#b7b7b7]"
+					name="i-iconamoon-delivery-fast-duotone"
 					size="26" />
 			</NuxtLink>
 			<div
