@@ -255,28 +255,37 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     }
     $description = 'سفارش #' . $order->get_order_number() . ' | ' . implode(' - ', $products) . ' | همراه: ' . $mobile;
 
-    $response = wp_remote_post($send_url, [
-        'timeout'   => 20,
-        'sslverify' => false,
-        'body'      => [
-            'api'         => $api_id,
-            'amount'      => $amount,
-            'redirect'    => $callback_encoded,
-            'name'        => $full_name,
-            'email'       => '-',
-            'description' => $description,
-            'mobileNum'   => $mobile,
-        ],
-    ]);
+    // Match the official BitPay plugin's raw-string curl POST to preserve byte-encoded redirect URL
+    $post_fields = sprintf(
+        'api=%s&amount=%s&redirect=%s&name=%s&email=%s&description=%s&mobileNum=%s',
+        urlencode($api_id),
+        urlencode((string) $amount),
+        $callback_encoded, // Already percent-encoded; must not be re-encoded by http_build_query
+        urlencode($full_name),
+        urlencode('-'),
+        urlencode($description),
+        urlencode($mobile)
+    );
 
-    if (is_wp_error($response)) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $send_url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+
+    $result = curl_exec($ch);
+    $curl_err = curl_error($ch);
+    curl_close($ch);
+
+    if ($result === false || !empty($curl_err)) {
         return new WP_REST_Response([
             'code'    => 'gateway_network_error',
-            'message' => 'خطا در ارتباط با درگاه پرداخت: ' . $response->get_error_message(),
+            'message' => 'خطا در ارتباط با درگاه پرداخت: ' . $curl_err,
         ], 502);
     }
 
-    $result = trim(wp_remote_retrieve_body($response));
+    $result = trim((string) $result);
 
     if (is_numeric($result) && intval($result) > 0) {
         $id_get = $result;
