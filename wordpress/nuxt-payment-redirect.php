@@ -81,6 +81,14 @@ add_action('woocommerce_load_cart_from_session', function () {
 });
 
 /**
+ * Helper to get the Nuxt storefront base URL.
+ */
+function nuxt_redirect_get_base_url() {
+    $nuxt_base = defined('NUXT_SITE_URL') ? NUXT_SITE_URL : 'http://localhost:3000';
+    return rtrim($nuxt_base, '/');
+}
+
+/**
  * Send the shopper back to the Nuxt storefront after a successful payment.
  */
 add_filter('woocommerce_get_return_url', function ($return_url, $order) {
@@ -88,8 +96,13 @@ add_filter('woocommerce_get_return_url', function ($return_url, $order) {
         return $return_url;
     }
 
-    $nuxt_base = defined('NUXT_SITE_URL') ? NUXT_SITE_URL : 'http://localhost:3000';
-    $nuxt_base = rtrim($nuxt_base, '/');
+    // Ensure payment_complete is recorded if returning with success (e.g. status 1 or status 11)
+    if (isset($_GET['wc_status']) && $_GET['wc_status'] === 'success' && $order->needs_payment()) {
+        $trans_id = sanitize_text_field($_GET['trans_id'] ?? $_POST['trans_id'] ?? '');
+        $order->payment_complete($trans_id);
+    }
+
+    $nuxt_base = nuxt_redirect_get_base_url();
 
     return $nuxt_base . '/payment/success'
         . '?order_id=' . $order->get_id()
@@ -104,8 +117,7 @@ add_filter('woocommerce_get_cancel_order_url', function ($cancel_url, $order) {
         return $cancel_url;
     }
 
-    $nuxt_base = defined('NUXT_SITE_URL') ? NUXT_SITE_URL : 'http://localhost:3000';
-    $nuxt_base = rtrim($nuxt_base, '/');
+    $nuxt_base = nuxt_redirect_get_base_url();
 
     return $nuxt_base . '/payment/failed'
         . '?order_id=' . $order->get_id()
@@ -120,18 +132,17 @@ add_filter('woocommerce_get_cancel_order_url', function ($cancel_url, $order) {
  * This filter intercepts that URL and points it to Nuxt.
  */
 add_filter('woocommerce_get_checkout_url', function ($url) {
-    if (empty($_GET['wc_order'])) {
+    if (empty($_GET['wc_order']) && empty($_POST['wc_order'])) {
         return $url;
     }
 
-    $order_id = absint($_GET['wc_order']);
+    $order_id = absint($_GET['wc_order'] ?? $_POST['wc_order'] ?? 0);
     $order    = wc_get_order($order_id);
     if (!$order) {
         return $url;
     }
 
-    $nuxt_base = defined('NUXT_SITE_URL') ? NUXT_SITE_URL : 'http://localhost:3000';
-    $nuxt_base = rtrim($nuxt_base, '/');
+    $nuxt_base = nuxt_redirect_get_base_url();
 
     return $nuxt_base . '/payment/failed'
         . '?order_id=' . $order->get_id()
@@ -159,12 +170,30 @@ add_action('WC_bitpayir2_Return_from_Gateway_Failed', function ($order_id) {
 });
 
 /**
- * Intercept BitPay callback at Priority 5 (BEFORE the BitPay plugin's Priority 10 handler)
+ * Priority 1: Bridge POST data to GET for the BitPay plugin.
+ * BitPay sends callback parameters (id_get, trans_id, cardNum, factorId) via HTTP POST,
+ * but the official WC_bitpayir2 plugin reads exclusively from $_GET['id_get'] and $_GET['trans_id'].
+ * We populate $_GET from $_POST so the official plugin can successfully verify the transaction.
+ */
+add_action('woocommerce_api_wc_bitpayir2', function () {
+    if (empty($_GET['id_get']) && !empty($_POST['id_get'])) {
+        $_GET['id_get'] = sanitize_text_field($_POST['id_get']);
+    }
+    if (empty($_GET['trans_id']) && !empty($_POST['trans_id'])) {
+        $_GET['trans_id'] = sanitize_text_field($_POST['trans_id']);
+    }
+    if (empty($_GET['wc_order']) && !empty($_POST['wc_order'])) {
+        $_GET['wc_order'] = absint($_POST['wc_order']);
+    }
+}, 1);
+
+/**
+ * Priority 5: Intercept BitPay callback BEFORE the BitPay plugin's Priority 10 handler
  * to strictly prevent stale/superseded transactions or cancelled orders from being verified.
  */
 add_action('woocommerce_api_wc_bitpayir2', function () {
-    $order_id = absint($_GET['wc_order'] ?? 0);
-    $id_get   = sanitize_text_field($_GET['id_get'] ?? '');
+    $order_id = absint($_GET['wc_order'] ?? $_POST['wc_order'] ?? 0);
+    $id_get   = sanitize_text_field($_GET['id_get'] ?? $_POST['id_get'] ?? '');
 
     if (!$order_id || empty($id_get)) {
         return;
@@ -182,13 +211,14 @@ add_action('woocommerce_api_wc_bitpayir2', function () {
         return;
     }
 
+    $base_url = nuxt_redirect_get_base_url();
+
     // Reject callbacks for cancelled orders
     if ($status === 'cancelled') {
         $order->add_order_note(sprintf(
             'تلاش برای بازگشت از درگاه روی سفارش لغو شده مسدود شد. شناسه تراکنش: %s',
             $id_get
         ));
-        $base_url = nuxt_redirect_get_base_url();
         wp_redirect(trailingslashit($base_url) . 'payment/failed?order_id=' . $order_id . '&key=' . $order->get_order_key() . '&reason=order_cancelled');
         exit;
     }
@@ -201,7 +231,6 @@ add_action('woocommerce_api_wc_bitpayir2', function () {
             $id_get,
             $active_id_get
         ));
-        $base_url = nuxt_redirect_get_base_url();
         wp_redirect(trailingslashit($base_url) . 'payment/failed?order_id=' . $order_id . '&key=' . $order->get_order_key() . '&reason=stale_token');
         exit;
     }
