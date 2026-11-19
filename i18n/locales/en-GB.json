@@ -112,8 +112,9 @@
             "email": "Email",
             "phone": "Phone",
             "city": "City",
-            "postcode": "Postal code (optional)",
-            "address": "Address",
+            "postcode": "Postal Code (10 digits)",
+            "postcode_placeholder": "10 digits (e.g. 1234567890)",
+            "address": "Street Address",
             "state": "Province / State",
             "select_province": "Select province",
             "select_city": "Select city",
@@ -125,7 +126,9 @@
             "state_error": "Please select a province",
             "city_error": "Please select a city",
             "address_error": "Full address is required (at least 5 characters)",
-            "postcode_error": "Postal code must be 10 digits"
+            "postcode_error": "Postal code must be exactly 10 digits",
+            "recipient_section": "Recipient Details",
+            "delivery_section": "Delivery Address"
         },
         "pay": {
             "description": "Paying a total of {total} for {items} items",

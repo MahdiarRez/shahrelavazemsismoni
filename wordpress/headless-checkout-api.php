@@ -47,6 +47,15 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     $address_1  = sanitize_text_field(trim($billing['address_1'] ?? ''));
     $postcode   = sanitize_text_field(trim($billing['postcode'] ?? ''));
 
+    // Normalize Persian/Arabic digits
+    $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    $arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    $english = ['0','1','2','3','4','5','6','7','8','9'];
+    $phone    = str_replace($persian, $english, $phone);
+    $phone    = str_replace($arabic, $english, $phone);
+    $postcode = str_replace($persian, $english, $postcode);
+    $postcode = str_replace($arabic, $english, $postcode);
+
     if (mb_strlen($first_name) < 2) {
         return new WP_REST_Response(['code' => 'invalid_field', 'message' => 'نام معتبر نیست', 'field' => 'first_name'], 400);
     }
@@ -65,7 +74,7 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     if (mb_strlen($address_1) < 5) {
         return new WP_REST_Response(['code' => 'invalid_field', 'message' => 'آدرس کامل الزامی است', 'field' => 'address_1'], 400);
     }
-    if (!empty($postcode) && !preg_match('/^\d{10}$/', $postcode)) {
+    if (empty($postcode) || !preg_match('/^\d{10}$/', $postcode)) {
         return new WP_REST_Response(['code' => 'invalid_field', 'message' => 'کد پستی باید ۱۰ رقم باشد', 'field' => 'postcode'], 400);
     }
 

@@ -1,4 +1,5 @@
 import { push } from "notivue";
+import { toEnglishDigits } from "~~/shared/helpers";
 
 export const useCheckout = () => {
 	const { t } = useI18n();
@@ -25,22 +26,28 @@ export const useCheckout = () => {
 		if (checkoutStatus.value !== "idle") return;
 		fieldError.value = null;
 
+		const cleanFirstName = (billing.first_name || "").trim();
+		const cleanLastName = (billing.last_name || "").trim();
+		const cleanPhone = toEnglishDigits(billing.phone || "").replace(/\D/g, "");
+		const cleanPostcode = toEnglishDigits(billing.postcode || "").replace(/\D/g, "");
+		const cleanAddress = (billing.address_1 || "").trim();
+
 		// Client-side quick checks
-		if (!billing.first_name || billing.first_name.trim().length < 2) {
+		if (!cleanFirstName || cleanFirstName.length < 2) {
 			fieldError.value = {
 				field: "first_name",
 				message: t("checkout.form.first_name_error"),
 			};
 			return push.error(fieldError.value.message);
 		}
-		if (!billing.last_name || billing.last_name.trim().length < 2) {
+		if (!cleanLastName || cleanLastName.length < 2) {
 			fieldError.value = {
 				field: "last_name",
 				message: t("checkout.form.last_name_error"),
 			};
 			return push.error(fieldError.value.message);
 		}
-		if (!/^09\d{9}$/.test(billing.phone)) {
+		if (!/^09\d{9}$/.test(cleanPhone)) {
 			fieldError.value = {
 				field: "phone",
 				message: t("checkout.form.phone_error"),
@@ -61,14 +68,14 @@ export const useCheckout = () => {
 			};
 			return push.error(fieldError.value.message);
 		}
-		if (!billing.address_1 || billing.address_1.trim().length < 5) {
+		if (!cleanAddress || cleanAddress.length < 5) {
 			fieldError.value = {
 				field: "address_1",
 				message: t("checkout.form.address_error"),
 			};
 			return push.error(fieldError.value.message);
 		}
-		if (billing.postcode && !/^\d{10}$/.test(billing.postcode)) {
+		if (!cleanPostcode || !/^\d{10}$/.test(cleanPostcode)) {
 			fieldError.value = {
 				field: "postcode",
 				message: t("checkout.form.postcode_error"),
@@ -81,7 +88,17 @@ export const useCheckout = () => {
 
 			const { paymentUrl } = await $fetch("/api/checkout/place-order", {
 				method: "POST",
-				body: { billing },
+				body: {
+					billing: {
+						first_name: cleanFirstName,
+						last_name: cleanLastName,
+						phone: cleanPhone,
+						state: billing.state,
+						city: billing.city,
+						address_1: cleanAddress,
+						postcode: cleanPostcode,
+					},
+				},
 			});
 
 			if (!paymentUrl) throw new Error("Missing payment URL");

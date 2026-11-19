@@ -69,9 +69,7 @@ async function handleTrack() {
 		}
 	} catch (err: any) {
 		const msg =
-			err?.data?.message ||
-			err?.message ||
-			t("tracking.error_not_found");
+			err?.data?.message || err?.message || t("tracking.error_not_found");
 		push.error(msg);
 	} finally {
 		isLoading.value = false;
@@ -140,7 +138,9 @@ useSeoMeta({
 			<div class="text-center mb-8">
 				<div
 					class="inline-flex items-center justify-center p-3 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/20 text-[#23a26d] dark:text-[#40d195] mb-3">
-					<UIcon name="i-iconamoon-delivery-fast-duotone" size="36" />
+					<UIcon
+						name="i-iconamoon-delivery-fast-duotone"
+						size="36" />
 				</div>
 				<h1 class="text-2xl sm:text-3xl font-bold tracking-tight">
 					{{ $t("tracking.title") }}
@@ -153,8 +153,33 @@ useSeoMeta({
 			<!-- Search Form Card -->
 			<div
 				class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-neutral-200/80 dark:border-neutral-800 shadow-sm mb-8">
-				<form @submit.prevent="handleTrack" class="space-y-4">
+				<form
+					@submit.prevent="handleTrack"
+					class="space-y-4">
 					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+						<div>
+							<label
+								for="phone"
+								class="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+								{{ $t("tracking.phone_label") }}
+								<span class="text-red-500">*</span>
+							</label>
+							<div class="relative">
+								<input
+									id="phone"
+									v-model="phone"
+									type="tel"
+									inputmode="tel"
+									required
+									placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+									dir="ltr"
+									class="w-full h-11 px-3.5 pl-10 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-300/80 dark:border-neutral-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#23a26d] dark:focus:ring-[#40d195] transition" />
+								<UIcon
+									name="i-iconamoon-phone-duotone"
+									class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
+									size="20" />
+							</div>
+						</div>
 						<!-- Order ID -->
 						<div>
 							<label
@@ -181,29 +206,6 @@ useSeoMeta({
 						</div>
 
 						<!-- Phone Number -->
-						<div>
-							<label
-								for="phone"
-								class="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
-								{{ $t("tracking.phone_label") }}
-								<span class="text-red-500">*</span>
-							</label>
-							<div class="relative">
-								<input
-									id="phone"
-									v-model="phone"
-									type="tel"
-									inputmode="tel"
-									required
-									placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-									dir="ltr"
-									class="w-full h-11 px-3.5 pl-10 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-300/80 dark:border-neutral-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#23a26d] dark:focus:ring-[#40d195] transition" />
-								<UIcon
-									name="i-iconamoon-phone-duotone"
-									class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
-									size="20" />
-							</div>
-						</div>
 					</div>
 
 					<button
@@ -252,9 +254,9 @@ useSeoMeta({
 									orderData.status === 'completed'
 										? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
 										: orderData.status === 'cancelled' ||
-											  orderData.status === 'failed'
-											? 'bg-red-500/15 text-red-600 dark:text-red-400'
-											: 'bg-blue-500/15 text-blue-600 dark:text-blue-400',
+										  orderData.status === 'failed'
+										? 'bg-red-500/15 text-red-600 dark:text-red-400'
+										: 'bg-blue-500/15 text-blue-600 dark:text-blue-400',
 								]">
 								{{ orderData.statusText }}
 							</span>
@@ -269,12 +271,13 @@ useSeoMeta({
 					<!-- Total Price -->
 					<div class="text-left">
 						<span
-							class="block text-xs text-neutral-500 dark:text-neutral-400">
+							class="block text-xs text-neutral-500 dark:text-neutral-400 text-right">
 							{{ $t("tracking.total_amount") }}
 						</span>
 						<span
 							class="text-lg font-bold text-neutral-900 dark:text-white">
 							{{ convertMinPriceRangeToToman(orderData.total) }}
+							تومان
 						</span>
 					</div>
 				</div>
@@ -310,7 +313,11 @@ useSeoMeta({
 							<div
 								class="h-full bg-[#23a26d] dark:bg-[#40d195] transition-all duration-500"
 								:style="{
-									width: `${((orderData.currentStep - 1) / (steps.length - 1)) * 100}%`,
+									width: `${
+										((orderData.currentStep - 1) /
+											(steps.length - 1)) *
+										100
+									}%`,
 								}" />
 						</div>
 
@@ -328,7 +335,9 @@ useSeoMeta({
 											? 'bg-[#23a26d] text-white dark:bg-[#40d195] dark:text-black font-bold'
 											: 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 border border-neutral-300/60 dark:border-neutral-700',
 									]">
-									<UIcon :name="s.icon" size="20" />
+									<UIcon
+										:name="s.icon"
+										size="20" />
 								</div>
 								<span
 									:class="[
@@ -352,7 +361,8 @@ useSeoMeta({
 				<div
 					v-if="orderData.postTrackingNumber"
 					class="p-4 sm:p-5 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 space-y-3">
-					<div class="flex items-center justify-between flex-wrap gap-2">
+					<div
+						class="flex items-center justify-between flex-wrap gap-2">
 						<div class="flex items-center gap-2">
 							<UIcon
 								name="i-iconamoon-delivery-fill"
@@ -369,9 +379,9 @@ useSeoMeta({
 					</div>
 
 					<div
-						class="flex items-center justify-between bg-white dark:bg-neutral-850 p-3 rounded-xl border border-neutral-200/80 dark:border-neutral-700 gap-3">
+						class="flex flex-col sm:flex-row items-center justify-between bg-white dark:bg-neutral-850 p-3 rounded-xl border border-neutral-200/80 dark:border-neutral-700 gap-3">
 						<span
-							class="font-mono text-base sm:text-lg font-bold tracking-wider select-all text-neutral-900 dark:text-white"
+							class="font-mono text-sm sm:text-lg font-bold tracking-wider select-all text-neutral-900 dark:text-white"
 							dir="ltr">
 							{{ orderData.postTrackingNumber }}
 						</span>
@@ -403,7 +413,9 @@ useSeoMeta({
 							target="_blank"
 							rel="noopener noreferrer"
 							class="inline-flex items-center gap-1.5 text-xs text-[#23a26d] dark:text-[#40d195] hover:underline font-medium">
-							<span>{{ $t("tracking.open_in_post_portal") }}</span>
+							<span>{{
+								$t("tracking.open_in_post_portal")
+							}}</span>
 							<UIcon
 								name="i-iconamoon-link-external-duotone"
 								size="16" />
@@ -431,9 +443,11 @@ useSeoMeta({
 							<span class="text-neutral-400"
 								>{{ $t("tracking.phone_label") }}:
 							</span>
-							<span class="font-medium" dir="ltr">{{
-								orderData.customer.phone
-							}}</span>
+							<span
+								class="font-medium"
+								dir="ltr"
+								>{{ orderData.customer.phone }}</span
+							>
 						</div>
 						<div class="sm:col-span-2">
 							<span class="text-neutral-400"
@@ -474,11 +488,12 @@ useSeoMeta({
 						</span>
 					</h3>
 
-					<div class="divide-y divide-neutral-200/80 dark:divide-neutral-800">
+					<div
+						class="divide-y divide-neutral-200/80 dark:divide-neutral-800 gap-2">
 						<div
 							v-for="item in orderData.items"
 							:key="item.id"
-							class="py-3 flex items-center justify-between gap-3">
+							class="py-3 flex items-center justify-between gap-3 bg-primary/10 rounded-2xl px-2.5 sm:px-5">
 							<div class="flex items-center gap-3">
 								<img
 									v-if="item.image"
@@ -510,8 +525,10 @@ useSeoMeta({
 								</div>
 							</div>
 
-							<div class="text-left font-semibold text-xs sm:text-sm">
+							<div
+								class="text-left font-semibold text-xs sm:text-sm">
 								{{ convertMinPriceRangeToToman(item.total) }}
+								تومان
 							</div>
 						</div>
 					</div>

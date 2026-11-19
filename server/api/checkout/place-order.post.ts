@@ -1,16 +1,23 @@
 // server/api/checkout/place-order.post.ts
-import { createError } from "h3";
+import { createError, defineEventHandler, readBody } from "h3";
 import { z } from "zod";
 import { getWooSessionId } from "~~/server/utils/wcSession";
+import { toEnglishDigits } from "~~/shared/helpers";
 
 const billingSchema = z.object({
   first_name: z.string().trim().min(2, "نام باید حداقل ۲ حرف باشد"),
   last_name: z.string().trim().min(2, "نام خانوادگی باید حداقل ۲ حرف باشد"),
-  phone: z.string().regex(/^09\d{9}$/, "شماره همراه باید ۱۱ رقم و با ۰۹ شروع شود"),
+  phone: z
+    .string()
+    .transform((val) => toEnglishDigits(val).replace(/\D/g, ""))
+    .pipe(z.string().regex(/^09\d{9}$/, "شماره همراه باید ۱۱ رقم و با ۰۹ شروع شود")),
   state: z.string().trim().min(1, "انتخاب استان الزامی است"),
   city: z.string().trim().min(1, "انتخاب شهر الزامی است"),
-  address_1: z.string().trim().min(5, "آدرس کامل الزامی است"),
-  postcode: z.string().regex(/^\d{10}$/, "کد پستی باید ۱۰ رقم باشد").optional().or(z.literal("")),
+  address_1: z.string().trim().min(5, "آدرس کامل الزامی است (حداقل ۵ حرف)"),
+  postcode: z
+    .string()
+    .transform((val) => toEnglishDigits(val).replace(/\D/g, ""))
+    .pipe(z.string().regex(/^\d{10}$/, "کد پستی باید ۱۰ رقم باشد")),
 });
 
 interface WPOrderResponse {
