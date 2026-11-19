@@ -111,3 +111,101 @@ add_filter('woocommerce_get_cancel_order_url', function ($cancel_url, $order) {
         . '?order_id=' . $order->get_id()
         . '&key=' . $order->get_order_key();
 }, 10, 2);
+
+/**
+ * Redirect payment failures/cancellations to the Nuxt storefront
+ * instead of the native WooCommerce checkout page.
+ *
+ * The BitPay plugin calls wp_redirect(get_checkout_url()) on failure/cancel.
+ * This filter intercepts that URL and points it to Nuxt.
+ */
+add_filter('woocommerce_get_checkout_url', function ($url) {
+    if (empty($_GET['wc_order'])) {
+        return $url;
+    }
+
+    $order_id = absint($_GET['wc_order']);
+    $order    = wc_get_order($order_id);
+    if (!$order) {
+        return $url;
+    }
+
+    $nuxt_base = defined('NUXT_SITE_URL') ? NUXT_SITE_URL : 'http://localhost:3000';
+    $nuxt_base = rtrim($nuxt_base, '/');
+
+    return $nuxt_base . '/payment/failed'
+        . '?order_id=' . $order->get_id()
+        . '&key=' . $order->get_order_key();
+});
+
+/**
+ * Flag order on cancellation or failure so any subsequent retry generates
+ * a fresh BitPay transaction token instead of reusing a failed/cancelled one.
+ */
+add_action('WC_bitpayir2_Return_from_Gateway_Cancelled', function ($order_id) {
+    $order = wc_get_order($order_id);
+    if ($order) {
+        $order->update_meta_data('_bitpay_failed', '1');
+        $order->save();
+    }
+});
+
+add_action('WC_bitpayir2_Return_from_Gateway_Failed', function ($order_id) {
+    $order = wc_get_order($order_id);
+    if ($order) {
+        $order->update_meta_data('_bitpay_failed', '1');
+        $order->save();
+    }
+});
+
+/**
+ * Intercept BitPay callback at Priority 5 (BEFORE the BitPay plugin's Priority 10 handler)
+ * to strictly prevent stale/superseded transactions or cancelled orders from being verified.
+ */
+add_action('woocommerce_api_wc_bitpayir2', function () {
+    $order_id = absint($_GET['wc_order'] ?? 0);
+    $id_get   = sanitize_text_field($_GET['id_get'] ?? '');
+
+    if (!$order_id || empty($id_get)) {
+        return;
+    }
+
+    $order = wc_get_order($order_id);
+    if (!$order) {
+        return;
+    }
+
+    $status = $order->get_status();
+
+    // If order is already completed or processing, let the default handler redirect cleanly.
+    if ($status === 'completed' || $status === 'processing') {
+        return;
+    }
+
+    // Reject callbacks for cancelled orders
+    if ($status === 'cancelled') {
+        $order->add_order_note(sprintf(
+            'تلاش برای بازگشت از درگاه روی سفارش لغو شده مسدود شد. شناسه تراکنش: %s',
+            $id_get
+        ));
+        $base_url = nuxt_redirect_get_base_url();
+        wp_redirect(trailingslashit($base_url) . 'payment/failed?order_id=' . $order_id . '&key=' . $order->get_order_key() . '&reason=order_cancelled');
+        exit;
+    }
+
+    // Stale Token Guard: Ensure the incoming id_get matches the active transaction for this order!
+    $active_id_get = $order->get_meta('_bitpay_id_get');
+    if (!empty($active_id_get) && $id_get !== $active_id_get) {
+        $order->add_order_note(sprintf(
+            'تلاش برای بازگشت از درگاه با شناسه تراکنش منقضی یا نامعتبر مسدود شد. شناسه دریافتی: %s | شناسه فعال سفارش: %s',
+            $id_get,
+            $active_id_get
+        ));
+        $base_url = nuxt_redirect_get_base_url();
+        wp_redirect(trailingslashit($base_url) . 'payment/failed?order_id=' . $order_id . '&key=' . $order->get_order_key() . '&reason=stale_token');
+        exit;
+    }
+}, 5);
+
+
+

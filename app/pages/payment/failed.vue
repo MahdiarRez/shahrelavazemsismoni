@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const route = useRoute();
-const config = useRuntimeConfig();
-const { cart } = useCart();
 const { t } = useI18n();
 
 const orderIdRaw = route.query.order_id;
@@ -17,38 +15,7 @@ const hasRetryInfo = computed(
 		keyRaw.length > 0,
 );
 
-const retryUrl = computed(() => {
-	if (!hasRetryInfo.value) return null;
-	const wpBase = (config.public.wpBaseUrl || "").replace(/\/$/, "");
-	if (!wpBase) {
-		console.error("[payment/failed] NUXT_PUBLIC_WP_BASE_URL is not set");
-		return null;
-	}
-	return (
-		`${wpBase}/checkout/order-pay/${orderIdRaw}/` +
-		`?pay_for_order=true&key=${encodeURIComponent(keyRaw as string)}`
-	);
-});
-
-// The WooCommerce cart was already consumed into an order at checkout time,
-// regardless of whether the payment itself succeeded. Keep the local UI cart
-// in sync with that reality so a shopper who starts a fresh purchase doesn't
-// see stale items re-appear (see: the cart-accumulation bug fixed earlier).
-// Skipped entirely if we can't confirm this landing is tied to a real order.
-let cartCleared = false;
-async function clearServerCart() {
-	if (cartCleared || !process.client || !hasRetryInfo.value) return;
-	cartCleared = true;
-	try {
-		await $fetch("/api/cart/empty", { method: "POST" });
-	} catch (err) {
-		console.error("[payment/failed] failed to empty server cart:", err);
-	}
-	cart.value = [];
-	localStorage.setItem("cart", JSON.stringify(cart.value));
-}
-
-onMounted(clearServerCart);
+const retryUrl = computed(() => (hasRetryInfo.value ? "/" : null));
 
 const headingRef = ref<HTMLHeadingElement | null>(null);
 onMounted(() => {
@@ -89,12 +56,12 @@ useSeoMeta({
 			</p>
 
 			<div class="flex flex-col items-center gap-3 mt-4">
-				<a
+				<NuxtLink
 					v-if="retryUrl"
-					:href="retryUrl"
+					:to="retryUrl"
 					class="inline-block px-6 py-2.5 rounded-full bg-[#23a26d] dark:bg-[#40d195] text-white dark:text-black text-sm font-medium">
 					{{ $t("checkout.pay.retry") }}
-				</a>
+				</NuxtLink>
 				<p
 					v-else
 					class="text-xs text-neutral-400 dark:text-neutral-500">

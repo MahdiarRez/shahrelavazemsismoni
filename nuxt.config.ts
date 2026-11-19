@@ -80,11 +80,11 @@ export default defineNuxtConfig({
         gqlHost: "",
         wcConsumerKey: "",
         wcConsumerSecret: "",
+        headlessCheckoutSecret: "",
 
         public: {
             wpBaseUrl: "",
             siteUrl: "",
-            zarinpalPaymentMethod: "WC_ZPal",
             version: pkg.version,
         },
     },
