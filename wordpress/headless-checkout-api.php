@@ -79,6 +79,19 @@ function headless_checkout_create_order(WP_REST_Request $request) {
         ], 409);
     }
 
+    // In WordPress REST API requests, WooCommerce does not initialize session and cart by default.
+    if (is_null(WC()->session)) {
+        $session_class = apply_filters('woocommerce_session_handler', 'WC_Session_Handler');
+        WC()->session  = new $session_class();
+        WC()->session->init();
+    }
+    if (is_null(WC()->customer)) {
+        WC()->customer = new WC_Customer(0, true);
+    }
+    if (is_null(WC()->cart)) {
+        WC()->cart = new WC_Cart();
+    }
+
     foreach ($session_data as $key => $value) {
         WC()->session->set($key, maybe_unserialize($value));
     }
