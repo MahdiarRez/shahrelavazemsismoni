@@ -12,12 +12,16 @@ const EN_TO_FA = new Map([
 	["9", "۹"],
 ]);
 
-function toEnglishDigits(persian) {
-	return persian.replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 1776));
+export function toEnglishDigits(persian) {
+	if (persian === null || persian === undefined) return "";
+	return String(persian)
+		.replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 1776))
+		.replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 1632));
 }
 
 export function toPersianDigits(english) {
-	return english.replace(/\d/g, (d) => EN_TO_FA.get(d) ?? d);
+	if (english === null || english === undefined) return "";
+	return String(english).replace(/\d/g, (d) => EN_TO_FA.get(d) ?? d);
 }
 
 /**

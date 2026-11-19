@@ -1,10 +1,11 @@
 // server/api/orders/track.post.ts
 import { createError, defineEventHandler, readBody } from "h3";
 import { z } from "zod";
+import { toEnglishDigits } from "~~/shared/helpers";
 
 const trackSchema = z.object({
 	orderId: z.union([z.string(), z.number()]).transform((val) => {
-		const clean = String(val).replace(/\D/g, "");
+		const clean = toEnglishDigits(val).replace(/\D/g, "");
 		const num = Number(clean);
 		if (!Number.isInteger(num) || num <= 0) {
 			throw new Error("شماره سفارش نامعتبر است");
@@ -12,13 +13,20 @@ const trackSchema = z.object({
 		return num;
 	}),
 	phone: z
-		.string()
-		.trim()
-		.regex(/^(\+?98|0)?9\d{9}$/, "شماره همراه باید ۱۱ رقم باشد (مثال: ۰۹۱۲۳۴۵۶۷۸۹)"),
+		.union([z.string(), z.number()])
+		.transform((val) => toEnglishDigits(val).trim())
+		.pipe(
+			z
+				.string()
+				.regex(
+					/^(\+?98|0)?9\d{9}$/,
+					"شماره همراه باید ۱۱ رقم باشد (مثال: ۰۹۱۲۳۴۵۶۷۸۹)",
+				),
+		),
 });
 
 function normalizeIranianPhone(raw: string): string {
-	const digits = (raw || "").replace(/\D/g, "");
+	const digits = toEnglishDigits(raw || "").replace(/\D/g, "");
 	if (digits.startsWith("0098")) return digits.slice(4);
 	if (digits.startsWith("98")) return digits.slice(2);
 	if (digits.startsWith("0")) return digits.slice(1);

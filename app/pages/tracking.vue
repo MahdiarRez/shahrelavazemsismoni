@@ -2,6 +2,7 @@
 import { push } from "notivue";
 import {
 	toPersianDigits,
+	toEnglishDigits,
 	formatJalaliDate,
 	convertMinPriceRangeToToman,
 } from "~~/shared/helpers";
@@ -17,9 +18,18 @@ const isLoading = ref(false);
 const orderData = ref<any>(null);
 const copiedCode = ref(false);
 
+const cleanOrderId = computed(() =>
+	toEnglishDigits(orderId.value).replace(/\D/g, ""),
+);
+const cleanPhone = computed(() =>
+	toEnglishDigits(phone.value).replace(/\s+/g, ""),
+);
+
 const isFormValid = computed(() => {
-	const cleanId = orderId.value.replace(/\D/g, "");
-	return cleanId.length > 0 && /^(\+?98|0)?9\d{9}$/.test(phone.value.trim());
+	return (
+		cleanOrderId.value.length > 0 &&
+		/^(\+?98|0)?9\d{9}$/.test(cleanPhone.value)
+	);
 });
 
 async function handleTrack() {
@@ -28,12 +38,15 @@ async function handleTrack() {
 	isLoading.value = true;
 	orderData.value = null;
 
+	const idToSend = cleanOrderId.value;
+	const phoneToSend = cleanPhone.value;
+
 	try {
 		const res = await $fetch<any>("/api/orders/track", {
 			method: "POST",
 			body: {
-				orderId: orderId.value.trim(),
-				phone: phone.value.trim(),
+				orderId: idToSend,
+				phone: phoneToSend,
 			},
 		});
 
@@ -43,10 +56,17 @@ async function handleTrack() {
 		router.replace({
 			query: {
 				...route.query,
-				order_id: orderId.value.trim(),
-				phone: phone.value.trim(),
+				order_id: idToSend,
+				phone: phoneToSend,
 			},
 		});
+
+		// Smooth scroll down to result card
+		await nextTick();
+		const resultEl = document.getElementById("tracking-result");
+		if (resultEl) {
+			resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
 	} catch (err: any) {
 		const msg =
 			err?.data?.message ||
@@ -210,6 +230,7 @@ useSeoMeta({
 			<!-- Tracking Result -->
 			<div
 				v-if="orderData"
+				id="tracking-result"
 				class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-neutral-200/80 dark:border-neutral-800 shadow-sm space-y-6 animate-fade-in">
 				<!-- Order Header & Status Badge -->
 				<div
