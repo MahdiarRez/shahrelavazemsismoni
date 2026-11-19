@@ -53,11 +53,34 @@ const cartTotal = computed(() => {
 		? convertMinPriceRangeToToman(totalRial.toString())
 		: "۰";
 });
+
+const toEnglishDigits = (value) =>
+	String(value ?? "").replace(/[۰-۹٠-٩]/g, (digit) => {
+		const code = digit.charCodeAt(0);
+
+		return String.fromCharCode(
+			code >= 0x06f0 ? code - 0x06f0 + 48 : code - 0x0660 + 48,
+		);
+	});
+
+const phoneInput = computed({
+	get: () => billing.phone,
+	set: (value) => {
+		billing.phone = toEnglishDigits(value);
+	},
+});
+
+const postcodeInput = computed({
+	get: () => billing.postcode,
+	set: (value) => {
+		billing.postcode = toEnglishDigits(value);
+	},
+});
 </script>
 
 <template>
 	<div
-		class="w-full max-w-full sm:w-[24rem] md:w-[26rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800 m-1 sm:m-3 p-3.5 sm:p-5 rounded-3xl flex flex-col md:max-h-[82dvh] md:overflow-y-auto shadow-sm">
+		class="w-full max-w-full sm:w-[24rem] md:w-[26rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800 m-0 sm:m-3 p-3.5 sm:p-5 sm:rounded-3xl flex flex-col md:max-h-[82dvh] md:overflow-y-auto shadow-sm">
 		<!-- Header -->
 		<div class="px-1 text-right mb-1">
 			<div class="flex items-center gap-2 mb-0.5">
@@ -65,7 +88,9 @@ const cartTotal = computed(() => {
 					name="i-iconamoon-check-circle-1-duotone"
 					class="text-[#23a26d] dark:text-[#40d195]"
 					size="22" />
-				<h5 class="text-lg sm:text-xl font-bold">{{ $t("checkout.title") }}</h5>
+				<h5 class="text-lg sm:text-xl font-bold">
+					{{ $t("checkout.title") }}
+				</h5>
 			</div>
 			<p class="text-xs text-neutral-500 dark:text-neutral-400">
 				{{ $t("checkout.pay.secure_note") }}
@@ -78,7 +103,7 @@ const cartTotal = computed(() => {
 			dir="rtl"
 			@submit.prevent="handleCheckout">
 			<!-- Section 1: مشخصات گیرنده -->
-			<div class="space-y-2.5">
+			<div class="space-y-3.5">
 				<div
 					class="flex items-center gap-1.5 text-xs font-bold text-neutral-800 dark:text-neutral-200">
 					<UIcon
@@ -137,7 +162,7 @@ const cartTotal = computed(() => {
 					</label>
 					<div class="relative">
 						<input
-							v-model="billing.phone"
+							v-model="phoneInput"
 							type="tel"
 							inputmode="tel"
 							dir="ltr"
@@ -160,7 +185,7 @@ const cartTotal = computed(() => {
 
 			<!-- Section 2: نشانی و مشخصات تحویل -->
 			<div
-				class="space-y-2.5 pt-2.5 border-t border-neutral-200/70 dark:border-neutral-800">
+				class="space-y-4 pt-4 border-t border-neutral-200/70 dark:border-neutral-800">
 				<div
 					class="flex items-center gap-1.5 text-xs font-bold text-neutral-800 dark:text-neutral-200">
 					<UIcon
@@ -188,7 +213,10 @@ const cartTotal = computed(() => {
 										? 'border-red-500 ring-2 ring-red-500/20'
 										: 'border-neutral-300/80 dark:border-neutral-700/80 focus:border-[#23a26d] dark:focus:border-[#40d195] focus:ring-2 focus:ring-emerald-500/15',
 								]">
-								<option value="" disabled selected>
+								<option
+									value=""
+									disabled
+									selected>
 									{{ $t("checkout.form.select_province") }}
 								</option>
 								<option
@@ -214,14 +242,19 @@ const cartTotal = computed(() => {
 						<div class="relative">
 							<select
 								v-model="billing.city"
-								:disabled="checkoutStatus !== 'idle' || !billing.state"
+								:disabled="
+									checkoutStatus !== 'idle' || !billing.state
+								"
 								:class="[
 									'w-full h-11 sm:h-10 pr-3 pl-7 rounded-xl bg-neutral-50 dark:bg-neutral-800/70 border text-base sm:text-sm outline-none transition appearance-none cursor-pointer disabled:opacity-50',
 									fieldError?.field === 'city'
 										? 'border-red-500 ring-2 ring-red-500/20'
 										: 'border-neutral-300/80 dark:border-neutral-700/80 focus:border-[#23a26d] dark:focus:border-[#40d195] focus:ring-2 focus:ring-emerald-500/15',
 								]">
-								<option value="" disabled selected>
+								<option
+									value=""
+									disabled
+									selected>
 									{{ $t("checkout.form.select_city") }}
 								</option>
 								<option
@@ -255,24 +288,22 @@ const cartTotal = computed(() => {
 					</div>
 					<div class="relative">
 						<input
-							v-model="billing.postcode"
+							v-model="postcodeInput"
 							type="text"
 							inputmode="numeric"
 							maxlength="10"
 							dir="ltr"
 							autocomplete="postal-code"
-							:placeholder="$t('checkout.form.postcode_placeholder')"
+							:placeholder="
+								$t('checkout.form.postcode_placeholder')
+							"
 							:disabled="checkoutStatus !== 'idle'"
 							:class="[
-								'w-full h-11 sm:h-10 px-3 pl-10 rounded-xl bg-neutral-50 dark:bg-neutral-800/70 border text-base sm:text-sm text-left outline-none transition font-mono tracking-wider',
+								'w-full h-11 sm:h-10 px-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/70 border text-base sm:text-sm text-left outline-none transition font-mono tracking-wider',
 								fieldError?.field === 'postcode'
 									? 'border-red-500 ring-2 ring-red-500/20'
 									: 'border-neutral-300/80 dark:border-neutral-700/80 focus:border-[#23a26d] dark:focus:border-[#40d195] focus:ring-2 focus:ring-emerald-500/15',
 							]" />
-						<UIcon
-							name="i-iconamoon-mail-duotone"
-							class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none"
-							size="18" />
 					</div>
 				</div>
 
@@ -334,7 +365,9 @@ const cartTotal = computed(() => {
 					</span>
 					<span
 						class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-						<UIcon name="i-iconamoon-check-bold" size="14" />
+						<UIcon
+							name="i-iconamoon-check-bold"
+							size="14" />
 						{{ $t("checkout.free_shipping") }}
 					</span>
 				</div>

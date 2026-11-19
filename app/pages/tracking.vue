@@ -211,7 +211,7 @@ useSeoMeta({
 					<button
 						type="submit"
 						:disabled="!isFormValid || isLoading"
-						class="w-full h-12 rounded-xl bg-[#23a26d] hover:bg-[#1f9161] dark:bg-[#40d195] dark:hover:bg-[#36be85] text-white dark:text-black font-semibold text-sm transition shadow-sm flex items-center justify-center gap-2 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+						class="w-full h-12 rounded-xl bg-secondary-600 hover:bg-secondary-800 dark:bg-[#40d195] dark:hover:bg-[#36be85] text-white dark:text-black font-semibold text-sm transition shadow-sm flex items-center justify-center gap-2 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
 						<UIcon
 							v-if="isLoading"
 							name="i-svg-spinners-90-ring-with-bg"

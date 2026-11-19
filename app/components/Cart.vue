@@ -26,7 +26,7 @@ const { order } = useCheckout();
 								class="w-24 h-28 object-cover shadow-md rounded-2xl" />
 							<div class="flex-1 gap-1 flex flex-col items-start">
 								<div
-									class="font-medium text-sm mb-0.5 line-clamp-2 overflow-hidden text-ellipsis bidi-auto">
+									class="font-medium text-sm text-right mb-0.5 line-clamp-2 overflow-hidden text-ellipsis bidi-auto">
 									{{ product.product.node.name }}
 								</div>
 								<ProductPrice
@@ -61,7 +61,7 @@ const { order } = useCheckout();
 								</div>
 							</div>
 							<div
-								class="absolute md:opacity-0 group-hover:opacity-100 top-2 left-2 md:-top-1 md:-left-1 transition space-y-0.5 flex flex-col p-0.5 dark:bg-white/10 bg-black/10 backdrop-blur border dark:border-white/5 border-black/5 items-center justify-center rounded-full">
+								class="absolute md:opacity-0 group-hover:opacity-100 bottom-2 sm:bottom-[unset] sm:top-2 left-2 md:-top-1 md:-left-1 transition space-y-0.5 flex flex-row sm:flex-col p-0.5 dark:bg-white/10 bg-black/10 backdrop-blur border dark:border-white/5 border-black/5 items-center justify-center rounded-full">
 								<div
 									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center">
 									<UIcon
@@ -75,9 +75,10 @@ const { order } = useCheckout();
 											)
 										" />
 								</div>
-								<span class="text-center text-sm py-1">{{
-									product.quantity
-								}}</span>
+								<span
+									class="text-center text-sm py-1 mx-3 sm:mx-0"
+									>{{ product.quantity }}</span
+								>
 								<div
 									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center">
 									<UIcon
