@@ -1,12 +1,17 @@
 import { createError } from "h3";
 
 interface WooCommerceOrder {
+	id: number;
 	order_key: string;
 	number: string;
 	total: string;
 	status: string;
 	payment_method_title: string;
 	date_created: string;
+	transaction_id?: string;
+	billing?: {
+		phone?: string;
+	};
 }
 
 export default defineEventHandler(async (event) => {
@@ -69,10 +74,13 @@ export default defineEventHandler(async (event) => {
 	}
 
 	return {
+		orderId: order.id,
 		orderNumber: order.number,
 		total: order.total,
 		status: order.status,
 		paymentMethodTitle: order.payment_method_title,
 		date: order.date_created,
+		transactionId: order.transaction_id || null,
+		phone: order.billing?.phone || "",
 	};
 });

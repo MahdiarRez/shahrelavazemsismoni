@@ -14,7 +14,8 @@
         "shop": "Shop",
         "categories": "Categories",
         "favorites": "Favorites",
-        "products": "Products"
+        "products": "Products",
+        "tracking": "Track Order"
     },
     "footer": {
         "developed_by_author": "by {author}",
@@ -144,10 +145,41 @@
             "back_to_shop": "Back to shop",
             "error": "Could not place your order. Please try again.",
             "retry": "Retry payment",
-            "submitting": "Placing order..."
+            "submitting": "Placing order...",
+            "transaction_id": "Transaction ID",
+            "track_order": "Track Order"
         },
         "shipping_cost": "Shipping cost",
         "free_shipping": "Free (included in price)"
+    },
+    "tracking": {
+        "page_title": "Track Order | Shahr Lavazem Sismooni",
+        "page_desc": "Track real-time status of your order at Shahr Lavazem Sismooni",
+        "title": "Track Order",
+        "subtitle": "Enter your order number and mobile phone to check fulfillment and shipping progress",
+        "order_number_label": "Order Number",
+        "phone_label": "Mobile Phone",
+        "submit_btn": "Track Order",
+        "loading": "Checking order...",
+        "order_title": "Order #{number}",
+        "registered_at": "Date",
+        "total_amount": "Total",
+        "post_code_title": "Postal Tracking Code",
+        "national_post": "Iran National Post Service",
+        "copy": "Copy",
+        "copied": "Copied",
+        "copied_success": "Tracking code copied",
+        "copy_failed": "Failed to copy tracking code",
+        "open_in_post_portal": "View in National Post Portal",
+        "recipient_info": "Recipient Information",
+        "recipient_name": "Recipient Name",
+        "address_label": "Delivery Address",
+        "items_title": "Order Items",
+        "items_count": "{count} items",
+        "item_quantity": "Qty: {qty}",
+        "error_not_found": "No order found with this order number and mobile phone.",
+        "cancelled_note": "This order has been cancelled. Contact support for assistance.",
+        "failed_note": "Payment for this order was not completed."
     },
     "product": {
         "originally": "Originally",
