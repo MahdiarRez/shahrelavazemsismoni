@@ -124,10 +124,22 @@ export default defineEventHandler(async (event) => {
 	let statusText = "در حال پردازش";
 	const rawStatus = order.status || "pending";
 
+	const shippedStatuses = [
+		"shipped",
+		"wc-shipped",
+		"sent",
+		"wc-sent",
+		"post",
+		"post-sent",
+		"in-transit",
+		"transit",
+		"delivering",
+	];
+
 	if (rawStatus === "completed") {
 		currentStep = 4;
 		statusText = "تحویل داده شده";
-	} else if (postTrackingNumber || rawStatus === "shipped") {
+	} else if (postTrackingNumber || shippedStatuses.includes(rawStatus)) {
 		currentStep = 3;
 		statusText = "تحویل به پست / در حال ارسال";
 	} else if (rawStatus === "processing") {
