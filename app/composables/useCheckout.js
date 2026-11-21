@@ -39,7 +39,7 @@ export const useCheckout = () => {
 			return;
 		}
 
-		// Check 400 Million Tomans bank ceiling (4 Billion Rials)
+		// Check 200 Million Tomans bank ceiling (2 Billion Rials per card transaction)
 		const totalRials = cart.value.reduce((acc, item) => {
 			const node = item.variation?.node;
 			if (!node) return acc;
@@ -48,9 +48,9 @@ export const useCheckout = () => {
 			);
 			return acc + p * (item.quantity ?? 1);
 		}, 0);
-		if (totalRials > 4000000000) {
+		if (totalRials > 2000000000) {
 			push.error(
-				"مبلغ سفارش بیش از سقف مجاز پرداخت شبکه بانکی (۴۰۰ میلیون تومان) است.",
+				"مبلغ سفارش بیش از سقف مجاز پرداخت با هر کارت بانکی در درگاه اینترنتی (۲۰۰ میلیون تومان) است.",
 			);
 			return;
 		}
