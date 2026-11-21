@@ -4,6 +4,11 @@ import { push } from "notivue";
 export const useCart = () => {
 	const cart = useState<CartItem[]>("cart", () => []);
 	const addToCartButtonStatus = ref<AddBtnStatus>("add");
+	const isCartUpdating = useState<boolean>("isCartUpdating", () => false);
+	const updatingVariationId = useState<number | null>(
+		"updatingVariationId",
+		() => null,
+	);
 
 	const findItem = (variationId: number) =>
 		cart.value.find((i) => i.variation?.node?.databaseId === variationId);
@@ -14,7 +19,9 @@ export const useCart = () => {
 	};
 
 	const handleAddToCart = async (productId: number) => {
+		if (isCartUpdating.value) return;
 		try {
+			isCartUpdating.value = true;
 			addToCartButtonStatus.value = "loading";
 			const res = await $fetch<AddToCartResponse>("/api/cart/add", {
 				method: "POST",
@@ -41,35 +48,76 @@ export const useCart = () => {
 
 			addToCartButtonStatus.value = "added";
 			setTimeout(() => (addToCartButtonStatus.value = "add"), 2000);
-		} catch {
+		} catch (err: any) {
 			addToCartButtonStatus.value = "add";
-			push.error("Insufficient stock");
+			push.error(
+				err?.data?.message || "موجودی کالا کافی نیست یا خطا در ارتباط رخ داد",
+			);
+		} finally {
+			isCartUpdating.value = false;
 		}
 	};
 
-	const changeQty = (key: string, quantity: number) => {
-		$fetch("/api/cart/update", {
-			method: "POST",
-			body: { items: [{ key, quantity }] },
-		});
-		updateCart(
-			quantity <= 0
-				? cart.value.filter((i) => i.key !== key)
-				: cart.value.map((i) => (i.key === key ? { ...i, quantity } : i)),
-		);
+	const changeQty = async (
+		key: string,
+		quantity: number,
+		variationId?: number,
+	) => {
+		if (isCartUpdating.value) return;
+
+		// Keep snapshot of current cart for rollback on error
+		const previousCart = [...cart.value];
+
+		try {
+			isCartUpdating.value = true;
+			if (variationId) {
+				updatingVariationId.value = variationId;
+			}
+
+			// Optimistically update UI so user sees immediate feedback
+			updateCart(
+				quantity <= 0
+					? cart.value.filter((i) => i.key !== key)
+					: cart.value.map((i) =>
+							i.key === key ? { ...i, quantity } : i,
+						),
+			);
+
+			// Await WooCommerce server update
+			await $fetch("/api/cart/update", {
+				method: "POST",
+				body: { items: [{ key, quantity: Math.max(0, quantity) }] },
+			});
+		} catch (err: any) {
+			// Rollback to previous state on failure
+			updateCart(previousCart);
+			push.error(
+				err?.data?.message ||
+					"خطا در به‌روزرسانی سبد خرید. لطفاً دوباره تلاش کنید.",
+			);
+		} finally {
+			isCartUpdating.value = false;
+			updatingVariationId.value = null;
+		}
 	};
 
-	const increment = (variationId: number) => {
+	const increment = async (variationId: number) => {
+		if (isCartUpdating.value) return;
 		const item = findItem(variationId);
 		if (!item) return handleAddToCart(variationId);
 		const max = item.variation?.node?.stockQuantity ?? Infinity;
-		if (item.quantity >= max) return push.error("Insufficient stock");
-		changeQty(item.key, item.quantity + 1);
+		if (item.quantity >= max) {
+			return push.error("حداکثر موجودی این کالا در سبد شما قرار دارد");
+		}
+		await changeQty(item.key, item.quantity + 1, variationId);
 	};
 
-	const decrement = (variationId: number) => {
+	const decrement = async (variationId: number) => {
+		if (isCartUpdating.value) return;
 		const item = findItem(variationId);
-		if (item) changeQty(item.key, item.quantity - 1);
+		if (item) {
+			await changeQty(item.key, item.quantity - 1, variationId);
+		}
 	};
 
 	onMounted(() => {
@@ -86,8 +134,11 @@ export const useCart = () => {
 	return {
 		cart,
 		addToCartButtonStatus,
+		isCartUpdating,
+		updatingVariationId,
 		handleAddToCart,
 		increment,
 		decrement,
+		changeQty,
 	};
 };

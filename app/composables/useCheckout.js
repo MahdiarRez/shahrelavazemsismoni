@@ -3,6 +3,7 @@ import { toEnglishDigits } from "~~/shared/helpers";
 
 export const useCheckout = () => {
 	const { t } = useI18n();
+	const { cart, isCartUpdating } = useCart();
 
 	// Populated on the /payment/success page once WooCommerce confirms payment.
 	const order = useState("order", () => null);
@@ -24,6 +25,36 @@ export const useCheckout = () => {
 
 	const handleCheckout = async () => {
 		if (checkoutStatus.value !== "idle") return;
+
+		if (isCartUpdating.value) {
+			push.warning(
+				t("cart.please_wait_updating") ||
+					"در حال به‌روزرسانی سبد خرید، لطفاً صبر کنید...",
+			);
+			return;
+		}
+
+		if (!cart.value || !cart.value.length) {
+			push.error(t("cart.empty") || "سبد خرید شما خالی است.");
+			return;
+		}
+
+		// Check 200 Million Tomans bank ceiling (2 Billion Rials per card transaction)
+		const totalRials = cart.value.reduce((acc, item) => {
+			const node = item.variation?.node;
+			if (!node) return acc;
+			const p = Number(
+				String(node.salePrice || node.regularPrice || "0").replace(/\D/g, ""),
+			);
+			return acc + p * (item.quantity ?? 1);
+		}, 0);
+		if (totalRials > 2000000000) {
+			push.error(
+				"مبلغ سفارش بیش از سقف مجاز پرداخت با هر کارت بانکی در درگاه اینترنتی (۲۰۰ میلیون تومان) است.",
+			);
+			return;
+		}
+
 		fieldError.value = null;
 
 		const cleanFirstName = (billing.first_name || "").trim();

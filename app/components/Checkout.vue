@@ -7,7 +7,7 @@ import {
 } from "~~/shared/helpers";
 
 const { checkoutStatus, handleCheckout, billing, fieldError } = useCheckout();
-const { cart } = useCart();
+const { cart, isCartUpdating } = useCart();
 
 const selectedProvince = computed(() =>
 	IRAN_PROVINCES.find((p) => p.name === billing.state),
@@ -33,8 +33,8 @@ const parsePrice = (priceStr) => {
 	return Number(priceStr.toString().replace(/[^\d]/g, ""));
 };
 
-const cartTotal = computed(() => {
-	const totalRial = cart.value.reduce((accumulator, item) => {
+const totalRials = computed(() => {
+	return cart.value.reduce((accumulator, item) => {
 		const node = item.variation?.node;
 		if (!node) return accumulator;
 
@@ -48,9 +48,13 @@ const cartTotal = computed(() => {
 
 		return accumulator + priceToUse * (item.quantity ?? 1);
 	}, 0);
+});
 
-	return totalRial > 0
-		? convertMinPriceRangeToToman(totalRial.toString())
+const isOverBankLimit = computed(() => totalRials.value > 2000000000);
+
+const cartTotal = computed(() => {
+	return totalRials.value > 0
+		? convertMinPriceRangeToToman(totalRials.value.toString())
 		: "۰";
 });
 
@@ -80,7 +84,7 @@ const postcodeInput = computed({
 
 <template>
 	<div
-		class="w-full max-w-full sm:w-[24rem] md:w-[26rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800 m-0 sm:m-3 p-3.5 sm:p-5 sm:rounded-3xl flex flex-col md:max-h-[82dvh] md:overflow-y-auto shadow-sm">
+		class="w-full max-w-full bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800 p-4 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col shadow-sm">
 		<!-- Header -->
 		<div class="px-1 text-right mb-1">
 			<div class="flex items-center gap-2 mb-0.5">
@@ -373,14 +377,43 @@ const postcodeInput = computed({
 				</div>
 			</div>
 
+			<!-- Bank Ceiling Alert -->
+			<div
+				v-if="isOverBankLimit"
+				class="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 rounded-2xl text-xs text-red-700 dark:text-red-300 flex items-start gap-2">
+				<UIcon
+					name="i-iconamoon-alert-circle-duotone"
+					size="18"
+					class="flex-shrink-0 mt-0.5 text-red-500" />
+				<span class="leading-5">
+					مبلغ سفارش بیش از سقف مجاز پرداخت با هر کارت بانکی در درگاه اینترنتی (۲۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.
+				</span>
+			</div>
+
 			<!-- Submit Button -->
 			<button
 				type="submit"
-				:disabled="checkoutStatus !== 'idle'"
-				class="pay-button-bezel w-full h-12 sm:h-13 mt-1 rounded-2xl relative font-semibold text-white dark:text-black text-sm sm:text-base flex justify-center items-center cursor-pointer disabled:cursor-not-allowed">
+				:disabled="
+					checkoutStatus !== 'idle' ||
+					isCartUpdating ||
+					!cart.length ||
+					isOverBankLimit
+				"
+				class="pay-button-bezel w-full h-12 sm:h-13 mt-1 rounded-2xl relative font-semibold text-white dark:text-black text-sm sm:text-base flex justify-center items-center cursor-pointer disabled:cursor-not-allowed disabled:opacity-60">
 				<Transition name="slide-up">
 					<div
-						v-if="checkoutStatus === 'idle'"
+						v-if="isCartUpdating"
+						class="flex items-center gap-2 text-sm font-medium">
+						<UIcon
+							name="i-svg-spinners-90-ring-with-bg"
+							size="20" />
+						<span>{{
+							$t("cart.updating") ||
+							"در حال به‌روزرسانی سبد خرید..."
+						}}</span>
+					</div>
+					<div
+						v-else-if="checkoutStatus === 'idle'"
 						class="flex items-center gap-2">
 						<UIcon
 							name="i-iconamoon-shield-check-duotone"
