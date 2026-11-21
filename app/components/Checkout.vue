@@ -80,7 +80,7 @@ const postcodeInput = computed({
 
 <template>
 	<div
-		class="w-full max-w-full sm:w-[24rem] md:w-[26rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800 m-0 sm:m-3 p-3.5 sm:p-5 sm:rounded-3xl flex flex-col md:max-h-[82dvh] md:overflow-y-auto shadow-sm">
+		class="w-full max-w-full sm:w-[24rem] md:w-[26rem] lg:w-full bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800 m-0 sm:m-3 p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col md:max-h-[82dvh] md:overflow-y-auto shadow-sm">
 		<!-- Header -->
 		<div class="px-1 text-right mb-1">
 			<div class="flex items-center gap-2 mb-0.5">

@@ -51,10 +51,12 @@ const images = computed(() => {
 			}"
 			class="w-full mx-auto"
 			arrows>
-			<img
+			<AppImage
 				:src="item"
-				class="w-full h-full select-none object-cover"
-				draggable="false" />
+				fit="contain"
+				aspect-ratio="1/1"
+				class="w-full h-full"
+				:draggable="false" />
 		</UCarousel>
 	</UModal>
 </template>
