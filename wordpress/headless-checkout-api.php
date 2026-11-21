@@ -293,7 +293,18 @@ function headless_checkout_create_order(WP_REST_Request $request) {
             'message' => 'مبلغ سفارش بیش از سقف مجاز پرداخت اینترنتی بانکی شاپرک برای هر کارت (۲۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.',
         ], 400);
     }
-    $callback_raw = add_query_arg('wc_order', $order_id, WC()->api_request_url('WC_bitpayir2'));
+    // BitPay validates that the redirect domain matches the domain registered for the API key (shahrsismoony.ir).
+    // In headless setups, WordPress is on a different domain (e.g. liara.run), so we route the callback
+    // through Nuxt's /api/payment/callback endpoint on the storefront domain.
+    $callback_param = $request->get_param('callback_url');
+    if (!empty($callback_param)) {
+        $callback_base = $callback_param;
+    } elseif (function_exists('nuxt_redirect_get_base_url')) {
+        $callback_base = trailingslashit(nuxt_redirect_get_base_url()) . 'api/payment/callback';
+    } else {
+        $callback_base = 'https://shahrsismoony.ir/api/payment/callback';
+    }
+    $callback_raw = add_query_arg('wc_order', $order_id, $callback_base);
     $callback_encoded = headless_bitpay_encode_url(urlencode($callback_raw));
 
     $full_name = $first_name . ' ' . $last_name;

@@ -57,6 +57,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const reqUrl = getRequestURL(event);
+  const requestOrigin = reqUrl.origin;
+  const siteUrl = (config.public.siteUrl || "").replace(/\/$/, "");
+  const isLocal = requestOrigin.includes("localhost") || requestOrigin.includes("127.0.0.1");
+  const baseOrigin = isLocal && siteUrl && !siteUrl.includes("localhost") ? siteUrl : requestOrigin;
+  const callbackUrl = `${baseOrigin}/api/payment/callback`;
+
   try {
     const result = await $fetch<WPOrderResponse>(
       `${wpBase}/wp-json/headless-checkout/v1/order`,
@@ -69,6 +76,7 @@ export default defineEventHandler(async (event) => {
         body: {
           session_id: sessionId,
           billing: parsed.data,
+          callback_url: callbackUrl,
         },
       },
     );
