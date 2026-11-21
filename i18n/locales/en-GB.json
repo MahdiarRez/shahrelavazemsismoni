@@ -197,10 +197,17 @@
         "shop_similar": "Shop similar"
     },
     "cart": {
+        "title": "Shopping Cart",
         "empty": "Your cart is empty",
         "notting_added": "You haven't added any items to your cart yet.",
         "add_to_cart": "Add to cart",
-        "added_to_cart": "Added to cart"
+        "added_to_cart": "Added to cart",
+        "continue_shopping": "Continue Shopping",
+        "item_count": "items",
+        "free_shipping_notice": "Fast delivery nationwide | Guaranteed authenticity",
+        "secure_payment": "Direct and secure online bank payment",
+        "updating": "Updating cart...",
+        "please_wait_updating": "Updating cart, please wait..."
     },
     "favorites": {
         "nothing_to_show_yet": "Nothing to show... yet!",

@@ -14,9 +14,15 @@ const searchResults = ref([]);
 const isLoading = ref(false);
 const suggestionMenu = ref(false);
 const onClickOutsideRef = ref(null);
-const cartModal = ref(false);
 const { cart } = useCart();
 const localePath = useLocalePath();
+
+watch(
+	() => route.path,
+	() => {
+		suggestionMenu.value = false;
+	},
+);
 
 const search = () => {
 	router.push({
@@ -71,7 +77,6 @@ const clearSearch = () => {
 
 onClickOutside(onClickOutsideRef, (event) => {
 	suggestionMenu.value = false;
-	cartModal.value = false;
 });
 
 const totalQuantity = computed(() =>
@@ -195,9 +200,10 @@ const totalQuantity = computed(() =>
 					</div>
 				</div>
 			</div>
-			<button
-				@mouseup="cartModal = !cartModal"
-				class="hover:bg-black/5 hover:dark:bg-white/15 max-lg:dark:bg-white/15 max-lg:bg-black/5 max-lg:hover:bg-black/10 max-lg:hover:dark:bg-white/20 min-w-12 min-h-12 flex items-center justify-center rounded-full cursor-pointer relative">
+			<NuxtLink
+				:to="localePath('/cart')"
+				aria-label="سبد خرید"
+				class="hover:bg-black/5 hover:dark:bg-white/15 max-lg:dark:bg-white/15 max-lg:bg-black/5 max-lg:hover:bg-black/10 max-lg:hover:dark:bg-white/20 min-w-12 min-h-12 flex items-center justify-center rounded-full cursor-pointer relative active:scale-95 transition">
 				<UIcon
 					class="text-[#5f5f5f] dark:text-[#b7b7b7]"
 					name="i-iconamoon-shopping-bag-fill"
@@ -212,7 +218,7 @@ const totalQuantity = computed(() =>
 						{{ totalQuantity }}
 					</span>
 				</span>
-			</button>
+			</NuxtLink>
 		</div>
 	</div>
 	<div
@@ -315,23 +321,10 @@ const totalQuantity = computed(() =>
 		</div>
 	</div>
 	<div
-		v-if="suggestionMenu || cartModal"
-		:class="['fixed inset-0 ', cartModal ? 'z-40' : 'z-30']">
+		v-if="suggestionMenu"
+		class="fixed inset-0 z-30">
 		<div class="w-full h-full bg-black/30 backdrop-blur-sm"></div>
 	</div>
-	<button
-		v-if="cartModal"
-		class="hover:bg-white/65 dark:hover:bg-white/10 transition shadow-2xl mt-3 lg:mt-4 mx-3 lg:mx-5 items-center justify-center min-w-12 min-h-12 rounded-[2rem] left-0 fixed flex z-50 bg-white/85 dark:bg-black/30 dark:border dark:border-white/10 cart-button-bezel backdrop-blur-lg">
-		<UIcon
-			class="text-[#5f5f5f] dark:text-[#b7b7b7]"
-			name="i-iconamoon-close"
-			size="26" />
-	</button>
-	<Transition name="dropdown">
-		<Cart
-			v-if="cartModal"
-			ref="onClickOutsideRef" />
-	</Transition>
 </template>
 
 <style lang="postcss">

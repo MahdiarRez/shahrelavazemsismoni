@@ -86,8 +86,9 @@ watchEffect(() => {
 				class="product-images-thumbs w-14">
 				<swiper-slide
 					class="cursor-pointer rounded-xl overflow-hidden border-2 border-white dark:border-black">
-					<NuxtImg
+					<AppImage
 						:alt="product.name"
+						aspect-ratio="1/1"
 						class="h-full w-full border-2 border-white bg-neutral-200 dark:bg-neutral-800 dark:border-black rounded-[10px]"
 						:src="product.image?.sourceUrl" />
 				</swiper-slide>
@@ -95,8 +96,9 @@ watchEffect(() => {
 					class="cursor-pointer rounded-xl overflow-hidden border-2 border-white dark:border-black"
 					v-for="(node, i) in product.galleryImages?.nodes"
 					:key="i">
-					<NuxtImg
+					<AppImage
 						:alt="product.name"
+						aspect-ratio="1/1"
 						class="h-full w-full border-2 border-white bg-neutral-200 dark:bg-neutral-800 dark:border-black rounded-[10px]"
 						:src="node.sourceUrl" />
 				</swiper-slide>
@@ -120,18 +122,25 @@ watchEffect(() => {
 					:thumbs="{ swiper: thumbsSwiper }"
 					class="lg:w-[530px] lg:h-[530px] xl:w-[600px] xl:h-[600px] lg:rounded-2xl">
 					<swiper-slide @click="isOpenImageSliderModal = true">
-						<NuxtImg
+						<AppImage
 							:alt="product.name"
-							class="h-full w-full bg-neutral-200 dark:bg-neutral-800 object-cover"
+							priority
+							loading="eager"
+							aspect-ratio="1/1"
+							class="h-full w-full cursor-zoom-in"
+							img-class="object-cover"
 							:src="product.image?.sourceUrl" />
 					</swiper-slide>
 					<swiper-slide
 						@click="isOpenImageSliderModal = true"
 						v-for="(node, i) in product.galleryImages?.nodes"
 						:key="i">
-						<NuxtImg
+						<AppImage
 							:alt="product.name"
-							class="h-full w-full bg-neutral-200 dark:bg-neutral-800 object-cover"
+							loading="lazy"
+							aspect-ratio="1/1"
+							class="h-full w-full cursor-zoom-in"
+							img-class="object-cover"
 							:src="node.sourceUrl" />
 					</swiper-slide>
 				</swiper>
@@ -168,26 +177,27 @@ watchEffect(() => {
 					<div
 						class="pb-4 px-3 lg:px-0 border-b border-[#efefef] dark:border-[#262626]">
 						<div
+							v-if="selectedVariation?.attributes?.nodes?.length"
 							class="text-sm font-semibold leading-5 opacity-50 flex flex-row gap-1 justify-start">
 							{{ $t("product.size") }} :
 							<div>
 								{{
 									selectedVariation.attributes.nodes
 										.map((attr) => attr.value)
-										.toString()
+										.join(", ")
 								}}
 							</div>
 						</div>
 						<div class="flex gap-2 mt-2 mb-4 flex-wrap">
 							<label
-								class="py-1 px-3 rounded-full cursor-pointer select-varitaion border-2 border-[#9b9b9b] dark:border-[#8c8c8c] transition-all duration-200"
+								class="py-1.5 px-3.5 rounded-full cursor-pointer select-varitaion border-2 border-[#9b9b9b] dark:border-[#8c8c8c] transition-all duration-200"
 								v-for="variation in sortedVariations"
 								:key="variation.databaseId"
 								:class="[
 									variation.stockStatus === 'OUT_OF_STOCK'
 										? 'disabled'
 										: '',
-									selectedVariation.databaseId ===
+									selectedVariation?.databaseId ===
 									variation.databaseId
 										? 'selected-varitaion'
 										: '',
@@ -204,12 +214,12 @@ watchEffect(() => {
 								<span
 									class="font-semibold uppercase"
 									:title="`Color: ${variation.attributes.nodes
-										.map((attr) => attr.value)
-										.toString()}`">
+										?.map((attr) => attr.value)
+										.join(', ')}`">
 									{{
 										variation.attributes.nodes
-											.map((attr) => attr.value)
-											.toString()
+											?.map((attr) => attr.value)
+											.join(", ")
 									}}
 								</span>
 							</label>

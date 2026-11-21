@@ -21,9 +21,15 @@ const { order } = useCheckout();
 							v-for="product in cart.slice().reverse()"
 							:key="product.key"
 							class="flex flex-row bg-black/5 dark:bg-white/10 m-3 p-3 gap-3 rounded-3xl items-center group relative max-md:pl-2">
-							<NuxtImg
-								:src="product.variation.node.image.sourceUrl"
-								class="w-24 h-28 object-cover shadow-md rounded-2xl" />
+							<AppImage
+								:src="
+									product.variation?.node?.image?.sourceUrl ||
+									product.product?.node?.image?.sourceUrl
+								"
+								:alt="product.product?.node?.name || ''"
+								aspect-ratio="4/5"
+								class="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl flex-shrink-0 shadow-md"
+								img-class="rounded-2xl" />
 							<div class="flex-1 gap-1 flex flex-col items-start">
 								<div
 									class="font-medium text-sm text-right mb-0.5 line-clamp-2 overflow-hidden text-ellipsis bidi-auto">

@@ -45,9 +45,9 @@ const trackingUrl = computed(() => {
 				<span class="dark:text-neutral-400 text-neutral-600"
 					>{{ $t("checkout.pay.total") }}:</span
 				>
-				<span class="font-semibold text-lg">{{
-					convertMinPriceRangeToToman(order.total)
-				}}</span>
+				<span class="font-semibold text-lg"
+					>{{ convertMinPriceRangeToToman(order.total) }} تومان</span
+				>
 			</div>
 			<div class="flex justify-between items-center">
 				<span class="dark:text-neutral-400 text-neutral-600"
@@ -91,7 +91,9 @@ const trackingUrl = computed(() => {
 			<NuxtLink
 				:to="trackingUrl"
 				class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-[#23a26d] hover:bg-[#1f9161] dark:bg-[#40d195] dark:hover:bg-[#36be85] text-white dark:text-black font-medium text-sm transition shadow-sm active:scale-[0.98]">
-				<UIcon name="i-iconamoon-delivery-fast-duotone" size="20" />
+				<UIcon
+					name="i-iconamoon-delivery-fast-duotone"
+					size="20" />
 				<span>{{ $t("checkout.pay.track_order") }}</span>
 			</NuxtLink>
 			<NuxtLink
