@@ -197,16 +197,10 @@
         "shop_similar": "Shop similar"
     },
     "cart": {
-        "title": "Shopping Cart",
         "empty": "Your cart is empty",
         "notting_added": "You haven't added any items to your cart yet.",
         "add_to_cart": "Add to cart",
-        "added_to_cart": "Added to cart",
-        "continue_shopping": "Continue Shopping",
-        "item_count": "Items",
-        "total_items": "Total items",
-        "total": "Total",
-        "free_shipping_notice": "Fast delivery nationwide | 100% genuine products"
+        "added_to_cart": "Added to cart"
     },
     "favorites": {
         "nothing_to_show_yet": "Nothing to show... yet!",

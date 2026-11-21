@@ -77,7 +77,7 @@ watchEffect(() => {
 	<ProductSkeleton v-if="!product.name" />
 	<div
 		v-else
-		class="justify-center flex flex-col lg:flex-row-reverse lg:mx-5 pb-24 lg:pb-0">
+		class="justify-center flex flex-col lg:flex-row-reverse lg:mx-5">
 		<ButtonBack />
 		<div class="mr-6 mt-5 pt-2.5 max-xl:hidden">
 			<swiper
@@ -106,41 +106,40 @@ watchEffect(() => {
 		</div>
 		<div
 			class="flex lg:p-5 lg:gap-5 flex-col lg:flex-row-reverse lg:border lg:border-transparent lg:dark:border-[#262626] lg:rounded-[32px] lg:shadow-[0_1px_20px_rgba(0,0,0,.15)] lg:mt-3.5 select-none">
-			<div class="relative w-full lg:w-[530px] xl:w-[600px]">
+			<div class="relative">
 				<swiper
 					:style="{
 						'--swiper-navigation-color': '#000',
 						'--swiper-pagination-color': 'rgb(0 0 0 / 50%)',
 					}"
-					:spaceBetween="0"
-					:slidesPerView="1"
+					:spaceBetween="2"
+					:slidesPerView="1.5"
 					:pagination="{
 						dynamicBullets: true,
 					}"
 					:navigation="true"
 					:modules="modules"
 					:thumbs="{ swiper: thumbsSwiper }"
-					class="w-full aspect-square sm:aspect-[4/3] lg:aspect-auto lg:w-[530px] lg:h-[530px] xl:w-[600px] xl:h-[600px] lg:rounded-2xl overflow-hidden">
-					<swiper-slide @click="isOpenImageSliderModal = true" class="w-full h-full">
+					class="lg:w-[530px] lg:h-[530px] xl:w-[600px] xl:h-[600px] lg:rounded-2xl">
+					<swiper-slide @click="isOpenImageSliderModal = true">
 						<AppImage
 							:alt="product.name"
 							priority
 							loading="eager"
 							aspect-ratio="1/1"
-							class="w-full h-full cursor-zoom-in"
+							class="h-full w-full cursor-zoom-in"
 							img-class="object-cover"
 							:src="product.image?.sourceUrl" />
 					</swiper-slide>
 					<swiper-slide
 						@click="isOpenImageSliderModal = true"
 						v-for="(node, i) in product.galleryImages?.nodes"
-						:key="i"
-						class="w-full h-full">
+						:key="i">
 						<AppImage
 							:alt="product.name"
 							loading="lazy"
 							aspect-ratio="1/1"
-							class="w-full h-full cursor-zoom-in"
+							class="h-full w-full cursor-zoom-in"
 							img-class="object-cover"
 							:src="node.sourceUrl" />
 					</swiper-slide>
@@ -280,53 +279,6 @@ watchEffect(() => {
 		<ProductCard :products="product.related?.nodes" />
 		<ProductsSkeleton v-if="!product.name" />
 	</div>
-
-	<!-- Mobile Sticky Bottom Purchase Bar -->
-	<div
-		class="lg:hidden fixed bottom-0 left-0 right-0 z-30 p-3 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between gap-3 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]"
-		dir="rtl">
-		<div class="flex flex-col text-right">
-			<span
-				v-if="selectedVariation?.attributes?.nodes?.length"
-				class="text-[11px] text-neutral-500 dark:text-neutral-400 line-clamp-1">
-				{{ selectedVariation.attributes.nodes.map((a) => a.value).join(", ") }}
-			</span>
-			<ProductPrice
-				:sale-price="product?.salePrice"
-				:regular-price="product?.regularPrice"
-				variant="card" />
-		</div>
-		<div class="flex items-center gap-2">
-			<ButtonWishlist :product="product" />
-			<button
-				@click="handleAddToCart(selectedVariation?.databaseId)"
-				:disabled="addToCartButtonStatus !== 'add' || selectedVariation?.stockStatus === 'OUT_OF_STOCK'"
-				class="button-bezel min-w-[140px] sm:min-w-[170px] h-12 px-4 rounded-full relative tracking-wide font-semibold text-white text-xs sm:text-sm flex justify-center items-center">
-				<Transition name="slide-up">
-					<div
-						v-if="selectedVariation?.stockStatus === 'OUT_OF_STOCK'"
-						class="text-neutral-300">
-						{{ $t("product.out_of_stock") || "ناموجود" }}
-					</div>
-					<div
-						v-else-if="addToCartButtonStatus === 'add'"
-						class="absolute">
-						{{ $t("cart.add_to_cart") }}
-					</div>
-					<UIcon
-						v-else-if="addToCartButtonStatus === 'loading'"
-						class="absolute"
-						name="i-svg-spinners-90-ring-with-bg"
-						size="20" />
-					<div
-						v-else-if="addToCartButtonStatus === 'added'"
-						class="absolute">
-						{{ $t("cart.added_to_cart") }}
-					</div>
-				</Transition>
-			</button>
-		</div>
-	</div>
 </template>
 
 <style lang="postcss">
@@ -338,7 +290,7 @@ watchEffect(() => {
 }
 .swiper-button-next,
 .swiper-button-prev {
-	@apply hidden lg:flex bg-white/50 hover:bg-white p-3.5 m-2 rounded-full items-center justify-center shadow transition backdrop-blur-sm;
+	@apply bg-white/50 hover:bg-white p-3.5 m-2 rounded-full flex items-center justify-center shadow transition backdrop-blur-sm;
 }
 
 .swiper-button-prev.swiper-button-disabled,

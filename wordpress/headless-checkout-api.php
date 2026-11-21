@@ -137,10 +137,9 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     }
 
     // 4. Idempotency Check & Order Resolution
-    // Calculate current cart total (subtotal minus discounts)
-    $subtotal    = WC()->cart->get_subtotal();
-    $discount    = WC()->cart->get_discount_total();
-    $final_total = max(0, $subtotal - $discount);
+    // Calculate current cart total as pure numeric float (never use get_subtotal() which returns formatted HTML)
+    $final_total     = headless_get_cart_numeric_total();
+    $final_int_total = intval(round($final_total));
 
     // Look for an existing pending/on-hold order created from this session
     $existing = wc_get_orders([
@@ -161,14 +160,14 @@ function headless_checkout_create_order(WP_REST_Request $request) {
         $initiated_at    = intval($existing_order->get_meta('_bitpay_initiated_at'));
         $is_failed       = ($existing_order->get_meta('_bitpay_failed') === '1');
         $seconds_elapsed = time() - $initiated_at;
-        $existing_total  = intval($existing_order->get_total());
+        $existing_total  = intval(round(floatval($existing_order->get_total())));
 
         // A Shaparak banking payment session is valid for up to 15 minutes (900 seconds).
         // If an active transaction exists, has not failed/cancelled, is within 15 minutes,
         // and the cart total has not changed:
         // We MUST return the existing payment URL so the customer continues that same transaction.
         // This guarantees NO duplicate BitPay transaction is created while the previous one is payable!
-        if (!empty($id_get) && !$is_failed && $seconds_elapsed < 900 && $existing_total === $final_total) {
+        if (!empty($id_get) && !$is_failed && $seconds_elapsed < 900 && $existing_total > 0 && $existing_total === $final_int_total) {
             return new WP_REST_Response([
                 'payment_url' => sprintf($page_pattern, $id_get),
                 'order_id'    => $existing_order->get_id(),
@@ -179,7 +178,7 @@ function headless_checkout_create_order(WP_REST_Request $request) {
         // If the cart content/amount changed while an order was pending:
         // The old order is obsolete and cannot be paid with the old amount.
         // We cancel the old order so it cannot be mistakenly paid, and create a fresh order.
-        if (!empty($id_get) && !$is_failed && $existing_total !== $final_total) {
+        if (!empty($id_get) && !$is_failed && $existing_total !== $final_int_total) {
             $existing_order->update_status('cancelled', 'لغو سفارش به دلیل تغییر محتویات سبد خرید در تلاش جدید');
             $existing_order->save();
             $reuse_order = false;
@@ -237,18 +236,56 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     $order->set_payment_method_title('پرداخت امن بیت پی');
     $order->set_shipping_total(0);
 
+    // Calculate totals automatically from line items
+    $order->calculate_totals();
+
     // Strict products total (subtotal minus discounts)
-    $subtotal = WC()->cart->get_subtotal();
-    $discount = WC()->cart->get_discount_total();
-    $final_total = max(0, $subtotal - $discount);
-    $order->set_total($final_total);
+    if ($final_total > 0) {
+        $order->set_total($final_total);
+    }
 
     $order->update_meta_data('_headless_session_id', $session_id);
     $order->save();
     $order_id = $order->get_id();
 
     // 6. Request Fresh BitPay Payment Token
-    $amount = intval($order->get_total()); // IRR store currency
+    $order_total = floatval($order->get_total());
+    if ($order_total <= 0) {
+        $order_total = $final_total;
+    }
+
+    if ($order_total <= 0) {
+        return new WP_REST_Response([
+            'code'    => 'invalid_order_amount',
+            'message' => 'مبلغ سفارش نامعتبر است (صفر یا منفی)',
+        ], 400);
+    }
+
+    // Resolve store currency & convert to Rials (IRR) required by BitPay.ir
+    $currency = function_exists('get_woocommerce_currency') ? get_woocommerce_currency() : 'IRR';
+    $currency_upper = strtoupper((string) $currency);
+
+    $amount = 0;
+    if (in_array($currency_upper, ['IRT', 'TOMAN', 'TMN'])) {
+        // Toman to Rial (x10)
+        $amount = intval(round($order_total * 10));
+    } elseif ($currency_upper === 'IRHR') {
+        // Hezar Rial to Rial (x1,000)
+        $amount = intval(round($order_total * 1000));
+    } elseif ($currency_upper === 'IRHT') {
+        // Hezar Toman to Rial (x10,000)
+        $amount = intval(round($order_total * 10000));
+    } else {
+        // Default: IRR (ریال)
+        $amount = intval(round($order_total));
+    }
+
+    if ($amount < 1000) {
+        return new WP_REST_Response([
+            'code'    => 'amount_below_minimum',
+            'message' => 'مبلغ سفارش کمتر از حداقل مجاز درگاه بانکی است.',
+        ], 400);
+    }
     $callback_raw = add_query_arg('wc_order', $order_id, WC()->api_request_url('WC_bitpayir2'));
     $callback_encoded = headless_bitpay_encode_url(urlencode($callback_raw));
 
@@ -316,14 +353,60 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     }
 
     $error_msg = headless_bitpay_fault_message($result);
-    $order->add_order_note('خطا در ایجاد پرداخت بیت پی: کد ' . $result . ' - ' . $error_msg);
+    $order->add_order_note('خطا در ایجاد پرداخت بیت پی: کد ' . $result . ' - ' . $error_msg . ' | مبلغ ارسالی: ' . $amount . ' ریال');
     $order->save();
 
     return new WP_REST_Response([
         'code'        => 'payment_gateway_error',
         'message'     => $error_msg,
         'bitpay_code' => intval($result),
+        'sent_amount' => $amount,
     ], 502);
+}
+
+/**
+ * Accurately extracts the numeric cart total from WooCommerce cart.
+ * Avoids WC_Cart::get_subtotal() because it returns formatted HTML (wc_price)
+ * which evaluates to 0 in PHP arithmetic operations.
+ */
+function headless_get_cart_numeric_total() {
+    if (!function_exists('WC') || !WC()->cart) {
+        return 0.0;
+    }
+
+    // 1. Check raw total float on WC_Cart (calculated by calculate_totals)
+    $cart_total = floatval(WC()->cart->total);
+    if ($cart_total > 0) {
+        return $cart_total;
+    }
+
+    // 2. Try raw unformatted total via get_total('edit')
+    if (method_exists(WC()->cart, 'get_total')) {
+        $edit_total = WC()->cart->get_total('edit');
+        if (is_numeric($edit_total) && floatval($edit_total) > 0) {
+            return floatval($edit_total);
+        }
+    }
+
+    // 3. Fallback: raw subtotal property minus discount total
+    $subtotal = isset(WC()->cart->subtotal) ? floatval(WC()->cart->subtotal) : 0.0;
+    $discount = method_exists(WC()->cart, 'get_discount_total') ? floatval(WC()->cart->get_discount_total()) : 0.0;
+    if ($subtotal > 0) {
+        return max(0.0, $subtotal - $discount);
+    }
+
+    // 4. Fallback: iterate over cart items directly
+    $item_sum = 0.0;
+    $items = method_exists(WC()->cart, 'get_cart') ? WC()->cart->get_cart() : [];
+    foreach ($items as $item) {
+        if (!empty($item['line_total'])) {
+            $item_sum += floatval($item['line_total']);
+        } elseif (!empty($item['data']) && is_object($item['data']) && method_exists($item['data'], 'get_price')) {
+            $item_sum += floatval($item['data']->get_price()) * intval($item['quantity'] ?? 1);
+        }
+    }
+
+    return $item_sum;
 }
 
 function headless_bitpay_encode_url($url) {
