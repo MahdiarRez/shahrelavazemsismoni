@@ -287,10 +287,10 @@ function headless_checkout_create_order(WP_REST_Request $request) {
         ], 400);
     }
 
-    if ($amount > 4000000000) {
+    if ($amount > 2000000000) {
         return new WP_REST_Response([
             'code'    => 'amount_above_maximum',
-            'message' => 'مبلغ سفارش بیش از سقف مجاز پرداخت شبکه بانکی شاپرک (۴۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.',
+            'message' => 'مبلغ سفارش بیش از سقف مجاز پرداخت اینترنتی بانکی شاپرک برای هر کارت (۲۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.',
         ], 400);
     }
     $callback_raw = add_query_arg('wc_order', $order_id, WC()->api_request_url('WC_bitpayir2'));
