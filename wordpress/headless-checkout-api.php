@@ -283,7 +283,14 @@ function headless_checkout_create_order(WP_REST_Request $request) {
     if ($amount < 1000) {
         return new WP_REST_Response([
             'code'    => 'amount_below_minimum',
-            'message' => 'مبلغ سفارش کمتر از حداقل مجاز درگاه بانکی است.',
+            'message' => 'مبلغ سفارش کمتر از حداقل مجاز درگاه بانکی (۱,۰۰۰ ریال) است.',
+        ], 400);
+    }
+
+    if ($amount > 4000000000) {
+        return new WP_REST_Response([
+            'code'    => 'amount_above_maximum',
+            'message' => 'مبلغ سفارش بیش از سقف مجاز پرداخت شبکه بانکی شاپرک (۴۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.',
         ], 400);
     }
     $callback_raw = add_query_arg('wc_order', $order_id, WC()->api_request_url('WC_bitpayir2'));
