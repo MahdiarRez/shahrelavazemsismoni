@@ -1,7 +1,8 @@
 <!--app/components/Cart.vue-->
 <script setup>
-const { cart, increment, decrement } = useCart();
+const { cart, increment, decrement, updatingItemKeys, removingItemKeys } = useCart();
 const { order } = useCheckout();
+const isItemUpdating = (key) => updatingItemKeys.value.includes(key);
 </script>
 
 <template>
@@ -33,15 +34,15 @@ const { order } = useCheckout();
 							<div class="flex-1 gap-1 flex flex-col items-start">
 								<div
 									class="font-medium text-sm text-right mb-0.5 line-clamp-2 overflow-hidden text-ellipsis bidi-auto">
-									{{ product.product.node.name }}
+									{{ product.product?.node?.name }}
 								</div>
 								<ProductPrice
 									class="text-right"
 									:sale-price="
-										product.variation.node.salePrice
+										product.variation?.node?.salePrice || product.product?.node?.salePrice
 									"
 									:regular-price="
-										product.variation.node.regularPrice
+										product.variation?.node?.regularPrice || product.product?.node?.regularPrice
 									"
 									:quantity="product.quantity"
 									variant="cart" />
@@ -69,24 +70,25 @@ const { order } = useCheckout();
 							<div
 								class="absolute md:opacity-0 group-hover:opacity-100 bottom-2 sm:bottom-[unset] sm:top-2 left-2 md:-top-1 md:-left-1 transition space-y-0.5 flex flex-row sm:flex-col p-0.5 dark:bg-white/10 bg-black/10 backdrop-blur border dark:border-white/5 border-black/5 items-center justify-center rounded-full">
 								<div
-									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center">
+									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center"
+									:class="{ 'opacity-40 pointer-events-none': isItemUpdating(product.key) }">
 									<UIcon
 										size="14"
 										name="i-iconamoon-sign-plus"
 										class="text-black dark:text-white cursor-pointer"
-										@click="
-											increment(
-												product.variation.node
-													.databaseId,
-											)
-										" />
+										@click="increment(product.key)" />
 								</div>
 								<span
+									v-if="!isItemUpdating(product.key)"
 									class="text-center text-sm py-1 mx-3 sm:mx-0"
 									>{{ product.quantity }}</span
 								>
+								<div v-else class="w-7 h-7 flex items-center justify-center">
+									<UIcon name="i-svg-spinners-90-ring-with-bg" size="14" class="text-secondary-600 dark:text-secondary-400" />
+								</div>
 								<div
-									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center">
+									class="dark:bg-white/10 bg-white/50 dark:hover:bg-white/30 hover:bg-white/100 transition-all rounded-full p-0.5 w-7 h-7 flex items-center justify-center"
+									:class="{ 'opacity-40 pointer-events-none': isItemUpdating(product.key) }">
 									<UIcon
 										size="14"
 										:name="
@@ -95,12 +97,7 @@ const { order } = useCheckout();
 												: 'i-iconamoon-trash-light'
 										"
 										class="text-black dark:text-white cursor-pointer"
-										@click="
-											decrement(
-												product.variation.node
-													.databaseId,
-											)
-										" />
+										@click="decrement(product.key)" />
 								</div>
 							</div>
 						</div>

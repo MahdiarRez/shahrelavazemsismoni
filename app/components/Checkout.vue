@@ -35,10 +35,10 @@ const parsePrice = (priceStr) => {
 
 const totalRials = computed(() => {
 	return cart.value.reduce((accumulator, item) => {
-		const node = item.variation?.node;
+		const node = item.variation?.node || item.product?.node;
 		if (!node) return accumulator;
 
-		const regularPrice = parsePrice(node.regularPrice);
+		const regularPrice = parsePrice(node.regularPrice ?? node.price);
 		const salePrice = parsePrice(node.salePrice);
 
 		const priceToUse =
@@ -50,7 +50,7 @@ const totalRials = computed(() => {
 	}, 0);
 });
 
-const isOverBankLimit = computed(() => totalRials.value > 2000000000);
+const isOverBankLimit = computed(() => totalRials.value > 400000000);
 
 const cartTotal = computed(() => {
 	return totalRials.value > 0
@@ -386,7 +386,7 @@ const postcodeInput = computed({
 					size="18"
 					class="flex-shrink-0 mt-0.5 text-red-500" />
 				<span class="leading-5">
-					مبلغ سفارش بیش از سقف مجاز پرداخت با هر کارت بانکی در درگاه اینترنتی (۲۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.
+					مبلغ سفارش بیش از سقف مجاز پرداخت اینترنتی درگاه بیت‌پی (۴۰ میلیون تومان) است. لطفاً تعداد اقلام یا مبلغ سبد خرید را کاهش دهید.
 				</span>
 			</div>
 

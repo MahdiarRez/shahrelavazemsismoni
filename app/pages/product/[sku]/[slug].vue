@@ -19,7 +19,11 @@ const setThumbsSwiper = (swiper) => {
 	thumbsSwiper.value = swiper;
 };
 
-const routeSku = computed(() => route.params.sku || route.params.slug);
+const routeSku = computed(() => {
+	const sku = route.params.sku;
+	if (sku && sku !== "null" && sku !== "undefined") return sku;
+	return route.params.slug;
+});
 
 const { data: productData, pending } = await useFetch("/api/product", {
 	query: { sku: routeSku },
@@ -68,6 +72,34 @@ watchEffect(() => {
 		selectedVariation.value = variationInStock || sortedVariations.value[0];
 	}
 });
+
+const hasVariations = computed(() => sortedVariations.value.length > 0);
+
+const isAvailable = computed(() => {
+	if (hasVariations.value) {
+		return (
+			!!selectedVariation.value &&
+			selectedVariation.value.stockStatus !== "OUT_OF_STOCK"
+		);
+	}
+	return (
+		product.value?.stockStatus !== "OUT_OF_STOCK" &&
+		!!product.value?.databaseId
+	);
+});
+
+const onAddToCart = () => {
+	if (!isAvailable.value) return;
+	if (hasVariations.value && selectedVariation.value?.databaseId) {
+		handleAddToCart(
+			product.value?.databaseId || selectedVariation.value.databaseId,
+			1,
+			selectedVariation.value.databaseId,
+		);
+	} else if (product.value?.databaseId) {
+		handleAddToCart(product.value.databaseId, 1);
+	}
+};
 </script>
 
 <template>
@@ -226,16 +258,17 @@ watchEffect(() => {
 						</div>
 						<div class="flex">
 							<button
-								@click="
-									handleAddToCart(
-										selectedVariation.databaseId,
-									)
-								"
-								:disabled="addToCartButtonStatus !== 'add'"
-								class="button-bezel w-full h-14 rounded-full relative tracking-wide font-semibold text-white text-sm flex justify-center items-center">
+								@click="onAddToCart"
+								:disabled="addToCartButtonStatus !== 'add' || !isAvailable"
+								class="button-bezel w-full h-14 rounded-full relative tracking-wide font-semibold text-white text-sm flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed">
 								<Transition name="slide-up">
 									<div
-										v-if="addToCartButtonStatus === 'add'"
+										v-if="!isAvailable"
+										class="absolute">
+										{{ $t("product.out_of_stock") || "ناموجود" }}
+									</div>
+									<div
+										v-else-if="addToCartButtonStatus === 'add'"
 										class="absolute">
 										{{ $t("cart.add_to_cart") }}
 									</div>

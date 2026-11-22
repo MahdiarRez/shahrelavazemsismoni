@@ -280,26 +280,26 @@ function headless_checkout_create_order(WP_REST_Request $request) {
         $amount = intval(round($order_total));
     }
 
-    if ($amount < 1000) {
+    if ($amount < 50000) {
         return new WP_REST_Response([
             'code'    => 'amount_below_minimum',
-            'message' => 'مبلغ سفارش کمتر از حداقل مجاز درگاه بانکی (۱,۰۰۰ ریال) است.',
+            'message' => 'مبلغ سفارش کمتر از حداقل مجاز درگاه اینترنتی بیت‌پی (۵,۰۰۰ تومان / ۵۰,۰۰۰ ریال) است.',
         ], 400);
     }
 
-    if ($amount > 2000000000) {
+    if ($amount > 400000000) {
         return new WP_REST_Response([
             'code'    => 'amount_above_maximum',
-            'message' => 'مبلغ سفارش بیش از سقف مجاز پرداخت اینترنتی بانکی شاپرک برای هر کارت (۲۰۰ میلیون تومان) است. لطفاً تعداد اقلام را کاهش دهید.',
+            'message' => 'مبلغ سفارش بیش از سقف مجاز پرداخت اینترنتی درگاه بیت‌پی (۴۰ میلیون تومان / ۴۰۰ میلیون ریال) است. لطفاً تعداد اقلام یا مبلغ سبد خرید را کاهش دهید.',
         ], 400);
     }
     // BitPay validates that the redirect domain matches the domain registered for the API key (shahrsismoony.ir).
     // In headless setups, WordPress is on a different domain (e.g. liara.run), so we route the callback
     // through Nuxt's /api/payment/callback endpoint on the storefront domain.
     $callback_param = $request->get_param('callback_url');
-    if (!empty($callback_param)) {
+    if (!empty($callback_param) && strpos($callback_param, 'localhost') === false && strpos($callback_param, '127.0.0.1') === false) {
         $callback_base = $callback_param;
-    } elseif (function_exists('nuxt_redirect_get_base_url')) {
+    } elseif (function_exists('nuxt_redirect_get_base_url') && strpos(nuxt_redirect_get_base_url(), 'localhost') === false && strpos(nuxt_redirect_get_base_url(), '127.0.0.1') === false) {
         $callback_base = trailingslashit(nuxt_redirect_get_base_url()) . 'api/payment/callback';
     } else {
         $callback_base = 'https://shahrsismoony.ir/api/payment/callback';
@@ -370,7 +370,7 @@ function headless_checkout_create_order(WP_REST_Request $request) {
         ], 200);
     }
 
-    $error_msg = headless_bitpay_fault_message($result);
+    $error_msg = headless_bitpay_fault_message($result, $amount);
     $order->add_order_note('خطا در ایجاد پرداخت بیت پی: کد ' . $result . ' - ' . $error_msg . ' | مبلغ ارسالی: ' . $amount . ' ریال');
     $order->save();
 
@@ -436,10 +436,17 @@ function headless_bitpay_encode_url($url) {
     return $encoded;
 }
 
-function headless_bitpay_fault_message($err_code) {
-    switch ($err_code) {
+function headless_bitpay_fault_message($err_code, $amount = 0) {
+    switch ((string) $err_code) {
         case '-1':  return 'API وارد شده صحیح نمی باشد.';
-        case '-2':  return 'مبلغ ارسالی معتبر نیست.';
+        case '-2':
+            if ($amount > 400000000) {
+                return 'مبلغ سفارش بیش از سقف مجاز پرداخت درگاه بیت‌پی (۴۰ میلیون تومان / ۴۰۰ میلیون ریال) است. لطفاً تعداد اقلام را کاهش دهید.';
+            }
+            if ($amount > 0 && $amount < 50000) {
+                return 'مبلغ سفارش کمتر از حداقل مجاز درگاه بیت‌پی (۵,۰۰۰ تومان / ۵۰,۰۰۰ ریال) است.';
+            }
+            return 'مبلغ ارسالی معتبر نیست (حداقل ۵ هزار تومان و حداکثر ۴۰ میلیون تومان).';
         case '-3':  return 'شناسه تراکنش معتبر نمی باشد.';
         case '-4':  return 'آدرس درگاه با دامنه هماهنگ نیست.';
         case '-11': return 'API ارسالی با نوع API تعریف شده سازگار نیست.';

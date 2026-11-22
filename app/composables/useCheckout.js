@@ -3,7 +3,7 @@ import { toEnglishDigits } from "~~/shared/helpers";
 
 export const useCheckout = () => {
 	const { t } = useI18n();
-	const { cart, isCartUpdating } = useCart();
+	const { cart, isCartUpdating, flushAllPendingUpdates } = useCart();
 
 	// Populated on the /payment/success page once WooCommerce confirms payment.
 	const order = useState("order", () => null);
@@ -26,6 +26,10 @@ export const useCheckout = () => {
 	const handleCheckout = async () => {
 		if (checkoutStatus.value !== "idle") return;
 
+		if (flushAllPendingUpdates) {
+			await flushAllPendingUpdates();
+		}
+
 		if (isCartUpdating.value) {
 			push.warning(
 				t("cart.please_wait_updating") ||
@@ -39,18 +43,24 @@ export const useCheckout = () => {
 			return;
 		}
 
-		// Check 200 Million Tomans bank ceiling (2 Billion Rials per card transaction)
+		// Check BitPay gateway ceiling (40 Million Tomans = 400 Million Rials per transaction)
 		const totalRials = cart.value.reduce((acc, item) => {
-			const node = item.variation?.node;
+			const node = item.variation?.node || item.product?.node;
 			if (!node) return acc;
 			const p = Number(
-				String(node.salePrice || node.regularPrice || "0").replace(/\D/g, ""),
+				String(node.salePrice || node.regularPrice || node.price || "0").replace(/\D/g, ""),
 			);
 			return acc + p * (item.quantity ?? 1);
 		}, 0);
-		if (totalRials > 2000000000) {
+		if (totalRials > 400000000) {
 			push.error(
-				"مبلغ سفارش بیش از سقف مجاز پرداخت با هر کارت بانکی در درگاه اینترنتی (۲۰۰ میلیون تومان) است.",
+				"مبلغ سفارش بیش از سقف مجاز پرداخت اینترنتی درگاه بیت‌پی (۴۰ میلیون تومان) است. لطفاً تعداد اقلام یا مبلغ سبد خرید را کاهش دهید.",
+			);
+			return;
+		}
+		if (totalRials > 0 && totalRials < 50000) {
+			push.error(
+				"حداقل مبلغ سفارش برای پرداخت اینترنتی ۵,۰۰۰ تومان (۵۰,۰۰۰ ریال) است.",
 			);
 			return;
 		}
