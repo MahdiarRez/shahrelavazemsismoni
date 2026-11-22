@@ -12,7 +12,7 @@ interface VerifyResponse {
 
 const route = useRoute();
 const { order } = useCheckout();
-const { cart } = useCart();
+const { cart, clearCart } = useCart();
 const { t } = useI18n();
 
 const orderIdRaw = route.query.order_id;
@@ -44,13 +44,7 @@ let cartCleared = false;
 async function clearServerCart() {
 	if (cartCleared || !process.client) return;
 	cartCleared = true;
-	try {
-		await $fetch("/api/cart/empty", { method: "POST" });
-	} catch (err) {
-		console.error("[payment/success] failed to empty server cart:", err);
-	}
-	cart.value = [];
-	localStorage.setItem("cart", JSON.stringify(cart.value));
+	await clearCart();
 }
 
 watch(

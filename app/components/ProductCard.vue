@@ -12,7 +12,7 @@ defineProps({
 <template>
 	<article v-for="product in products">
 		<NuxtLink
-			:to="localePath(`/product/${product.sku}/${product.slug}`)"
+			:to="localePath(`/product/${product.sku || product.slug}/${product.slug}`)"
 			class="group select-none h-full">
 			<div
 				class="cursor-pointer transition ease-[ease] duration-300 md:hover:bg-[#efefef36] dark:md:hover:bg-[#141313] rounded-[32px]">

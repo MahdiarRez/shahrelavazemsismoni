@@ -1,11 +1,24 @@
 <!--app/pages/cart.vue-->
 <script setup>
-import { computed } from "vue";
-import { toPersianDigits } from "~~/shared/helpers";
+import { computed, ref, onMounted, onBeforeUnmount } from "vue";
+import {
+	convertMinPriceRangeToToman,
+	toPersianDigits,
+	toEnglishDigits,
+} from "~~/shared/helpers";
 
 const { t } = useI18n();
-const { cart, increment, decrement, isCartUpdating, updatingVariationId } =
-	useCart();
+const {
+	cart,
+	increment,
+	decrement,
+	setQuantity,
+	removeItem,
+	clearCart,
+	isCartUpdating,
+	updatingItemKeys,
+	syncCart,
+} = useCart();
 const { order } = useCheckout();
 const localePath = useLocalePath();
 const router = useRouter();
@@ -18,6 +31,84 @@ const totalQuantity = computed(() =>
 	cart.value.reduce((s, i) => s + (i.quantity || 0), 0),
 );
 
+const parsePrice = (priceStr) => {
+	if (!priceStr) return 0;
+	return Number(priceStr.toString().replace(/[^\d]/g, ""));
+};
+
+const totalRials = computed(() => {
+	return cart.value.reduce((accumulator, item) => {
+		const node = item.variation?.node || item.product?.node;
+		if (!node) return accumulator;
+
+		const regularPrice = parsePrice(node.regularPrice ?? node.price);
+		const salePrice = parsePrice(node.salePrice);
+
+		const priceToUse =
+			salePrice > 0 && salePrice < regularPrice
+				? salePrice
+				: regularPrice;
+
+		return accumulator + priceToUse * (item.quantity ?? 1);
+	}, 0);
+});
+
+const cartTotalToman = computed(() => {
+	return totalRials.value > 0
+		? convertMinPriceRangeToToman(totalRials.value.toString())
+		: "۰";
+});
+
+const isItemUpdating = (key) => updatingItemKeys.value.includes(key);
+
+// Manual quantity editing state
+const editingKey = ref(null);
+const editingQty = ref("");
+
+const startEditing = (key, currentQty) => {
+	editingKey.value = key;
+	editingQty.value = String(currentQty);
+};
+
+const onInputQuantity = (event) => {
+	const val = toEnglishDigits(event.target.value).replace(/\D/g, "");
+	editingQty.value = val;
+};
+
+const applyQuantity = async (key) => {
+	if (editingKey.value !== key) return;
+	const entered = Number(editingQty.value);
+	editingKey.value = null;
+
+	const item = cart.value.find((i) => i.key === key);
+	if (!item) return;
+
+	if (!entered || isNaN(entered) || entered <= 0) {
+		// If 0 or empty, remove item
+		await removeItem(key);
+	} else if (entered !== item.quantity) {
+		await setQuantity(key, entered);
+	}
+};
+
+// Clear cart confirmation
+const showClearConfirm = ref(false);
+const handleConfirmClear = async () => {
+	showClearConfirm.value = false;
+	await clearCart();
+};
+
+// Mobile sticky bar: scroll to checkout & hide when checkout is in view
+const isCheckoutInView = ref(false);
+let checkoutObserver = null;
+
+const scrollToCheckout = () => {
+	const el = document.getElementById("checkout-section");
+	if (el) {
+		el.scrollIntoView({ behavior: "smooth", block: "start" });
+	}
+};
+
 const goBack = () => {
 	if (typeof window !== "undefined" && window.history.length > 1) {
 		router.back();
@@ -25,6 +116,29 @@ const goBack = () => {
 		router.push(localePath("/shop"));
 	}
 };
+
+onMounted(() => {
+	if (!process.client) return;
+
+	const el = document.getElementById("checkout-section");
+	if (el && "IntersectionObserver" in window) {
+		checkoutObserver = new IntersectionObserver(
+			(entries) => {
+				const entry = entries[0];
+				isCheckoutInView.value = entry?.isIntersecting || false;
+			},
+			{ threshold: 0.1 },
+		);
+		checkoutObserver.observe(el);
+	}
+});
+
+onBeforeUnmount(() => {
+	if (checkoutObserver) {
+		checkoutObserver.disconnect();
+		checkoutObserver = null;
+	}
+});
 </script>
 
 <template>
@@ -37,7 +151,7 @@ const goBack = () => {
 		<!-- Cart With Items -->
 		<div v-else-if="cart.length">
 			<!-- Page Header -->
-			<div class="flex items-center justify-between mb-6 pb-4 border-b border-neutral-200/80 dark:border-neutral-800/80">
+			<div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-neutral-200/80 dark:border-neutral-800/80">
 				<div class="flex items-center gap-3">
 					<button
 						type="button"
@@ -55,12 +169,44 @@ const goBack = () => {
 						</h1>
 					</div>
 				</div>
-				<NuxtLink
-					:to="localePath('/shop')"
-					class="text-xs sm:text-sm font-medium text-secondary-600 hover:text-secondary-700 dark:text-secondary-400 flex items-center gap-1 active:scale-95 transition">
-					<span>{{ $t("cart.continue_shopping") || "ادامه خرید" }}</span>
-					<UIcon name="i-iconamoon-arrow-left-2" size="16" />
-				</NuxtLink>
+
+				<!-- Actions: Clear Cart & Continue Shopping -->
+				<div class="flex items-center gap-2 sm:gap-4">
+					<!-- Clear Cart Confirmation / Trigger -->
+					<div v-if="!showClearConfirm">
+						<button
+							type="button"
+							@click="showClearConfirm = true"
+							:disabled="isCartUpdating"
+							class="text-xs font-medium text-neutral-500 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 flex items-center gap-1 px-2.5 py-1.5 rounded-xl hover:bg-red-50/50 dark:hover:bg-red-950/20 transition active:scale-95 disabled:opacity-40"
+							title="خالی کردن تمام سبد خرید">
+							<UIcon name="i-iconamoon-trash-light" size="16" />
+							<span>خالی کردن سبد</span>
+						</button>
+					</div>
+					<div v-else class="flex items-center gap-1.5 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 px-2 py-1 rounded-xl text-xs">
+						<span class="text-red-700 dark:text-red-300 font-medium">همه پاک شود؟</span>
+						<button
+							type="button"
+							@click="handleConfirmClear"
+							class="px-2 py-0.5 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition active:scale-95">
+							بله
+						</button>
+						<button
+							type="button"
+							@click="showClearConfirm = false"
+							class="px-2 py-0.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-lg hover:bg-neutral-300 transition active:scale-95">
+							انصراف
+						</button>
+					</div>
+
+					<NuxtLink
+						:to="localePath('/shop')"
+						class="text-xs sm:text-sm font-medium text-secondary-600 hover:text-secondary-700 dark:text-secondary-400 flex items-center gap-1 active:scale-95 transition">
+						<span>{{ $t("cart.continue_shopping") || "ادامه خرید" }}</span>
+						<UIcon name="i-iconamoon-arrow-left-2" size="16" />
+					</NuxtLink>
+				</div>
 			</div>
 
 			<!-- Responsive 2-Column Grid -->
@@ -93,17 +239,30 @@ const goBack = () => {
 						<!-- Product Details -->
 						<div class="flex-1 min-w-0 flex flex-col justify-between self-stretch py-0.5">
 							<div>
-								<NuxtLink
-									:to="
-										localePath(
-											`/product/${product.product?.node?.sku || product.product?.node?.slug}/${product.product?.node?.slug}`
-										)
-									"
-									class="font-semibold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 hover:text-secondary-600 dark:hover:text-secondary-400 transition line-clamp-2 mb-1.5 bidi-auto block">
-									{{ product.product?.node?.name }}
-								</NuxtLink>
+								<div class="flex items-start justify-between gap-2 mb-1.5">
+									<NuxtLink
+										:to="
+											localePath(
+												`/product/${product.product?.node?.sku || product.product?.node?.slug}/${product.product?.node?.slug}`
+											)
+										"
+										class="font-semibold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 hover:text-secondary-600 dark:hover:text-secondary-400 transition line-clamp-2 bidi-auto">
+										{{ product.product?.node?.name }}
+									</NuxtLink>
 
-								<!-- Variation Attributes (e.g. Size / Model) -->
+									<!-- Quick Direct Remove Button on Top Right/Left -->
+									<button
+										type="button"
+										:disabled="isItemUpdating(product.key)"
+										@click="removeItem(product.key)"
+										class="p-1.5 text-neutral-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition active:scale-90 flex-shrink-0 disabled:opacity-40"
+										aria-label="حذف محصول از سبد خرید"
+										title="حذف از سبد خرید">
+										<UIcon name="i-iconamoon-trash-light" size="18" />
+									</button>
+								</div>
+
+								<!-- Variation Attributes (e.g. Size / Model / Color) -->
 								<div
 									v-if="product.variation?.attributes?.length"
 									class="inline-flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 rounded-lg mb-2">
@@ -111,7 +270,7 @@ const goBack = () => {
 									<span class="font-bold text-neutral-800 dark:text-neutral-200">
 										{{
 											product.variation.attributes
-												.map((attr) => attr.value.toUpperCase())
+												.map((attr) => (attr.value || "").toUpperCase())
 												.join(", ")
 										}}
 									</span>
@@ -122,34 +281,56 @@ const goBack = () => {
 							<div class="flex flex-wrap items-end justify-between gap-3 mt-2 pt-2 border-t border-neutral-100 dark:border-neutral-800/60">
 								<ProductPrice
 									class="text-right"
-									:sale-price="product.variation?.node?.salePrice"
-									:regular-price="product.variation?.node?.regularPrice"
+									:sale-price="
+										product.variation?.node?.salePrice ||
+										product.product?.node?.salePrice
+									"
+									:regular-price="
+										product.variation?.node?.regularPrice ||
+										product.product?.node?.regularPrice
+									"
 									:quantity="product.quantity"
 									variant="cart" />
 
-								<!-- Quantity Controls -->
-								<div class="flex items-center gap-2 bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200/80 dark:border-neutral-700/60 rounded-full p-1 shadow-inner">
+								<!-- Quantity Stepper & Manual Input -->
+								<div class="flex items-center gap-1.5 bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200/80 dark:border-neutral-700/60 rounded-full p-1 shadow-inner">
+									<!-- Increment (+) Button -->
 									<button
 										type="button"
-										:disabled="isCartUpdating"
-										@click="increment(product.variation?.node?.databaseId)"
-										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90 disabled:opacity-40 disabled:cursor-not-allowed"
+										@click="increment(product.key)"
+										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90"
 										aria-label="افزایش تعداد">
 										<UIcon name="i-iconamoon-sign-plus" size="16" />
 									</button>
-									<span class="text-sm font-bold min-w-[24px] text-center px-1 flex items-center justify-center">
+
+									<!-- Quantity Display / Editable Input -->
+									<div class="min-w-[32px] text-center px-1 flex items-center justify-center relative">
+										<input
+											type="text"
+											inputmode="numeric"
+											:value="
+												editingKey === product.key
+													? editingQty
+													: toPersianDigits(product.quantity)
+											"
+											@focus="startEditing(product.key, product.quantity)"
+											@input="onInputQuantity($event)"
+											@blur="applyQuantity(product.key)"
+											@keydown.enter.prevent="$event.target.blur()"
+											class="w-8 text-center text-sm font-bold bg-transparent outline-none cursor-text select-text"
+											aria-label="تعداد کالا" />
 										<UIcon
-											v-if="isCartUpdating && updatingVariationId === product.variation?.node?.databaseId"
+											v-if="isItemUpdating(product.key)"
 											name="i-svg-spinners-90-ring-with-bg"
-											size="16"
-											class="text-secondary-600 dark:text-secondary-400" />
-										<span v-else>{{ toPersianDigits(product.quantity) }}</span>
-									</span>
+											size="12"
+											class="text-secondary-600 dark:text-secondary-400 absolute -top-1 -right-0.5" />
+									</div>
+
+									<!-- Decrement (-) Button -->
 									<button
 										type="button"
-										:disabled="isCartUpdating"
-										@click="decrement(product.variation?.node?.databaseId)"
-										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90 disabled:opacity-40 disabled:cursor-not-allowed"
+										@click="decrement(product.key)"
+										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90"
 										:aria-label="product.quantity > 1 ? 'کاهش تعداد' : 'حذف محصول'">
 										<UIcon
 											size="16"
@@ -179,8 +360,31 @@ const goBack = () => {
 				</div>
 
 				<!-- Checkout Section -->
-				<div class="lg:col-span-5 xl:col-span-5 w-full flex flex-col items-center lg:items-stretch lg:sticky lg:top-24">
+				<div
+					id="checkout-section"
+					class="lg:col-span-5 xl:col-span-5 w-full flex flex-col items-center lg:items-stretch lg:sticky lg:top-24">
 					<Checkout />
+				</div>
+			</div>
+
+			<!-- Mobile Sticky Action Bar (visible when scrolling through items on mobile) -->
+			<div
+				class="fixed bottom-0 left-0 right-0 z-40 lg:hidden p-3 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-t border-neutral-200/80 dark:border-neutral-800/80 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transition-transform duration-300"
+				:class="{ 'translate-y-full': isCheckoutInView }">
+				<div class="max-w-md mx-auto flex items-center justify-between gap-3">
+					<div>
+						<div class="text-[11px] text-neutral-500 dark:text-neutral-400">مجموع سفارش:</div>
+						<div class="text-base font-bold text-emerald-600 dark:text-emerald-400">
+							{{ cartTotalToman }} تومان
+						</div>
+					</div>
+					<button
+						type="button"
+						@click="scrollToCheckout"
+						class="px-5 py-2.5 rounded-xl bg-secondary-600 hover:bg-secondary-500 text-white font-semibold text-sm flex items-center gap-1.5 shadow-md active:scale-95 transition">
+						<span>ثبت و تکمیل خرید</span>
+						<UIcon name="i-iconamoon-arrow-down-2-bold" size="16" />
+					</button>
 				</div>
 			</div>
 		</div>

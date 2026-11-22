@@ -33,15 +33,15 @@ const { order } = useCheckout();
 							<div class="flex-1 gap-1 flex flex-col items-start">
 								<div
 									class="font-medium text-sm text-right mb-0.5 line-clamp-2 overflow-hidden text-ellipsis bidi-auto">
-									{{ product.product.node.name }}
+									{{ product.product?.node?.name }}
 								</div>
 								<ProductPrice
 									class="text-right"
 									:sale-price="
-										product.variation.node.salePrice
+										product.variation?.node?.salePrice || product.product?.node?.salePrice
 									"
 									:regular-price="
-										product.variation.node.regularPrice
+										product.variation?.node?.regularPrice || product.product?.node?.regularPrice
 									"
 									:quantity="product.quantity"
 									variant="cart" />
@@ -74,12 +74,7 @@ const { order } = useCheckout();
 										size="14"
 										name="i-iconamoon-sign-plus"
 										class="text-black dark:text-white cursor-pointer"
-										@click="
-											increment(
-												product.variation.node
-													.databaseId,
-											)
-										" />
+										@click="increment(product.key)" />
 								</div>
 								<span
 									class="text-center text-sm py-1 mx-3 sm:mx-0"
@@ -95,12 +90,7 @@ const { order } = useCheckout();
 												: 'i-iconamoon-trash-light'
 										"
 										class="text-black dark:text-white cursor-pointer"
-										@click="
-											decrement(
-												product.variation.node
-													.databaseId,
-											)
-										" />
+										@click="decrement(product.key)" />
 								</div>
 							</div>
 						</div>
