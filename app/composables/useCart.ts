@@ -10,8 +10,8 @@ import type {
   AddBtnStatus,
 } from "~~/shared/types";
 
-// Sequential mutation queue: prevents concurrent mutations from racing against
-// the shared WooCommerce session on WordPress / MySQL.
+// Module-level mutation queue: serializes all cart mutations (ADD, UPDATE, REMOVE, EMPTY)
+// to prevent race conditions on the shared WooCommerce session.
 let mutationQueue: Promise<any> = Promise.resolve();
 
 function enqueueMutation<T>(task: () => Promise<T>): Promise<T> {
@@ -27,10 +27,9 @@ function enqueueMutation<T>(task: () => Promise<T>): Promise<T> {
   return next;
 }
 
-// Module-level tracking of debounced targets and in-flight operations
-const pendingTargets = new Map<string, number>();
-const debounceTimers = new Map<string, ReturnType<typeof setTimeout>>();
-const inFlightKeys = new Set<string>();
+// Module-level in-flight GET promise coalescing (ensures concurrent callers share 1 network request)
+let activeCartFetchPromise: Promise<CartData | null> | null = null;
+let activeFetchAbortController: AbortController | null = null;
 
 export const useCart = () => {
   const cart = useState<CartItem[]>("cart", () => []);
@@ -40,10 +39,28 @@ export const useCart = () => {
   );
   const isCartUpdating = useState<boolean>("isCartUpdating", () => false);
   const updatingItemKeys = useState<string[]>("updatingItemKeys", () => []);
-  const addToCartButtonStatus = ref<AddBtnStatus>("add");
+  const removingItemKeys = useState<string[]>("removingItemKeys", () => []);
+  const isCartSyncing = useState<boolean>("isCartSyncing", () => false);
+  const cartSyncError = useState<string | null>("cartSyncError", () => null);
   const isCartInitialized = useState<boolean>("isCartInitialized", () => false);
-  const isSyncing = ref(false);
-  const isClearingCart = ref(false);
+  const isClearingCart = useState<boolean>("isClearingCart", () => false);
+  const lastSyncedAt = useState<number>("cartLastSyncedAt", () => 0);
+  const addToCartButtonStatus = ref<AddBtnStatus>("add");
+
+  // Immediate client-side hydration from localStorage (avoids UI pop-in)
+  if (process.client && !isCartInitialized.value && cart.value.length === 0) {
+    try {
+      const stored = localStorage.getItem("cart");
+      if (stored) {
+        const parsed = JSON.parse(stored) as CartItem[];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          cart.value = parsed;
+        }
+      }
+    } catch {
+      // Ignore invalid JSON in localStorage
+    }
+  }
 
   // Backward compatibility with legacy components expecting updatingVariationId
   const updatingVariationId = computed<number | null>(() => {
@@ -91,123 +108,108 @@ export const useCart = () => {
 
   /**
    * Synchronize cart state with authoritative WooCommerce backend.
+   * - Deduplicates concurrent requests (coalesces into single Promise).
+   * - Reuses valid cached data if recently synced (< 30s) unless forced.
+   * - Supports cancellation via AbortSignal without user-facing error noise.
    */
-  const syncCart = async () => {
-    if (isSyncing.value || !process.client) return;
-    try {
-      isSyncing.value = true;
-      const res = await $fetch<{ cart: CartData }>("/api/cart");
-      const nodes = res.cart?.contents?.nodes || [];
-      updateCartState(nodes, {
-        total: res.cart?.total,
-        subtotal: res.cart?.subtotal,
-      });
-    } catch (err) {
-      console.warn("[useCart] Failed to sync cart from server:", err);
-    } finally {
-      isSyncing.value = false;
-      isCartInitialized.value = true;
-    }
-  };
+  const syncCart = async (options?: { force?: boolean; signal?: AbortSignal }): Promise<CartData | null> => {
+    if (!process.client) return null;
 
-  /**
-   * Execute coalesced quantity update for a specific item key.
-   */
-  const flushQuantityUpdate = async (key: string) => {
-    if (!process.client) return;
+    // Cache freshness: if initialized and recently synced (within 30s), reuse valid cached state
+    const isCacheFresh =
+      !options?.force &&
+      isCartInitialized.value &&
+      lastSyncedAt.value > 0 &&
+      Date.now() - lastSyncedAt.value < 30000;
 
-    // Request Coalescing: if an update is already in-flight for this key,
-    // let it finish; its completion will see the newer target and trigger another flush.
-    if (inFlightKeys.has(key)) {
-      return;
+    if (isCacheFresh && !activeCartFetchPromise) {
+      return {
+        contents: { nodes: cart.value },
+        total: cartTotals.value.total,
+        subtotal: cartTotals.value.subtotal,
+      } as unknown as CartData;
     }
 
-    const targetQty = pendingTargets.get(key);
-    if (targetQty === undefined) {
-      return;
+    // Coalesce with any currently active GET request
+    if (activeCartFetchPromise) {
+      return await activeCartFetchPromise;
     }
 
-    await enqueueMutation(async () => {
-      const currentTarget = pendingTargets.get(key);
-      if (currentTarget === undefined) return;
+    isCartSyncing.value = true;
+    cartSyncError.value = null;
 
-      inFlightKeys.add(key);
-      if (!updatingItemKeys.value.includes(key)) {
-        updatingItemKeys.value = [...updatingItemKeys.value, key];
+    const controller = new AbortController();
+    activeFetchAbortController = controller;
+
+    const onCallerAbort = () => controller.abort();
+    if (options?.signal) {
+      if (options.signal.aborted) {
+        controller.abort();
+      } else {
+        options.signal.addEventListener("abort", onCallerAbort, { once: true });
       }
-      isCartUpdating.value = true;
+    }
 
+    activeCartFetchPromise = (async () => {
       try {
-        const res = await $fetch<UpdateCartResponse>("/api/cart/update", {
-          method: "POST",
-          body: { items: [{ key, quantity: currentTarget }] },
+        const res = await $fetch<{ cart: CartData }>("/api/cart", {
+          signal: controller.signal,
         });
-
-        const returnedNodes = res.updateItemQuantities?.cart?.contents?.nodes;
-        const returnedTotals = {
-          total: res.updateItemQuantities?.cart?.total,
-          subtotal: res.updateItemQuantities?.cart?.subtotal,
-        };
-
-        // Check if user changed the quantity again while this request was in flight:
-        const latestTarget = pendingTargets.get(key);
-        if (latestTarget !== undefined && latestTarget !== currentTarget) {
-          // User clicked again! Preserve optimistic local state and flush again.
-          if (Array.isArray(returnedNodes)) {
-            const merged = returnedNodes.map((node) =>
-              node.key === key ? { ...node, quantity: latestTarget } : node
-            );
-            updateCartState(merged, returnedTotals);
-          }
-          inFlightKeys.delete(key);
-          // Trigger coalesced follow-up immediately
-          flushQuantityUpdate(key);
-          return;
-        }
-
-        // Reached steady state for this key
-        pendingTargets.delete(key);
-        if (Array.isArray(returnedNodes)) {
-          updateCartState(returnedNodes, returnedTotals);
-        }
+        const nodes = res.cart?.contents?.nodes || [];
+        updateCartState(nodes, {
+          total: res.cart?.total,
+          subtotal: res.cart?.subtotal,
+        });
+        lastSyncedAt.value = Date.now();
+        cartSyncError.value = null;
+        isCartInitialized.value = true;
+        return res.cart;
       } catch (err: any) {
-        console.warn("[useCart] update quantity failed:", err);
-        pendingTargets.delete(key);
-        push.error(
-          err?.data?.message ||
-            "خطا در به‌روزرسانی تعداد کالا. در حال هماهنگ‌سازی با سرور..."
-        );
-        // Safe reconciliation on ambiguous failure
-        await syncCart();
-      } finally {
-        inFlightKeys.delete(key);
-        updatingItemKeys.value = updatingItemKeys.value.filter((k) => k !== key);
-        if (updatingItemKeys.value.length === 0 && pendingTargets.size === 0) {
-          isCartUpdating.value = false;
+        if (
+          err?.name === "AbortError" ||
+          err?.cause?.name === "AbortError" ||
+          controller.signal.aborted
+        ) {
+          // Intentional abort (e.g. user navigated away while initial fetch was pending)
+          return null;
         }
+        console.warn("[useCart] Failed to sync cart from server:", err);
+        const errMsg =
+          err?.data?.message ||
+          "خطا در دریافت اطلاعات سبد خرید از سرور. لطفاً دوباره تلاش کنید.";
+        cartSyncError.value = errMsg;
+        return null;
+      } finally {
+        if (options?.signal) {
+          options.signal.removeEventListener("abort", onCallerAbort);
+        }
+        isCartSyncing.value = false;
+        activeCartFetchPromise = null;
+        activeFetchAbortController = null;
       }
-    });
+    })();
+
+    return await activeCartFetchPromise;
   };
 
   /**
-   * Flush all active debounces immediately (e.g. before initiating checkout).
+   * Safe initial cart loader with optional signal.
+   */
+  const initCart = async (options?: { force?: boolean; signal?: AbortSignal }) => {
+    return await syncCart(options);
+  };
+
+  /**
+   * Flush all pending updates (awaits active mutation queue before checkout).
    */
   const flushAllPendingUpdates = async () => {
     if (!process.client) return;
-    const keys = Array.from(debounceTimers.keys());
-    for (const key of keys) {
-      const timer = debounceTimers.get(key);
-      if (timer) {
-        clearTimeout(timer);
-        debounceTimers.delete(key);
-      }
-      flushQuantityUpdate(key);
-    }
     await mutationQueue;
   };
 
   /**
    * Add a product (or variation) to the cart.
+   * Updates state directly from mutation response without redundant GET cart query.
    */
   const handleAddToCart = async (
     productId: number,
@@ -254,6 +256,7 @@ export const useCart = () => {
           }
         }
 
+        lastSyncedAt.value = Date.now();
         addToCartButtonStatus.value = "added";
         push.success("کالا با موفقیت به سبد خرید اضافه شد");
         setTimeout(() => {
@@ -267,10 +270,13 @@ export const useCart = () => {
             "امکان افزودن این کالا به سبد خرید وجود ندارد"
         );
         if (err?.data?.data?.isNetworkError) {
-          await syncCart();
+          await syncCart({ force: true });
         }
       } finally {
-        if (updatingItemKeys.value.length === 0 && pendingTargets.size === 0) {
+        if (
+          updatingItemKeys.value.length === 0 &&
+          removingItemKeys.value.length === 0
+        ) {
           isCartUpdating.value = false;
         }
       }
@@ -279,25 +285,20 @@ export const useCart = () => {
 
   /**
    * Directly remove an item by its key.
+   * - Marks item as removing immediately (disables buttons, shows loading indicator).
+   * - Non-optimistic: item remains until server confirms removal.
    */
   const removeItem = async (key: string) => {
-    // Clear any pending debounce for this key
-    const timer = debounceTimers.get(key);
-    if (timer) {
-      clearTimeout(timer);
-      debounceTimers.delete(key);
-    }
-    pendingTargets.delete(key);
+    if (!process.client) return;
 
-    // Optimistic removal from UI immediately
-    updateCartState(cart.value.filter((i) => i.key !== key));
+    // Prevent duplicate clicks on the same item
+    if (removingItemKeys.value.includes(key)) return;
+
+    // Mark as removing immediately for per-item loading state
+    removingItemKeys.value = [...removingItemKeys.value, key];
+    isCartUpdating.value = true;
 
     return await enqueueMutation(async () => {
-      if (!updatingItemKeys.value.includes(key)) {
-        updatingItemKeys.value = [...updatingItemKeys.value, key];
-      }
-      isCartUpdating.value = true;
-
       try {
         const res = await $fetch<RemoveCartResponse>("/api/cart/remove", {
           method: "POST",
@@ -310,7 +311,10 @@ export const useCart = () => {
             total: res.removeItemsFromCart?.cart?.total,
             subtotal: res.removeItemsFromCart?.cart?.subtotal,
           });
+        } else {
+          updateCartState(cart.value.filter((i) => i.key !== key));
         }
+        lastSyncedAt.value = Date.now();
         push.info("کالا از سبد خرید حذف شد");
       } catch (err: any) {
         console.warn("[useCart] remove item failed:", err);
@@ -318,11 +322,15 @@ export const useCart = () => {
           err?.data?.message ||
             "خطا در حذف کالا از سبد خرید. در حال هماهنگ‌سازی با سرور..."
         );
-        // Safe reconciliation: verify with WooCommerce
-        await syncCart();
+        // Safe reconciliation on server
+        await syncCart({ force: true });
       } finally {
+        removingItemKeys.value = removingItemKeys.value.filter((k) => k !== key);
         updatingItemKeys.value = updatingItemKeys.value.filter((k) => k !== key);
-        if (updatingItemKeys.value.length === 0 && pendingTargets.size === 0) {
+        if (
+          updatingItemKeys.value.length === 0 &&
+          removingItemKeys.value.length === 0
+        ) {
           isCartUpdating.value = false;
         }
       }
@@ -330,23 +338,25 @@ export const useCart = () => {
   };
 
   /**
-   * Update quantity for a specific cart item key with debouncing and request coalescing.
+   * Update quantity for a specific cart item key.
+   * NON-OPTIMISTIC: cart.value is NOT updated prematurely.
+   * Item enters updatingItemKeys immediately -> UI hides the numeric display and shows a loading spinner
+   * until the server response confirms the new quantity.
    */
-  const changeQty = (key: string, quantity: number) => {
+  const changeQty = async (key: string, quantity: number) => {
     const item = findItemByKey(key);
     if (!item) return;
 
+    // Ignore while already updating or removing
+    if (updatingItemKeys.value.includes(key) || removingItemKeys.value.includes(key)) {
+      return;
+    }
+
     const targetQty = Math.max(0, Math.floor(quantity));
-    if (targetQty === item.quantity && !pendingTargets.has(key)) return;
+    if (targetQty === item.quantity) return;
 
     if (targetQty === 0) {
-      const timer = debounceTimers.get(key);
-      if (timer) {
-        clearTimeout(timer);
-        debounceTimers.delete(key);
-      }
-      pendingTargets.delete(key);
-      return removeItem(key);
+      return await removeItem(key);
     }
 
     // Check stock limit if known
@@ -358,27 +368,45 @@ export const useCart = () => {
       return;
     }
 
-    // OPTIMISTIC UPDATE: instant feedback in UI
-    updateCartState(
-      cart.value.map((i) =>
-        i.key === key ? { ...i, quantity: targetQty } : i
-      )
-    );
-
-    pendingTargets.set(key, targetQty);
+    // Enter loading state immediately (NON-OPTIMISTIC: number is hidden until server confirms)
+    updatingItemKeys.value = [...updatingItemKeys.value, key];
     isCartUpdating.value = true;
 
-    // Debounce: reset timer on rapid clicks
-    const existingTimer = debounceTimers.get(key);
-    if (existingTimer) {
-      clearTimeout(existingTimer);
-    }
+    return await enqueueMutation(async () => {
+      try {
+        const res = await $fetch<UpdateCartResponse>("/api/cart/update", {
+          method: "POST",
+          body: { items: [{ key, quantity: targetQty }] },
+        });
 
-    const timer = setTimeout(() => {
-      debounceTimers.delete(key);
-      flushQuantityUpdate(key);
-    }, 350);
-    debounceTimers.set(key, timer);
+        const returnedNodes = res.updateItemQuantities?.cart?.contents?.nodes;
+        const returnedTotals = {
+          total: res.updateItemQuantities?.cart?.total,
+          subtotal: res.updateItemQuantities?.cart?.subtotal,
+        };
+
+        if (Array.isArray(returnedNodes)) {
+          updateCartState(returnedNodes, returnedTotals);
+        }
+        lastSyncedAt.value = Date.now();
+      } catch (err: any) {
+        console.warn("[useCart] update quantity failed:", err);
+        push.error(
+          err?.data?.message ||
+            "خطا در به‌روزرسانی تعداد کالا. در حال هماهنگ‌سازی با سرور..."
+        );
+        // Safe reconciliation on server
+        await syncCart({ force: true });
+      } finally {
+        updatingItemKeys.value = updatingItemKeys.value.filter((k) => k !== key);
+        if (
+          updatingItemKeys.value.length === 0 &&
+          removingItemKeys.value.length === 0
+        ) {
+          isCartUpdating.value = false;
+        }
+      }
+    });
   };
 
   /**
@@ -395,16 +423,19 @@ export const useCart = () => {
       return;
     }
 
+    if (updatingItemKeys.value.includes(item.key) || removingItemKeys.value.includes(item.key)) {
+      return;
+    }
+
     const maxStock =
       item.variation?.node?.stockQuantity ??
       item.product?.node?.stockQuantity ??
       Infinity;
-    const currentQty = pendingTargets.get(item.key) ?? item.quantity;
-    if (currentQty >= maxStock) {
+    if (item.quantity >= maxStock) {
       return push.error("حداکثر موجودی این کالا در سبد شما قرار دارد");
     }
 
-    changeQty(item.key, currentQty + 1);
+    changeQty(item.key, item.quantity + 1);
   };
 
   /**
@@ -414,9 +445,8 @@ export const useCart = () => {
     const item =
       typeof keyOrId === "string" ? findItemByKey(keyOrId) : findItem(keyOrId);
 
-    if (item) {
-      const currentQty = pendingTargets.get(item.key) ?? item.quantity;
-      changeQty(item.key, currentQty - 1);
+    if (item && !updatingItemKeys.value.includes(item.key) && !removingItemKeys.value.includes(item.key)) {
+      changeQty(item.key, item.quantity - 1);
     }
   };
 
@@ -427,73 +457,44 @@ export const useCart = () => {
     const item =
       typeof keyOrId === "string" ? findItemByKey(keyOrId) : findItem(keyOrId);
 
-    if (item) {
+    if (item && !updatingItemKeys.value.includes(item.key) && !removingItemKeys.value.includes(item.key)) {
       changeQty(item.key, qty);
     }
   };
 
   /**
    * Clear all items from the cart.
+   * Non-optimistic: clears state only after server confirmation.
    */
   const clearCart = async () => {
     if (isClearingCart.value || cart.value.length === 0) return;
 
-    for (const timer of debounceTimers.values()) {
-      clearTimeout(timer);
-    }
-    debounceTimers.clear();
-    pendingTargets.clear();
-
-    // Optimistic clear
-    updateCartState([], { total: null, subtotal: null });
+    isClearingCart.value = true;
+    isCartUpdating.value = true;
 
     return await enqueueMutation(async () => {
       try {
-        isClearingCart.value = true;
-        isCartUpdating.value = true;
-
         await $fetch<EmptyCartResponse>("/api/cart/empty", {
           method: "POST",
         });
-        push.info("سبد خرید خالی شد");
+        updateCartState([], { total: null, subtotal: null });
+        lastSyncedAt.value = Date.now();
+        push.info("سبد خرید با موفقیت خالی شد");
       } catch (err: any) {
         console.warn("[useCart] clear cart failed:", err);
         push.error(
           err?.data?.message ||
             "خطا در خالی کردن سبد خرید. در حال هماهنگ‌سازی با سرور..."
         );
-        await syncCart();
+        await syncCart({ force: true });
       } finally {
         isClearingCart.value = false;
-        if (updatingItemKeys.value.length === 0 && pendingTargets.size === 0) {
+        if (updatingItemKeys.value.length === 0 && removingItemKeys.value.length === 0) {
           isCartUpdating.value = false;
         }
       }
     });
   };
-
-  // Client-side initialization
-  onMounted(() => {
-    if (!process.client) return;
-
-    // Load cached cart immediately to avoid UI pop-in
-    if (!isCartInitialized.value) {
-      const stored = localStorage.getItem("cart");
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored) as CartItem[];
-          if (Array.isArray(parsed) && parsed.length > 0 && cart.value.length === 0) {
-            cart.value = parsed;
-          }
-        } catch {
-          // Ignore invalid JSON in localStorage
-        }
-      }
-    }
-
-    // Always sync with authoritative server state on mount
-    syncCart();
-  });
 
   return {
     cart,
@@ -501,8 +502,13 @@ export const useCart = () => {
     addToCartButtonStatus,
     isCartUpdating,
     updatingItemKeys,
+    removingItemKeys,
     updatingVariationId,
+    isCartSyncing,
+    isSyncing: isCartSyncing, // backward compatibility
+    cartSyncError,
     isCartInitialized,
+    isClearingCart,
     handleAddToCart,
     increment,
     decrement,
@@ -511,6 +517,7 @@ export const useCart = () => {
     removeItem,
     clearCart,
     syncCart,
+    initCart,
     flushAllPendingUpdates,
     findItem,
   };

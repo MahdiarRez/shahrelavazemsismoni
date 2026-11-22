@@ -17,7 +17,12 @@ const {
 	clearCart,
 	isCartUpdating,
 	updatingItemKeys,
-	syncCart,
+	removingItemKeys,
+	isCartSyncing,
+	cartSyncError,
+	isCartInitialized,
+	isClearingCart,
+	initCart,
 } = useCart();
 const { order } = useCheckout();
 const localePath = useLocalePath();
@@ -60,12 +65,35 @@ const cartTotalToman = computed(() => {
 });
 
 const isItemUpdating = (key) => updatingItemKeys.value.includes(key);
+const isItemRemoving = (key) => removingItemKeys.value.includes(key);
+const isItemRemovingActive = computed(() => removingItemKeys.value.length > 0);
+
+// Page lifecycle and states
+const pageState = computed(() => {
+	if (order.value?.orderNumber && !cart.value.length) {
+		return "payment-success";
+	}
+	if (!isCartInitialized.value) {
+		if (cartSyncError.value && !cart.value.length) {
+			return "error";
+		}
+		return "loading";
+	}
+	if (cartSyncError.value && !cart.value.length) {
+		return "error";
+	}
+	if (cart.value.length > 0) {
+		return "content";
+	}
+	return "empty";
+});
 
 // Manual quantity editing state
 const editingKey = ref(null);
 const editingQty = ref("");
 
 const startEditing = (key, currentQty) => {
+	if (isItemRemoving(key)) return;
 	editingKey.value = key;
 	editingQty.value = String(currentQty);
 };
@@ -76,7 +104,7 @@ const onInputQuantity = (event) => {
 };
 
 const applyQuantity = async (key) => {
-	if (editingKey.value !== key) return;
+	if (editingKey.value !== key || isItemRemoving(key)) return;
 	const entered = Number(editingQty.value);
 	editingKey.value = null;
 
@@ -84,7 +112,6 @@ const applyQuantity = async (key) => {
 	if (!item) return;
 
 	if (!entered || isNaN(entered) || entered <= 0) {
-		// If 0 or empty, remove item
 		await removeItem(key);
 	} else if (entered !== item.quantity) {
 		await setQuantity(key, entered);
@@ -101,6 +128,7 @@ const handleConfirmClear = async () => {
 // Mobile sticky bar: scroll to checkout & hide when checkout is in view
 const isCheckoutInView = ref(false);
 let checkoutObserver = null;
+let pageAbortController = null;
 
 const scrollToCheckout = () => {
 	const el = document.getElementById("checkout-section");
@@ -117,8 +145,16 @@ const goBack = () => {
 	}
 };
 
+const handleRetry = () => {
+	initCart({ force: true });
+};
+
 onMounted(() => {
 	if (!process.client) return;
+
+	// Page-scoped abort controller: cancel initial GET if user navigates away before it resolves
+	pageAbortController = new AbortController();
+	initCart({ signal: pageAbortController.signal });
 
 	const el = document.getElementById("checkout-section");
 	if (el && "IntersectionObserver" in window) {
@@ -134,6 +170,11 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+	// Cancel pending GET request if still in flight
+	if (pageAbortController) {
+		pageAbortController.abort();
+		pageAbortController = null;
+	}
 	if (checkoutObserver) {
 		checkoutObserver.disconnect();
 		checkoutObserver = null;
@@ -143,13 +184,58 @@ onBeforeUnmount(() => {
 
 <template>
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 select-none" dir="rtl">
-		<!-- Payment Succeeded State -->
-		<div v-if="order?.orderNumber && !cart.length" class="flex justify-center items-center py-10">
+		<!-- 1. Payment Succeeded State -->
+		<div v-if="pageState === 'payment-success'" class="flex justify-center items-center py-10">
 			<PaymentSuccessful />
 		</div>
 
-		<!-- Cart With Items -->
-		<div v-else-if="cart.length">
+		<!-- 2. Full-Page Loading State for Initial Cart API Fetch -->
+		<div
+			v-else-if="pageState === 'loading'"
+			class="min-h-[60vh] flex flex-col items-center justify-center text-center p-6 space-y-4"
+			role="status"
+			aria-live="polite">
+			<UIcon
+				name="i-svg-spinners-90-ring-with-bg"
+				size="52"
+				class="text-secondary-600 dark:text-secondary-400" />
+			<div class="space-y-1">
+				<h2 class="text-lg sm:text-xl font-bold text-neutral-800 dark:text-neutral-100">
+					در حال بارگذاری سبد خرید...
+				</h2>
+				<p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
+					لطفاً شکیبا باشید، اطلاعات سبد خرید در حال دریافت از سرور است.
+				</p>
+			</div>
+		</div>
+
+		<!-- 3. Error State with Retry Button (Never falsely render empty cart) -->
+		<div
+			v-else-if="pageState === 'error'"
+			class="min-h-[55vh] flex flex-col items-center justify-center text-center p-6 sm:p-12">
+			<div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center mb-5 shadow-inner">
+				<UIcon
+					name="i-iconamoon-alert-circle-duotone"
+					size="44"
+					class="text-amber-600 dark:text-amber-400" />
+			</div>
+			<h2 class="text-xl sm:text-2xl font-bold mb-2 text-neutral-900 dark:text-neutral-100">
+				خطا در دریافت اطلاعات سبد خرید
+			</h2>
+			<p class="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm mb-6 leading-6">
+				{{ cartSyncError || "امکان برقراری ارتباط با سرور وجود ندارد. لطفاً اتصال اینترنت خود را بررسی کنید و دوباره تلاش نمایید." }}
+			</p>
+			<button
+				type="button"
+				@click="handleRetry"
+				class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-secondary-600 hover:bg-secondary-500 text-white font-semibold text-sm shadow-md transition active:scale-95">
+				<UIcon name="i-iconamoon-restart" size="18" />
+				<span>تلاش مجدد</span>
+			</button>
+		</div>
+
+		<!-- 4. Cart With Items (Interactive State) -->
+		<div v-else-if="pageState === 'content'">
 			<!-- Page Header -->
 			<div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-neutral-200/80 dark:border-neutral-800/80">
 				<div class="flex items-center gap-3">
@@ -177,11 +263,12 @@ onBeforeUnmount(() => {
 						<button
 							type="button"
 							@click="showClearConfirm = true"
-							:disabled="isCartUpdating"
-							class="text-xs font-medium text-neutral-500 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 flex items-center gap-1 px-2.5 py-1.5 rounded-xl hover:bg-red-50/50 dark:hover:bg-red-950/20 transition active:scale-95 disabled:opacity-40"
+							:disabled="isCartUpdating || isClearingCart"
+							class="text-xs font-medium text-neutral-500 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl hover:bg-red-50/50 dark:hover:bg-red-950/20 transition active:scale-95 disabled:opacity-40"
 							title="خالی کردن تمام سبد خرید">
-							<UIcon name="i-iconamoon-trash-light" size="16" />
-							<span>خالی کردن سبد</span>
+							<UIcon v-if="isClearingCart" name="i-svg-spinners-90-ring-with-bg" size="16" class="text-red-500" />
+							<UIcon v-else name="i-iconamoon-trash-light" size="16" />
+							<span>{{ isClearingCart ? "در حال پاکسازی..." : "خالی کردن سبد" }}</span>
 						</button>
 					</div>
 					<div v-else class="flex items-center gap-1.5 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 px-2 py-1 rounded-xl text-xs">
@@ -189,13 +276,15 @@ onBeforeUnmount(() => {
 						<button
 							type="button"
 							@click="handleConfirmClear"
-							class="px-2 py-0.5 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition active:scale-95">
+							:disabled="isClearingCart"
+							class="px-2 py-0.5 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition active:scale-95 disabled:opacity-50">
 							بله
 						</button>
 						<button
 							type="button"
 							@click="showClearConfirm = false"
-							class="px-2 py-0.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-lg hover:bg-neutral-300 transition active:scale-95">
+							:disabled="isClearingCart"
+							class="px-2 py-0.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-lg hover:bg-neutral-300 transition active:scale-95 disabled:opacity-50">
 							انصراف
 						</button>
 					</div>
@@ -216,7 +305,8 @@ onBeforeUnmount(() => {
 					<div
 						v-for="product in cart.slice().reverse()"
 						:key="product.key"
-						class="bg-white dark:bg-neutral-900/90 border border-neutral-200/80 dark:border-neutral-800/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm transition hover:shadow-md flex gap-4 items-center relative">
+						class="bg-white dark:bg-neutral-900/90 border border-neutral-200/80 dark:border-neutral-800/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm transition hover:shadow-md flex gap-4 items-center relative"
+						:class="{ 'opacity-40 pointer-events-none scale-[0.99]': isItemRemoving(product.key) }">
 						<!-- Product Image -->
 						<NuxtLink
 							:to="
@@ -250,15 +340,23 @@ onBeforeUnmount(() => {
 										{{ product.product?.node?.name }}
 									</NuxtLink>
 
-									<!-- Quick Direct Remove Button on Top Right/Left -->
+									<!-- Quick Direct Remove Button on Top -->
 									<button
 										type="button"
-										:disabled="isItemUpdating(product.key)"
+										:disabled="isItemUpdating(product.key) || isItemRemoving(product.key)"
 										@click="removeItem(product.key)"
 										class="p-1.5 text-neutral-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition active:scale-90 flex-shrink-0 disabled:opacity-40"
 										aria-label="حذف محصول از سبد خرید"
-										title="حذف از سبد خرید">
-										<UIcon name="i-iconamoon-trash-light" size="18" />
+										:title="isItemRemoving(product.key) ? 'در حال حذف...' : 'حذف از سبد خرید'">
+										<UIcon
+											v-if="isItemRemoving(product.key)"
+											name="i-svg-spinners-90-ring-with-bg"
+											size="18"
+											class="text-red-500" />
+										<UIcon
+											v-else
+											name="i-iconamoon-trash-light"
+											size="18" />
 									</button>
 								</div>
 
@@ -297,17 +395,27 @@ onBeforeUnmount(() => {
 									<!-- Increment (+) Button -->
 									<button
 										type="button"
+										:disabled="isItemUpdating(product.key) || isItemRemoving(product.key)"
 										@click="increment(product.key)"
-										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90"
+										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90 disabled:opacity-40 disabled:cursor-not-allowed"
 										aria-label="افزایش تعداد">
 										<UIcon name="i-iconamoon-sign-plus" size="16" />
 									</button>
 
-									<!-- Quantity Display / Editable Input -->
-									<div class="min-w-[32px] text-center px-1 flex items-center justify-center relative">
+									<!-- Quantity Display / Loading Spinner -->
+									<div class="w-8 h-8 flex items-center justify-center relative">
+										<!-- Loading spinner: shown until the server confirms the update -->
+										<UIcon
+											v-if="isItemUpdating(product.key)"
+											name="i-svg-spinners-90-ring-with-bg"
+											size="18"
+											class="text-secondary-600 dark:text-secondary-400" />
+										<!-- Actual verified number: displayed when not updating -->
 										<input
+											v-else
 											type="text"
 											inputmode="numeric"
+											:disabled="isItemRemoving(product.key)"
 											:value="
 												editingKey === product.key
 													? editingQty
@@ -317,20 +425,16 @@ onBeforeUnmount(() => {
 											@input="onInputQuantity($event)"
 											@blur="applyQuantity(product.key)"
 											@keydown.enter.prevent="$event.target.blur()"
-											class="w-8 text-center text-sm font-bold bg-transparent outline-none cursor-text select-text"
+											class="w-8 text-center text-sm font-bold bg-transparent outline-none cursor-text select-text disabled:opacity-50"
 											aria-label="تعداد کالا" />
-										<UIcon
-											v-if="isItemUpdating(product.key)"
-											name="i-svg-spinners-90-ring-with-bg"
-											size="12"
-											class="text-secondary-600 dark:text-secondary-400 absolute -top-1 -right-0.5" />
 									</div>
 
 									<!-- Decrement (-) Button -->
 									<button
 										type="button"
+										:disabled="isItemUpdating(product.key) || isItemRemoving(product.key)"
 										@click="decrement(product.key)"
-										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90"
+										class="w-8 h-8 rounded-full bg-white dark:bg-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-600 flex items-center justify-center text-neutral-800 dark:text-white shadow-sm transition active:scale-90 disabled:opacity-40 disabled:cursor-not-allowed"
 										:aria-label="product.quantity > 1 ? 'کاهش تعداد' : 'حذف محصول'">
 										<UIcon
 											size="16"
@@ -389,7 +493,7 @@ onBeforeUnmount(() => {
 			</div>
 		</div>
 
-		<!-- Empty Cart State -->
+		<!-- 5. Empty Cart State (Authoritative confirmation from backend) -->
 		<div
 			v-else
 			class="min-h-[55vh] flex flex-col items-center justify-center text-center p-6 sm:p-12">
@@ -412,5 +516,41 @@ onBeforeUnmount(() => {
 				<UIcon name="i-iconamoon-arrow-left-2" size="18" />
 			</NuxtLink>
 		</div>
+
+		<!-- 6. Full-Screen Loading Overlay for Cart API Operations -->
+		<Transition
+			enter-active-class="transition duration-200 ease-out"
+			enter-from-class="opacity-0"
+			enter-to-class="opacity-100"
+			leave-active-class="transition duration-150 ease-in"
+			leave-from-class="opacity-100"
+			leave-to-class="opacity-0">
+			<div
+				v-if="(isCartUpdating || isCartSyncing || isClearingCart) && pageState === 'content'"
+				class="fixed inset-0 z-[60] bg-white/75 dark:bg-black/75 backdrop-blur-sm flex flex-col items-center justify-center gap-4 select-none"
+				role="status"
+				aria-live="polite">
+				<UIcon
+					name="i-svg-spinners-90-ring-with-bg"
+					size="52"
+					class="text-secondary-600 dark:text-secondary-400" />
+				<div class="text-center space-y-1 px-4">
+					<p class="text-base font-semibold text-neutral-800 dark:text-neutral-100">
+						{{
+							isClearingCart
+								? "در حال خالی کردن سبد خرید..."
+								: isItemRemovingActive
+									? "در حال حذف کالا از سبد خرید..."
+									: isCartUpdating
+										? "در حال به‌روزرسانی سبد خرید..."
+										: "در حال دریافت اطلاعات سبد خرید..."
+						}}
+					</p>
+					<p class="text-xs text-neutral-500 dark:text-neutral-400">
+						لطفاً چند لحظه شکیبا باشید
+					</p>
+				</div>
+			</div>
+		</Transition>
 	</div>
 </template>

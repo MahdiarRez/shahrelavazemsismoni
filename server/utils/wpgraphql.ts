@@ -195,7 +195,7 @@ export async function requestCartQuery<T = unknown>(
     return null;
   }
 
-  const client = getClient(session);
+  const client = getClient(session, 2);
   const queryString = toQueryString(query);
 
   try {
@@ -215,13 +215,14 @@ export async function requestCartQuery<T = unknown>(
     if (isInvalidSession) {
       console.warn('[wpgraphql] session expired or invalid, clearing cookie');
       clearCartSessionCookie(event);
-    } else {
-      console.warn(
-        '[wpgraphql] cart query error (preserving session cookie):',
-        error?.message || error
-      );
+      return null;
     }
-    return null;
+
+    console.warn(
+      '[wpgraphql] cart query error (preserving session cookie):',
+      error?.message || error
+    );
+    return await handleError(Promise.reject(error), 'GraphQL cart query failed');
   }
 }
 
