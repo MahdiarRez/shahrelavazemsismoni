@@ -46,7 +46,7 @@ const categories = computed(() =>
 					<NuxtImg
 						v-if="category.image"
 						:alt="category.name"
-						:src="category.image.sourceUrl"
+						:src="category?.image?.sourceUrl"
 						loading="lazy"
 						:title="category.name"
 						class="absolute inset-0 h-full w-full bg-neutral-200 object-cover transition-transform duration-500 group-hover:scale-105 dark:bg-neutral-800" />

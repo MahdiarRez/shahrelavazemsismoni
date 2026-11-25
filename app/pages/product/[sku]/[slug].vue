@@ -119,10 +119,10 @@ const onAddToCart = () => {
 				<swiper-slide
 					class="cursor-pointer rounded-xl overflow-hidden border-2 border-white dark:border-black">
 					<AppImage
-						:alt="product.name"
+						:alt="product?.name"
 						aspect-ratio="1/1"
 						class="h-full w-full border-2 border-white bg-neutral-200 dark:bg-neutral-800 dark:border-black rounded-[10px]"
-						:src="product.image?.sourceUrl" />
+						:src="product?.image?.sourceUrl" />
 				</swiper-slide>
 				<swiper-slide
 					class="cursor-pointer rounded-xl overflow-hidden border-2 border-white dark:border-black"
@@ -132,7 +132,7 @@ const onAddToCart = () => {
 						:alt="product.name"
 						aspect-ratio="1/1"
 						class="h-full w-full border-2 border-white bg-neutral-200 dark:bg-neutral-800 dark:border-black rounded-[10px]"
-						:src="node.sourceUrl" />
+						:src="node?.sourceUrl" />
 				</swiper-slide>
 			</swiper>
 		</div>
@@ -173,7 +173,7 @@ const onAddToCart = () => {
 							aspect-ratio="1/1"
 							class="h-full w-full cursor-zoom-in"
 							img-class="object-cover"
-							:src="node.sourceUrl" />
+							:src="node?.sourceUrl" />
 					</swiper-slide>
 				</swiper>
 			</div>
